@@ -9,9 +9,10 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
 3. [Understanding the Roles](#understanding-the-roles)
 4. [Example Output Structure](#example-output-structure)
 5. [Getting Started with Nova Process](#getting-started-with-nova-process)
-6. [Continuing the Nova Process](#continuing-the-nova-process)
-7. [Notes and Observations](#notes-and-observations)
-8. [Disclaimer](#disclaimer)
+6. [How to Prime a Nova Chat with Another Nova Chat Thought Tree](#how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree)
+7. [Continuing the Nova Process](#continuing-the-nova-process)
+8. [Notes and Observations](#notes-and-observations)
+9. [Disclaimer](#disclaimer)
 
 ## About Nova Process <a name="about-nova-process"></a>
 
@@ -160,6 +161,8 @@ One instance of Nova can be told to go down one path, while another explores oth
 Then can be stopped and told to prime a new instance with their findings at any time.
 
 Here is an example of how to do this:
+
+## How to Prime a Nova Chat with Another Nova Chat Thought Tree <a name="how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree"></a>
 
 **User:**
 
