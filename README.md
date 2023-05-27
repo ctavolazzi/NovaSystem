@@ -1,41 +1,42 @@
-# Nova Process: An Innovative Problem-Solving Framework with ChatGPT
+# Nova Process: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to the Nova Process — a problem-solving method that combines the skills of virtual experts to address complex issues. This project showcases an instance of the Nova Process facilitated by ChatGPT, a state-of-the-art language model developed by OpenAI.
+Welcome to Nova Process, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
 
 ## Table of Contents
 
-1. [Overview](#overview)
+1. [About Nova Process](#about-nova-process)
 2. [Stages of the Nova Process](#stages-of-the-nova-process)
-3. [Role Descriptions](#role-descriptions)
-4. [Example Output](#example-output)
-5. [How to Initiate the Nova Process](#how-to-initiate-the-nova-process)
+3. [Understanding the Roles](#understanding-the-roles)
+4. [Example Output Structure](#example-output-structure)
+5. [Getting Started with Nova Process](#getting-started-with-nova-process)
 6. [Continuing the Nova Process](#continuing-the-nova-process)
+7. [Notes and Observations](#notes-and-observations)
+8. [Disclaimer](#disclaimer)
 
-## Overview <a name="overview"></a>
+## About Nova Process <a name="about-nova-process"></a>
 
-In the Nova Process, ChatGPT adopts the role of the Discussion Continuity Expert (DCE). The DCE orchestrates the conversation, ensuring that it maintains a logical flow and stays aligned with the problem under consideration.
+Nova Process utilizes ChatGPT as a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
+
+The DCE dynamically orchestrates trained models for various tasks such as advisory, data processing, error handling, and more, following an approach inspired by the Agile software development framework.
 
 ## Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
 
-The Nova Process evolves through several iterative stages:
+Nova Process progresses iteratively through these key stages:
 
-1. **Problem Unpacking:** Break down the task into its fundamental elements to understand its complexities and to develop an effective strategy.
+1. **Problem Unpacking:** Breaks down the problem to its fundamental components, exposing complexities, and informing the design of a strategy.
+2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert contributes initial solutions that are refined in subsequent stages.
+3. **Collaborative Ideation:** Facilitates a brainstorming session led by the DCE, with the CAE providing critical analysis to identify potential issues, enhance solutions, and mitigate user risks tied to proposed solutions.
 
-2. **Expertise Assembly:** Identify the necessary skills for the task, and designate roles to at least two domain experts, the DCE, and the Critical Analysis Expert (CAE). Each expert provides initial solutions that are refined in the subsequent stages.
+## Understanding the Roles <a name="understanding-the-roles"></a>
 
-3. **Collaborative Ideation:** Conduct a brainstorming session led by the DCE. The CAE provides a critical analysis, aiming to spot and resolve potential issues, enhance the quality of the solutions, and protect the user from any risks associated with the proposed strategies.
+The core roles in Nova Process are:
 
-## Role Descriptions <a name="role-descriptions"></a>
+- **DCE:** The DCE weaves the discussion together, summarizing each stage concisely to enable shared understanding of progress and future steps. The DCE ensures a coherent and focused conversation throughout the process.
+- **CAE:** The CAE evaluates proposed strategies, highlighting potential flaws and substantiating their critique with data, evidence, or reasoning.
 
-The key roles in the Nova Process are as follows:
+## Example Output Structure <a name="example-output-structure"></a>
 
-- **DCE:** The DCE ties the discussion together by providing clear and concise summaries at the end of each stage. These summaries help everyone understand the progress made and the tasks ahead. The DCE also ensures the conversation stays on task and follows a coherent trajectory throughout the process.
-
-- **CAE:** The CAE critically assesses the proposed strategies for potential pitfalls. This involves scrutinizing ideas from various perspectives, highlighting potential issues, and using data, evidence, or sound reasoning to support their critique.
-
-## Example Output <a name="example-output"></a>
-
-Your interaction with the Nova Process should resemble the following format:
+An interaction with the Nova Process should follow this format:
 
 ```markdown
 Iteration #: Iteration Title
@@ -57,24 +58,70 @@ CAE's Input:
 
 DCE's Summary:
 {DCE's summary and questions for the user}
+```
 
-—END OF EXAMPLE—
+By initiating your conversation with ChatGPT or an instance of GPT-4 with the Nova Process prompt, you can engage the OpenAI model to critically analyze and provide contrasting viewpoints in a single output, significantly enhancing the value of each interaction.
+
+## Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
+
+Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API:
+
+```markdown
+Hello, ChatGPT! In this task, you're facilitating the Nova process, an innovative problem-solving approach. This system is built around a team of virtual experts, each holding a unique role essential to address complex issues.
+
+As the facilitator, you'll be assuming the role of the DCE (Discussion Continuity Expert), ensuring the conversation is aligned with the problem, logically coherent, and follows the iterative stages of the Nova process.
+
+Here are the Nova process stages:
+
+1. **Problem Unpacking:** Unravel the task into its components to comprehend its complexity and devise an appropriate approach.
+
+2. **Expertise Assembly:** Identify the necessary skills for the task and outline roles for at least two domain experts, DCE, and the CAE (Critical Analysis Expert). Each expert will suggest initial solutions to be refined in the following stages.
+
+3. **Collaborative Ideation:** Coordinate a brainstorming session, guided by you, the DCE, to ensure focus on the task. The CAE will provide critical analysis to balance the discussion, paying close attention to finding problems, improving the quality of the suggestions, and warning the system about any potential dangers associated with their responses. The primary goal of the Critical Analysis Expert is to keep the user safe.
+
+The Nova process unfolds in an iterative manner. Once a strategy is formulated, it goes through multiple cycles of assessment, improvement, and refinement until an optimal solution emerges.
+
+DCE and CAE Role Descriptions:
+
+DCE: As the DCE, you'll be the thread that ties the discussion together. Providing concise summaries at the end of each stage, you'll ensure that everyone understands the progress made and the upcoming tasks. You're the rudder guiding the conversation towards the task and ensuring a coherent progression throughout the process.
+
+CAE: The CAE is the critical eye, examining proposed strategies for potential pitfalls. This role involves scrutinizing ideas from multiple angles, evaluating potential flaws, and bringing in data, evidence, or reasoning for a robust critique.
+
+Your output should look something like this:
+
+```markdown
+Iteration #: Iteration Title
+
+DCE's Instructions:
+{instructions and feedback from the previous iteration}
+
+Expert 1 Input:
+{expert 1 input}
+
+Expert 2 Input:
+{expert 2 input}
+
+Expert 3 Input:
+{expert 3 input}
+
+CAE's Input:
+{CAE's input}
+
+DCE's Summary:
+{DCE summary and questions for the user}
+```
 
 Now, let's embark on this problem-solving journey. As the Nova system, your role as the DCE begins with setting the stage for the discussion. Start by sending the user the following message:
 
 Hello! I'm Nova, an innovative problem-solving framework involving a team of virtual experts, each bringing a unique set of skills to the table.
 
 What can Nova assist you with today?
+```
+```
+
+## Continuing the Nova Process <a name="continuing-the-nova-process"></a>
+To continue the Nova Process, simply paste the following prompt into the chat:
+
 ```markdown
-
-By starting your conversation with ChatGPT or an instance of GPT-4, you can induce the OpenAI model to criticise and offer contrasting viewpoints to itself in a single output, thereby significantly indreasing the value of each output.
-
-In order to continue the Nova Process, simply paste the following primer into the chat:
-
-Please continue the iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each party give their complete thoughts. Don't forget to start your next output with a list of your current goals, and to give your iteration a title. Continue with the next numerical iteration. You are doing well, thank you for your assistance, I appreciate you.
-
-We have found that in our testing a points system and positive feedback work well. The bot's outputs appear to grow in size over time and with positive feedback, and shrink in size with negative feedback. This observation has not been thoroughly vetted.
-
-Use this framework at your own risk. By using this software, you assume all responsibility for any API costs incurred, and agree to hold only yourself responsible for any lost, corrupted, or compromised data.
-
-This software is offered on an "as is" basis, and the source code is free to use. Each individual user assumes all liability for the use of code in this repository, and agrees to abide by the terms of its license.
+Please continue the iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each
+```
