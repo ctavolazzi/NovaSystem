@@ -1,4 +1,5 @@
 import tkinter as tk
+from robot import Robot
 
 class Game:
     def __init__(self, master, total_size=10):
