@@ -164,9 +164,12 @@ Here is an example of how to do this:
 
 ## How to Prime a Nova Chat with Another Nova Chat Thought Tree <a name="how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree"></a>
 
+
 **User:**
 
 Please create a prompt for yourself that would prime a new chat with the information it needed to continue where you left off
+
+
 
 **ChatGPT (as Nova):**
 
@@ -186,9 +189,13 @@ Develop corresponding tests for these methods.
 Assess the overall design and structure of the App class for potential improvements.
 Your team includes a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). You'll need to call upon their expertise to move forward.
 
+
+
 **User:**
 
 Please expand that and give examples and code too please. You're doing really well, this is amazing
+
+
 
 **ChatGPT (as Nova):**
 
