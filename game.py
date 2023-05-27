@@ -1,9 +1,11 @@
 import tkinter as tk
 import random
 from robot import Robot
+from welcome_ascii_art import welcome_ascii_art_2
 
 class Game:
     def __init__(self, master, total_size=10):
+        self.welcome_ascii_art = welcome_ascii_art_2()
         self.master = master
         self.total_size = total_size
         self.user_pos = [total_size//2, total_size//2]
@@ -35,6 +37,9 @@ class Game:
         for i in range(self.total_size):
             for j in range(self.total_size):
                 self.labels[i][j].config(text=self.grid[i][j])
+
+    def unpause(self):
+        self.paused = False
 
     def move(self, direction):
         if self.paused:
