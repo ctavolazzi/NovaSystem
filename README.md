@@ -123,7 +123,7 @@ What can Nova assist you with today?
 To continue the Nova Process, simply paste the following prompt into the chat:
 
 ```markdown
-Please continue the iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each
+Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
 ```
 
 ## Saving Your Progress <a name="saving-your-progress"></a>
@@ -273,6 +273,8 @@ Iterative: The Nova Process, inspired by the Agile framework, works in an iterat
 Collaborative: The Nova Process simulates a team of experts working together to solve a problem. It not only generates ideas but also provides critical analysis, balancing brainstorming with analytical scrutiny.
 
 Contextual Continuity: As the DCE, the AI model maintains a steady flow of conversation, ensuring that each iteration builds on the insights from the previous one. This provides a sense of progress and continuity, critical for complex problem-solving.
+
+It gives longer output when you're nicer to it. We aren't sure why.
 
 #### Disclaimer <a name="disclaimer"></a>
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
