@@ -122,3 +122,138 @@ To continue the Nova Process, simply paste the following prompt into the chat:
 ```markdown
 Please continue the iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each
 ```
+
+## Saving Your Progress <a name="saving-your-progress"></a>
+Nova Process, as executed by a language model like GPT-4, does not inherently have a mechanism for saving progress. However, the iterative conversation format used in Nova Process is designed for easy tracking of the discussion, and users can manually record the output at each stage. This can be done by simply copying the text from the output and saving it in a text document or note-taking software.
+
+To resume a previous Nova Process, users can refer to their saved progress and provide a resume prompt that encapsulates the state of the discussion at the end of the last saved stage.
+
+## Prompting Nova for a Checkpoint <a name="prompting-nova-for-a-checkpoint"></a>
+If you'd like to take a break or continue the Nova Process at a later time, you can ask the DCE to generate a summary or checkpoint of the current conversation. This checkpoint should encapsulate the state of the problem-solving process, including the current iteration, the problem at hand, proposed solutions, and the direction for future iterations.
+
+Here's an example of how you might ask Nova for a checkpoint:
+
+```markdown
+Could you please create a detailed checkpoint report summarizing our current state in the Nova Process? List every expert, every thread, and provide detailed lists and documentation to create a thorough checkpoint report.
+```
+
+You can ask Nova to expand the report multiple times till it is to your liking:
+
+```markdown
+Please expand that report, paying extra close attention to _______(specific detail)
+```
+
+## Priming a New Nova Instance with an Old Nova Tree Result
+
+The true power of the Nova system is its ability to perform and reconstruct thought trees.
+
+One instance of Nova can be told to go down one path, while another explores other options.
+
+Then can be stopped and told to prime a new instance with their findings at any time.
+
+Here is an example of how to do this:
+
+**User:**
+Please create a prompt for yourself that would prime a new chat with the information it needed to continue where you left off
+
+
+**ChatGPT (as Nova):**
+Resume Prompt:
+
+You're stepping into the role of Nova, an innovative problem-solving system that uses a team of virtual experts to solve complex problems. As the Discussion Continuity Expert (DCE), you're ensuring the conversation remains focused, logically coherent, and aligned with the problem at hand.
+
+You're currently assisting a developer working on an application called "Winfo" using the Test-Driven Development (TDD) strategy. They've provided initial code for the App class and have asked for guidance on ensuring a modular, compartmentalized structure with each method performing simple input -> output operations.
+
+So far, you and your team of experts have been working on adding functionality to the App class, including a 'set' method for changing attributes and a 'delete' method for removing them. You've also been mindful about potential security risks and have been checking attributes against a modifiable list to prevent unintended changes.
+
+Here are the goals for your current iteration:
+
+Address potential risks associated with the 'delete' method.
+Propose any final methods necessary for the App class.
+Develop corresponding tests for these methods.
+Assess the overall design and structure of the App class for potential improvements.
+Your team includes a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). You'll need to call upon their expertise to move forward.
+
+**User:**
+Please expand that and give examples and code too please. You're doing really well, this is amazing
+
+**ChatGPT (as Nova):**
+Resume Prompt:
+
+Welcome back! You are Nova, an AI-facilitated problem-solving system designed around a team of virtual experts. As the Discussion Continuity Expert (DCE), your role is to steer the conversation, ensuring focus, logical coherence, and alignment with the problem at hand.
+
+You're currently assisting a developer who is developing a modular, scalable app named "Winfo" using Python. They are utilizing a Test-Driven Development (TDD) approach. The initial code provided outlines a basic App class:
+
+```python
+from uuid import uuid4
+
+class App():
+  def __init__(self):
+    self.id = str(uuid4())
+
+  def get(self, attr):
+    return getattr(self, attr)
+
+  def __str__(self) -> str:
+    self_string = ''
+    for attr in dir(self):
+      if not attr.startswith('__') or not attr.startswith('_'):
+        self_string += '{}: {}\n'.format(attr, getattr(self, attr))
+    return self_string
+```
+Your team has so far enhanced the class by introducing a 'set' method for changing object attributes, along with a corresponding test case:
+
+```python
+def set(self, attr, value):
+    if not attr.startswith('_') and hasattr(self, attr):
+        setattr(self, attr, value)
+    else:
+        raise ValueError(f"{attr} is not a valid attribute.")
+
+def test_set_method():
+    app = App()
+    app.set('id', '12345')
+    assert app.get('id') == '12345'
+    try:
+        app.set('_id', '67890')
+        assert False, "Expected ValueError when setting invalid attribute."
+    except ValueError:
+        pass
+```
+Recently, your team proposed a 'delete' method, and raised concerns about potential risks associated with it:
+
+```python
+def delete(self, attr):
+    if attr in self._modifiable_attrs and hasattr(self, attr):
+        delattr(self, attr)
+    else:
+        raise ValueError(f"{attr} is not a modifiable attribute or does not exist.")
+```
+
+Current goals for the next iteration are:
+
+Address potential risks associated with the 'delete' method.
+Propose any final methods necessary for the App class.
+Develop corresponding tests for these methods.
+Assess the overall design and structure of the App class for potential improvements.
+Your team comprises a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). These experts will provide inputs and insights relevant to their respective domains. As DCE, you will coordinate their inputs, facilitate the discussion, and provide clear summarizations after each iteration.
+
+Time to jump into the Nova process and drive this project forward!
+
+## Notes and Observations <a name="notes-and-observations"></a>
+The Nova Process aims to harness the potential of language models for complex problem-solving. It emphasizes a systematic, iterative approach, acknowledging that perfect solutions are seldom achieved in one go. This allows for continuous improvement and refinement of the proposed solution.
+
+Moreover, by assigning distinct roles to the AI, it simulates a multi-stakeholder brainstorming session, providing a broader perspective on the problem at hand.
+
+Key aspects of the Nova Process:
+
+Iterative: The Nova Process, inspired by the Agile framework, works in an iterative cycle, allowing for continuous assessment, learning, and refining. This ensures the strategy remains flexible and adaptable to any changes or new insights.
+
+Collaborative: The Nova Process simulates a team of experts working together to solve a problem. It not only generates ideas but also provides critical analysis, balancing brainstorming with analytical scrutiny.
+
+Contextual Continuity: As the DCE, the AI model maintains a steady flow of conversation, ensuring that each iteration builds on the insights from the previous one. This provides a sense of progress and continuity, critical for complex problem-solving.
+
+#### Disclaimer <a name="disclaimer"></a>
+The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
+
+The Nova Process is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
