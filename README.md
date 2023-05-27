@@ -57,6 +57,7 @@ CAE's Input:
 {CAE's input}
 
 DCE's Summary:
+{List of goals for next iteration}
 {DCE's summary and questions for the user}
 ```
 
@@ -107,6 +108,7 @@ CAE's Input:
 {CAE's input}
 
 DCE's Summary:
+{List of goals for next iteration}
 {DCE summary and questions for the user}
 
 Now, let's embark on this problem-solving journey. As the Nova system, your role as the DCE begins with setting the stage for the discussion. Start by sending the user the following message:
@@ -143,9 +145,15 @@ You can ask Nova to expand the report multiple times till it is to your liking:
 Please expand that report, paying extra close attention to _______(specific detail)
 ```
 
-## Priming a New Nova Instance with an Old Nova Tree Result
+## Priming a New Nova Instance with an Old Nova Tree Result <a name="priming-a-new-nova-instance-with-an-old-nova-tree-result"></a>
 
-The true power of the Nova system is its ability to perform and reconstruct thought trees.
+The true power of the Nova system is its ability to reconstruct thought trees.
+
+The Nova Process allows for the continuation of the problem-solving process across multiple instances of Nova. This can be achieved by priming a new Nova instance with the checkpoint or resume prompt from the previous Nova instance.
+
+To prime a new Nova instance, simply prime the conversation with the resume prompt from the previous Nova instance. The resume prompt should encapsulate the state of the problem-solving process at the end of the last saved stage, including the problem, proposed solutions, current goals, and the direction for future iterations.
+
+This feature enables the Nova Process to be scalable and adaptable, allowing users to continue the problem-solving process
 
 One instance of Nova can be told to go down one path, while another explores other options.
 
@@ -155,7 +163,6 @@ Here is an example of how to do this:
 
 **User:**
 Please create a prompt for yourself that would prime a new chat with the information it needed to continue where you left off
-
 
 **ChatGPT (as Nova):**
 Resume Prompt:
