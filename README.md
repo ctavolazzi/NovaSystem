@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
 Welcome to the NovaSystem, a pioneering problem-solving method and open source project developed by AIECO that harnesses the power of a team of virtual AI experts working together to respond to user requests. 
@@ -522,3 +523,7 @@ You can ask Nova to give you a JSON config file based on your conversation or to
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
 
 The Nova Process is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
+=======
+# Nova_System
+ 
+>>>>>>> 0de7ea2 (Initial commit)
