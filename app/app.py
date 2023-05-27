@@ -8,15 +8,16 @@ class App():
     return getattr(self, attr)
 
   def set(self, attr, value):
-      if not attr.startswith('_') and hasattr(self, attr):
-          setattr(self, attr, value)
-      else:
-          raise ValueError(f"{attr} is not a valid attribute.")
+    if attr.startswith('_'):
+      raise ValueError(f"Cannot set private attribute: {attr}")
+    elif not hasattr(self, attr):
+      raise ValueError(f"Attribute {attr} does not exist.")
+    else:
+      setattr(self, attr, value)
 
   def __str__(self) -> str:
     self_string = ''
     for attr in dir(self):
       if not attr.startswith('__') or not attr.startswith('_'):
         self_string += '{}: {}\n'.format(attr, getattr(self, attr))
-        print(attr, getattr(self, attr))
     return self_string
