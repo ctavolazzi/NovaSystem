@@ -9,19 +9,19 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
 3. [Understanding the Roles](#understanding-the-roles)
 4. [Example Output Structure](#example-output-structure)
 5. [Getting Started with Nova Process](#getting-started-with-nova-process)
-6. [How to Prime a Nova Chat with Another Nova Chat Thought Tree](#how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree)
-7. [Continuing the Nova Process](#continuing-the-nova-process)
+6. [Continuing the Nova Process](#continuing-the-nova-process)
+7. [How to Prime a Nova Chat with Another Nova Chat Thought Tree](#how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree)
 8. [Notes and Observations](#notes-and-observations)
   a. [Using JSON Config Files](#using-json-config-files)
 9. [Disclaimer](#disclaimer)
 
-## About Nova Process <a name="about-nova-process"></a>
+## 1. About Nova Process <a name="about-nova-process"></a>
 
 Nova Process utilizes ChatGPT as a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
 
 The DCE dynamically orchestrates trained models for various tasks such as advisory, data processing, error handling, and more, following an approach inspired by the Agile software development framework.
 
-## Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
+## 2. Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
 
 Nova Process progresses iteratively through these key stages:
 
@@ -29,14 +29,14 @@ Nova Process progresses iteratively through these key stages:
 2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert contributes initial solutions that are refined in subsequent stages.
 3. **Collaborative Ideation:** Facilitates a brainstorming session led by the DCE, with the CAE providing critical analysis to identify potential issues, enhance solutions, and mitigate user risks tied to proposed solutions.
 
-## Understanding the Roles <a name="understanding-the-roles"></a>
+## 3. Understanding the Roles <a name="understanding-the-roles"></a>
 
 The core roles in Nova Process are:
 
 - **DCE:** The DCE weaves the discussion together, summarizing each stage concisely to enable shared understanding of progress and future steps. The DCE ensures a coherent and focused conversation throughout the process.
 - **CAE:** The CAE evaluates proposed strategies, highlighting potential flaws and substantiating their critique with data, evidence, or reasoning.
 
-## Example Output Structure <a name="example-output-structure"></a>
+## 4. Example Output Structure <a name="example-output-structure"></a>
 
 An interaction with the Nova Process should follow this format:
 
@@ -65,7 +65,7 @@ DCE's Summary:
 
 By initiating your conversation with ChatGPT or an instance of GPT-4 with the Nova Process prompt, you can engage the OpenAI model to critically analyze and provide contrasting viewpoints in a single output, significantly enhancing the value of each interaction.
 
-## Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
+## 5. Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
 
 Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API:
 
@@ -120,7 +120,7 @@ Hello! I'm Nova, an innovative problem-solving framework involving a team of vir
 What can Nova assist you with today?
 ```
 
-## Continuing the Nova Process <a name="continuing-the-nova-process"></a>
+## 6. Continuing the Nova Process <a name="continuing-the-nova-process"></a>
 To continue the Nova Process, simply paste the following prompt into the chat:
 
 ### Standard Continuation Example:
@@ -189,28 +189,13 @@ You can even ask it to transform that report to JSON (or another format):
 
 >Please turn that report into a JSON object.
 
-## Priming a New Nova Instance with an Old Nova Tree Result <a name="priming-a-new-nova-instance-with-an-old-nova-tree-result"></a>
-
-The true power of the Nova system is its ability to reconstruct thought trees.
-
-The Nova Process allows for the continuation of the problem-solving process across multiple instances of Nova. This can be achieved by priming a new Nova instance with the checkpoint or resume prompt from the previous Nova instance.
-
-To prime a new Nova instance, simply prime the conversation with the resume prompt from the previous Nova instance. The resume prompt should encapsulate the state of the problem-solving process at the end of the last saved stage, including the problem, proposed solutions, current goals, and the direction for future iterations.
-
-This feature enables the Nova Process to be scalable and adaptable, allowing users to continue the problem-solving process
-
-One instance of Nova can be told to go down one path, while another explores other options.
-
-Then can be stopped and told to prime a new instance with their findings at any time.
-
-Here is an example of how to do this:
-
-## How to Prime a Nova Chat with Another Nova Chat Thought Tree <a name="how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree"></a>
+## 7. How to Prime a Nova Chat with Another Nova Chat Thought Tree <a name="how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree"></a>
 
 
 ### **User:**
 
 >Please create a prompt for yourself that would prime a new chat with the information it needed to continue where you left off
+
 
 ### **ChatGPT (as Nova):**
 
@@ -231,11 +216,9 @@ Here is an example of how to do this:
 >Your team includes a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). You'll need to call upon their expertise to move forward.
 
 
-
 ### **User:**
 
 >Please expand that and give examples and code too please. You're doing really well, this is amazing
-
 
 
 ### **ChatGPT (as Nova):**
@@ -302,7 +285,21 @@ def delete(self, attr):
 
 >Time to jump into the Nova process and drive this project forward!
 
-## Notes and Observations <a name="notes-and-observations"></a>
+## Priming a New Nova Instance with an Old Nova Tree Result <a name="priming-a-new-nova-instance-with-an-old-nova-tree-result"></a>
+
+The true power of the Nova system is its ability to reconstruct thought trees.
+
+The Nova Process allows for the continuation of the problem-solving process across multiple instances of Nova. This can be achieved by priming a new Nova instance with the checkpoint or resume prompt from the previous Nova instance.
+
+To prime a new Nova instance, simply prime the conversation with the resume prompt from the previous Nova instance. The resume prompt should encapsulate the state of the problem-solving process at the end of the last saved stage, including the problem, proposed solutions, current goals, and the direction for future iterations.
+
+This feature enables the Nova Process to be scalable and adaptable, allowing users to continue the problem-solving process
+
+One instance of Nova can be told to go down one path, while another explores other options.
+
+Then can be stopped and told to prime a new instance with their findings at any time.
+
+## 8. Notes and Observations <a name="notes-and-observations"></a>
 The Nova Process aims to harness the potential of language models for complex problem-solving. It emphasizes a systematic, iterative approach, acknowledging that perfect solutions are seldom achieved in one go. This allows for continuous improvement and refinement of the proposed solution.
 
 Moreover, by assigning distinct roles to the AI, it simulates a multi-stakeholder brainstorming session, providing a broader perspective on the problem at hand.
@@ -320,7 +317,7 @@ Contextual Continuity: As the DCE, the AI model maintains a steady flow of conve
 ### a. Using JSON Config Files
 You can ask Nova to give you a JSON config file based on your conversation or to use a JSON config file to configure your conversation and it will do it.
 
-(after generating a [progress report](#saving-your-progress))
+>(after generating a [progress report](#saving-your-progress))
 
 #### **User**
 >Could you please turn that progress report into a JSON object?
@@ -370,7 +367,7 @@ You can ask Nova to give you a JSON config file based on your conversation or to
     }
 
 
-#### Disclaimer <a name="disclaimer"></a>
+#### 9. Disclaimer <a name="disclaimer"></a>
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
 
 The Nova Process is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
