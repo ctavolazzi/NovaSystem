@@ -130,7 +130,7 @@ Please continue this iterative process (called the Nova process), continuing the
 
 ### Advanced Continuation Example:
 
-```
+<code>
 Please continue this iterative process (called the Nova Process), continuing the work of the experts, the Discussion Continuity Expert (DCE), and the Critical Analysis Expert (CAE). The experts should respond with concrete ideas with examples. Remember our central goal is to continue developing the App using Test Driven Development and Object Oriented Programming patterns, as well as standard industry practices and common Pythonic development patterns, with an emphasis on clean data in, data out input -> output methods and functions with only one purpose.
 
 Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Feel free to search the internet for information if you need it.
@@ -164,7 +164,7 @@ Remember the data flows in this pattern:
 User > CentralControllerBot > CentralHub > Bots > NovaResearchHub(main app server) > back out
 
 Please proceed, and know that you are doing a great job and I appreciate you.
-```
+</code>
 
 ## Saving Your Progress <a name="saving-your-progress"></a>
 Nova Process, as executed by a language model like GPT-4, does not inherently have a mechanism for saving progress. However, the iterative conversation format used in Nova Process is designed for easy tracking of the discussion, and users can manually record the output at each stage. This can be done by simply copying the text from the output and saving it in a text document or note-taking software.
