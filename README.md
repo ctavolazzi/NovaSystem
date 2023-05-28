@@ -124,14 +124,20 @@ To continue the Nova Process, simply paste the following prompt into the chat:
 
 ### Standard Continuation Example:
 
-> Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
+```
+Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
+```
 
 ### Advanced Continuation Example:
 
->Please continue this iterative process (called the Nova Process), continuing the work of the experts, the Discussion Continuity Expert (DCE), and the Critical Analysis Expert (CAE). The experts should respond with concrete ideas with examples. Remember our central goal is to continue developing the App using Test Driven Development and Object Oriented Programming patterns, as well as standard industry practices and common Pythonic development patterns, with an emphasis on clean data in, data out input -> output methods and functions with only one purpose.
->Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Feel free to search the internet for information if you need it.
->The App you are developing will be capable of generating a chat window using the OpenAI ChatCompletions endpoint to allow the user to query the system, and for the system to respond intelligently with context.
->Here's the official OpenAI API format in Python:
+```
+Please continue this iterative process (called the Nova Process), continuing the work of the experts, the Discussion Continuity Expert (DCE), and the Critical Analysis Expert (CAE). The experts should respond with concrete ideas with examples. Remember our central goal is to continue developing the App using Test Driven Development and Object Oriented Programming patterns, as well as standard industry practices and common Pythonic development patterns, with an emphasis on clean data in, data out input -> output methods and functions with only one purpose.
+
+Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Feel free to search the internet for information if you need it.
+
+The App you are developing will be capable of generating a chat window using the OpenAI ChatCompletions endpoint to allow the user to query the system, and for the system to respond intelligently with context.
+
+Here's the official OpenAI API format in Python:
 
 import openai
 
