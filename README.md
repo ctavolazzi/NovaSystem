@@ -233,7 +233,7 @@ Your team includes a Software Design Expert (SDE), a Programming Expert (PE), a 
 
 
 
-### *User:**
+### **User:**
 
 Please expand that and give examples and code too please. You're doing really well, this is amazing
 
