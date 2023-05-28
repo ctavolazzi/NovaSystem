@@ -12,6 +12,7 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
 6. [How to Prime a Nova Chat with Another Nova Chat Thought Tree](#how-to-primt-a-nova-chat-with-another-nova-chat-thought-tree)
 7. [Continuing the Nova Process](#continuing-the-nova-process)
 8. [Notes and Observations](#notes-and-observations)
+  a. [Using JSON Config Files](#using-json-config-files)
 9. [Disclaimer](#disclaimer)
 
 ## About Nova Process <a name="about-nova-process"></a>
@@ -315,6 +316,59 @@ Collaborative: The Nova Process simulates a team of experts working together to 
 Contextual Continuity: As the DCE, the AI model maintains a steady flow of conversation, ensuring that each iteration builds on the insights from the previous one. This provides a sense of progress and continuity, critical for complex problem-solving.
 
 >It gives longer output when you're nicer to it. We aren't sure why.
+
+### a. Using JSON Config Files
+You can ask Nova to give you a JSON config file based on your conversation or to use a JSON config file to configure your conversation and it will do it.
+
+(after generating a [progress report](#saving-your-progress))
+
+#### **User**
+>Could you please turn that progress report into a JSON object?
+
+#### **ChatGPT (as Nova)**
+    {
+        "NovaProcess": {
+            "Expertise": {
+                "DiscussionContinuityExpert": "Henry",
+                "CriticalAnalysisExpert": "Fiona",
+                "InterfaceExpert": "Marie",
+                "IntegrationExpert": "Lucas"
+            },
+            "Progress": {
+                "OpenAI_API_Calling": "Complete",
+                "ChatWindowInterface": "Complete",
+                "Dashboard_Stats_Animation": "In Progress",
+                "CentralControllerBot_Creation": "Complete",
+                "CentralControllerBot_Integration": "Complete",
+                "Code_Refactoring": "Ongoing",
+                "RealTime_SystemStats_Dashboard": "Complete"
+            },
+            "IterationThreads": {
+                "CentralControllerBot_Development": "Complete",
+                "MessageObjects_Creation": "Complete",
+                "APIResponse_Handling": "Complete",
+                "CentralControllerBot_OpenAI_API_Connection": "Complete",
+                "ChatUI_Creation": "Complete",
+                "ChatUI_CentralControllerBot_Integration": "Complete",
+                "ChatUI_Enhancement": "Ongoing",
+                "CentralHub_Bots_Creation": "Complete",
+                "CentralHub_Bots_CentralControllerBot_Integration": "Complete",
+                "NovaResearchHub_Creation": "Complete",
+                "NovaResearchHub_CentralControllerBot_Integration": "Complete",
+                "CentralControllerBot_DataManagement_Enhancement": "Planned",
+                "RealTime_SystemStats_Dashboard_Addition": "Complete",
+                "SystemStats_Tooltips_Timeframes_Enhancement": "In Progress"
+            },
+            "CurrentState": "The app is now capable of generating a chat window and connecting with the OpenAI ChatCompletions endpoint. Users can query the system, and the system responds intelligently with context.",
+            "FutureGoals": [
+                "Optimizing the application",
+                "Further enhancing the user interface",
+                "Scaling up the CentralControllerBot",
+                "Incorporating user feedback"
+            ]
+        }
+    }
+
 
 #### Disclaimer <a name="disclaimer"></a>
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
