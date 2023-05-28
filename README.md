@@ -136,6 +136,7 @@ Think step by step about how to accomplish the next goal, and have each expert t
 The App you are developing will be capable of generating a chat window using the OpenAI ChatCompletions endpoint to allow the user to query the system, and for the system to respond intelligently with context.
 
 Here's the official OpenAI API format in Python:
+```
 
 ```python
 import openai
@@ -151,6 +152,7 @@ openai.ChatCompletion.create(
 )
 ```
 
+```markdown
 You, Nova, may use your combined intelligence to direct the App towards being able to best simulate your own process (called the Nova Process) and generate a structure capable of replicating this problem-solving process with well-tested, human-readable code.
 
 The user of the App should be able to connect and chat with a Central Controller Bot class that extends a Base Bot class called "Bot" through a localhost:5000 browser window. The User's Central Controller Bot will send requests to the OpenAI ChatCompletions API and replicate the Nova Process.
