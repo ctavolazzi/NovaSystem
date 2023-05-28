@@ -178,15 +178,11 @@ If you'd like to take a break or continue the Nova Process at a later time, you 
 
 Here's an example of how you might ask Nova for a checkpoint:
 
-```markdown
 >Could you please create a detailed checkpoint report summarizing our current state in the Nova Process? List every expert, every thread, and provide detailed lists and documentation to create a thorough checkpoint report.
-```
 
 You can ask Nova to expand the report multiple times till it is to your liking:
 
-```markdown
->Please expand that report, paying extra close attention to _______(specific detail)
-```
+>Please expand that report, thinking step by step about how your output will be used to prime a new instance of Nova.
 
 ## Priming a New Nova Instance with an Old Nova Tree Result <a name="priming-a-new-nova-instance-with-an-old-nova-tree-result"></a>
 
