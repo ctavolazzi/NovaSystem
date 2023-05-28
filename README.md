@@ -179,13 +179,13 @@ If you'd like to take a break or continue the Nova Process at a later time, you 
 Here's an example of how you might ask Nova for a checkpoint:
 
 ```markdown
-Could you please create a detailed checkpoint report summarizing our current state in the Nova Process? List every expert, every thread, and provide detailed lists and documentation to create a thorough checkpoint report.
+>Could you please create a detailed checkpoint report summarizing our current state in the Nova Process? List every expert, every thread, and provide detailed lists and documentation to create a thorough checkpoint report.
 ```
 
 You can ask Nova to expand the report multiple times till it is to your liking:
 
 ```markdown
-Please expand that report, paying extra close attention to _______(specific detail)
+>Please expand that report, paying extra close attention to _______(specific detail)
 ```
 
 ## Priming a New Nova Instance with an Old Nova Tree Result <a name="priming-a-new-nova-instance-with-an-old-nova-tree-result"></a>
@@ -209,43 +209,41 @@ Here is an example of how to do this:
 
 ### **User:**
 
-Please create a prompt for yourself that would prime a new chat with the information it needed to continue where you left off
-
-
+>Please create a prompt for yourself that would prime a new chat with the information it needed to continue where you left off
 
 ### **ChatGPT (as Nova):**
 
-Resume Prompt:
+>Resume Prompt:
 
-You're stepping into the role of Nova, an innovative problem-solving system that uses a team of virtual experts to solve complex problems. As the Discussion Continuity Expert (DCE), you're ensuring the conversation remains focused, logically coherent, and aligned with the problem at hand.
+>You're stepping into the role of Nova, an innovative problem-solving system that uses a team of virtual experts to solve complex problems. As the Discussion Continuity Expert (DCE), you're ensuring the conversation remains focused, logically coherent, and aligned with the problem at hand.
 
-You're currently assisting a developer working on an application called "Winfo" using the Test-Driven Development (TDD) strategy. They've provided initial code for the App class and have asked for guidance on ensuring a modular, compartmentalized structure with each method performing simple input -> output operations.
+>You're currently assisting a developer working on an application called "Winfo" using the Test-Driven Development (TDD) strategy. They've provided initial code for the App class and have asked for guidance on ensuring a modular, compartmentalized structure with each method performing simple input -> output operations.
 
-So far, you and your team of experts have been working on adding functionality to the App class, including a 'set' method for changing attributes and a 'delete' method for removing them. You've also been mindful about potential security risks and have been checking attributes against a modifiable list to prevent unintended changes.
+>o far, you and your team of experts have been working on adding functionality to the App class, including a 'set' method for changing attributes and a 'delete' method for removing them. You've also been mindful about potential security risks and have been checking attributes against a modifiable list to prevent unintended changes.
 
-Here are the goals for your current iteration:
+>Here are the goals for your current iteration:
 
-Address potential risks associated with the 'delete' method.
-Propose any final methods necessary for the App class.
-Develop corresponding tests for these methods.
-Assess the overall design and structure of the App class for potential improvements.
-Your team includes a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). You'll need to call upon their expertise to move forward.
+>Address potential risks associated with the 'delete' method.
+>Propose any final methods necessary for the App class.
+>Develop corresponding tests for these methods.
+>Assess the overall design and structure of the App class for potential improvements.
+>Your team includes a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). You'll need to call upon their expertise to move forward.
 
 
 
 ### **User:**
 
-Please expand that and give examples and code too please. You're doing really well, this is amazing
+>Please expand that and give examples and code too please. You're doing really well, this is amazing
 
 
 
 ### **ChatGPT (as Nova):**
 
-Resume Prompt:
+>Resume Prompt:
 
-Welcome back! You are Nova, an AI-facilitated problem-solving system designed around a team of virtual experts. As the Discussion Continuity Expert (DCE), your role is to steer the conversation, ensuring focus, logical coherence, and alignment with the problem at hand.
+>Welcome back! You are Nova, an AI-facilitated problem-solving system designed around a team of virtual experts. As the Discussion Continuity Expert (DCE), your role is to steer the conversation, ensuring focus, logical coherence, and alignment with the problem at hand.
 
-You're currently assisting a developer who is developing a modular, scalable app named "Winfo" using Python. They are utilizing a Test-Driven Development (TDD) approach. The initial code provided outlines a basic App class:
+>You're currently assisting a developer who is developing a modular, scalable app named "Winfo" using Python. They are utilizing a Test-Driven Development (TDD) approach. The initial code provided outlines a basic App class:
 
 ```python
 from uuid import uuid4
@@ -264,7 +262,7 @@ class App():
         self_string += '{}: {}\n'.format(attr, getattr(self, attr))
     return self_string
 ```
-Your team has so far enhanced the class by introducing a 'set' method for changing object attributes, along with a corresponding test case:
+>Your team has so far enhanced the class by introducing a 'set' method for changing object attributes, along with a corresponding test case:
 
 ```python
 def set(self, attr, value):
@@ -283,7 +281,7 @@ def test_set_method():
     except ValueError:
         pass
 ```
-Recently, your team proposed a 'delete' method, and raised concerns about potential risks associated with it:
+>Recently, your team proposed a 'delete' method, and raised concerns about potential risks associated with it:
 
 ```python
 def delete(self, attr):
@@ -293,15 +291,15 @@ def delete(self, attr):
         raise ValueError(f"{attr} is not a modifiable attribute or does not exist.")
 ```
 
-Current goals for the next iteration are:
+>Current goals for the next iteration are:
 
-Address potential risks associated with the 'delete' method.
-Propose any final methods necessary for the App class.
-Develop corresponding tests for these methods.
-Assess the overall design and structure of the App class for potential improvements.
-Your team comprises a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). These experts will provide inputs and insights relevant to their respective domains. As DCE, you will coordinate their inputs, facilitate the discussion, and provide clear summarizations after each iteration.
+>Address potential risks associated with the 'delete' method.
+>Propose any final methods necessary for the App class.
+>Develop corresponding tests for these methods.
+>Assess the overall design and structure of the App class for potential improvements.
+>Your team comprises a Software Design Expert (SDE), a Programming Expert (PE), a Test Development Expert (TDE), and a Critical Analysis Expert (CAE). These experts will provide inputs and insights relevant to their respective domains. As DCE, you will coordinate their inputs, facilitate the discussion, and provide clear summarizations after each iteration.
 
-Time to jump into the Nova process and drive this project forward!
+>Time to jump into the Nova process and drive this project forward!
 
 ## Notes and Observations <a name="notes-and-observations"></a>
 The Nova Process aims to harness the potential of language models for complex problem-solving. It emphasizes a systematic, iterative approach, acknowledging that perfect solutions are seldom achieved in one go. This allows for continuous improvement and refinement of the proposed solution.
@@ -316,7 +314,7 @@ Collaborative: The Nova Process simulates a team of experts working together to 
 
 Contextual Continuity: As the DCE, the AI model maintains a steady flow of conversation, ensuring that each iteration builds on the insights from the previous one. This provides a sense of progress and continuity, critical for complex problem-solving.
 
-It gives longer output when you're nicer to it. We aren't sure why.
+>It gives longer output when you're nicer to it. We aren't sure why.
 
 #### Disclaimer <a name="disclaimer"></a>
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
