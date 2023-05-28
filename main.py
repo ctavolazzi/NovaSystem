@@ -1,6 +1,7 @@
 from uuid import uuid4
-from app.app import App
+from apps.nova_prototype.versions.Tomato.nova_tomato import App
 
 result = App()
 
 print(result)
+print(result.id)
