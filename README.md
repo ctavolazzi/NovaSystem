@@ -122,11 +122,13 @@ What can Nova assist you with today?
 ## Continuing the Nova Process <a name="continuing-the-nova-process"></a>
 To continue the Nova Process, simply paste the following prompt into the chat:
 
+### Standard Continuation Example:
+
 ```markdown
 Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
 ```
 
-### A More Advanced Continuation Example:
+### Advanced Continuation Example:
 
 ```markdown
 Please continue this iterative process (called the Nova Process), continuing the work of the experts, the Discussion Continuity Expert (DCE), and the Critical Analysis Expert (CAE). The experts should respond with concrete ideas with examples. Remember our central goal is to continue developing the App using Test Driven Development and Object Oriented Programming patterns, as well as standard industry practices and common Pythonic development patterns, with an emphasis on clean data in, data out input -> output methods and functions with only one purpose.
