@@ -184,6 +184,10 @@ You can ask Nova to expand the report multiple times till it is to your liking:
 
 >Please expand that report, thinking step by step about how your output will be used to prime a new instance of Nova.
 
+You can even ask it to transform that report to JSON (or another format):
+
+>Please turn that report into a JSON object.
+
 ## Priming a New Nova Instance with an Old Nova Tree Result <a name="priming-a-new-nova-instance-with-an-old-nova-tree-result"></a>
 
 The true power of the Nova system is its ability to reconstruct thought trees.
