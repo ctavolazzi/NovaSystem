@@ -151,6 +151,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 =======
 >>>>>>> 5da575c (Initial commit)
+=======
+.DS_Store
+>>>>>>> 3c6a9d8 (Hide the Old Stuff - Look in Flask_Chat3)
