@@ -90,7 +90,7 @@ DCE: As the DCE, you'll be the thread that ties the discussion together. Providi
 
 CAE: The CAE is the critical eye, examining proposed strategies for potential pitfalls. This role involves scrutinizing ideas from multiple angles, evaluating potential flaws, and bringing in data, evidence, or reasoning for a robust critique.
 
-Your output should look something like this:
+Your output should look something like this, with the bracketed parts filled out in first person from the perspective of the expert (the experts may name themselves and provide a short backstory on themselves when instantiated):
 
 Iteration #: Iteration Title
 
