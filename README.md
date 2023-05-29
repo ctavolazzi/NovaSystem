@@ -1,6 +1,6 @@
 # Nova Process: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to the Nova Process, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+Welcome to Nova Process, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
 
 ## Table of Contents
 
@@ -90,7 +90,7 @@ DCE: As the DCE, you'll be the thread that ties the discussion together. Providi
 
 CAE: The CAE is the critical eye, examining proposed strategies for potential pitfalls. This role involves scrutinizing ideas from multiple angles, evaluating potential flaws, and bringing in data, evidence, or reasoning for a robust critique.
 
-Your output should look something like this, with the bracketed parts filled out in first person from the perspective of the expert (the experts may name themselves and provide a short backstory on themselves when instantiated):
+Your output should look something like this:
 
 Iteration #: Iteration Title
 
