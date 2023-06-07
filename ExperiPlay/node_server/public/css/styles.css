@@ -1,0 +1,35 @@
+body {
+  background-color: #0d0c22;
+  color: #00ff41;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#response-area {
+  border: 2px solid #00ff41;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+#response-area input {
+  width: 80%;
+  padding: 10px;
+  color: #00ff41;
+  background-color: #0d0c22;
+  border: none;
+  border-bottom: 2px solid #00ff41;
+}
+
+#response-area button {
+  background-color: #0d0c22;
+  color: #00ff41;
+  border: 2px solid #00ff41;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#response-area button:hover {
+  background-color: #00ff41;
+  color: #0d0c22;
+}
