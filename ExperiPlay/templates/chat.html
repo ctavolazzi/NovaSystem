@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='chat.js') }}"></script>
+</head>
+<body>
+  <div id="chat_box"></div> <!-- id changed to "chat_box" -->
+  <form id="chat_form"> <!-- id changed to "chat_form" -->
+    <input id="message" autocomplete="off">
+    <button>Send</button>
+  </form>
+</body>
+</html>
