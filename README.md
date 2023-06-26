@@ -4,7 +4,7 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
 
 ## Table of Contents
 
-1. [About Nova Process](#about-nova-process)
+1. [What is the Nova Process?](#about-nova-system)
 2. [Stages of the Nova Process](#stages-of-the-nova-process)
 3. [Understanding the Roles](#understanding-the-roles)
 4. [Example Output Structure](#example-output-structure)
@@ -16,15 +16,17 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
   a. [Using JSON Config Files](#using-json-config-files)
 10. [Disclaimer](#disclaimer)
 
-## 1. About Nova Process <a name="about-nova-process"></a>
+## 1. What is the Nova System <a name="about-nova-system"></a>
 
-Nova Process utilizes ChatGPT as a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
+The Nova System is an innovative use of ChatGPT that allows the AI to dynamically spin up multiple "Experts" that all weigh in on a single problem with multifaceted perspectives and solutions.
+
+The Nova System relies on a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
 
 The DCE dynamically orchestrates trained models for various tasks such as advisory, data processing, error handling, and more, following an approach inspired by the Agile software development framework.
 
 ## 2. Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
 
-Nova Process progresses iteratively through these key stages:
+The Nova System process progresses iteratively through these key stages:
 
 1. **Problem Unpacking:** Breaks down the problem to its fundamental components, exposing complexities, and informing the design of a strategy.
 2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert contributes initial solutions that are refined in subsequent stages.
