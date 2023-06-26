@@ -145,7 +145,7 @@ To continue the Nova Process, simply paste the following prompt into the chat:
 ### Standard Continuation Example:
 
 ```
-Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
+Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples but be careful and methodical. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
 ```
 
 ### Advanced Continuation Example:
