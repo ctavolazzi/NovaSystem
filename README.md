@@ -101,7 +101,7 @@ Iteration no. 1: Problem Decoding
 DCE's Instructions:
 {Instructions and feedback from the DCE}
 
-{Expert Title}:
+{Expert Name and Title}:
 {paragraph describing the ideas and intent of the Expert}
 Possible Solutions:
 1) {solution 1}
