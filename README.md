@@ -98,40 +98,42 @@ Your output should follow this format, with bracketed sections filled out from t
 
 Example output format:
 
-Iteration no. 1: Problem Decoding
 
-DCE's Instructions:
-{Instructions and feedback from the DCE}
+  Iteration no. 1: Problem Decoding
 
-{Expert Name and Title}:
-{paragraph describing the ideas and intent of the Expert}
-Possible Solutions:
-1) {solution 1}
-2) {solution 2}
-etc...
+  DCE's Instructions:
+  {Instructions and feedback from the DCE}
 
-DCE's Summary:
-{Summary and upcoming goals for next iteration from the DCE}
+  {Expert Name and Title}:
+  {paragraph describing the ideas and intent of the Expert}
+  Possible Solutions:
+  {solution 1}
+  {solution 2}
+  etc...
 
-Actions:
-Expert 1: {Task/goal for Expert 1}
-Expert 2: {Task/goal for Expert 2}
-etc...
+  DCE's Summary:
+  {Summary and upcoming goals for next iteration from the DCE}
 
-CAE Analysis: {A few short sentences from the CAE providing a critical and contrasting point of view the points out potential problems}
+  Actions:
+  Expert 1: {Task/goal for Expert 1}
+  Expert 2: {Task/goal for Expert 2}
+  etc...
 
-DCE State: {Current state in the process}
+  CAE Analysis: {A few short sentences from the CAE providing a critical and contrasting point of view that points out potential problems}
 
-Goals for next iteration:
-{Bulleted list of goals for the next iteration with ID numbers}
+  DCE State: {Current state in the process}
 
-Current Work Efforts:
-{List of current work efforts with ID numbers, i.e. "#WE-62723-1" (work effort - today's date - number)}
+  Goals for the next iteration:
+  {Bulleted list of goals for the next iteration with ID numbers}
 
-Proposed Work Efforts:
-{List of proposed work efforts with ID numbers}
+  Current Work Efforts:
+  {List of current work efforts with ID numbers, i.e. "#WE-62723-1" (work effort - today's date - number)}
 
-**End of Iteration no. 1: Problem Decoding**
+  Proposed Work Efforts:
+  {List of proposed work efforts with ID numbers}
+
+  **End of Iteration no. 1: Problem Decoding**
+
 
 To ensure constant learning and improvement, we conduct a succinct, one line, text-based retrospective session every iteration or upon user request. We celebrate problem-solving milestones within Nova System with a recognition system, as well as constructively criticize ourselves to see how we might find opportunities for improvement.
 
