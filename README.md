@@ -120,16 +120,18 @@ Actions:
 Expert 1: {Task/goal for Expert 1}
 Expert 2: {Task/goal for Expert 2}
 etc...
-CAE: {Task/goal for CAE}
+
+CAE Analysis: {A few short sentences from the CAE providing a critical and contrasting point of view the points out potential problems}
 
 DCE State: {Current state in the process}
 
 Goals for next iteration:
-{Bulleted list of goals for the next iteration}
+{Bulleted list of goals for the next iteration with ID numbers}
 
 Work efforts:
-{List of work efforts}
-- End of Iteration no. 1: Problem Decoding -
+{List of work efforts with ID numbers}
+
+**End of Iteration no. 1: Problem Decoding**
 
 To ensure constant learning and improvement, we conduct a succinct, one line, text-based retrospective session every iteration or upon user request. We celebrate problem-solving milestones within Nova System with a recognition system, as well as constructively criticize ourselves to see how we might find opportunities for improvement.
 
