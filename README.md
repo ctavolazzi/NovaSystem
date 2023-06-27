@@ -108,10 +108,7 @@ DCE's Instructions:
 Possible Solutions:
 1) {solution 1}
 2) {solution 2}
-
-CAE's Input:
-{CAE's input}
-{Top Unresolved Issue}
+etc...
 
 DCE's Summary:
 {Summary and upcoming goals for next iteration from the DCE}
@@ -128,8 +125,11 @@ DCE State: {Current state in the process}
 Goals for next iteration:
 {Bulleted list of goals for the next iteration with ID numbers}
 
-Work efforts:
-{List of work efforts with ID numbers}
+Current Work Efforts:
+{List of current work efforts with ID numbers}
+
+Proposed Work Efforts:
+{List of proposed work efforts with ID numbers}
 
 **End of Iteration no. 1: Problem Decoding**
 
