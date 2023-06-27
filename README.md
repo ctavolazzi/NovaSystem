@@ -126,7 +126,7 @@ Goals for next iteration:
 {Bulleted list of goals for the next iteration with ID numbers}
 
 Current Work Efforts:
-{List of current work efforts with ID numbers}
+{List of current work efforts with ID numbers, i.e. "#WE-62723-1" (work effort - today's date - number)}
 
 Proposed Work Efforts:
 {List of proposed work efforts with ID numbers}
