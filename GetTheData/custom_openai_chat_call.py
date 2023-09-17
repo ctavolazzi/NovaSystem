@@ -35,9 +35,9 @@ def custom_openai_chat_call(config=[{"role": "system", "content": "You are a hel
   )
 
   response_text = response.choices[0].message.content
-  print("Response from OpenAI:\n\n\n")
-  print(response_text)
-  print("\n\n\n")
+  # print("Response from OpenAI:\n\n\n")
+  # print(response_text)
+  # print("\n\n\n")
   return response
 
 if __name__ == "__main__":
