@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Templates/Dev_Log_Template.md",
+                "file": "Dev_Log/Dev Log 2023-09-27.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Templates/Dev_Log_Template.md",
+                "file": "Dev_Log/Dev Log 2023-09-27.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Templates/Dev_Log_Template.md",
+                "file": "Dev_Log/Dev Log 2023-09-27.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Templates/Dev_Log_Template.md"
+                "file": "Dev_Log/Dev Log 2023-09-27.md"
               }
             }
           },
@@ -172,8 +172,19 @@
   },
   "active": "a7cdb0a57232d80c",
   "lastOpenFiles": [
-    "Templates",
+    "package.json",
+    "package-lock.json",
+    "NovaSystem/versions.json",
+    "NovaSystem/version-bump.mjs",
+    "NovaSystem/tsconfig.json",
+    "NovaSystem/styles.css",
+    "NovaSystem/package.json",
+    "NovaSystem/manifest.json",
+    "NovaSystem/main.ts",
+    "NovaSystem/esbuild.config.mjs",
+    "NovaSystem/README.md",
+    "NovaSystem",
     "Templates/Dev_Log_Template.md",
-    "Dev_Log"
+    "Dev_Log/Dev Log 2023-09-27.md"
   ]
 }
