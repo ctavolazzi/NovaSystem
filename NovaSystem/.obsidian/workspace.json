@@ -21,14 +21,62 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dev_Log/Dev Log 2023-09-27.md",
+                "file": "Test Note.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b7b5001cec11fcce",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Test Note 2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2e9bef8e60deeb83",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Test file.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bea6ce25a167134e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Test Note 2.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "ffa365238a6a3808",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Test file.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -94,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Dev_Log/Dev Log 2023-09-27.md",
+                "file": "Test file.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Dev_Log/Dev Log 2023-09-27.md",
+                "file": "Test file.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Dev_Log/Dev Log 2023-09-27.md"
+                "file": "Test file.md"
               }
             }
           },
@@ -167,11 +215,21 @@
       "markdown-importer:Open format converter": false,
       "publish:Publish changes...": false,
       "random-note:Open random note": false,
-      "workspaces:Manage workspace layouts": false
+      "workspaces:Manage workspace layouts": false,
+      "nova-system:Activate Nova System": false
     }
   },
-  "active": "a7cdb0a57232d80c",
+  "active": "ffa365238a6a3808",
   "lastOpenFiles": [
+    "sdfjsdf.md",
+    "sdfhs.md",
+    "Test Note 2.md",
+    "NovaSystemLog.md",
+    "Test Note.md",
+    "Test file.md",
+    "Templates/Dev_Log_Template.md",
+    "Dev_Log/Test Note.md",
+    "Dev_Log/Dev Log 2023-09-27.md",
     "package.json",
     "package-lock.json",
     "NovaSystem/versions.json",
@@ -182,9 +240,6 @@
     "NovaSystem/manifest.json",
     "NovaSystem/main.ts",
     "NovaSystem/esbuild.config.mjs",
-    "NovaSystem/README.md",
-    "NovaSystem",
-    "Templates/Dev_Log_Template.md",
-    "Dev_Log/Dev Log 2023-09-27.md"
+    "NovaSystem/README.md"
   ]
 }
