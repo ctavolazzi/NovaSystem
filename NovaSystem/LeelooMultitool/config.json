@@ -1,0 +1,14 @@
+{
+  "multitool_config": {
+    "request_format": "default",
+    "api_key": "your_openai_api_key_here",
+    "llm_model": "gpt-4"
+  },
+  "app_config": {
+    "logging": {
+      "level": "DEBUG",
+      "file": "multitool.log"
+    },
+    "default_format": "text/plain"
+  }
+}
