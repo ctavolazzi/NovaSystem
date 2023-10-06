@@ -2,6 +2,14 @@
 
 Welcome to Nova Process, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
 
+> [!FYI] This is a work in progress. Please feel free to make a pull request.
+> > I am one person developing my own SDK for fun and learning. I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. I am not a professional programmer. Most of the code I write should never be used in a production environment.
+> > You do not need my permission to use this code in your projects. BUT:
+> > If you do use it, understand that it is GNU licensed, meaning you will need to make your project open source as well.
+> > I am not responsible for any damages or losses that may occur from using this code. Use at your own risk.
+
+> [!WARNING] THIS IS NOT A PRODUCTION-READY SDK. IT IS A WORK IN PROGRESS. USE AT YOUR OWN RISK.
+
 ## Table of Contents
 
 1. [What is the Nova Process?](#about-nova-system)
@@ -23,6 +31,14 @@ The Nova System is an innovative use of ChatGPT that allows the AI to dynamicall
 The Nova System relies on a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
 
 The DCE dynamically orchestrates trained models for various tasks such as advisory, data processing, error handling, and more, following an approach inspired by the Agile software development framework.
+
+> [!INFO] The Nova System is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
+> > [!FYI]- More >
+> > I am developing Nova as an evolving [API Aggregator](https://www.merge.dev/blog/api-aggregator) that will use public, open source, as well as private and licenced models to perform work.
+> > I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. None of this code should be taken seriously or EVER used in a production environment.
+
+> [!WARNING]
+> The Nova System is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
 
 ## 2. Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
 

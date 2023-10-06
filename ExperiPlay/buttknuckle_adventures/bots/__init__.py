@@ -1,1 +1,0 @@
-from bots.bot import Bot

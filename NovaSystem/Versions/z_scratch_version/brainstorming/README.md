@@ -1,2 +1,0 @@
-# Nova_System
- 
