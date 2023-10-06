@@ -153,8 +153,12 @@ cython_debug/
 <<<<<<< HEAD
 <<<<<<< HEAD
 .DS_Store
+<<<<<<< HEAD
 =======
 >>>>>>> 5da575c (Initial commit)
 =======
 .DS_Store
 >>>>>>> 3c6a9d8 (Hide the Old Stuff - Look in Flask_Chat3)
+=======
+.DS_Store
+>>>>>>> 70a1adc (Remove all old files and update README)
