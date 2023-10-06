@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 from NovaHelper import stc
 from NovaConfigManager import NovaConfigManager
 
+load_dotenv()
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+
 class NovaChatBot:
     _DEFAULT_SYSTEM_PROMPT = "You are a helpful assistant named Nova."
 
@@ -33,7 +36,7 @@ class NovaChatBot:
         args = {'model': self.config["model"], 'messages': api_payload}
         if stream: args['stream'] = True
         try:
-            openai.api_key = self.config["openai_api_key"]
+            openai.api_key = os.getenv("OPENAI_API_KEY")
             response = openai.ChatCompletion.create(**args)
             if stream:
                 for chunk in response:
