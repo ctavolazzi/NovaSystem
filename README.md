@@ -2,7 +2,8 @@
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
 
-> [!warning] This is a work in progress. Please feel free to make a pull request.
+> > :warning: **This is a work in progress. Please feel free to make a pull request.**
+ This is a work in progress. Please feel free to make a pull request.
 > > I am one person developing my own SDK for fun and learning. I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. I am not a professional programmer. Most of the code I write should never be used in a production environment.
 > > You do not need my permission to use this code in your projects. BUT:
 > > If you do use it, understand that it is GNU licensed, meaning you will need to make your project open source as well.
