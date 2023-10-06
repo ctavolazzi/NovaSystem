@@ -1,0 +1,26 @@
+{% comment %} <h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul> {% endcomment %}
+
+
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+      {% if question %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</ul>
+
+
+
+

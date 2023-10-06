@@ -237,11 +237,25 @@
   },
   "active": "ffa365238a6a3808",
   "lastOpenFiles": [
+<<<<<<< HEAD:NovaSystem/.obsidian/workspace.json
 <<<<<<< HEAD
     "Templates",
     "Templates/Dev_Log_Template.md",
     "Dev_Log"
 =======
+=======
+    "v0.1",
+    "root/tools/text_processor/processor.py",
+    "root/tools/text_processor",
+    "root/tools/calculator/__pycache__/main.cpython-311.pyc",
+    "root/tools/calculator/__pycache__/__init__.cpython-311.pyc",
+    "root/tools/calculator/__pycache__",
+    "root/tools/calculator/__init__.py",
+    "root/tools/calculator/main.py",
+    "root/tools/calculator",
+    "root/main.py",
+    "root/logs",
+>>>>>>> 08021bf (Hope my API key isn't in here...):NovaSystem/Versions/v0.1/.obsidian/workspace.json
     "sdfjsdf.md",
     "sdfhs.md",
     "Test Note 2.md",
@@ -251,16 +265,6 @@
     "Templates/Dev_Log_Template.md",
     "Dev_Log/Test Note.md",
     "Dev_Log/Dev Log 2023-09-27.md",
-    "package.json",
-    "package-lock.json",
-    "NovaSystem/versions.json",
-    "NovaSystem/version-bump.mjs",
-    "NovaSystem/tsconfig.json",
-    "NovaSystem/styles.css",
-    "NovaSystem/package.json",
-    "NovaSystem/manifest.json",
-    "NovaSystem/main.ts",
-    "NovaSystem/esbuild.config.mjs",
     "NovaSystem/README.md"
 >>>>>>> 00e07fe (Ok, now it's got some legs, but it still needs to learn to walk)
   ]

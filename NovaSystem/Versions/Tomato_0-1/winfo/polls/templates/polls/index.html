@@ -1,0 +1,25 @@
+{% comment %} {% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+      <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} {% endcomment %}
+
+{% comment %} {% if latest_question_list %}
+    <ul>
+      <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} {% endcomment %}
+
+{% if latest_question_list %}
+    <ul>
+      <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
