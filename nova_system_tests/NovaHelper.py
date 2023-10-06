@@ -1,4 +1,5 @@
 import time
+import logging
 
 class NovaHelper():
   _default_delay = 0.022
@@ -18,6 +19,7 @@ class NovaHelper():
 
   def stc(self, message, delay=_default_delay):
     self.stream_to_console(message, delay)
+
 
 def stc(message, delay=0.022):
   helper = NovaHelper()
