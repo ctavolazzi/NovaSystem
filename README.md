@@ -94,7 +94,7 @@ My hope is that kind people like yourself will use the NovaSystem and choose to 
 ## 📬 We would love to hear from you! Please email us at [help@aieco.tech](mailto:help@aieco.tech)
 
 ---
-:warning: **This is a work in progress. Please feel free to make a *pull request! ☺*** :warning:
+:warning: **This is a work in progress. Please feel free to make a *pull request! ***☺ :warning:
 
 > I am one person developing my own SDK for fun and learning. I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. I am not a professional programmer. Most of the code I write should never be used in a production environment or for any purpose whatsoever.
 
