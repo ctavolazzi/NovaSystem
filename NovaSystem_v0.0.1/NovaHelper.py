@@ -1,4 +1,5 @@
 import time
+<<<<<<< HEAD
 import logging
 import openai
 import os
@@ -19,6 +20,8 @@ if os.getenv("OPENAI_API_KEY") is None:
 # text = "Hello, world"
 # model = "gpt-3.5-turbo"  # Replace with actual GPT-4 identifier when available
 
+=======
+>>>>>>> b6f8c82 (🪄 📌 🔎x)
 
 class NovaHelper():
   _default_delay = 0.022
@@ -39,6 +42,7 @@ class NovaHelper():
   def stc(self, message, delay=_default_delay):
     self.stream_to_console(message, delay)
 
+<<<<<<< HEAD
   def fetch_response_from_default_API(self, request={'API': 'openai', 'request': {'prompt': 'Hello, world', 'model': 'gpt-3.5-turbo', 'max_tokens': 60}}):
     # Unpack request
     print(f'Helper Calling API...\n')
@@ -75,6 +79,8 @@ class NovaHelper():
       self.fetch_response_from_default_API()
     pass
 
+=======
+>>>>>>> b6f8c82 (🪄 📌 🔎x)
 def stc(message, delay=0.022):
   helper = NovaHelper()
   helper.stream_to_console(message, delay)
