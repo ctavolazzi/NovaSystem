@@ -1,16 +1,49 @@
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. 
 
-:warning: **This is a work in progress. Please feel free to make a pull request.**
 
-> > I am one person developing my own SDK for fun and learning. I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. I am not a professional programmer. Most of the code I write should never be used in a production environment.
-> > You do not need my permission to use this code in your projects. BUT:
-> > If you do use it, understand that it is GNU licensed, meaning you will need to make your project open source as well.
-> > I am not responsible for any damages or losses that may occur from using this code. Use at your own risk.
+## How does it work?
+---
 
-:warning: **This is a work in progress. Please feel free to make a pull request.**
- THIS IS NOT A PRODUCTION-READY SDK. IT IS A WORK IN PROGRESS. USE AT YOUR OWN RISK.
+This open source project provides an implementation of the Nova Process utilizing ChatGPT and the OpenAI API, the state-of-the-art language models GPT-3.5-Turbo and GPT-4 from OpenAI, and is currently being engineered to use LangChain and HuggingFace to extend its AI API capabilities into a fully autonomous and transparent self-training API aggregator.
+
+We've been calling it a **"dynagenetic"** processing system ("dyna" - dynamic, "genetic" - generated and evolving). 
+
+The NovaSystem runs permutations in an iterative process to **"version-bake"** a solution to a user's query.
+
+It writes a log of its attempts in an Obsidian vault for safekeeping. This allows for two very important things:
+
+⤵️
+
+#### 1) NovaSystem stores its work as markdown files
+
+#### 2) NovaSystem's work is natively machine ***and*** human-readable
+
+## Why does that matter?
+---
+
+A big problem with AI is it hallucinates. How can you trust that what it says is accurate?
+
+Another problem is context size. Most current-gen LLMs will forget anything outside a few thousand tokens.
+
+Another problem still is the inaccessibility of most AI decision making processes. We simply don't know **how** or **why** many of these programs work. Furthermore, it can be incredibly difficult to get them to share data with one another.
+
+NovaSystem solves all this by simply using markdown files to read and write all of its instructions, records, logs, and more.
+
+##### Import the NovaSystem into your existing projects, and watch as you discover ways to use it in unexpected ways.
+
+---
+:warning: **This is a work in progress. Please feel free to make a *pull request!*** :warning:
+
+> I am one person developing my own SDK for fun and learning. I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. I am not a professional programmer. Most of the code I write should never be used in a production environment or for any purpose whatsoever.
+
+> You do not need my permission to use this code in your projects. BUT:
+> If you do use it, you **must understand** that it is licensed under the **[GNU General Public License (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html)**
+
+> Neither I, nor any contributor, nor any affiliated business entities such as AIECO are responsible for any damages, losses, or any other harm that you may occur from using this code. **Use at your own risk.**
+
+:warning: **THIS IS NOT A PRODUCTION-READY SDK. USE AT YOUR OWN RISK.** :warning:
 
 ## Table of Contents
 
@@ -28,18 +61,30 @@ Welcome to the NovaSystem, a pioneering problem-solving method developed by AIEC
 
 ## 1. What is the Nova System <a name="about-nova-system"></a>
 
-The Nova System is an innovative use of ChatGPT that allows the AI to dynamically spin up multiple "Experts" that all weigh in on a single problem with multifaceted perspectives and solutions.
+The Nova System is an innovative use of ChatGPT and other AI models to dynamically spin up multiple "Experts" that all weigh in on a single problem with multifaceted perspectives and solutions.
 
-The Nova System relies on a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
+The Nova System relies on a **Discussion Continuity Expert** (DCE), responsible for ensuring a logical and contextually relevant conversation flow. Additionally, another instance of ChatGPT (or another AI model) acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
 
 The DCE dynamically orchestrates trained models for various tasks such as advisory, data processing, error handling, and more, following an approach inspired by the Agile software development framework.
 
-> [!INFO] The Nova System is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
-> > [!FYI]- More >
-> > I am developing Nova as an evolving [API Aggregator](https://www.merge.dev/blog/api-aggregator) that will use public, open source, as well as private and licenced models to perform work.
-> > I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. None of this code should be taken seriously or EVER used in a production environment.
+🔴 **Note:** 🔴 
+> The Nova System is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
+> > I am developing Nova as an evolving [API Aggregator](https://www.merge.dev/blog/api-aggregator) that will use public, open source, as well as private and licenced models to perform work. In addition, I'm planning on building a self-training API aggregator that listens for new open source software announcements and then version-bakes many permutations of possible software solutions to complex routing problems.
+> > >If that made no sense to you, me too. I had to take several months to fully wrap my mind around these concepts.
+> > >Don't worry, if it doesn't make sense to you yet, you'll get it soon enough. Keep trying friend <3
+> > 
+> > >**TL:DR Nova can currently version-bake a brute-forced algorithm set that can usually make some progress autonomously with only a vector memory and a few API calls to OpenAI GPT-3.5-Turbo.**
+> > 
+> > >The NovaSystem will soon use the algorithm sets it learns - and other sets from other AI models - like a toolbox to respond to user queries.
+> > 
+> > >It will teach itself to use newly announced open source software and will perform its own continuous testing, maintenance, and updates, without human intervention, slopily and poorly, and it will document everything in a series of Obsidian vaults.
+> > 
+> > Over time, my hope is that the data generated by this Pre-Alpha version of the NovaSystem can be used to train more capable models in the future. 🤖
+> > 
+> > >💠I am not affiliated with OpenAI or any of the other technologies features in this repository in any way.💠
+> > 
+> > >**I am not a professional developer.** I am a hobbyist. None of this code should be taken seriously or EVER used in a production environment without **careful consideration** and probably a few meetings (that possibly could have been emails 🤷‍♂️).
 
-> [!WARNING]
 > The Nova System is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
 
 ## 2. Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
