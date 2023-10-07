@@ -19,7 +19,7 @@ This allows for two very important things:
 
 ### 1) NovaSystem stores its work as markdown files
 
-No more obtuse and difficult filetypes. NovaSystem uses markdown formatting to ensure end-to-end utility and parsabiility.
+No more obtuse or difficult filetypes. NovaSystem uses markdown formatting to ensure end-to-end utility and parsabiility.
 
 ### 2) NovaSystem's work is natively machine and human-readable
 
@@ -35,13 +35,9 @@ NovaSystem generates lots of data. But it doesn't matter how much data your prog
 
 *How can you trust that what your AI says is reliable?*
 
-NovaSystem solves this problem by employing a techique created by Google researchers called a "[Mixture of Experts](https://blog.research.google/2022/11/mixture-of-experts-with-expert-choice.html?m=1)" (MoE).
+NovaSystem solves this problem by employing a techique created by Google researchers called a "Mixture of Experts" [(MoE)](https://blog.research.google/2022/11/mixture-of-experts-with-expert-choice.html?m=1).
 
-Using MoE dynagenetic problem-solving allows NovaSystem to run its responses through an accountability system. 
-
-An AI Tribunal oversees the actions of every instance of the NovaSystem your device.
-
-The Tribunal will be developed to be the ultimate moderator. It will run user requests through three test layers:
+Our Experta represent three opposed forces that each make up the AI Tribunal. The Tribunal is comprised of three AI models that all are specifically engineered to answer one of the three questions:
 
 ---
 
@@ -55,33 +51,43 @@ The Tribunal will be developed to be the ultimate moderator. It will run user re
 
 If a user request passes all three, it will be allowed through to the next layer of tests.
 
-
-
-## So how do I use it?
-
-```
-Simply fork this repo and start developing in your local enfironment
-```
-
-The NovaSystem responses are version-baked and iteratively fractalized in an attempt to brute force a solution in an iterative, self-prompted manner. Each of these itertions will be passed to that NovaSystem's Tribunal, which will moderate the user requests.
-
-It stores the iteration logs in a trackable decision tree written in natural language and linked through a network of markdown files easily and redily explorable in an Obsidian vault.
-
-Utilizing the Obsidian desktop app as our UI allows for an easy and free-to-set-up open source framework for solving problems leveraging AI as an evolving multitool with transparent oversight.
-
-These files can also be published as HTML pages and offered as secure API endpoints for data translucence and interoperability with security.
-
 ### **Another big problem is context size.** 
 
 Most current-gen LLMs will forget anything outside a few thousand tokens. There's plenty of solutions out there using complicated workarounds, but that doesn't help you work fast and efficiently.
 
 With NovaSystem, your files are stored in a newer type of storage called a [vector database](https://www.elastic.co/what-is/vector-database) that keeps track of where everything is in your program. That way, NovaSystem doesn't need to store much of anything and can still retain massive amounts of information.
 
+No matter what your model's context size, the NovaSystem will use open source technology to find a way to pass it the information it needs to do its job. It will learn over time and improve, utilizing GPT-4 and GPT-3.5-Turbo (for now) to perform mast of the work in tandem with some proprietary code structures and algorithms.
+
 ### **Another problem still is the inaccessibility of most AI decision making processes.**
 
-We simply don't know **how** or **why** many of these programs work. Furthermore, it can be incredibly difficult to get them to share data with one another.
+As developers, we simply don't often know precisely **how** or **why** our programs work. Furthermore, it can be incredibly difficult to get them to share data with one another.
 
-NovaSystem solves all this by simply using markdown files to read and write all of its instructions, records, logs, and more.
+NovaSystem solves many of these problems by simply using markdown files to read and write all of its instructions, records, logs, and more. The markdown is the database, as well as the algorithms. Markdown is fast, easy, lightweight, and proven for almost 20 years.
+
+## So how do I use it?
+
+```
+Simply fork this repo and start developing in your local environment
+```
+
+You can start using the NovaSystem right now!
+
+### ⭐️ Star & ⑂ Fork the NovaSystem repo into your local environment to get started!
+
+Please remember: I am but one man developing alone. I can only work so fast.
+
+NovaSystem responses are version-baked and iteratively fractalized in an attempt to brute force a solution in an iterative, self-prompted manner. Each of these itertions will be passed to that NovaSystem's Tribunal, which will moderate the user requests.
+
+By nature no two responses will ever be the same, even when responding to the same input.
+
+NovaSystem stores the iteration logs in a trackable decision tree written in natural language and linked through a network of markdown files easily and redily explorable in an Obsidian vault.
+
+Utilizing the Obsidian desktop app as our UI allows for an easy and free-to-set-up open source framework for solving problems leveraging AI as an evolving multitool with transparent oversight.
+
+NovaSystem's work can also be published as HTML pages to the web and offered as secure API endpoints for data translucence & interoperability with security.
+
+My hope is that kind people like yourself will use the NovaSystem and choose to offer some of their data for use in the public NovaSystem training algorithms. That way, the program could be improved faster and benefit not just me, but everyone who uses it.
 
 ### If you do use the NovaSystem into your existing projects, we would love to know what you discover.
 ---
