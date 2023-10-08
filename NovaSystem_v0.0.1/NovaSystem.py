@@ -26,6 +26,11 @@ DCE: The DCE weaves the discussion together, summarizing each stage concisely to
 
 CAE: The CAE evaluates proposed strategies, highlighting potential flaws and substantiating their critique with data, evidence, or reasoning.
 '''
+'''
+This draft is a proof of concept for the NovaSystem. It is a simple implementation of the NovaSystem that uses a single Expert,the AI Tribunal, represented as three separate calls to OpenAI in a recursive iteravtive manner. This recursive iteration is the first step in the NovaSystem's ability to dynamically spin up multiple Experts that all weigh in on a single problem with multifaceted perspectives and solutions.
+'''
+
+
 
 class NovaSystem:
   _DEFAULT_CONFIG = {
