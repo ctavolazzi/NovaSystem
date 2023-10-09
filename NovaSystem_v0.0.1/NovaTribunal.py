@@ -1,3 +1,5 @@
+
+
 # Define the Base Arbiter Class
 class BaseArbiter:
     def ask_question(self, question):
