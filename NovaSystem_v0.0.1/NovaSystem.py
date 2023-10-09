@@ -1,7 +1,15 @@
 # Imports
 import os
 from NovaHelper import NovaHelper, stc
+import openai
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from the .env file
+load_dotenv()
+
+# Retrieve and debug the OpenAI API key from environment variables
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 '''
 The Nova System is an innovative use of AI that allows the AI to dynamically spin up multiple "Experts" that all weigh in on a single problem with multifaceted perspectives and solutions.
@@ -39,11 +47,13 @@ class NovaSystem:
     "version": 0.0,
     "author": "Christopher Tavolazzi",
     "description": "The Nova System is an innovative use of AI that allows the AI to dynamically spin up multiple Experts that all weigh in on a single problem with multifaceted perspectives and solutions.",
-    "duty": "NovaSystem",
+    "duty": "Central Controller",
     "experts": [NovaHelper()]
   }
 
   def __init__(self, config=None):
+    self.helper = NovaHelper()
+    self.stc = self.helper.stc
     self.config = {}
     self.config = self.load_default_config()
     self.set_id()
@@ -54,9 +64,11 @@ class NovaSystem:
   def load_default_config(self):
     stc(f'Loading default config for {self._DEFAULT_CONFIG["duty"]}...\n')
     for key, value in self._DEFAULT_CONFIG.items():
-      print(f'{key}: {value}')
+      # print(f'{key}: {value}')
       self.config[key] = value
+      # print(f'{self.config[key]} loaded successfully.\n')
     stc(f'Config loaded successfully.\n')
+    return self.config
 
   def set_name(self):
     if not hasattr(self, 'name'):
@@ -90,20 +102,67 @@ class NovaSystem:
     # First, check the config to make sure it is not empty and has the required keys
     # Next, check the object to make sure it has the required attributes
     # Finally, run the test() method to make sure the object is set up and ready to run
-    self.stc(f'Running startup tests for {self.name}...\n')
+    self.stc(f'Running startup tests for {self.name}...\n\n')
 
   def test(self):
     # Run tests
 
-    self.classname = self.__class__.__name__
-    self.stc(f'Testing {self.classname} || ID: {self.id}\n...')
+    classname = self.__class__.__name__
+    duty = self.config['duty']
 
-    self.stc(f'{self.classname} instantiated successfully with "duty": {self.duty} and "config":\n')
-    for key, value in self.config:
+    self.stc(f'Testing {classname} || ID: {self.id}\n...')
+
+    print(self.config)
+    for key, value in self.config.items():
       print(f'{key}: {value}')
     print(f'\n')
-    self.stc(f'{self.classname} test complete.\n')
+    print(f'{classname} instantiation test complete.\n')
+    self.stc(f'{classname} instantiated successfully.\n')
+
+    def test_api_call(API_callback=self.helper.fetch_response_from_default_API):
+      self.stc(f"\n\nTesting API call...\n\n")
+      API_callback()
+      self.stc(f"API call test complete.\n")
+
+    test_api_call()
+
+    self.stc(f"All tests complete. {classname} ready.\n\n")
+
+  def wait_for_user_input_and_call_openai(self):
+    self.stc(f"Waiting for user input...\n")
+    user_input = input()
+    self.stc(f"User input received: {user_input}\n")
+
+    # self.make_decision(user_input)
+
+    self.make_api_call(user_input)
+
+    self.stc(f"Exiting...\n")
+    exit()
+
+  # def make_decision(self, user_input):
+  #   self.stc(f"Making decision...\n")
+  #   self.stc(f"Decision made.\n")
+
+  def make_api_call(self, user_input):
+    self.stc(f"Making API call...\n")
+    # response = self.helper.make_api_call(user_input)
+    # response = openai.api_key = os.getenv("OPENAI_API_KEY")
+    response = openai.Completion.create(
+        model="gpt-3.5-turbo-instruct-0914",
+        prompt=user_input,
+        max_tokens=50,
+        temperature=.5
+      )
+
+    self.stc(f"API call complete.\n")
+    self.stc("Results:\n")
+    stc(response["choices"][0]["text"])
+    print("\n\n")
+    closing_statement = "Thank you for using the Nova System. Goodbye."
+    stc(f"{closing_statement}\n\n")
 
 if __name__ == "__main__":
-  nova_system = NovaSystem()
-  nova_system.test()
+  nova = NovaSystem()
+  nova.test()
+  nova.wait_for_user_input_and_call_openai()
