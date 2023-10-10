@@ -1,7 +1,6 @@
 # Imports
 import os
 from NovaHelper import NovaHelper, stc
-<<<<<<< HEAD
 import openai
 import os
 from dotenv import load_dotenv
@@ -11,9 +10,6 @@ load_dotenv()
 
 # Retrieve and debug the OpenAI API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
-=======
-
->>>>>>> b6f8c82 (🪄 📌 🔎x)
 
 '''
 The Nova System is an innovative use of AI that allows the AI to dynamically spin up multiple "Experts" that all weigh in on a single problem with multifaceted perspectives and solutions.
