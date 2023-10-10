@@ -2,14 +2,19 @@ import os
 import logging
 import openai
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import time
 >>>>>>> 5da575c (Initial commit)
+=======
+import time
+>>>>>>> temp-branch-to-save-detached-head
 from dotenv import load_dotenv
 from NovaHelper import stc
 from NovaConfigManager import NovaConfigManager
 
 class NovaChatBot:
+<<<<<<< HEAD
 <<<<<<< HEAD
     _DEFAULT_SYSTEM_PROMPT = "You are an instance of a helpful assistant named Nova."
 
@@ -35,6 +40,8 @@ class NovaChatBot:
     def add_message_to_history(self, role, content):
         self.conversation_history.append({"role": role, "content": content})
 =======
+=======
+>>>>>>> temp-branch-to-save-detached-head
     _DEFAULT_SYSTEM_PROMPT = "You are a helpful assistant named Nova."
 
     def __init__(self, config=None):
@@ -56,16 +63,23 @@ class NovaChatBot:
             logging.error(f"Custom Log: {error_type}: {message}\n")
         else:
             logging.error(f"Custom Log: {message}\n")
+<<<<<<< HEAD
 >>>>>>> 5da575c (Initial commit)
+=======
+>>>>>>> temp-branch-to-save-detached-head
 
     def fetch_assistant_reply(self, api_payload, stream=False):
         args = {'model': self.config["model"], 'messages': api_payload}
         if stream: args['stream'] = True
         try:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             openai.api_key = self.config["openai_api_key"]
 >>>>>>> 5da575c (Initial commit)
+=======
+            openai.api_key = self.config["openai_api_key"]
+>>>>>>> temp-branch-to-save-detached-head
             response = openai.ChatCompletion.create(**args)
             if stream:
                 for chunk in response:
@@ -74,10 +88,14 @@ class NovaChatBot:
                 return response['choices'][0]['message']['content']
         except Exception as e:
 <<<<<<< HEAD
+<<<<<<< HEAD
             logging.error(f"Custom Log: {type(e).__name__}: {str(e)}\n")
 =======
             self.custom_log(str(e), type(e).__name__)
 >>>>>>> 5da575c (Initial commit)
+=======
+            self.custom_log(str(e), type(e).__name__)
+>>>>>>> temp-branch-to-save-detached-head
             return None
 
     def display_assistant_reply(self, reply):
@@ -89,20 +107,28 @@ class NovaChatBot:
     def fetch_and_stream_single_turn(self, user_input=None):
         if user_input:
 <<<<<<< HEAD
+<<<<<<< HEAD
             self.add_message_to_history("user", user_input)
 =======
             self.conversation_history.append({"role": "user", "content": user_input})
 >>>>>>> 5da575c (Initial commit)
+=======
+            self.conversation_history.append({"role": "user", "content": user_input})
+>>>>>>> temp-branch-to-save-detached-head
         else:
             user_input = input("\n> ")
         if user_input.lower() in ["exit", "q"]:
             return False
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         self.add_message_to_history("user", user_input)
 =======
         self.conversation_history.append({"role": "user", "content": user_input})
 >>>>>>> 5da575c (Initial commit)
+=======
+        self.conversation_history.append({"role": "user", "content": user_input})
+>>>>>>> temp-branch-to-save-detached-head
         system_prompt = {"role": "system", "content": self.config["system_prompt"]}
         api_payload = [system_prompt] + self.conversation_history
         assistant_reply = self.fetch_assistant_reply(api_payload, stream=True)
@@ -112,13 +138,18 @@ class NovaChatBot:
     def test(self):
       stc(f'\nTesting NovaChatBot...')
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       # stc(f'Test Config: {self.config}\n')
 >>>>>>> 5da575c (Initial commit)
+=======
+      # stc(f'Test Config: {self.config}\n')
+>>>>>>> temp-branch-to-save-detached-head
 
 if __name__ == "__main__":
     chatbot = NovaChatBot()
     chatbot.test()
+<<<<<<< HEAD
 <<<<<<< HEAD
     while chatbot.fetch_and_stream_single_turn():
         pass
@@ -216,3 +247,8 @@ if __name__ == "__main__":
     while chatbot.fetch_and_stream_single_turn():
         pass
 >>>>>>> 5da575c (Initial commit)
+=======
+    # stc(f'Nova System Activated with config:\n{chatbot.config}\n"Hello, world!"\nType "exit" or "q" to quit.\n\nPlease enter your first message below to begin chatting with Nova.')
+    while chatbot.fetch_and_stream_single_turn():
+        pass
+>>>>>>> temp-branch-to-save-detached-head

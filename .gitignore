@@ -153,6 +153,7 @@ cython_debug/
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 <<<<<<< HEAD
 =======
@@ -169,3 +170,5 @@ cython_debug/
 .DS_Store
 External_Modified_Libs/.DS_Store
 .DS_Store
+=======
+>>>>>>> temp-branch-to-save-detached-head
