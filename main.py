@@ -4,22 +4,27 @@ import os
 import time
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# Initialize Marvin's state
 Marvin = {
     'name': 'Marvin',
     'got_pissed_off': False
 }
 
+# Read JSON from a file
 def read_json_file(filename):
     with open(filename, 'r') as f:
         return json.load(f)
 
+# Write JSON to a file
 def write_json_file(filename, data):
     with open(filename, 'w') as f:
         json.dump(data, f)
 
+# Validate user input based on the attribute
 def validate_input(attribute, user_input):
     if attribute == 'age':
         return user_input.isdigit() and int(user_input) > 0
@@ -27,6 +32,7 @@ def validate_input(attribute, user_input):
         return "@" in user_input
     return True  # Placeholder for other attributes
 
+# Fetch a chat completion from OpenAI based on the current state and attribute
 def fetch_openai_chatcompletion(attribute, marvin_state, user_data=None, previous_user_inputs=None):
     messages = [
         {
@@ -35,7 +41,7 @@ def fetch_openai_chatcompletion(attribute, marvin_state, user_data=None, previou
         },
         {
             'role': 'user',
-            'content': f'Please return only a funny and sardonic question asking the user for the following attribute: {attribute}. Please reply with ONLY an engaging and unusual question requesting the attribute from the user. Your sole goal is to get the user to provide the attribute by any means necessary for NOVA, and you are willing to be as snarky and sardonic as possible to get the user to provide the attribute and get the user entered into the NOVA System.'
+            'content': f'Please return only a funny and sardonic question asking the user for the following attribute: {attribute}.'
         }
     ]
     if user_data or previous_user_inputs:
@@ -44,7 +50,6 @@ def fetch_openai_chatcompletion(attribute, marvin_state, user_data=None, previou
             context_content.append(f"User's previous data: {user_data}")
         if previous_user_inputs:
             context_content.append(f"User's previous inputs: {previous_user_inputs}")
-
         messages[1]['content'] += f' Additional context: {" ".join(context_content)}'
 
     response = openai.ChatCompletion.create(
@@ -53,53 +58,51 @@ def fetch_openai_chatcompletion(attribute, marvin_state, user_data=None, previou
     )
     return response['choices'][0]['message']['content']
 
+# Stream the message to the console with a typing effect
 def stream_to_console(message, delay=0.02):
     for char in message:
         print(char, end='', flush=True)
         time.sleep(delay)
     print()
 
+# Get the appropriate error message based on the number of failed attempts
+def get_error_message(attempts, marvin_state, user_data, previous_user_inputs):
+    error_levels = [
+        (7, "YOU HAVE COMPLETELY LOST IT AND YOU ARE NOT LONGER HOLDING BACK YOUR RAGE..."),
+        (6, "BE FIRM AND DIRECT, AND NOW YOU ARE LOSING YOUR COOL - GET PISSED OFF"),
+        (5, "BE FIRM AND DIRECT, AND NOW YOU ARE IRRITATED..."),
+        (3, "BE FIRM AND DIRECT, AND ACT LIKE YOU'RE GETTING IRRITATED...")
+    ]
+    for min_attempts, message in error_levels:
+        if attempts >= min_attempts:
+            return fetch_openai_chatcompletion(message, marvin_state, user_data, previous_user_inputs)
+
+# Conduct the conversation and collect user data
 def conduct_conversation():
     user_setup = read_json_file('user_setup.json')
     user_data = {}
     previous_user_inputs = []
+    attempts = 0
 
     for attribute in user_setup['user'].keys():
         valid_input = False
-        attempts = 0
         while not valid_input:
-            print(f"DEBUG: Current attribute: {attribute}")  # Debug
-            marvin_state = "pissed off" if Marvin["got_pissed_off"] else "not pissed off"  # Handle Marvin's state
-            question = fetch_openai_chatcompletion(attribute, marvin_state, user_data, previous_user_inputs)  # Pass Marvin's state
+            marvin_state = "pissed off" if Marvin["got_pissed_off"] else "not pissed off"
+            question = fetch_openai_chatcompletion(attribute, marvin_state, user_data, previous_user_inputs)
             stream_to_console(question)
             user_input = input('> ')
-            print(f"DEBUG: User input: {user_input}")  # Debug
             previous_user_inputs.append(user_input)
             valid_input = validate_input(attribute, user_input)
-            print(f"DEBUG: Validation status: {valid_input}")  # Debug
-            print(f"DEBUG: Number of attempts: {attempts}")  # Debug
 
-            if valid_input:
-                user_data[attribute] = user_input if attribute != 'age' else int(user_input)
-            else:
-                if attempts >= 7:
-                    pissed_off_reply = fetch_openai_chatcompletion("incorrect input, over max attempts; YOU HAVE COMPLETELY LOST IT AND YOU ARE NOT LONGER HOLDING BACK YOUR RAGE AT THE USER FOR THEIR REPEATED REFUSAL TO ANSWER YOUR SIMPLE QUESTION", user_data, previous_user_inputs)
-                    stream_to_console(pissed_off_reply)
-                elif attempts >= 6:
-                    warning_reply = fetch_openai_chatcompletion("incorrect input, over max attempts; BE FIRM AND DIRECT, AND NOW YOU ARE LOSING YOUR COOL - GET PISSED OFF", user_data, previous_user_inputs)
-                    Marvin.got_pissed_off = True
-                    stream_to_console(warning_reply)
-                elif attempts >= 5:
-                    serious_reply = fetch_openai_chatcompletion("incorrect input, over max attempts; BE FIRM AND DIRECT, AND NOW YOU ARE IRRITATED WITH THE USER AND YOU ARE GETTING NOTICABLY FRUSTRATED", user_data, previous_user_inputs)
-                    stream_to_console(serious_reply)
-                elif attempts >= 3:
-                    snarky_reply = fetch_openai_chatcompletion("incorrect input, over max attempts; BE FIRM AND DIRECT, AND ACT LIKE YOU'RE GETTING IRRITATED, BUT YOU'RE STILL WANTING TO BE NICE", user_data, previous_user_inputs)
-                    stream_to_console(snarky_reply)
-                else:
-                    guiding_reply = fetch_openai_chatcompletion("incorrect input, but under max attempts", user_data, previous_user_inputs)
-                    # steering_message = "Hmm, that doesn't quite work. Let's try this again."
-                    stream_to_console(guiding_reply)
-                attempts += 1
+            if not valid_input:
+                error_message = get_error_message(attempts, marvin_state, user_data, previous_user_inputs)
+                stream_to_console(error_message)
+                if attempts >= 6:
+                    Marvin["got_pissed_off"] = True
+
+            attempts += 1
+
+        user_data[attribute] = user_input if attribute != 'age' else int(user_input)
 
     write_json_file('user.json', user_data)
     stream_to_console("User data has been saved.")
