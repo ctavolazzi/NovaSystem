@@ -1,6 +1,9 @@
 {
   "user": {
       "name": "",
-      "age": ""
+      "age": "",
+      "email": "",
+      "password": "",
+      "password_confirmation": ""
   }
 }
