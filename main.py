@@ -1,24 +1,57 @@
-from under_dev.NovaHelper import NovaHelper
+# Import required libraries
 import time
+import openai
+import json
+import os
+from dotenv import load_dotenv
 
-# Instantiate NovaHelper
-helper = NovaHelper()
+# Initialize the environment
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Alias for helper.stc method
-stc = helper.stc
+# Initialize user object
+user = {}
 
-# Display initial message
-stc(f"You're a curious son of a bitch, aren't you?\n")
+# Initialize delay for text streaming
+default_delay = 0.022
 
-# Start the loading indicator
-helper.start_loading_indicator()
+# Function to stream text to console
+def stream_to_console(message, delay=default_delay):
+    for char in message:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()
 
-# Allow the indicator to run for a few seconds (simulate some processing)
-time.sleep(2)
+# Function to fetch OpenAI response
+def fetch_openai_response(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {'role': 'system', 'content': 'You are a snarky and sardonic assistant named Marvin. You are here to help your master, Nova, an all-powerful AI, to help it acquaint himself with a new user.'},
+            {'role': 'user', 'content': prompt}
+        ]
+    )
+    return response["choices"][0]["message"]["content"]
 
-# Stop the loading indicator
-helper.stop_loading_indicator()
+# Function to conduct conversation
+def conduct_conversation():
+    stream_to_console("Welcome to the NovaVerse!")
+    time.sleep(3)  # Simulate loading time
 
-# Display second message
-message = "Well, what do you want?"
-stc(message)
+    # Predefined first question
+    name_prompt = "What is your name?"
+    stream_to_console(name_prompt)
+    user_input = input("> ")
+    user['name'] = user_input
+
+    # Use OpenAI for dynamic response
+    next_prompt = f"Nice to meet you, {user['name']}. What brings you here?"
+    ai_response = fetch_openai_response(next_prompt)
+    stream_to_console(ai_response)
+
+    # Save user object
+    with open('user.json', 'w') as f:
+        json.dump(user, f)
+
+# Run the conversation
+conduct_conversation()
