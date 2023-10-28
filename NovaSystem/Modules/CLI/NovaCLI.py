@@ -1,6 +1,6 @@
 from NovaChatBot import NovaChatBot
-from NovaConfigManager import NovaConfigManager
-from NovaHelper import stc
+from NovaSystem.Modules.NovaConfigManager.NovaConfigManager import NovaConfigManager
+from NovaSystem.Modules.NovaHelper.NovaHelper import stc
 
 class NovaCLI:
     def __init__(self, config=None):
