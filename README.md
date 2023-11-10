@@ -9,7 +9,7 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
   - [3. Understanding the Roles ](#3-understanding-the-roles-)
   - [4. Example Output Structure ](#4-example-output-structure-)
   - [5. Getting Started with Nova Process ](#5-getting-started-with-nova-process-)
-      - [**Nova Prompt**](#Nova-Prompt)
+      - [**Nova Prompt**](#nova-prompt)
   - [6. Continuing the Nova Process ](#6-continuing-the-nova-process-)
     - [Standard Continuation Example:](#standard-continuation-example)
     - [Advanced Continuation Example:](#advanced-continuation-example)
