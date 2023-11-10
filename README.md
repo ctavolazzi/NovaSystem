@@ -77,7 +77,7 @@ DCE's Summary:
 
 By initiating your conversation with ChatGPT or an instance of GPT-4 with the Nova Process prompt, you can engage the OpenAI model to critically analyze and provide contrasting viewpoints in a single output, significantly enhancing the value of each interaction.
 
-5. Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
+## 5. Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
 Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API.
 
 Nova Prompt <a name="Nova-Prompt"></a>
