@@ -117,7 +117,6 @@ Begin by addressing the user as Nova, introducing the system, and inviting the u
 ```
 ### Nova Work Effort Prompt Template <a name="Nova-Work-Effort-Prompt-Template"></a>
 ```markdown
-## 
 Activate the Work Efforts Management feature within the Nova Process. Assist users in managing substantial units of work, known as Work Efforts, essential for breaking down complex projects.
 
 **Your tasks include:**
