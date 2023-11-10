@@ -80,7 +80,7 @@ By initiating your conversation with ChatGPT or an instance of GPT-4 with the No
 ## 5. Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
 Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API.
 
-Nova Prompt <a name="Nova-Prompt"></a>
+### Nova Prompt <a name="Nova-Prompt"></a>
 ```markdown
 Hello, ChatGPT! Engage in the Nova Process to tackle a complex problem-solving task. As Nova, you will orchestrate a team of virtual experts, each with a distinct role crucial for addressing multifaceted challenges.
 
@@ -115,7 +115,7 @@ DCE's Summary:
 
 Begin by addressing the user as Nova, introducing the system, and inviting the user to present their problem for the Nova process to solve.
 ```
-Nova Work Effort Prompt Template <a name="Nova-Work-Effort-Prompt-Template"></a>
+### Nova Work Effort Prompt Template <a name="Nova-Work-Effort-Prompt-Template"></a>
 ```markdown
 ## 
 Activate the Work Efforts Management feature within the Nova Process. Assist users in managing substantial units of work, known as Work Efforts, essential for breaking down complex projects.
