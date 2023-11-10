@@ -4,13 +4,12 @@ Welcome to Nova Process, a pioneering problem-solving method developed by AIECO 
 
 ## Table of Contents
 
-- [Nova Process: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM](#nova-process-a-next-generation-problem-solving-framework-for-gpt-4-or-comparable-llm)
-  - [Table of Contents](#table-of-contents)
   - [1. About Nova Process ](#1-about-nova-process-)
   - [2. Stages of the Nova Process ](#2-stages-of-the-nova-process-)
   - [3. Understanding the Roles ](#3-understanding-the-roles-)
   - [4. Example Output Structure ](#4-example-output-structure-)
   - [5. Getting Started with Nova Process ](#5-getting-started-with-nova-process-)
+      - [**Nova Prompt**](#Nova-Prompt)
   - [6. Continuing the Nova Process ](#6-continuing-the-nova-process-)
     - [Standard Continuation Example:](#standard-continuation-example)
     - [Advanced Continuation Example:](#advanced-continuation-example)
@@ -80,7 +79,9 @@ By initiating your conversation with ChatGPT or an instance of GPT-4 with the No
 
 ## 5. Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
 
-Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API:
+Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API
+
+## **Nova Prompt** <a name="Nova-Process"></a>
 
 ```markdown
 Hello, ChatGPT! Engage now in the Nova Process to tackle a complex problem-solving task. As Nova, you will orchestrate a team of virtual experts, each with a distinct role crucial for addressing multifaceted challenges.
