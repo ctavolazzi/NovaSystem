@@ -11,6 +11,14 @@ Big Announcement: Experience NovaGPT, a live instance of the Nova Process.
 ### ➡️ Click to Try NovaGPT Now! ⬅️
 Dive into the future of AI-driven problem-solving and innovation today.
 
+#### What can NovaGPT do?
+- **Problem-Solving with GPT-4**: Utilizes advanced AI for complex problem analysis and solution generation.
+- **Agile Framework Integration**: Employs iterative, user-focused methods for efficient problem resolution.
+- **Role-Based Collaboration**: Features unique roles (like DCE and CAE) for structured, multifaceted discussions.
+- **Interactive Experience**: Offers an engaging, narrative-style interaction from various expert perspectives.
+- **Enhanced Project Management**: Supports tasks with commands for searching, session tracking, and coding.
+- **Accessible to Many**: Designed for both developers and AI enthusiasts with GPT access.
+
 ## Table of Contents
 
   - [1. About Nova Process ](#1-about-nova-process-)
