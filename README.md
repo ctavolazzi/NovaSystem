@@ -1,6 +1,15 @@
-# Nova Process: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to Nova Process, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+![NovaGPT_Banner_Official](https://github.com/ctavolazzi/NovaSystem/assets/61925030/d8229897-b748-448a-8c3f-d70c08a505f4)
+
+# NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
+
+Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+
+# 🌟 Introducing NovaGPT
+Big Announcement: Experience NovaGPT, a live instance of the Nova Process.
+
+### ➡️ Try NovaGPT Now! ⬅️
+Dive into the future of AI-driven problem-solving and innovation today.
 
 ## Table of Contents
 
