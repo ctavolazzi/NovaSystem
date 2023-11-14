@@ -10,5 +10,6 @@ def stc(message):
 def main():
   stc("Hello World!")
 
+
 if __name__ == "__main__":
   main()
