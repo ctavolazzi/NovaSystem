@@ -30,7 +30,7 @@ multidict==6.0.4
 netifaces==0.11.0
 openai==0.28.1
 packaging==23.2
-pbr==5.11.1
+pbr==6.0.0
 pipdeptree==2.13.0
 platformdirs==3.11.0
 Pygments==2.16.1
