@@ -1,0 +1,12 @@
+NovaSystem/
+    novagpt-env/
+        pyvenv.cfg
+    docs/
+    src/
+        NovaSystem_file_structure.txt
+        main.py
+        tests/
+            nova-test.py
+        utils/
+            generate_file_structure.py
+            your_full_file_structure.txt
