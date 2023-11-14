@@ -2,7 +2,7 @@ import os
 
 def generate_file_structure(root_dir, output_file='file_structure.txt', skip_dirs=None):
     if skip_dirs is None:
-        skip_dirs = ['bin', 'lib', 'include', 'your_lib_folder', 'Archive', '.git', '__pycache__']  # Add any folders you want to skip
+        skip_dirs = ['bin', 'lib', 'include', 'your_lib_folder', 'archive', '.git', '__pycache__']  # Add any folders you want to skip
     with open(output_file, 'w') as file_out:
         for root, dirs, files in os.walk(root_dir):
             dirs[:] = [d for d in dirs if d not in skip_dirs]
