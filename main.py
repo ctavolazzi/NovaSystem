@@ -1,10 +1,10 @@
 import time
 
-def stc(message):
+def stc(message, delay=0.22):
   # Stream each character in a message to the console
   for char in message:
-    print(char, end="")
-    time.sleep(0.1)
+    print(char, end="", flush=True)
+    time.sleep(delay)
   print()
 
 def main():
