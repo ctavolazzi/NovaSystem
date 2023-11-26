@@ -3,6 +3,12 @@
 # Ignore credentials file
 credentials.json
 
+# Ignore environment file
+.env
+
+# Ignore OAuth 2.0 token file
+token.json
+
 # Ignore system files
 .DS_Store
 
@@ -19,3 +25,6 @@ venv/
 # Ignore build files
 dist/
 build/
+
+# Ignore token files
+*.token
