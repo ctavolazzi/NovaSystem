@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "novasystem"
+version = "0.1.0"
+description = "description = \"NovaSystem: An open-source AI SDK licensed under GPL-3, designed to facilitate the integration of AI into various projects. It offers a comprehensive toolkit for developers, with a requirement for users to open source their projects under the same license when using NovaSystem code. Ideal for community-driven developments and advancing AI applications.\""
+authors = ["Christopher Tavolazzi <ctavolazzi@gmail.com>"]
+license = "GNU GPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.31.0"
+openai = "^1.3.5"
+google-api-python-client = "^2.108.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
