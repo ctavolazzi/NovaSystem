@@ -1,0 +1,21 @@
+# .gitignore
+
+# Ignore credentials file
+credentials.json
+
+# Ignore system files
+.DS_Store
+
+# Ignore node modules for JavaScript projects
+node_modules/
+
+# Ignore Python virtual environments
+venv/
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore build files
+dist/
+build/
