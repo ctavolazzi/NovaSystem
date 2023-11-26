@@ -1,7 +1,7 @@
 # .gitignore
 
-# Ignore credentials file
-credentials.json
+# Ignore private credentials
+config/private/
 
 # Ignore environment file
 .env
