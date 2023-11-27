@@ -4,11 +4,10 @@ import time
 import argparse
 from src.utils.stream_to_console import stream_to_console as stc
 from src.utils.generate_file_structure import generate_file_structure
-from src.tests.test_stc import test_stc
 
 # Set up global variables
 # (Add any necessary global variables here)
-tests = [test_stc]
+tests = []
 
 def run_tests(tests):
     results = []
@@ -43,7 +42,7 @@ def main():
         if not os.path.exists(output_directory):
             os.makedirs(output_directory)
 
-        output_filename = f'NovaSystem_file_structure_{time.time()}.txt'
+        output_filename = f'NovaSystem_file_structure_{time.time()}_new.txt'
         generate_file_structure(root_directory, os.path.join(output_directory, output_filename))
 
         # Additional functionalities
