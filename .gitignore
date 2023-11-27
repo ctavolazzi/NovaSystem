@@ -84,3 +84,40 @@ pytestdebug.log
 # Others
 instance/
 .webassets-cache
+
+# .gitignore
+
+# Ignore private credentials and sensitive data
+config/private/
+NovaSystem-Personal-Desktop-credentials.json
+
+# Ignore environment files
+.env
+
+# Ignore OAuth 2.0 token file
+token.json
+
+# Ignore system files
+.DS_Store
+
+# Ignore node modules for JavaScript projects
+node_modules/
+
+# Ignore Python virtual environments and cache files
+venv/
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore build files
+dist/
+build/
+
+# Ignore token files
+*.token
+
+# Ignore specific file structures and temporary files
+NovaSystem_file_structure_*.txt
+*.tmp
+*.temp
