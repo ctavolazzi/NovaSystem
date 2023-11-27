@@ -13,6 +13,8 @@ openai = "^1.3.5"
 google-api-python-client = "^2.108.0"
 art = "^6.1"
 colorama = "^0.4.6"
+typer = "^0.9.0"
+fastapi = "^0.104.1"
 
 
 [tool.poetry.group.dev.dependencies]

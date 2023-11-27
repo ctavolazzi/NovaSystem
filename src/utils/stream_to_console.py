@@ -178,13 +178,17 @@ font_options = [
     # Add more font names here
 ]
 
-# Generate ASCII art with a random font
-random_font = random.choice(font_options)
-random_ascii_art = art.text2art("NovaSystem", font=random_font)
+def test():
+    # Generate ASCII art with a random font
+  random_font = random.choice(font_options)
+  random_ascii_art = art.text2art("NovaSystem", font=random_font)
 
-# Stream the ASCII art first
-stream_to_console(random_ascii_art, delay=0.0004)
+  # Stream the ASCII art first
+  stream_to_console(random_ascii_art, delay=0.0004)
 
-# Stream each test case
-for case in test_cases:
-    stream_to_console(**case)
+  # Stream each test case
+  for case in test_cases:
+      stream_to_console(**case)
+
+if __name__ == "__main__":
+    test()
