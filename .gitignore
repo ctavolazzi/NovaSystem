@@ -1,30 +1,86 @@
-# .gitignore
-
-# Ignore private credentials
-config/private/
-
-# Ignore environment file
+# General
+*.log
+*.pyc
+*.token
+.DS_Store
 .env
 
-# Ignore OAuth 2.0 token file
+# Python
+## Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+## C extensions
+*.so
+
+## Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+## Virtual environment
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+## Spyder project settings
+.spyderproject
+.spyproject
+
+## PyCharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+## Jupyter Notebook
+.ipynb_checkpoints
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Configurations
+config/private/
+
+# OAuth
 token.json
 
-# Ignore system files
-.DS_Store
+# Test reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
 
-# Ignore node modules for JavaScript projects
-node_modules/
+# Database
+*.db
+*.sql
+*.sqlite
 
-# Ignore Python virtual environments
-venv/
-*.pyc
-
-# Ignore log files
-*.log
-
-# Ignore build files
-dist/
-build/
-
-# Ignore token files
-*.token
+# Others
+instance/
+.webassets-cache

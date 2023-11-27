@@ -1,4 +1,5 @@
 import os
+import time
 
 def generate_file_structure(root_dir, output_file='file_structure.txt', skip_dirs=None):
     if skip_dirs is None:
@@ -15,5 +16,5 @@ def generate_file_structure(root_dir, output_file='file_structure.txt', skip_dir
 
 if __name__ == '__main__':
     root_directory = '/Users/ctavolazzi/Code/WinfoNova/Nova_System_Git/NovaSystem'
-    output_filename = 'NovaSystem_file_structure.txt'
+    output_filename = f'NovaSystem_file_structure.txt{time.time()}'
     generate_file_structure(root_directory, output_filename)
