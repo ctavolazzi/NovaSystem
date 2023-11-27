@@ -1,10 +1,38 @@
+# NovaSystem/main.py
+
 import os
 import time
 import typer
-from src.utils.stream_to_console import stream_to_console as stc
+import subprocess
+from src.utils.stream_to_console import stream_to_console as stc, apply_color
 from src.utils.generate_file_structure import generate_file_structure
+from src.utils.ascii_art_utils import display_random_rainbow_art
+import random
+from art import text2art
+from openai import OpenAI
+
+
 
 app = typer.Typer()
+client = OpenAI()
+
+
+
+# # Extract the username
+# username = os.getlogin()  # or use the os.environ method
+# print(f"Username: {username}")
+
+# username = os.environ.get('SUDO_USER', os.environ.get('USER', os.environ.get('USERNAME')))
+# print(f"Username: {username}")
+
+def get_username():
+    """Retrieves the current username."""
+    return os.environ.get('USER') or os.environ.get('USERNAME')
+
+username = get_username()
+
+# Use the username in defining the default directory
+DEFAULT_DIR = f"NovaSystem-{username}"
 
 def run_tests():
     # Placeholder for actual test functions
@@ -12,8 +40,18 @@ def run_tests():
     results = [test() for test in tests]
     return results
 
-@app.command()
-def start():
+def install_requirements():
+    """Installs required packages."""
+    stc("Installing required packages...", foreground_color="MAGENTA")
+    subprocess.run(["pip", "install", "-r", "requirements.txt"], check=True)
+
+def start_components():
+    """Starts various system components like database, server, etc."""
+    # Placeholder for starting system components
+    # Example: Start a database, internal server, etc.
+    stc("Starting system components...", foreground_color="CYAN")
+
+def start_operation():
     """Starts the standard operation of the NovaSystem."""
     root_directory = os.path.dirname(os.path.abspath(__file__))
     output_directory = os.path.join(root_directory, 'output')
@@ -22,21 +60,109 @@ def start():
     output_filename = f'NovaSystem_file_structure_{time.time()}_new.txt'
     generate_file_structure(root_directory, os.path.join(output_directory, output_filename))
 
-    stc("NovaSystem is up and running.")
+    stc("NovaSystem is up and running.", foreground_color="GREEN")
+
+def check_or_create_directory(directory_name):
+    """Check if a directory exists, and create it if it doesn't."""
+    if not os.path.exists(directory_name):
+        os.makedirs(directory_name)
+        stc(f"Created directory: {directory_name}\n", foreground_color="GREEN")
+
+@app.command()
+def start():
+    """Starts the NovaSystem application."""
+    username = get_username()
+    DEFAULT_DIR = f"NovaSystem-{username}"
+    stc("Starting NovaSystem...\n", foreground_color="BLUE", bold=True)
+
+    # Check if the default directory exists
+    if not os.path.exists(DEFAULT_DIR):
+        stc("Default directory not found.\n", foreground_color="YELLOW")
+        user_choice = typer.confirm(f"Do you want to use the default directory '{DEFAULT_DIR}'?")
+        if user_choice:
+            check_or_create_directory(DEFAULT_DIR)
+        else:
+            custom_dir = typer.prompt("Please enter a custom directory name")
+            check_or_create_directory(custom_dir)
+    else:
+        stc(f"Using existing directory: {DEFAULT_DIR}\n", foreground_color="GREEN")
+
+    """Interactive CLI for NovaSystem."""
+    stc("Initializing NovaSystem...", foreground_color="BLUE", bold=True)
+
+    stc("Running system checks...", foreground_color="CYAN")
+    run_tests()
+
+    stc("Setting up the environment...", foreground_color="GREEN")
+    install_requirements()
+
+    start_components()
+
+    start_operation()
+
+    display_random_rainbow_art("Welcome to the NovaSystem")
+
+    user_request = typer.prompt(stc("What do you want NovaSystem to help you with?", foreground_color="YELLOW"))
+    # Here, integrate with the LLM (like OpenAI API) to process user_request
+    # Example: response = process_with_llm(user_request)
+    # stc(response, "CYAN")
+
+@app.command()
+def art():
+    """Displays random ASCII art with rainbow effect."""
+    display_random_rainbow_art()
+
+@app.command()
+def test():
+    """Tests the NovaSystem application."""
+    stc("\n=== Running System Tests ===\n", foreground_color="MAGENTA", bold=True)
+
+    # Test the default directory
+    stc("Checking for default directory...", foreground_color="CYAN")
+    report = analyze_directory(DEFAULT_DIR)
+    stc(report, foreground_color="GREEN")
+
+    # Header for file structure display
+    stc("\n=== File Structure of src Folder ===\n", foreground_color="CYAN", bold=True)
+
+    # Displaying the file structure
+    generate_file_structure('./src', 'output.txt')
+    with open('output.txt', 'r') as file:
+        file_contents = file.read()
+        # Formatting the file structure for better readability
+        formatted_contents = format_file_structure(file_contents)
+        stc(formatted_contents, foreground_color="GREEN")
+
+def format_file_structure(contents):
+    """Apply additional formatting to file structure contents for better readability."""
+    # Example formatting: Add indentation, bullet points, or color coding
+    formatted_contents = ""
+    for line in contents.split('\n'):
+        if line.strip():
+            formatted_contents += "    • " + line + "\n"
+    return formatted_contents
+
+def analyze_directory(directory):
+    """Analyzes the directory and returns a summary report."""
+    if not os.path.exists(directory):
+        return f"Directory '{directory}' does not exist."
+
+    file_count = 0
+    dir_count = 0
+    for entry in os.listdir(directory):
+        if os.path.isfile(os.path.join(directory, entry)):
+            file_count += 1
+        elif os.path.isdir(os.path.join(directory, entry)):
+            dir_count += 1
+
+    report = f"Directory '{directory}' contains {file_count} files and {dir_count} subdirectories."
+    return report
 
 @app.command()
 def quit():
     """Quits the NovaSystem."""
-    stc("Exiting NovaSystem.")
+    stc("Exiting NovaSystem.", background_color="RED", foreground_color="WHITE", bold=True)
     raise typer.Exit()
 
-@app.command()
-def test():
-    """Runs the predefined tests for NovaSystem."""
-    test_results = run_tests()
-    for result in test_results:
-        print(result)
-
 if __name__ == "__main__":
-    stc("Hello, I am NovaSystem AI.")
     app()
