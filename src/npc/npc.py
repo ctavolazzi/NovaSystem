@@ -1,6 +1,6 @@
 # src/npc/npc.py
 
-from src.utils.AI.huggingface_guy import HuggingFaceGuy
+from ..utils.AI.huggingface_guy import HuggingFaceGuy
 
 class NPC:
     def __init__(self, name):
