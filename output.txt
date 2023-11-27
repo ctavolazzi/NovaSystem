@@ -1,0 +1,18 @@
+src/
+    conftest.py
+    .DS_Store
+    NovaSystem_file_structure.txt
+    main.py
+    tests/
+        nova-test.py
+        test_stc.py
+    Nova/
+        nova.py
+    utils/
+        __init__.py
+        generate_file_structure.py
+        stream_to_console.py
+        your_full_file_structure.txt
+    demos/
+        __init__.py
+        demo_stc.py

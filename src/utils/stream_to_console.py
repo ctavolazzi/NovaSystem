@@ -50,7 +50,7 @@ def apply_colorama_style(bold=False, underline=False, invert_colors=False, doubl
         style_str += ANSI_STYLES["strikethrough"]
     return style_str
 
-def stream_to_console(message, delay=0.035, foreground_color=None, background_color=None, rainbow_effect=False, **style_flags):
+def stream_to_console(message, delay=0.0035, foreground_color=None, background_color=None, rainbow_effect=False, **style_flags):
     """
     Streams a message to the console character by character with optional delay, colors, and effects.
     """
