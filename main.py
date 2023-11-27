@@ -7,6 +7,7 @@ import subprocess
 from src.utils.stream_to_console import stream_to_console as stc, apply_color
 from src.utils.generate_file_structure import generate_file_structure
 from src.utils.ascii_art_utils import display_random_rainbow_art
+from src.utils.border_maker import border_maker
 import random
 from art import text2art
 from openai import OpenAI
@@ -94,7 +95,7 @@ def start():
     run_tests()
 
     stc("Setting up the environment...", foreground_color="GREEN")
-    install_requirements()
+    # install_requirements()
 
     start_components()
 
@@ -106,6 +107,9 @@ def start():
     # Here, integrate with the LLM (like OpenAI API) to process user_request
     # Example: response = process_with_llm(user_request)
     # stc(response, "CYAN")
+    stc("Processing your request...\nUser Request:", foreground_color="CYAN")
+    bordered_user_request = border_maker(user_request, border_color="CYAN", border_char='*', padding=1)
+    stc(f"{bordered_user_request}", rainbow_effect=True, bold=True, fg_style="BRIGHT")
 
 @app.command()
 def art():

@@ -6,6 +6,7 @@ import time
 import art
 import random
 from colorama import Fore, Back, Style, init
+# from ..utils.border_maker import border_maker
 
 # ANSI Escape Codes for additional styles
 ANSI_STYLES = {
@@ -24,14 +25,24 @@ def apply_color(text, foreground_color=None, background_color=None, style=None):
     """Applies color and style to text."""
     colored_text = text
     if foreground_color:
-        colored_text = getattr(Fore, foreground_color.upper(), '') + colored_text
+        if hasattr(Fore, foreground_color.upper()):
+            colored_text = getattr(Fore, foreground_color.upper()) + colored_text
+        else:
+            raise ValueError(f"Invalid foreground color: {foreground_color}")
+
     if background_color:
-        colored_text = getattr(Back, background_color.upper(), '') + colored_text
+        if hasattr(Back, background_color.upper()):
+            colored_text = getattr(Back, background_color.upper()) + colored_text
+        else:
+            raise ValueError(f"Invalid background color: {background_color}")
+
     if style:
         colored_text = style + colored_text
     return colored_text
 
-def apply_colorama_style(bold=False, underline=False, invert_colors=False, double_underline=False, hidden=False, italic=False, strikethrough=False):
+
+
+def apply_colorama_style(bold=False, underline=False, invert_colors=False, double_underline=False, hidden=False, italic=False, strikethrough=False, style=None, fg_style=None, bg_style=None):
     """Returns the combined style string based on flags."""
     style_str = ''
     if bold:
@@ -48,6 +59,33 @@ def apply_colorama_style(bold=False, underline=False, invert_colors=False, doubl
         style_str += ANSI_STYLES["italic"]
     if strikethrough:
         style_str += ANSI_STYLES["strikethrough"]
+    if fg_style:
+        if fg_style == "DIM":
+            style_str += Style.DIM
+        if fg_style == "BRIGHT":
+            style_str += Style.BRIGHT
+        if fg_style == "NORMAL":
+            style_str += Style.NORMAL
+        if fg_style == "RESET_ALL":
+            style_str += Style.RESET_ALL
+    if bg_style:
+        if bg_style == "DIM":
+            style_str += Style.DIM
+        if bg_style == "BRIGHT":
+            style_str += Style.BRIGHT
+        if bg_style == "NORMAL":
+            style_str += Style.NORMAL
+        if bg_style == "RESET_ALL":
+            style_str += Style.RESET_ALL
+    if style:
+        if style == "DIM":
+            style_str += Style.DIM
+        if style == "BRIGHT":
+            style_str += Style.BRIGHT
+        if style == "NORMAL":
+            style_str += Style.NORMAL
+        if style == "RESET_ALL":
+            style_str += Style.RESET_ALL
     return style_str
 
 def stream_to_console(message, delay=0.0035, foreground_color=None, background_color=None, rainbow_effect=False, **style_flags):
@@ -72,7 +110,7 @@ def stream_to_console(message, delay=0.0035, foreground_color=None, background_c
         for char in message:
             if rainbow_effect:
                 fg_color = random.choice(["RED", "GREEN", "YELLOW", "BLUE", "MAGENTA", "CYAN"])
-                char = apply_color(char, foreground_color=fg_color, style=style_str)
+                char = apply_color(char, foreground_color=fg_color, background_color=background_color, style=style_str)
             else:
                 char = apply_color(char, foreground_color, background_color, style_str)
 
@@ -96,6 +134,7 @@ def stream_to_console(message, delay=0.0035, foreground_color=None, background_c
         error_details = "File: {}, Line: {}, In: {}".format(traceback_details['filename'], traceback_details['lineno'], traceback_details['name'])
         sys.stderr.write(error_message + "\n" + error_details + "\n")
         sys.stderr.flush()
+        raise
 
     print()  # Newline at the end
 # Example usage and test cases remain the same
@@ -123,59 +162,6 @@ test_cases = [
     {"message": "Slower inverted rainbow text...", "delay": 0.07, "rainbow_effect": True, "invert_colors": True},
     {"message": "Italicized text.", "italic": True},
     {"message": "Strikethrough text.", "strikethrough": True},
-]
-
-font_options = [
-    "block",
-    "caligraphy",
-    "block",
-    "graffiti",
-    "colossal",
-    "starwars",
-    "sub-zero",
-    "slant",
-    "fancy1",
-    "fancy2",
-    "fancy3",
-    "fancy4",
-    "fancy5",
-    "fancy6",
-    "fancy7",
-    "fancy8",
-    "fancy9",
-    "fancy10",
-    "fancy11",
-    "fancy12",
-    "fancy13",
-    "fancy14",
-    "fancy15",
-    "fancy16",
-    "fancy17",
-    "fancy18",
-    "fancy19",
-    "fancy20",
-    "block",
-    "caligraphy",
-    "block",
-    "graffiti",
-    "banner",
-    "big",
-    "block",
-    "bubble",
-    "digital",
-    "ivrit",
-    "mirror",
-    "script",
-    "shadow",
-    "speed",
-    "stampatello",
-    "starwars",
-    "term",
-    "block",
-    "caligraphy",
-    "block",
-    "graffiti",
-    # Add more font names here
 ]
 
 def test():
