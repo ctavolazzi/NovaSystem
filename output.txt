@@ -1,18 +1,39 @@
 src/
-    conftest.py
-    .DS_Store
     NovaSystem_file_structure.txt
+    conftest.py
     main.py
+    gui/
+        main_window.py
+        __init__.py
+        npc_window.py
     tests/
-        nova-test.py
         test_stc.py
+        nova-test.py
+    npc/
+        character.py
+        npc.py
+        npc_manager.py
+        __init__.py
+        dialogue.py
     Nova/
         nova.py
     utils/
+        ascii_art_generator.py
+        your_full_file_structure.txt
+        border_maker.py
+        stream_to_console.py
         __init__.py
         generate_file_structure.py
-        stream_to_console.py
-        your_full_file_structure.txt
-    demos/
+        ascii_art_utils.py
+        AI/
+            huggingface_guy.py
+            openai_guy.py
+    media/
         __init__.py
+        ASCII_art/
+            art.txt
+            NovaSystem_Titles/
+                title0.txt
+    demos/
         demo_stc.py
+        __init__.py

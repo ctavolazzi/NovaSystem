@@ -11,8 +11,12 @@ from src.utils.border_maker import border_maker
 import random
 from art import text2art
 from openai import OpenAI
+from transformers import pipeline
+from dotenv import load_dotenv
 
+print("NovaSystem version 0.1.0")
 
+load_dotenv()
 
 app = typer.Typer()
 client = OpenAI()
@@ -76,6 +80,17 @@ def start():
     DEFAULT_DIR = f"NovaSystem-{username}"
     stc("Starting NovaSystem...\n", foreground_color="BLUE", bold=True)
 
+    def setup_huggingface_pipeline():
+        huggingface_token = os.getenv("HUGGINGFACE_API_KEY")
+        return pipeline('text-generation', model='gpt2', use_auth_token=huggingface_token)
+
+    def generate_text_with_huggingface(prompt, generator):
+        generated_texts = generator(prompt, max_length=50, num_return_sequences=1)
+        return generated_texts[0]['generated_text']
+
+    huggingface_generator = setup_huggingface_pipeline()
+
+
     # Check if the default directory exists
     if not os.path.exists(DEFAULT_DIR):
         stc("Default directory not found.\n", foreground_color="YELLOW")
@@ -108,8 +123,13 @@ def start():
     # Example: response = process_with_llm(user_request)
     # stc(response, "CYAN")
     stc("Processing your request...\nUser Request:", foreground_color="CYAN")
-    bordered_user_request = border_maker(user_request, border_color="CYAN", border_char='*', padding=1)
-    stc(f"{bordered_user_request}", rainbow_effect=True, bold=True, fg_style="BRIGHT")
+    # bordered_user_request = border_maker(user_request, border_color="CYAN", border_char='*', padding=1)
+    stc(f"{user_request}", rainbow_effect=True, bold=True, fg_style="BRIGHT")
+
+    # user_request = typer.prompt("What do you want NovaSystem to help you with?")
+    response = generate_text_with_huggingface(user_request, huggingface_generator)
+    stc("AI Response: " + response, foreground_color="CYAN")
+
 
 @app.command()
 def art():
