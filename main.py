@@ -1,0 +1,1 @@
+print("Welcome\nto the\nNovaSystem")
