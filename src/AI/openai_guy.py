@@ -1,7 +1,11 @@
-# utils/openai_manager.py
+# src/AI/openai_guy.py
 
 import os
+from dotenv import load_dotenv
 from openai import OpenAI
+
+load_dotenv()
+
 client = OpenAI()
 
 class OpenAIGuy:

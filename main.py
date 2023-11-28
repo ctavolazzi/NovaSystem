@@ -4,6 +4,7 @@ import os
 import time
 import typer
 import subprocess
+import logging
 from src.utils.stream_to_console import stream_to_console as stc, apply_color
 from src.utils.generate_file_structure import generate_file_structure
 from src.utils.ascii_art_utils import display_random_rainbow_art
@@ -13,6 +14,10 @@ from art import text2art
 from openai import OpenAI
 from transformers import pipeline
 from dotenv import load_dotenv
+from src.AI.AIJournal import AIJournal
+from src.AI.AIForum import AIForum
+from src.AI.openai_guy import OpenAIGuy
+from src.AI.huggingface_guy import HuggingFaceGuy
 
 print("NovaSystem version 0.1.0")
 
@@ -21,7 +26,8 @@ load_dotenv()
 app = typer.Typer()
 client = OpenAI()
 
-
+# Initialize AI components
+ai_journal = AIJournal("NovaSystem_AI")
 
 # # Extract the username
 # username = os.getlogin()  # or use the os.environ method
@@ -35,6 +41,54 @@ def get_username():
     return os.environ.get('USER') or os.environ.get('USERNAME')
 
 username = get_username()
+
+# This huggingface stuff should be extracted to a module in the future
+def setup_huggingface_pipeline():
+    """Sets up the HuggingFace text generation pipeline."""
+    # Assuming you have a token for authenticated access to HuggingFace models
+    huggingface_token = os.getenv("HUGGINGFACE_API_KEY")
+    return pipeline('text-generation', model='gpt2', use_auth_token=huggingface_token)
+
+def generate_text_with_huggingface(prompt, generator):
+    """Generates text response using HuggingFace pipeline."""
+    try:
+        generated_texts = generator(prompt, max_length=50, num_return_sequences=1)
+        return generated_texts[0]['generated_text']
+    except Exception as e:
+        logging.error(f"Error in generating text with HuggingFace: {e}")
+        return "An error occurred in generating the response."
+
+# Initialize the HuggingFace pipeline
+huggingface_generator = setup_huggingface_pipeline()
+
+def handle_user_request(request):
+    """Handles user request, generates AI response, and logs the interaction."""
+    try:
+        # Journal entry for user request
+        ai_journal.create_journal_entry("User Request", "NovaSystem", request)
+
+        # Generating AI response using HuggingFace pipeline
+        ai_response = generate_text_with_huggingface(request, huggingface_generator)
+
+        # Displaying AI response
+        stc("AI Response: " + ai_response, foreground_color="CYAN")
+
+        # Journal entry for AI response
+        ai_journal.create_journal_entry("AI Response", "NovaSystem", ai_response)
+    except Exception as e:
+        logging.error(f"Error in handling user request: {e}")
+        stc("An error occurred while processing your request.", foreground_color="RED")
+
+    return ai_response  # Returning AI response for any further use
+
+
+def generate_ai_response(request):
+    """Generates an AI response to the user's request."""
+    # Placeholder for actual AI response generation logic
+    # Example: return openai_guy.get_response(request) or huggingface_guy.get_response(request)
+    return "AI Response to: " + request
+
+
 
 # Use the username in defining the default directory
 DEFAULT_DIR = f"NovaSystem-{username}"
@@ -116,9 +170,9 @@ def start():
 
     start_operation()
 
-    display_random_rainbow_art("Welcome to the NovaSystem")
+    display_random_rainbow_art("Welcome\nto the\nNovaSystem")
 
-    user_request = typer.prompt(stc("What do you want NovaSystem to help you with?", foreground_color="YELLOW"))
+    user_request = typer.prompt(stc("What can NovaSystem help you with?", foreground_color="YELLOW"))
     # Here, integrate with the LLM (like OpenAI API) to process user_request
     # Example: response = process_with_llm(user_request)
     # stc(response, "CYAN")
