@@ -1,4 +1,4 @@
-# utils/AI/huggingface_guy.py
+# src/AI/huggingface_guy.py
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
