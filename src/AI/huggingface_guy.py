@@ -25,10 +25,10 @@ class HuggingFaceGuy:
             attention_mask=model_inputs['attention_mask'],
             max_length=max_length,
             num_return_sequences=num_return_sequences,
-            num_beams=5,
+            num_beams=3,
             no_repeat_ngram_size=2,
             early_stopping=True,
-            temperature=0.7,  # Adjusting the randomness
+            temperature=1.0,  # Adjusting the randomness
             do_sample=True,
         )
         generated_texts = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)

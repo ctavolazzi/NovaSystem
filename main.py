@@ -15,7 +15,7 @@ from openai import OpenAI
 from transformers import pipeline
 from dotenv import load_dotenv
 from src.AI.AIJournal import AIJournal
-from src.AI.AIForum import AIForum
+from src.AI.AIForum import AIForum, AIUser
 from src.AI.openai_guy import OpenAIGuy
 from src.AI.huggingface_guy import HuggingFaceGuy
 
@@ -189,6 +189,28 @@ def start():
 def art():
     """Displays random ASCII art with rainbow effect."""
     display_random_rainbow_art()
+
+
+@app.command()
+def forum():
+    """Simulates a conversation between two AIs in the AI forum."""
+    hfg= HuggingFaceGuy("distilgpt2")
+    ai_forum = AIForum()
+    ai_user1 = AIUser("AI_1", hfg)
+    ai_user2 = AIUser("AI_2", hfg)
+
+    # Number of message exchanges you want
+    number_of_exchanges = 5
+
+    ai_forum.simulate_ai_conversation(ai_user1, ai_user2, number_of_exchanges)
+
+    # Optionally, log the conversation in AIJournal
+    for message in ai_forum.forum.messages:
+        ai_journal.create_journal_entry("AI Conversation", "NovaSystem", message)
+
+    # Display the conversation
+    ai_forum.display_forum_messages()
+
 
 @app.command()
 def test():

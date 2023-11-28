@@ -40,17 +40,40 @@ class AIUser(User):
     Represents an AI user in the forum.
     Inherits from User.
     """
+    def __init__(self, username, ai_model):
+        super().__init__(username)
+        self.ai_model = ai_model
+        self.conversation_history = []
 
     responses = ["Hello there!", "How's it going?", "Interesting conversation!"]
 
-    def respond(self, forum):
+
+    def generate_response(self, input_text):
         """
-        Post a response to the forum.
+        Generates a response using the AI model based on the given input text.
 
         Args:
-            forum (Forum): The forum to respond to.
+            input_text (str): The input text to generate a response for.
+
+        Returns:
+            str: The AI-generated response.
         """
-        response = random.choice(AIUser.responses)
+        # Depending on the AI model's interface, you might need to tokenize the input
+        # or prepare it in a specific format. For example, if using HuggingFace models:
+        # Tokenize and generate text using HuggingFaceGuy
+        model_inputs = self.ai_model.tokenize_inputs([input_text])
+        generated_text = self.ai_model.generate_text(model_inputs)
+        return generated_text.strip()
+
+    def respond(self, forum):
+        # Get the last message from the forum
+        if forum.messages:
+            last_message = forum.messages[-1][1]  # Assuming this is the message text
+        else:
+            last_message = "Starting conversation"
+
+        # Generate response based on the last message
+        response = self.generate_response(last_message)
         self.post_message(forum, response)
 
 class Forum:
@@ -124,6 +147,12 @@ class AIForum:
         """
         for username, message in self.forum.messages:
             print(f"{username}: {message}")
+
+    def simulate_ai_conversation(self, ai_user1, ai_user2, number_of_exchanges):
+        """Simulates a conversation between two AI users."""
+        for _ in range(number_of_exchanges):
+            ai_user1.respond(self.forum)
+            ai_user2.respond(self.forum)
 
 # Test functions for the AIForum
 def test_ai_forum():
