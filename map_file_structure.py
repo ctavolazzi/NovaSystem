@@ -6,19 +6,36 @@ import grp
 import hashlib
 import mimetypes
 import subprocess
+
 from src.utils.stream_to_console import stc
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='Generate file structure with optional verbosity')
+    parser = argparse.ArgumentParser(description='Generate file structure with optional verbosity and deep scan')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose output')
+    parser.add_argument('-d', '--deep_scan', action='store_true', help='Enable deep scanning for additional file details')
     return parser.parse_args()
 
 def print_verbose(message, status):
-    color_code = "32" if status == "success" else "31"  # Green for success, red for error
-    # Properly format the message with color coding
-    formatted_message = f"\033[{color_code}m{message}\033[0m"
-    print(formatted_message, end="\r")
+    if status == "info":
+        # Green for file details, blue for summary headers
+        parts = message.split(":")
+        colored_message = "\033[32m" + parts[0] + "\033[0m" if len(parts) == 1 else "\033[34m" + parts[0] + ":\033[32m" + ":".join(parts[1:]) + "\033[0m"
+        print(colored_message)
+    else:
+        # Default colors for other statuses
+        color_code = "32" if status == "success" else "31"
+        print(f"\033[{color_code}m{message}\033[0m")
 
+def print_verbose_info(message):
+    # Blue color for variable content
+    print(f"\033[34m{message}\033[0m", end="")
+
+def print_verbose_label(message):
+    # Grey color for non-variable text
+    print(f"\033[90m{message}\033[0m", end="")
+
+def color_text(text, color_code):
+    return f"\033[{color_code}m{text}\033[0m"
 
 def format_file_size(size):
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
@@ -67,7 +84,31 @@ def get_git_commit_history(file_path, script_dir):
     except Exception as e:
         return str(e)
 
-def map_file_structure(script_dir, run_name, base_output_dir='file_tree/runs',
+def print_summary(total_files, file_types, mime_types):
+    print_verbose("File summary:", "info")
+
+    # Print the summary details directly from the variables, not from the file
+    print_verbose(f"Total files processed: \033[34m{total_files}\033[32m", "info")
+    print_verbose("File types distribution:", "info")
+    for f_type, count in file_types.items():
+        print_verbose(f"  \033[32m{f_type}: \033[34m{count}\033[32m", "info")
+    print_verbose("MIME types distribution:", "info")
+    for m_type, count in mime_types.items():
+        print_verbose(f"  \033[32m{m_type}: \033[34m{count}\033[32m", "info")
+    print('')
+
+def print_deep_scan_summary(deep_scan_details):
+    if deep_scan_details:  # Check if there are any deep scan details
+        print_verbose("Deep scan details:", "info")
+        for file_path, details in deep_scan_details.items():
+            detail_parts = [color_text(f"File: {os.path.basename(file_path)}", 34)]
+            for key, value in details.items():
+                detail_parts.append(color_text(f"{key.capitalize()}: {value}", 34))
+            print_verbose(", ".join(detail_parts), "info")
+        print('')
+
+
+def generate_file_structure(script_dir, run_name, base_output_dir='file_tree/runs',
                             skip_dirs=None, include_hidden=False, deep_scan=False, verbose=False):
     if skip_dirs is None:
         skip_dirs = ['bin', 'lib', 'include', 'your_lib_folder', 'archive', '.git', '__pycache__']
@@ -79,98 +120,96 @@ def map_file_structure(script_dir, run_name, base_output_dir='file_tree/runs',
     output_file = os.path.join(output_dir, 'file_structure.txt')
     summary_file = os.path.join(output_dir, 'summary.txt')
     error_log_file = os.path.join(output_dir, 'error_log.txt')
-    file_types_file = os.path.join(output_dir, 'file_types.txt')
 
+    total_files = 0
     file_types = {}
     mime_types = {}
-    total_files = 0
+    deep_scan_details = {}
 
     def update_distributions(file_type, mime_type):
+        nonlocal total_files, file_types, mime_types
+        total_files += 1
         file_types[file_type] = file_types.get(file_type, 0) + 1
         mime_types[mime_type] = mime_types.get(mime_type, 0) + 1
 
-    def update_file_types(mime_type):
-        if mime_type in file_types:
-            file_types[mime_type] += 1
-        else:
-            file_types[mime_type] = 1
-
-    max_line_length = 0
-
     with open(output_file, 'w') as file_out, open(summary_file, 'w') as summary_out, open(error_log_file, 'w') as error_log:
-        for script, dirs, files in os.walk(script_dir):
+        for root, dirs, files in os.walk(script_dir):
             if not include_hidden:
                 dirs[:] = [d for d in dirs if not d.startswith('.')]
                 files = [f for f in files if not f.startswith('.')]
             dirs[:] = [d for d in dirs if d not in skip_dirs]
 
             for f in files:
-                file_path = os.path.join(script, f)
+                file_path = os.path.join(root, f)
                 try:
-                    total_files += 1
-                    update_distributions(get_file_type(file_path), get_mime_type(file_path))
                     file_stat = os.stat(file_path)
                     file_size = format_file_size(file_stat.st_size)
                     mod_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(file_stat.st_mtime))
                     file_type = get_file_type(file_path)
                     mime_type = get_mime_type(file_path)
-                    update_file_types(mime_type)
-                    file_hash = get_file_hash(file_path) if deep_scan else "N/A"
-                    git_history = get_git_commit_history(file_path, script_dir) if deep_scan else "N/A"
+                    update_distributions(file_type, mime_type)
 
-                    # Writing details to output and summary files
-                    file_detail = f'{os.path.join(script.replace(script_dir, ""), f)} - Type: {file_type}, MIME: {mime_type}, Size: {file_size}'
-                    file_out.write(f'{file_detail}, Hash: {file_hash}, Git History: {git_history}, Modified: {mod_time}\n')
+                    if deep_scan:
+                        file_hash = get_file_hash(file_path) if deep_scan else "N/A"
+                        git_history = get_git_commit_history(file_path, script_dir) if deep_scan else "N/A"
+                        deep_scan_details[file_path] = {'hash': file_hash, 'git_history': git_history}
+
+                    file_detail = f'{os.path.join(root.replace(script_dir, ""), f)} - Type: {file_type} MIME: {mime_type} Size: {file_size}'
+                    file_out.write(f'{file_detail} | {deep_scan_details} Modified: {mod_time}\n')
 
                     if verbose:
-                        # Dynamic single-line verbose output
-                        line_to_print = f"\r{file_detail}"
-                        if len(line_to_print) < max_line_length:
-                            # Pad the line if it is shorter than the longest line printed so far
-                            line_to_print = line_to_print.ljust(max_line_length)
-                        else:
-                            # Update max_line_length if the current line is longer
-                            max_line_length = len(line_to_print)
-
-                        print_verbose(line_to_print, "success")
+                        print_verbose_label("Name: ")
+                        print_verbose_info(f"{os.path.basename(file_path)}, ")
+                        print_verbose_label("Type: ")
+                        print_verbose_info(f"{file_type} ")
+                        print_verbose_label("MIME: ")
+                        print_verbose_info(f"{mime_type} ")
+                        print_verbose_label("Size: ")
+                        print_verbose_info(f"{file_size} ")
+                        print_verbose_label("Last Modified: ")
+                        print_verbose_info(f"{mod_time} ")
+                        if deep_scan:
+                            for file_path, details in deep_scan_details.items():
+                                detail_parts = [color_text(f"File: {os.path.basename(file_path)}", 34)]
+                                for key, value in details.items():
+                                    detail_parts.append(color_text(f"{key.capitalize()}: {value}", 34))
+                                print_verbose(", ".join(detail_parts), "info")
+                        print('')
 
                 except Exception as e:
                     error_log.write(f"Error processing file {file_path}: {e}\n")
                     if verbose:
                         print_verbose(f"\rError processing file {file_path}: {e}", "error")
-                    else:
-                        print(f"\rError processing file {file_path}: {e}")
 
-        # Write summary to summary file and print to console
-        summary_content = f'Total files processed: {total_files}\n'
-        summary_content += 'File types distribution:\n'
+        summary_out.write(f'Total files processed: {total_files}\n')
+        summary_out.write('File types distribution:\n')
         for f_type, count in file_types.items():
-            summary_content += f'  {f_type}: {count}\n'
-        summary_content += 'MIME types distribution:\n'
+            summary_out.write(f'  {f_type}: {count}\n')
+        summary_out.write('MIME types distribution:\n')
         for m_type, count in mime_types.items():
-            summary_content += f'  {m_type}: {count}\n'
+            summary_out.write(f'  {m_type}: {count}\n')
 
-        # Write summary to the summary file
-        summary_out.write(summary_content)
 
-        # Verbose mode output
+        if deep_scan:
+            print_verbose("Deep scan details:", "info")
+            for file, details in deep_scan_details.items():
+                print_verbose(f"\033[32mFile: \033[34m{file}\033[32m Hash: \033[34m{details['hash']}\033[32m Git History: \033[34m{details['git_history']}\033[32m", "info")
+
         if verbose:
-            print("\nFile structure generation complete.")
-            print("\nSummary of files processed:")
-            print(summary_content)
-        # Non-verbose mode output
-        else:
-            print(f"File structure generation complete. Total files processed: {total_files}")
+            print_verbose(f"\rFile structure generation complete. Total files processed: {total_files}", "success")
+            print_summary(total_files, file_types, mime_types)
 
+        if verbose and deep_scan:
+            print_deep_scan_summary(deep_scan_details)
 
-    with open(file_types_file, 'w') as f:
-        for mime_type, count in file_types.items():
-            f.write(f"{mime_type}: {count}\n")
+        # At the end, just print the total files processed
+        print(f"File map complete. Total files processed: {total_files}")
 
 if __name__ == '__main__':
     args = parse_arguments()
     verbose = args.verbose
+    deep_scan = args.deep_scan
     script_directory = os.getcwd()
     current_time = time.strftime("%Y%m%d_%H%M%S")
     run_name = f'run_{current_time}'
-    map_file_structure(script_directory, run_name, deep_scan=verbose, verbose=verbose)
+    generate_file_structure(script_directory, run_name, deep_scan=deep_scan, verbose=verbose)
