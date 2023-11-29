@@ -1,4 +1,4 @@
-#!/Users/ctavolazzi/Code/WinfoNova/Nova_System_Git/NovaSystem/novasdk/bin/python3.12
+#!/Users/ctavolazzi/Code/WinfoNova/Nova_System_Git/NovaSystem/novasdk/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
