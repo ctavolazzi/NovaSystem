@@ -1,6 +1,5 @@
 src/
     conftest.py
-    .DS_Store
     NovaSystem_file_structure.txt
     main.py
     tests/
