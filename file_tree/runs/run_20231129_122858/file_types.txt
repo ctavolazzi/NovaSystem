@@ -1,6 +1,0 @@
-Unknown: 8
-text/x-python: 15
-text/plain: 9
-text/css: 1
-application/javascript: 1
-text/html: 2

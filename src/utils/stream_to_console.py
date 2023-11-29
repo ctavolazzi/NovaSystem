@@ -212,5 +212,7 @@ def test():
   for case in test_cases:
       stream_to_console(**case)
 
+stc = stream_to_console
+
 if __name__ == "__main__":
     test()
