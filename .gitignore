@@ -121,3 +121,7 @@ build/
 NovaSystem_file_structure_*.txt
 *.tmp
 *.temp
+
+
+__pycache__/
+*.pyc
