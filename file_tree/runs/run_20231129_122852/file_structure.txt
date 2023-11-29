@@ -1,0 +1,59 @@
+NovaSystem/
+    pytest.ini - Type: File, MIME: Unknown, Size: 33.00B, Last Modified: 2023-11-29 09:34:37
+    pyproject.toml - Type: File, MIME: Unknown, Size: 1.12KB, Last Modified: 2023-11-29 12:19:54
+    README.md - Type: File, MIME: Unknown, Size: 836.00B, Last Modified: 2023-11-29 09:34:37
+    generate_file_structure.py - Type: File, MIME: text/x-python, Size: 6.12KB, Last Modified: 2023-11-29 12:28:49
+    poetry.lock - Type: File, MIME: Unknown, Size: 234.73KB, Last Modified: 2023-11-29 12:19:54
+    main.py - Type: File, MIME: text/x-python, Size: 1.88KB, Last Modified: 2023-11-29 11:41:10
+    novasdk/
+        pyvenv.cfg - Type: File, MIME: Unknown, Size: 116.00B, Last Modified: 2023-11-29 09:43:41
+    tests/
+        test_string_utils.py - Type: File, MIME: text/x-python, Size: 216.00B, Last Modified: 2023-11-29 09:34:37
+        __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Last Modified: 2023-11-29 09:34:37
+        test_basic_operations.py - Type: File, MIME: text/x-python, Size: 36.00B, Last Modified: 2023-11-29 09:34:37
+        test_math_utils.py - Type: File, MIME: text/x-python, Size: 173.00B, Last Modified: 2023-11-29 09:34:37
+    output/
+        NovaSystem_file_structure_1701228745.8387089_new.txt - Type: File, MIME: text/plain, Size: 2.46KB, Last Modified: 2023-11-28 19:32:25
+        NovaSystem_file_structure_1701217270.98624_new.txt - Type: File, MIME: text/plain, Size: 2.21KB, Last Modified: 2023-11-28 16:21:10
+        NovaSystem_file_structure_1701217533.214575_new.txt - Type: File, MIME: text/plain, Size: 2.28KB, Last Modified: 2023-11-28 16:25:33
+    models/
+        conversation.py - Type: File, MIME: text/x-python, Size: 368.00B, Last Modified: 2023-11-29 11:40:20
+        chat_message.py - Type: File, MIME: text/x-python, Size: 443.00B, Last Modified: 2023-11-29 11:40:29
+        __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Last Modified: 2023-11-29 11:35:50
+    docs/
+    Elise-is-very-pretty/
+    static/
+        css/
+            chat.css - Type: File, MIME: text/css, Size: 526.00B, Last Modified: 2023-11-29 11:11:18
+        images/
+        js/
+            chat.js - Type: File, MIME: application/javascript, Size: 1.88KB, Last Modified: 2023-11-29 11:18:54
+    instance/
+        chat.db - Type: File, MIME: Unknown, Size: 20.00KB, Last Modified: 2023-11-29 11:18:41
+    novagpt/
+        pyvenv.cfg - Type: File, MIME: Unknown, Size: 327.00B, Last Modified: 2023-11-27 05:39:48
+        share/
+            man/
+                man1/
+                    isympy.1 - Type: File, MIME: Unknown, Size: 6.50KB, Last Modified: 2023-11-27 05:53:31
+    file_tree/
+        default_tree.txt - Type: File, MIME: text/plain, Size: 0.00B, Last Modified: 2023-11-29 11:58:00
+        runs/
+            run_20231129_122852/
+                error_log.txt - Type: File, MIME: text/plain, Size: 0.00B, Last Modified: 2023-11-29 12:28:52
+                file_structure.txt - Type: File, MIME: text/plain, Size: 0.00B, Last Modified: 2023-11-29 12:28:52
+    templates/
+        home.html - Type: File, MIME: text/html, Size: 1.45KB, Last Modified: 2023-11-29 10:58:41
+        layout.html - Type: File, MIME: text/html, Size: 0.00B, Last Modified: 2023-11-29 09:34:37
+    services/
+        chat_service.py - Type: File, MIME: text/x-python, Size: 1.36KB, Last Modified: 2023-11-29 11:40:37
+    criispy/
+    src/
+        __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Last Modified: 2023-11-29 09:34:37
+        utils/
+            math_utils.py - Type: File, MIME: text/x-python, Size: 40.00B, Last Modified: 2023-11-29 09:34:37
+            __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Last Modified: 2023-11-29 09:34:37
+            string_utils.py - Type: File, MIME: text/x-python, Size: 42.00B, Last Modified: 2023-11-29 09:34:37
+            stream_to_console.py - Type: File, MIME: text/x-python, Size: 8.55KB, Last Modified: 2023-11-29 12:19:40
+        AI/
+            AIForum/

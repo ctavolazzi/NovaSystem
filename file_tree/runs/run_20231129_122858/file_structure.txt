@@ -1,0 +1,83 @@
+NovaSystem/
+    pytest.ini - Type: File, MIME: Unknown, Size: 33.00B, Hash: 67877cfae8f02abec25f4e90bd0ca5c339bdfb92ec279cdca4b847dfa55f63f8, Git History: 385bd1a - Set up TDD framework with pytest, resolved dependency issues, and prepared initial project structure (22 hours ago)
+1041d01 - Archive nonessential code (22 hours ago)
+92d36d4 - feat: Enhance stream_to_console with Extended ANSI Styles (3 days ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:38, Permissions: 644, Owner: ctavolazzi, Group: staff
+    pyproject.toml - Type: File, MIME: Unknown, Size: 1.12KB, Hash: a3be0a94173cf4d284e9fbff5c1e490113c938d3dee1458a70008f6c8db63502, Git History: 385bd1a - Set up TDD framework with pytest, resolved dependency issues, and prepared initial project structure (22 hours ago)
+1041d01 - Archive nonessential code (22 hours ago)
+e878209 - Init new venv NovaSDK (23 hours ago), Modified: 2023-11-29 12:19:54, Created: 2023-11-29 12:19:54, Accessed: 2023-11-29 12:19:55, Permissions: 644, Owner: ctavolazzi, Group: staff
+    README.md - Type: File, MIME: Unknown, Size: 836.00B, Hash: be23a1168bd1a64217c100dc36cb6a0973b6eec1064b35fbd37b527bf444f98c, Git History: 385bd1a - Set up TDD framework with pytest, resolved dependency issues, and prepared initial project structure (22 hours ago)
+acf33f2 - Removed .DS_Store from Git tracking (7 weeks ago)
+30e7413 - Update README.md (7 weeks ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:37, Permissions: 644, Owner: ctavolazzi, Group: staff
+    generate_file_structure.py - Type: File, MIME: text/x-python, Size: 6.12KB, Hash: 311908340797d08efb6528e68da80af4d22ba32fbc2befda990e54fe10a5a107, Git History: Not available, Modified: 2023-11-29 12:28:49, Created: 2023-11-29 12:28:49, Accessed: 2023-11-29 12:28:50, Permissions: 644, Owner: ctavolazzi, Group: staff
+    poetry.lock - Type: File, MIME: Unknown, Size: 234.73KB, Hash: aca557775304bd46839300ecabdb59998bf500abe1d08942021fd4bb9ecd0ee8, Git History: 385bd1a - Set up TDD framework with pytest, resolved dependency issues, and prepared initial project structure (22 hours ago)
+1041d01 - Archive nonessential code (22 hours ago)
+6fd3a8f - Update the way stc works (2 days ago), Modified: 2023-11-29 12:19:54, Created: 2023-11-29 12:19:54, Accessed: 2023-11-29 12:28:55, Permissions: 644, Owner: ctavolazzi, Group: staff
+    main.py - Type: File, MIME: text/x-python, Size: 1.88KB, Hash: d7c48a204adce3e08042d5256cfb0ec0b15029f2fd6c170d376b5fbb129aaf59, Git History: d190053 - Init chat interface. It looks like shit but it works! Learning SQL now... (70 minutes ago)
+45b5eaf - Test Flask setup - Test 1 (86 minutes ago)
+1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:41:10, Created: 2023-11-29 11:41:10, Accessed: 2023-11-29 11:41:10, Permissions: 644, Owner: ctavolazzi, Group: staff
+    novasdk/
+        pyvenv.cfg - Type: File, MIME: Unknown, Size: 116.00B, Hash: 0665bfdca5efa79ffe69d58d22abe57477f48604f94d7a63411815d78168e8bd, Git History: 1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago)
+e878209 - Init new venv NovaSDK (23 hours ago), Modified: 2023-11-29 09:43:41, Created: 2023-11-29 09:43:41, Accessed: 2023-11-29 11:00:55, Permissions: 644, Owner: ctavolazzi, Group: staff
+    tests/
+        test_string_utils.py - Type: File, MIME: text/x-python, Size: 216.00B, Hash: 239c1ccb7da9a0726e667870cc6997f4d7891a695c9e3ff2b88f556dc94990da, Git History: 0bf341b - Set up TDD (21 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:37, Permissions: 644, Owner: ctavolazzi, Group: staff
+        __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: 385bd1a - Set up TDD framework with pytest, resolved dependency issues, and prepared initial project structure (22 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:37, Permissions: 644, Owner: ctavolazzi, Group: staff
+        test_basic_operations.py - Type: File, MIME: text/x-python, Size: 36.00B, Hash: df3260142e0b288ca077b272868038c31d7c7c80fe15a07ce150927ba275d951, Git History: 385bd1a - Set up TDD framework with pytest, resolved dependency issues, and prepared initial project structure (22 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:38, Permissions: 644, Owner: ctavolazzi, Group: staff
+        test_math_utils.py - Type: File, MIME: text/x-python, Size: 173.00B, Hash: 7f2ca4e2c88d8f4e174b92d1249ca8b8ca3a35166ae4cd6030a121a450304b9b, Git History: 0bf341b - Set up TDD (21 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:38, Permissions: 644, Owner: ctavolazzi, Group: staff
+    output/
+        NovaSystem_file_structure_1701228745.8387089_new.txt - Type: File, MIME: text/plain, Size: 2.46KB, Hash: 56971c084852b39f17552af5c26e3fec0734eb14276133c4e50f0832cf700572, Git History: Not available, Modified: 2023-11-28 19:32:25, Created: 2023-11-28 19:32:25, Accessed: 2023-11-28 19:32:27, Permissions: 644, Owner: ctavolazzi, Group: staff
+        NovaSystem_file_structure_1701217270.98624_new.txt - Type: File, MIME: text/plain, Size: 2.21KB, Hash: 1755b7f8d8b03f27957000d02c3210d962ece375261e68dd11568c4a3eddbe59, Git History: Not available, Modified: 2023-11-28 16:21:10, Created: 2023-11-28 16:21:10, Accessed: 2023-11-28 16:21:12, Permissions: 644, Owner: ctavolazzi, Group: staff
+        NovaSystem_file_structure_1701217533.214575_new.txt - Type: File, MIME: text/plain, Size: 2.28KB, Hash: 3bfe3ba79b14623c98ac769036a7442cc9f4b9d694cd6167a1810323852545ea, Git History: Not available, Modified: 2023-11-28 16:25:33, Created: 2023-11-28 16:25:33, Accessed: 2023-11-28 16:25:34, Permissions: 644, Owner: ctavolazzi, Group: staff
+    models/
+        conversation.py - Type: File, MIME: text/x-python, Size: 368.00B, Hash: e72473331af5ca39016ece4b49836e218b2bea2c18bd7d6d8461128a63148169, Git History: 45b5eaf - Test Flask setup - Test 1 (86 minutes ago)
+1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:40:20, Created: 2023-11-29 11:40:20, Accessed: 2023-11-29 11:40:20, Permissions: 644, Owner: ctavolazzi, Group: staff
+        chat_message.py - Type: File, MIME: text/x-python, Size: 443.00B, Hash: 43393f8e89f3b3dd721e1048fc8223c126393bd3bc80ef18a380f841a963362e, Git History: 1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:40:29, Created: 2023-11-29 11:40:29, Accessed: 2023-11-29 11:40:29, Permissions: 644, Owner: ctavolazzi, Group: staff
+        __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: 1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:35:50, Created: 2023-11-29 11:35:50, Accessed: 2023-11-29 11:35:50, Permissions: 644, Owner: ctavolazzi, Group: staff
+    docs/
+    Elise-is-very-pretty/
+    static/
+        css/
+            chat.css - Type: File, MIME: text/css, Size: 526.00B, Hash: f20545d5ca2807c397309a6fe2aeca17f43448a6100bb2c34d16a39b442d6274, Git History: d190053 - Init chat interface. It looks like shit but it works! Learning SQL now... (70 minutes ago)
+1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:11:18, Created: 2023-11-29 11:11:18, Accessed: 2023-11-29 11:19:23, Permissions: 644, Owner: ctavolazzi, Group: staff
+        images/
+        js/
+            chat.js - Type: File, MIME: application/javascript, Size: 1.88KB, Hash: ced7e4f469b58427f4c45a56d27d5130dda635d42043d4f22ebe67bc2532a64a, Git History: d190053 - Init chat interface. It looks like shit but it works! Learning SQL now... (70 minutes ago)
+1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:18:54, Created: 2023-11-29 11:18:54, Accessed: 2023-11-29 11:19:23, Permissions: 644, Owner: ctavolazzi, Group: staff
+    instance/
+        chat.db - Type: File, MIME: Unknown, Size: 20.00KB, Hash: 2d3f50f326b87e02c0a35a443ec79e5b65122c6c0f904384adc63cedf77a8832, Git History: Not available, Modified: 2023-11-29 11:18:41, Created: 2023-11-29 11:18:41, Accessed: 2023-11-29 11:25:42, Permissions: 644, Owner: ctavolazzi, Group: staff
+    novagpt/
+        pyvenv.cfg - Type: File, MIME: Unknown, Size: 327.00B, Hash: 3f0faf75e936bae5feb2f034b41a53031de1789a5abddf2d794a721cd7290b5e, Git History: e374e8c - Title: Integrate HuggingFace Transformers with distilgpt2 Model (2 days ago)
+e083f41 - Add novagpt venv (3 days ago), Modified: 2023-11-27 05:39:48, Created: 2023-11-27 05:39:48, Accessed: 2023-11-27 06:19:50, Permissions: 644, Owner: ctavolazzi, Group: staff
+        share/
+            man/
+                man1/
+                    isympy.1 - Type: File, MIME: Unknown, Size: 6.50KB, Hash: f4365d48e2102e292b0131e56e4743674e0b0508a0643504d3fa025c10ef741b, Git History: e374e8c - Title: Integrate HuggingFace Transformers with distilgpt2 Model (2 days ago), Modified: 2023-11-27 05:53:31, Created: 2023-11-27 05:53:31, Accessed: 2023-11-27 06:19:50, Permissions: 644, Owner: ctavolazzi, Group: staff
+    file_tree/
+        default_tree.txt - Type: File, MIME: text/plain, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: Not available, Modified: 2023-11-29 11:58:00, Created: 2023-11-29 11:58:00, Accessed: 2023-11-29 11:58:00, Permissions: 644, Owner: ctavolazzi, Group: staff
+        runs/
+            run_20231129_122858/
+                error_log.txt - Type: File, MIME: text/plain, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: Not available, Modified: 2023-11-29 12:28:58, Created: 2023-11-29 12:28:58, Accessed: 2023-11-29 12:28:58, Permissions: 644, Owner: ctavolazzi, Group: staff
+                file_structure.txt - Type: File, MIME: text/plain, Size: 7.54KB, Hash: 8c81199125e800e6db8409f769f15612c728f6186a9e6735b536eba3b0c617c1, Git History: Not available, Modified: 2023-11-29 12:28:59, Created: 2023-11-29 12:28:59, Accessed: 2023-11-29 12:28:58, Permissions: 644, Owner: ctavolazzi, Group: staff
+            run_20231129_122852/
+                error_log.txt - Type: File, MIME: text/plain, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: Not available, Modified: 2023-11-29 12:28:52, Created: 2023-11-29 12:28:52, Accessed: 2023-11-29 12:28:52, Permissions: 644, Owner: ctavolazzi, Group: staff
+                file_types.txt - Type: File, MIME: text/plain, Size: 94.00B, Hash: 2db8981fb80b1e9c0734920bbae0e58cdc833e8c62d2a284e74f4f68eada9fe9, Git History: Not available, Modified: 2023-11-29 12:28:52, Created: 2023-11-29 12:28:52, Accessed: 2023-11-29 12:28:54, Permissions: 644, Owner: ctavolazzi, Group: staff
+                file_structure.txt - Type: File, MIME: text/plain, Size: 3.87KB, Hash: e715adba46766a16c52d4de99e27d48e13404d9e9eadb44dba1b3eaef744ddc9, Git History: Not available, Modified: 2023-11-29 12:28:52, Created: 2023-11-29 12:28:52, Accessed: 2023-11-29 12:28:53, Permissions: 644, Owner: ctavolazzi, Group: staff
+    templates/
+        home.html - Type: File, MIME: text/html, Size: 1.45KB, Hash: 217b3b96884c1e7bb4f66e107c9f252c767b29a6aa45c64e9f52d6923bb893ea, Git History: 1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 10:58:41, Created: 2023-11-29 10:58:41, Accessed: 2023-11-29 11:00:55, Permissions: 644, Owner: ctavolazzi, Group: staff
+        layout.html - Type: File, MIME: text/html, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: 1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:37, Permissions: 644, Owner: ctavolazzi, Group: staff
+    services/
+        chat_service.py - Type: File, MIME: text/x-python, Size: 1.36KB, Hash: 11f918ccfe8492d4f2eac57c52c736681d2b1754f25dc7ca6769b3180ac06cde, Git History: d190053 - Init chat interface. It looks like shit but it works! Learning SQL now... (70 minutes ago)
+1ae2d55 - Setting up Flask app - not working yet but soon (88 minutes ago), Modified: 2023-11-29 11:40:37, Created: 2023-11-29 11:40:37, Accessed: 2023-11-29 11:40:38, Permissions: 644, Owner: ctavolazzi, Group: staff
+    criispy/
+    src/
+        __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: 0bf341b - Set up TDD (21 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:37, Permissions: 644, Owner: ctavolazzi, Group: staff
+        utils/
+            math_utils.py - Type: File, MIME: text/x-python, Size: 40.00B, Hash: 6ef164efe8097f3e2b06d317f62ab4797042817e725fcbc5ad840c3f040cd9ad, Git History: 0bf341b - Set up TDD (21 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:38, Permissions: 644, Owner: ctavolazzi, Group: staff
+            __init__.py - Type: File, MIME: text/x-python, Size: 0.00B, Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855, Git History: 0bf341b - Set up TDD (21 hours ago)
+1041d01 - Archive nonessential code (22 hours ago)
+f0b881f - Title: Major Overhaul for NovaSystem Integration and Test Environment Setup (3 days ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:37, Permissions: 644, Owner: ctavolazzi, Group: staff
+            string_utils.py - Type: File, MIME: text/x-python, Size: 42.00B, Hash: 0d90d54503014d261ce69fa22a78f1e2cfa3c2211a3bb4ac2dcee23b99daa68d, Git History: 0bf341b - Set up TDD (21 hours ago), Modified: 2023-11-29 09:34:37, Created: 2023-11-29 09:34:37, Accessed: 2023-11-29 09:34:38, Permissions: 644, Owner: ctavolazzi, Group: staff
+            stream_to_console.py - Type: File, MIME: text/x-python, Size: 8.55KB, Hash: 2b42a719f56d6cc129be87236999d119f2fcdac8d3bd0aeae883a51e258675d2, Git History: 1041d01 - Archive nonessential code (22 hours ago)
+6fd3a8f - Update the way stc works (2 days ago)
+21553f1 - Add support for ascii art and colorful console messages with stc (2 days ago), Modified: 2023-11-29 12:19:40, Created: 2023-11-29 12:19:40, Accessed: 2023-11-29 12:19:41, Permissions: 644, Owner: ctavolazzi, Group: staff
+        AI/
+            AIForum/

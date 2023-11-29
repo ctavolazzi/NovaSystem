@@ -1,6 +1,6 @@
 # models/conversation.py
 
-from . import db
+from main import db
 
 class Conversation(db.Model):
     __tablename__ = 'conversations'

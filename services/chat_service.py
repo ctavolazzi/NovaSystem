@@ -1,4 +1,4 @@
-from models import db
+from main import db
 from models.chat_message import ChatMessage
 from models.conversation import Conversation
 

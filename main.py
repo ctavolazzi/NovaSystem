@@ -1,18 +1,19 @@
 # main.py
 
 from flask import Flask, render_template, request, jsonify
-from models import db
-from models.conversation import Conversation
-from models.chat_message import ChatMessage
-from services.chat_service import get_last_messages, process_user_message, call_ai_api
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chat.db'
+db = SQLAlchemy()
 
 with app.app_context():
     db.init_app(app)
     db.create_all()  # Initialize database tables
 
+from models.chat_message import ChatMessage
+from models.conversation import Conversation
+from services.chat_service import get_last_messages, process_user_message, call_ai_api
 
 
 @app.route('/', methods=['GET', 'POST'])
