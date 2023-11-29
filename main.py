@@ -26,9 +26,12 @@ def home():
 
 @app.route('/send_message', methods=['POST'])
 def send_message():
-    user_message = request.json['message']
-    conversation_id = request.json.get('conversation_id', 1)  # Default to a general conversation
-    response = process_user_message(user_message, conversation_id)
+    data = request.get_json()  # This method automatically checks for 'application/json' Content-Type
+    if not data or 'message' not in data:
+        return jsonify({'error': 'Invalid message data'}), 400
+    user_message = data['message']
+    # Assuming default conversation ID as 1 for now; this should be replaced with actual logic to retrieve the correct ID
+    response = process_user_message(user_message, conversation_id=1)
     return jsonify(response)
 
 

@@ -5,7 +5,7 @@ from models.conversation import Conversation
 def process_user_message(user_message):
     # Here you will call the AI API, get the response, and save both the user message
     # and the AI response to the database. For now, let's use a placeholder AI response.
-    ai_response = "Placeholder AI response"
+    ai_response = call_ai_api(user_message)
 
     # Let's assume all messages belong to a single conversation for simplicity.
     # In a real application, you would determine the appropriate conversation.
