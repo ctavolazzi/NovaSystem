@@ -1,0 +1,24 @@
+{
+  "directories": [
+    "src/api/controllers",
+    "src/api/middlewares",
+    "src/api/models",
+    "src/api/schemas",
+    "src/api/routers",
+    "src/api/utils",
+    "src/cli/commands",
+    "src/cli/utils",
+    "src/core",
+    "tests/api",
+    "tests/cli"
+  ],
+  "files": [
+    "src/api/main.py",
+    "src/core/config.py",
+    "src/core/models.py",
+    ".env",
+    ".gitignore",
+    "README.md",
+    "requirements.txt"
+  ]
+}

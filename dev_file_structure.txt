@@ -1,0 +1,28 @@
+NovaSystem/
+│
+├── src/                    # All source code
+│   ├── api/                # FastAPI related files
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── routers/
+│   │   └── utils/
+│   │
+│   ├── cli/                # Typer CLI-related files
+│   │   ├── commands/
+│   │   └── utils/
+│   │
+│   └── core/               # Core application logic and utilities
+│       ├── config.py
+│       └── models.py
+│
+├── tests/                  # Test suite
+│   ├── api/
+│   └── cli/
+│
+├── .env                    # Environment variables
+├── .gitignore              # Specifies intentionally untracked files to ignore
+├── README.md               # Project documentation
+├── requirements.txt        # Project dependencies
+└── setup.py                # Setup script for initializing the project structure

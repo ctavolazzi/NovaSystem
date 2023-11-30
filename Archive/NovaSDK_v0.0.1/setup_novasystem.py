@@ -1,3 +1,6 @@
+# NovaSystem/setup_novasystem.py
+# Description: A Python script that sets up the NovaSystem application.
+
 import os
 import logging
 from pathlib import Path

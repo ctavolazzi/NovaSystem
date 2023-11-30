@@ -1,4 +1,0 @@
-Total files processed: 13
-File: 13
-text/x-python: 8
-text/plain: 5
