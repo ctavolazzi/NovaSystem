@@ -1,3 +1,4 @@
+from tqdm import tqdm
 import time
 import hashlib
 import mimetypes
@@ -38,7 +39,21 @@ class FileMapper:
                 return True
         return False
 
-    def map_files(self, run_name, base_output_dir='file_tree/runs', include_hidden=False, deep_scan=False, verbose=False):
+    def map_files(self, run_name, base_output_dir='file_tree/runs', target_dir=None, include_hidden=False, deep_scan=False, verbose=False):
+        """ Map the files in a directory. """
+        if not target_dir:
+          current_dir = Path.cwd()
+          print(f"Current directory: {current_dir}")
+          choice = input("Do you want to map the current directory? (Y/n): ").strip().lower()
+          if choice in ['n', 'no']:
+              self.script_dir = Path(input("Enter the path of the directory to map: ").strip())
+          else:
+              self.script_dir = current_dir
+        else:
+            self.script_dir = Path(target_dir)
+
+        print("\n=== File Processing Start in {} ===\n".format(self.script_dir.resolve()))
+
         print("\n=== File Processing Start ===\n")
         output_dir = self.script_dir / base_output_dir / run_name
         output_dir.mkdir(parents=True, exist_ok=True)
@@ -46,6 +61,7 @@ class FileMapper:
         file_types = {}
         mime_types = {}
         deep_scan_details = {}
+        file_details = []
 
         total_files = sum(1 for path in self.script_dir.rglob('*')
                           if not path.is_dir() and
@@ -53,17 +69,53 @@ class FileMapper:
                              not (not include_hidden and path.name.startswith('.')) and
                              not any(skip_dir in path.parts for skip_dir in self.skip_dirs))
 
-        processed_files = 0
-        last_update_time = time.time()
+        # processed_files = 0
+        # last_update_time = time.time()
 
-        for path in self.script_dir.rglob('*'):
+        # with tqdm(total=total_files, desc="Processing Files", unit="file", leave=True) as pbar:
+        #   for path in self.script_dir.rglob('*'):
+        #       if path.is_dir() or self.is_ignored(path):
+        #           continue
+        #       if not include_hidden and path.name.startswith('.'):
+        #           continue
+        #       if any(skip_dir in path.parts for skip_dir in self.skip_dirs):
+        #           continue
+
+        #       try:
+        #           file_stat = path.stat()
+        #           file_size = file_stat.st_size
+        #           mod_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(file_stat.st_mtime))
+        #           file_type = "Directory" if path.is_dir() else "File"
+        #           mime_type = mimetypes.guess_type(path)[0] or "Unknown"
+
+        #           file_types[file_type] = file_types.get(file_type, 0) + 1
+        #           mime_types[mime_type] = mime_types.get(mime_type, 0) + 1
+
+        #           if deep_scan:
+        #               file_hash = self.get_file_hash(path)
+        #               git_history = self.get_git_commit_history(path, self.script_dir)
+        #               deep_scan_details[str(path)] = {'hash': file_hash, 'git_history': git_history}
+
+        #           if verbose:
+        #               file_detail = f'{path.relative_to(self.script_dir)} - Type: {file_type} MIME: {mime_type} Size: {file_size} Modified: {mod_time}'
+        #               print(file_detail)
+
+
+        #       except Exception as e:
+        #           print(f"\nError processing file {path}: {e}")
+
+        #       processed_files += 1
+        #       # self.update_progress_bar(total_files, processed_files, last_update_time)
+        #       pbar.update(1)
+
+        # Use tqdm for the progress bar
+        for path in tqdm(self.script_dir.rglob('*'), total=total_files, unit='file', desc="Processing Files"):
             if path.is_dir() or self.is_ignored(path):
                 continue
             if not include_hidden and path.name.startswith('.'):
                 continue
             if any(skip_dir in path.parts for skip_dir in self.skip_dirs):
                 continue
-
             try:
                 file_stat = path.stat()
                 file_size = file_stat.st_size
@@ -81,21 +133,23 @@ class FileMapper:
 
                 if verbose:
                     file_detail = f'{path.relative_to(self.script_dir)} - Type: {file_type} MIME: {mime_type} Size: {file_size} Modified: {mod_time}'
-                    print(f"{file_detail:<80}", end='')
-
+                    file_details.append(file_detail)
+                    print(file_detail)
             except Exception as e:
                 print(f"\nError processing file {path}: {e}")
 
-            processed_files += 1
-            self.update_progress_bar(total_files, processed_files, last_update_time)
-
-        self.update_progress_bar(total_files, total_files, last_update_time)
+        # self.update_progress_bar(total_files, total_files, last_update_time)
         print("\n\n=== File Processing Complete ===\n")
 
         if deep_scan:
             print("=== Deep Scan Details ===\n")
             for file, details in deep_scan_details.items():
                 print(f"File: {file} Hash: {details['hash']} Git History: {details['git_history']}")
+
+        if verbose:
+            print("\n=== File Details ===\n")
+            for file_detail in file_details:
+                print(file_detail)
 
         print("\n=== Summary ===\n")
         print(f"Total Files Processed: {total_files}")
@@ -112,7 +166,7 @@ class FileMapper:
             bar_length = 50  # Length of the progress bar
             bar_filled_length = int(progress / 100 * bar_length)
             bar = "#" * bar_filled_length + "-" * (bar_length - bar_filled_length)
-            sys.stdout.write(f'\rProgress: [{bar}] {int(progress)}%')
+            sys.stdout.write(f'\rProgress: [{bar}] {int(progress)}%   ')
             sys.stdout.flush()
         else:
             print("\rNo files to process.", end='')
