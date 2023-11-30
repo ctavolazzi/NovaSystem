@@ -30,6 +30,7 @@ flask-swagger-ui = "^4.11.1"
 celery = "^5.3.6"
 art = "^6.1"
 colorama = "^0.4.6"
+tqdm = "^4.66.1"
 
 [build-system]
 requires = ["poetry-core"]
