@@ -6,8 +6,57 @@ import grp
 import hashlib
 import mimetypes
 import subprocess
+import stat
+from pathlib import Path
 
 from src.utils.stream_to_console import stc
+
+
+
+def get_file_details(file_path):
+    """
+    Retrieves comprehensive details about a file.
+
+    Args:
+    file_path (str): Path to the file.
+
+    Returns:
+    dict: A dictionary containing various file details.
+    """
+    try:
+        # Basic file stats
+        stats = os.stat(file_path)
+        file_info = {
+            "size": stats.st_size,
+            "last_modified": time.ctime(stats.st_mtime),
+            "last_accessed": time.ctime(stats.st_atime),
+            "created": time.ctime(stats.st_ctime)
+        }
+
+        # Owner and permissions
+        file_info["owner"] = stat.filemode(stats.st_mode)
+        file_info["uid"] = stats.st_uid
+        file_info["gid"] = stats.st_gid
+
+        # File hash for integrity
+        hasher = hashlib.sha256()
+        with open(file_path, 'rb') as file:
+            buf = file.read()
+            hasher.update(buf)
+        file_info["hash"] = hasher.hexdigest()
+
+        # Additional details based on file type
+        if file_path.endswith('.py'):  # Example for Python files
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
+                file_info["line_count"] = len(lines)
+                # Additional Python-specific analysis can be done here
+
+        return file_info
+
+    except Exception as e:
+        return {"error": str(e)}
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Generate file structure with optional verbosity and deep scan')
