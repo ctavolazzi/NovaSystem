@@ -1,141 +1,66 @@
-import os
-import json
+import logging
 from pathlib import Path
-import time
-import glob
+from configparser import ConfigParser
+import sys
+
+# Custom Imports
+from src.utils.logger import AdvancedLogger
+from src.utils.db_connector import DatabaseConnector
+from src.utils.cloud_connector import CloudConnector
+from src.utils.advanced_error_handler import AdvancedErrorHandler
+from src.core.ai.ai_manager import AIManager
+from src.core.security import SecurityManager
 
 # Constants
-APP_NAME = "NovaSystem"
-NOVASYSTEM_WORKSPACE = f"{APP_NAME}_Workspace_{time.time_ns()}"
-REQUIRED_SETUP_JSON = 'novasystem_required_setup_files.json'
+CONFIG_FILE_NAME = "config.ini"
+LOG_FILE = "NovaSystem.log"
 
-def find_existing_workspaces():
-    """ Find existing workspace folders in the current directory. """
-    return glob.glob(f"{APP_NAME}_Workspace_*")
+# Initialize Components
+config = ConfigParser()
+logger = AdvancedLogger()
+db_connector = DatabaseConnector()
+cloud_connector = CloudConnector()
+error_handler = AdvancedErrorHandler()
+ai_manager = AIManager()
+security_manager = SecurityManager()
 
-def get_user_workspace_choice(existing_workspaces):
-    """ Get user's choice for the workspace. """
-    print("Existing workspaces found:")
-    for i, workspace in enumerate(existing_workspaces, start=1):
-        print(f"{i}. {workspace}")
+# Setup advanced logging
+logger.setup_logging(LOG_FILE)
 
-    print("\nOptions:")
-    print("1. Use the most recent workspace.")
-    print("2. Enter the path to a specific workspace.")
-    print("3. Create a new workspace.")
-    choice = input("Enter your choice (1/2/3): ").strip()
+def load_configuration():
+    """
+    Loads the configuration from a file.
 
-    return choice
-
-def handle_workspace_choice(choice, existing_workspaces):
-    """ Handle the user's workspace choice. """
-    if choice == "1" and existing_workspaces:
-        # Use the most recent workspace
-        return max(existing_workspaces, key=os.path.getctime)
-    elif choice == "2":
-        # Let the user enter a specific path
-        return input("Enter the path to the workspace: ").strip()
-    elif choice == "3" or not existing_workspaces:
-        # Create a new workspace
-        return f"{APP_NAME}_Workspace_{time.time_ns()}"
-    else:
-        print("Invalid choice. A new workspace will be created.")
-        return f"{APP_NAME}_Workspace_{time.time_ns()}"
-
-
-def load_required_structure():
-    """ Load required structure from JSON file. """
-    with open(REQUIRED_SETUP_JSON, 'r') as file:
-        return json.load(file)
-
-def create_directory(path):
-    Path(path).mkdir(parents=True, exist_ok=True)
-
-def create_file(path):
-    if not Path(path).exists():
-        Path(path).touch()
-
-def setup_environment(structure):
-    """ Set up the required directories and files in NovaSystem Workspace """
-    base_path = Path(NOVASYSTEM_WORKSPACE)
-    for directory in structure['directories']:
-        create_directory(base_path / directory)
-
-    for file in structure['files']:
-        create_file(base_path / file)
-
-    print(f"Environment setup complete in {base_path.resolve()}.")
-
-def user_interaction():
-    """ Simple user interaction: ask for input and echo back. """
-    user_input = input("Enter something: ")
-    print(f"You entered: {user_input}")
-
-def main_application():
-    """ Main application logic after setup """
-    print(f"Starting main application in {Path(NOVASYSTEM_WORKSPACE).resolve()}...")
-    # Placeholder for main application logic
-    print("NovaSystem main application logic goes here.")
-    user_interaction()  # Simple user interaction
-
-def run_test():
-    """ Simple test to ensure basic functionality. """
-    print("Running basic functionality test...")
-    # Example test: Check if a specific file exists
-    test_file = Path(NOVASYSTEM_WORKSPACE) / "README.md"
-    if test_file.exists():
-        print("Test passed: README.md exists.")
+    Returns:
+        bool: True if configuration loaded successfully, False otherwise.
+    """
+    config_file = Path(CONFIG_FILE_NAME)
+    if config_file.exists():
+        config.read(config_file)
+        logger.info("Configuration loaded successfully.")
         return True
     else:
-        print("Test failed: README.md does not exist.")
+        logger.error(f"Configuration file {CONFIG_FILE_NAME} not found.")
         return False
-
-def verify_installation(base_path, structure):
-    """ Verify that all required directories and files exist. """
-    missing_items = []
-    for directory in structure['directories']:
-        if not (base_path / directory).exists():
-            missing_items.append(str(base_path / directory))
-
-    for file in structure['files']:
-        if not (base_path / file).exists():
-            missing_items.append(str(base_path / file))
-
-    # return False # Debugging; intentionally fails verification
-
-    if missing_items:
-        print("Missing items in installation:")
-        for item in missing_items:
-            print(f"- {item}")
-        return False
-    return True
 
 def main():
-    existing_workspaces = find_existing_workspaces()
-    workspace_choice = get_user_workspace_choice(existing_workspaces) if existing_workspaces else "3"
-    workspace_path = handle_workspace_choice(workspace_choice, existing_workspaces)
+    """
+    Main function to initialize and start the NovaSystem.
+    """
+    try:
+        if not load_configuration():
+            logger.error("Failed to load configuration. Exiting application.")
+            sys.exit(1)
 
-    print(f"Using workspace: {workspace_path}")
-    required_structure = load_required_structure()
-    global NOVASYSTEM_WORKSPACE
-    NOVASYSTEM_WORKSPACE = workspace_path
-    setup_environment(required_structure)
+        setup_status = ai_manager.check_setup_status()
+        if setup_status != "complete":
+            ai_manager.handle_incomplete_setup(setup_status)
 
-    base_path = Path(NOVASYSTEM_WORKSPACE)
+        logger.info("Starting NovaSystem...")
+        ai_manager.run()
+    except Exception as e:
+        error_handler.handle_exception(e)
+        sys.exit(1)
 
-    if not verify_installation(base_path, required_structure):
-        print("Installation verification failed. Please check the logs.")
-        return
-
-    if not run_test():
-        print("Run test failed. Please check the system's functionality.")
-        return
-
-    main_application()  # Start the main application logic
-
-def main_application():
-    print(f"Starting main application in {Path(NOVASYSTEM_WORKSPACE).resolve()}...")
-    user_interaction()  # Simple user interaction
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
