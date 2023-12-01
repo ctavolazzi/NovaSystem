@@ -19,6 +19,10 @@
     ".env",
     ".gitignore",
     "README.md",
-    "requirements.txt"
+    "requirements.txt",
+    "user_actions.json"
+  ],
+  "setup_files": [
+    "setup.py"
   ]
 }

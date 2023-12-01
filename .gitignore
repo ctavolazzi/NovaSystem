@@ -38,6 +38,8 @@ ENV/
 env/
 env.bak/
 venv.bak/
+novasdk/
+novagpt/
 
 ## Spyder project settings
 .spyderproject
