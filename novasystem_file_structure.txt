@@ -1,3 +1,27 @@
+Dev Setup:
+
+NovaSystem/
+│
+├── src/
+│   ├── api/
+│   │   └── main.py          # API entry point
+│   ├── cli/                 # CLI related modules
+│   └── core/
+│       ├── config.py        # Configuration settings
+│       └── models.py        # Core data models
+│
+├── tests/                    # Unit and integration tests
+│   ├── api/
+│   └── cli/
+│
+├── .env                      # Environment variables
+├── .gitignore                # Git ignore rules
+├── README.md                 # Basic documentation
+└── requirements.txt          # Dependency list
+
+
+Prod Setup:
+
 NovaSystem/
 │
 ├── src/                    # All source code
@@ -26,3 +50,5 @@ NovaSystem/
 ├── README.md               # Project documentation
 ├── requirements.txt        # Project dependencies
 └── setup.py                # Setup script for initializing the project structure
+
+
