@@ -1,5 +1,7 @@
 NovaSystem/
 │
+├── __init__.py
+|
 ├── src/
 │   ├── api/
 │   │   ├── controllers/
@@ -44,3 +46,19 @@ NovaSystem/
 ├── README.md                # Basic documentation
 ├── requirements.txt         # Dependency list
 └── setup.py                 # Setup script for project
+
+
+
+
+It will need to become:
+
+novasystem/
+│
+├── __init__.py
+├── main.py  # Entry point of the application
+├── cli.py  # CLI related functions and commands
+├── workspace.py  # Workspace management functions
+├── settings.py  # Settings management functions
+├── security.py  # Security-related functions
+├── utils.py  # Utility functions
+└── config.py  # Configuration related functions

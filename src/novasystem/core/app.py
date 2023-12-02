@@ -139,3 +139,87 @@ def main_application():
 
 if __name__ == '__main__':
     main()
+
+
+
+import os
+import json
+from pathlib import Path
+import time
+import glob
+import logging
+import typer
+
+# Imported package modules
+from novasystem.utils import Utilitizer as util
+from novasystem.settings import SettingsGoblins as settings
+from novasystem.config import Configurator as config
+from novasystem.security import SecurityTroll as security
+
+# Typer CLI application
+cli = typer.Typer()
+
+# Constants
+APP_NAME = "NovaSystem"
+REQUIRED_SETUP_JSON = 'novasystem_required_setup_files.json'
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(APP_NAME)
+
+# Functions
+def find_existing_workspaces():
+    """ Find existing workspace folders in the current directory. """
+    return glob.glob(f"{APP_NAME}_Workspace_*")
+
+def create_workspace(workspace_name):
+    """ Create a new workspace with required structure. """
+    required_structure = load_required_structure()
+    setup_environment(required_structure, workspace_name)
+
+def load_required_structure():
+    """ Load required structure from JSON file. """
+    with open(REQUIRED_SETUP_JSON, 'r') as file:
+        return json.load(file)
+
+def setup_environment(structure, workspace_name):
+    """ Set up the required directories and files in a workspace. """
+    base_path = Path(workspace_name)
+    for directory in structure['directories']:
+        Path(base_path / directory).mkdir(parents=True, exist_ok=True)
+    for file in structure['files']:
+        Path(base_path / file).touch()
+    logger.info(f"Environment setup complete in {base_path.resolve()}.")
+
+# CLI Commands
+@cli.command()
+def list_workspaces():
+    """ List all existing NovaSystem workspaces. """
+    workspaces = find_existing_workspaces()
+    if not workspaces:
+        typer.echo("No workspaces found.")
+        return
+    for workspace in workspaces:
+        typer.echo(workspace)
+
+@cli.command()
+def init_workspace(workspace_name: str = typer.Argument(f"{APP_NAME}_Workspace_{time.time_ns()}")):
+    """ Initialize a new NovaSystem workspace. """
+    create_workspace(workspace_name)
+    typer.echo(f"Workspace '{workspace_name}' initialized.")
+
+@cli.command()
+def run_tests():
+    """ Run basic functionality tests. """
+    # Placeholder for test implementation
+    typer.echo("Running basic functionality tests...")
+
+@cli.command()
+def start_application(workspace_name: str):
+    """ Start the main application with the specified workspace. """
+    # Placeholder for main application logic
+    typer.echo(f"Starting NovaSystem with workspace '{workspace_name}'...")
+
+# Main function to run the Typer app
+if __name__ == '__main__':
+    cli()
