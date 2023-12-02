@@ -38,7 +38,16 @@ pyinstaller = "^6.2.0"
 sphinx = "^7.2.6"
 pyqt5 = "^5.15.10"
 jinja2 = "^3.1.2"
+numpy = "^1.26.2"
+pandas = "^2.1.3"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+novasystem = "novasystem.main:main"
+
+[[tool.poetry.packages]]
+include = "novasystem"
+from = "src"
