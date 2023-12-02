@@ -87,8 +87,28 @@ def run_test():
         print("Test passed: README.md exists.")
         return True
     else:
-        logger.error(f"Configuration file {CONFIG_FILE_NAME} not found.")
+        print("Test failed: README.md does not exist.")
         return False
+
+def verify_installation(base_path, structure):
+    """ Verify that all required directories and files exist. """
+    missing_items = []
+    for directory in structure['directories']:
+        if not (base_path / directory).exists():
+            missing_items.append(str(base_path / directory))
+
+    for file in structure['files']:
+        if not (base_path / file).exists():
+            missing_items.append(str(base_path / file))
+
+    # return False # Debugging; intentionally fails verification
+
+    if missing_items:
+        print("Missing items in installation:")
+        for item in missing_items:
+            print(f"- {item}")
+        return False
+    return True
 
 def main():
     existing_workspaces = find_existing_workspaces()

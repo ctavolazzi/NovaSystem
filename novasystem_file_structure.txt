@@ -1,31 +1,7 @@
-Dev Setup:
-
 NovaSystem/
 │
 ├── src/
 │   ├── api/
-│   │   └── main.py          # API entry point
-│   ├── cli/                 # CLI related modules
-│   └── core/
-│       ├── config.py        # Configuration settings
-│       └── models.py        # Core data models
-│
-├── tests/                    # Unit and integration tests
-│   ├── api/
-│   └── cli/
-│
-├── .env                      # Environment variables
-├── .gitignore                # Git ignore rules
-├── README.md                 # Basic documentation
-└── requirements.txt          # Dependency list
-
-
-Prod Setup:
-
-NovaSystem/
-│
-├── src/                    # All source code
-│   ├── api/                # FastAPI related files
 │   │   ├── controllers/
 │   │   ├── middlewares/
 │   │   ├── models/
@@ -33,22 +9,38 @@ NovaSystem/
 │   │   ├── routers/
 │   │   └── utils/
 │   │
-│   ├── cli/                # Typer CLI-related files
+│   ├── cli/
 │   │   ├── commands/
 │   │   └── utils/
 │   │
-│   └── core/               # Core application logic and utilities
-│       ├── config.py
-│       └── models.py
+│   ├── core/
+│   │   ├── __init__.py      # Core module entry point
+│   │   ├── setup.py         # Setup script for core module
+│   │   ├── logic.py        # Core application logic
+│   │   ├── config.py        # Enhanced Configuration settings
+│   │   ├── models.py        # Core data models
+│   │   ├── security.py      # Security management
+│   │   └── ai_utils.py      # AI and Machine Learning utilities
+│   │
+│   ├── gui/                 # Tkinter GUI related modules
+│   │   └── main_gui.py      # GUI entry point
+│   │
+│   └── utils/               # General utilities and helpers
+│       ├── logger.py        # Custom logging module
+│       ├── db_connector.py  # Database connection utilities
+│       └── performance.py   # Performance monitoring tools
 │
-├── tests/                  # Test suite
+├── tests/
 │   ├── api/
-│   └── cli/
+│   ├── cli/
+│   ├── gui/
+│   └── core/
 │
-├── .env                    # Environment variables
-├── .gitignore              # Specifies intentionally untracked files to ignore
-├── README.md               # Project documentation
-├── requirements.txt        # Project dependencies
-└── setup.py                # Setup script for initializing the project structure
-
-
+├── logs/                    # Log files directory
+│   └── application.log      # Main log file
+│
+├── .env                     # Environment variables
+├── .gitignore               # Git ignore rules
+├── README.md                # Basic documentation
+├── requirements.txt         # Dependency list
+└── setup.py                 # Setup script for project
