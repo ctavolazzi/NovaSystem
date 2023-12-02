@@ -12,6 +12,17 @@ files = [
 ]
 
 [[package]]
+name = "alabaster"
+version = "0.7.13"
+description = "A configurable sidebar-enabled Sphinx theme"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "alabaster-0.7.13-py3-none-any.whl", hash = "sha256:1ee19aca801bbabb5ba3f5f258e4422dfa86f82f3e9cefb0859b283cdd7f62a3"},
+    {file = "alabaster-0.7.13.tar.gz", hash = "sha256:a27a4a084d5e690e16e01e03ad2b2e552c61a65469419b907243193de1a84ae2"},
+]
+
+[[package]]
 name = "alembic"
 version = "1.12.1"
 description = "A database migration tool for SQLAlchemy."
@@ -425,6 +436,17 @@ python-versions = ">=3.6"
 files = [
     {file = "distro-1.8.0-py3-none-any.whl", hash = "sha256:99522ca3e365cac527b44bde033f64c6945d90eb9f769703caaec52b09bbd3ff"},
     {file = "distro-1.8.0.tar.gz", hash = "sha256:02e111d1dc6a50abb8eed6bf31c3e48ed8b0830d1ea2a1b78c61765c2513fdd8"},
+]
+
+[[package]]
+name = "docutils"
+version = "0.20.1"
+description = "Docutils -- Python Documentation Utilities"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "docutils-0.20.1-py3-none-any.whl", hash = "sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6"},
+    {file = "docutils-0.20.1.tar.gz", hash = "sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b"},
 ]
 
 [[package]]
@@ -1097,6 +1119,17 @@ python-versions = ">=3.5"
 files = [
     {file = "idna-3.6-py3-none-any.whl", hash = "sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f"},
     {file = "idna-3.6.tar.gz", hash = "sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca"},
+]
+
+[[package]]
+name = "imagesize"
+version = "1.4.1"
+description = "Getting image size from png/jpeg/jpeg2000/gif file"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "imagesize-1.4.1-py2.py3-none-any.whl", hash = "sha256:0d8d18d08f840c19d0ee7ca1fd82490fdc3729b7ac93f49870406ddde8ef8d8b"},
+    {file = "imagesize-1.4.1.tar.gz", hash = "sha256:69150444affb9cb0d5cc5a92b3676f0b2fb7cd9ae39e947a5e11a36b4497cd4a"},
 ]
 
 [[package]]
@@ -1935,6 +1968,67 @@ files = [
 diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
+name = "pyqt5"
+version = "5.15.10"
+description = "Python bindings for the Qt cross platform application toolkit"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "PyQt5-5.15.10-cp37-abi3-macosx_10_13_x86_64.whl", hash = "sha256:93288d62ebd47b1933d80c27f5d43c7c435307b84d480af689cef2474e87e4c8"},
+    {file = "PyQt5-5.15.10-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:862cea3be95b4b0a2b9678003b3a18edf7bd5eafd673860f58820f246d4bf616"},
+    {file = "PyQt5-5.15.10-cp37-abi3-manylinux_2_17_x86_64.whl", hash = "sha256:b89478d16d4118664ff58ed609e0a804d002703c9420118de7e4e70fa1cb5486"},
+    {file = "PyQt5-5.15.10-cp37-abi3-win32.whl", hash = "sha256:ff99b4f91aa8eb60510d5889faad07116d3340041916e46c07d519f7cad344e1"},
+    {file = "PyQt5-5.15.10-cp37-abi3-win_amd64.whl", hash = "sha256:501355f327e9a2c38db0428e1a236d25ebcb99304cd6e668c05d1188d514adec"},
+    {file = "PyQt5-5.15.10.tar.gz", hash = "sha256:d46b7804b1b10a4ff91753f8113e5b5580d2b4462f3226288e2d84497334898a"},
+]
+
+[package.dependencies]
+PyQt5-Qt5 = ">=5.15.2"
+PyQt5-sip = ">=12.13,<13"
+
+[[package]]
+name = "pyqt5-qt5"
+version = "5.15.11"
+description = "The subset of a Qt installation needed by PyQt5."
+optional = false
+python-versions = "*"
+files = [
+    {file = "PyQt5_Qt5-5.15.11-1-py3-none-macosx_11_0_arm64.whl", hash = "sha256:9bb0d816de8c003ce41881e39fe5d64c2cdf5e8ca96b6c016c34f8e0bdc30768"},
+    {file = "PyQt5_Qt5-5.15.11-py3-none-macosx_10_13_x86_64.whl", hash = "sha256:109c418d221538751e4d7755a81c978ee31abbd65facb3f1f361dca74a1b758a"},
+    {file = "PyQt5_Qt5-5.15.11-py3-none-macosx_11_0_arm64.whl", hash = "sha256:3cccb21942eb49d21fb0193f28e3e8ae3d35395f158e8a9d4d58e23efa3a2ea7"},
+]
+
+[[package]]
+name = "pyqt5-sip"
+version = "12.13.0"
+description = "The sip module support for PyQt5"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "PyQt5_sip-12.13.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:a7e3623b2c743753625c4650ec7696362a37fb36433b61824cf257f6d3d43cca"},
+    {file = "PyQt5_sip-12.13.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:6e4ac714252370ca037c7d609da92388057165edd4f94e63354f6d65c3ed9d53"},
+    {file = "PyQt5_sip-12.13.0-cp310-cp310-win32.whl", hash = "sha256:d5032da3fff62da055104926ffe76fd6044c1221f8ad35bb60804bcb422fe866"},
+    {file = "PyQt5_sip-12.13.0-cp310-cp310-win_amd64.whl", hash = "sha256:9a8cdd6cb66adcbe5c941723ed1544eba05cf19b6c961851b58ccdae1c894afb"},
+    {file = "PyQt5_sip-12.13.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:0f85fb633a522f04e48008de49dce1ff1d947011b48885b8428838973fbca412"},
+    {file = "PyQt5_sip-12.13.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:ec60162e034c42fb99859206d62b83b74f987d58937b3a82bdc07b5c3d190dec"},
+    {file = "PyQt5_sip-12.13.0-cp311-cp311-win32.whl", hash = "sha256:205cd449d08a2b024a468fb6100cd7ed03e946b4f49706f508944006f955ae1a"},
+    {file = "PyQt5_sip-12.13.0-cp311-cp311-win_amd64.whl", hash = "sha256:1c8371682f77852256f1f2d38c41e2e684029f43330f0635870895ab01c02f6c"},
+    {file = "PyQt5_sip-12.13.0-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:7fe3375b508c5bc657d73b9896bba8a768791f1f426c68053311b046bcebdddf"},
+    {file = "PyQt5_sip-12.13.0-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:773731b1b5ab1a7cf5621249f2379c95e3d2905e9bd96ff3611b119586daa876"},
+    {file = "PyQt5_sip-12.13.0-cp312-cp312-win32.whl", hash = "sha256:fb4a5271fa3f6bc2feb303269a837a95a6d8dd16be553aa40e530de7fb81bfdf"},
+    {file = "PyQt5_sip-12.13.0-cp312-cp312-win_amd64.whl", hash = "sha256:3a4498f3b1b15f43f5d12963accdce0fd652b0bcaae6baf8008663365827444c"},
+    {file = "PyQt5_sip-12.13.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:9b984c2620a7a7eaf049221b09ae50a345317add2624c706c7d2e9e6632a9587"},
+    {file = "PyQt5_sip-12.13.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:3188a06956aef86f604fb0d14421a110fad70d2a9e943dbacbfc3303f651dade"},
+    {file = "PyQt5_sip-12.13.0-cp38-cp38-win32.whl", hash = "sha256:108a15f603e1886988c4b0d9d41cb74c9f9815bf05cefc843d559e8c298a10ce"},
+    {file = "PyQt5_sip-12.13.0-cp38-cp38-win_amd64.whl", hash = "sha256:db228cd737f5cbfc66a3c3e50042140cb80b30b52edc5756dbbaa2346ec73137"},
+    {file = "PyQt5_sip-12.13.0-cp39-cp39-macosx_10_9_universal2.whl", hash = "sha256:5338773bbaedaa4f16a73c142fb23cc18c327be6c338813af70260b756c7bc92"},
+    {file = "PyQt5_sip-12.13.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:29fa9cc964517c9fc3f94f072b9a2aeef4e7a2eda1879cb835d9e06971161cdf"},
+    {file = "PyQt5_sip-12.13.0-cp39-cp39-win32.whl", hash = "sha256:96414c93f3d33963887cf562d50d88b955121fbfd73f937c8eca46643e77bf61"},
+    {file = "PyQt5_sip-12.13.0-cp39-cp39-win_amd64.whl", hash = "sha256:bbc7cd498bf19e0862097be1ad2243e824dea56726f00c11cff1b547c2d31d01"},
+    {file = "PyQt5_sip-12.13.0.tar.gz", hash = "sha256:7f321daf84b9c9dbca61b80e1ef37bdaffc0e93312edae2cd7da25b953971d91"},
+]
+
+[[package]]
 name = "pytest"
 version = "7.4.3"
 description = "pytest: simple powerful testing with Python"
@@ -2491,6 +2585,17 @@ files = [
 ]
 
 [[package]]
+name = "snowballstemmer"
+version = "2.2.0"
+description = "This package provides 29 stemmers for 28 languages generated from Snowball algorithms."
+optional = false
+python-versions = "*"
+files = [
+    {file = "snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a"},
+    {file = "snowballstemmer-2.2.0.tar.gz", hash = "sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1"},
+]
+
+[[package]]
 name = "speaklater"
 version = "1.3"
 description = "implements a lazy string for python useful for use with gettext"
@@ -2499,6 +2604,144 @@ python-versions = "*"
 files = [
     {file = "speaklater-1.3.tar.gz", hash = "sha256:59fea336d0eed38c1f0bf3181ee1222d0ef45f3a9dd34ebe65e6bfffdd6a65a9"},
 ]
+
+[[package]]
+name = "sphinx"
+version = "7.2.6"
+description = "Python documentation generator"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sphinx-7.2.6-py3-none-any.whl", hash = "sha256:1e09160a40b956dc623c910118fa636da93bd3ca0b9876a7b3df90f07d691560"},
+    {file = "sphinx-7.2.6.tar.gz", hash = "sha256:9a5160e1ea90688d5963ba09a2dcd8bdd526620edbb65c328728f1b2228d5ab5"},
+]
+
+[package.dependencies]
+alabaster = ">=0.7,<0.8"
+babel = ">=2.9"
+colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
+docutils = ">=0.18.1,<0.21"
+imagesize = ">=1.3"
+Jinja2 = ">=3.0"
+packaging = ">=21.0"
+Pygments = ">=2.14"
+requests = ">=2.25.0"
+snowballstemmer = ">=2.0"
+sphinxcontrib-applehelp = "*"
+sphinxcontrib-devhelp = "*"
+sphinxcontrib-htmlhelp = ">=2.0.0"
+sphinxcontrib-jsmath = "*"
+sphinxcontrib-qthelp = "*"
+sphinxcontrib-serializinghtml = ">=1.1.9"
+
+[package.extras]
+docs = ["sphinxcontrib-websupport"]
+lint = ["docutils-stubs", "flake8 (>=3.5.0)", "flake8-simplify", "isort", "mypy (>=0.990)", "ruff", "sphinx-lint", "types-requests"]
+test = ["cython (>=3.0)", "filelock", "html5lib", "pytest (>=4.6)", "setuptools (>=67.0)"]
+
+[[package]]
+name = "sphinxcontrib-applehelp"
+version = "1.0.7"
+description = "sphinxcontrib-applehelp is a Sphinx extension which outputs Apple help books"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sphinxcontrib_applehelp-1.0.7-py3-none-any.whl", hash = "sha256:094c4d56209d1734e7d252f6e0b3ccc090bd52ee56807a5d9315b19c122ab15d"},
+    {file = "sphinxcontrib_applehelp-1.0.7.tar.gz", hash = "sha256:39fdc8d762d33b01a7d8f026a3b7d71563ea3b72787d5f00ad8465bd9d6dfbfa"},
+]
+
+[package.dependencies]
+Sphinx = ">=5"
+
+[package.extras]
+lint = ["docutils-stubs", "flake8", "mypy"]
+test = ["pytest"]
+
+[[package]]
+name = "sphinxcontrib-devhelp"
+version = "1.0.5"
+description = "sphinxcontrib-devhelp is a sphinx extension which outputs Devhelp documents"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sphinxcontrib_devhelp-1.0.5-py3-none-any.whl", hash = "sha256:fe8009aed765188f08fcaadbb3ea0d90ce8ae2d76710b7e29ea7d047177dae2f"},
+    {file = "sphinxcontrib_devhelp-1.0.5.tar.gz", hash = "sha256:63b41e0d38207ca40ebbeabcf4d8e51f76c03e78cd61abe118cf4435c73d4212"},
+]
+
+[package.dependencies]
+Sphinx = ">=5"
+
+[package.extras]
+lint = ["docutils-stubs", "flake8", "mypy"]
+test = ["pytest"]
+
+[[package]]
+name = "sphinxcontrib-htmlhelp"
+version = "2.0.4"
+description = "sphinxcontrib-htmlhelp is a sphinx extension which renders HTML help files"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sphinxcontrib_htmlhelp-2.0.4-py3-none-any.whl", hash = "sha256:8001661c077a73c29beaf4a79968d0726103c5605e27db92b9ebed8bab1359e9"},
+    {file = "sphinxcontrib_htmlhelp-2.0.4.tar.gz", hash = "sha256:6c26a118a05b76000738429b724a0568dbde5b72391a688577da08f11891092a"},
+]
+
+[package.dependencies]
+Sphinx = ">=5"
+
+[package.extras]
+lint = ["docutils-stubs", "flake8", "mypy"]
+test = ["html5lib", "pytest"]
+
+[[package]]
+name = "sphinxcontrib-jsmath"
+version = "1.0.1"
+description = "A sphinx extension which renders display math in HTML via JavaScript"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "sphinxcontrib-jsmath-1.0.1.tar.gz", hash = "sha256:a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8"},
+    {file = "sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl", hash = "sha256:2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178"},
+]
+
+[package.extras]
+test = ["flake8", "mypy", "pytest"]
+
+[[package]]
+name = "sphinxcontrib-qthelp"
+version = "1.0.6"
+description = "sphinxcontrib-qthelp is a sphinx extension which outputs QtHelp documents"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sphinxcontrib_qthelp-1.0.6-py3-none-any.whl", hash = "sha256:bf76886ee7470b934e363da7a954ea2825650013d367728588732c7350f49ea4"},
+    {file = "sphinxcontrib_qthelp-1.0.6.tar.gz", hash = "sha256:62b9d1a186ab7f5ee3356d906f648cacb7a6bdb94d201ee7adf26db55092982d"},
+]
+
+[package.dependencies]
+Sphinx = ">=5"
+
+[package.extras]
+lint = ["docutils-stubs", "flake8", "mypy"]
+test = ["pytest"]
+
+[[package]]
+name = "sphinxcontrib-serializinghtml"
+version = "1.1.9"
+description = "sphinxcontrib-serializinghtml is a sphinx extension which outputs \"serialized\" HTML files (json and pickle)"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "sphinxcontrib_serializinghtml-1.1.9-py3-none-any.whl", hash = "sha256:9b36e503703ff04f20e9675771df105e58aa029cfcbc23b8ed716019b7416ae1"},
+    {file = "sphinxcontrib_serializinghtml-1.1.9.tar.gz", hash = "sha256:0c64ff898339e1fac29abd2bf5f11078f3ec413cfe9c046d3120d7ca65530b54"},
+]
+
+[package.dependencies]
+Sphinx = ">=5"
+
+[package.extras]
+lint = ["docutils-stubs", "flake8", "mypy"]
+test = ["pytest"]
 
 [[package]]
 name = "sqlalchemy"
@@ -3252,4 +3495,4 @@ email = ["email-validator"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.10.13"
-content-hash = "a73645fb2a63c8c9d4eb56ecdd872f6a02a6a1efeea726de24edb4c389361a95"
+content-hash = "8531d7762218a042b891f86dc594921ec9ef8c08899c585c4ddf0b0ba7e8f091"
