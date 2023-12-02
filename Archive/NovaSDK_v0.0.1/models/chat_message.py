@@ -1,6 +1,6 @@
 # models/chat_message.py
 
-from main import db
+from app import db
 
 class ChatMessage(db.Model):
     __tablename__ = 'chat_messages'
