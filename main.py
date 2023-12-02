@@ -1,17 +1,94 @@
 import os
 import json
+import logging
 from pathlib import Path
 import time
 import glob
+import zipfile
 
 # Constants
 APP_NAME = "NovaSystem"
-NOVASYSTEM_WORKSPACE = f"{APP_NAME}_Workspace_{time.time_ns()}"
 REQUIRED_SETUP_JSON = 'novasystem_required_setup_files.json'
+LOG_FILENAME = 'novasystem.log'
 
+# Configure logging
+logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Automatic zip feature
+import zipfile
+
+def zip_workspace(workspace_path):
+    """
+    Zip the specified workspace directory.
+
+    Args:
+        workspace_path (str): The path of the workspace to be zipped.
+
+    Returns:
+        str: The filename of the created zip file.
+    """
+    try:
+        zip_filename = f"{workspace_path}.zip"
+        with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root, dirs, files in os.walk(workspace_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    zipf.write(file_path, os.path.relpath(file_path, workspace_path))
+        logging.info(f"Workspace zipped into {zip_filename}")
+        return zip_filename
+    except Exception as e:
+        logging.error(f"Error zipping workspace: {e}")
+        raise
+
+def validate_json_structure(structure):
+    """
+    Validate the structure of the JSON file used for setup.
+
+    Args:
+        structure (dict): The structure loaded from the JSON file.
+
+    Returns:
+        bool: True if the structure is valid, False otherwise.
+    """
+    # Implement validation logic here...
+    pass
+
+def setup_environment(structure, workspace_path):
+    """
+    Set up the required directories and files in NovaSystem Workspace.
+
+    Args:
+        structure (dict): A dictionary containing the 'directories' and 'files' to be created.
+        workspace_path (str): The path of the workspace where the environment is set up.
+    """
+    # Enhanced with more detailed error handling and logging...
+    pass
+
+def run_additional_tests():
+    """
+    Run additional tests to ensure system functionality.
+
+    Returns:
+        bool: True if all tests pass, False otherwise.
+    """
+    # Implement additional tests here...
+    pass
+
+# Automatic workspace selection feature
 def find_existing_workspaces():
-    """ Find existing workspace folders in the current directory. """
-    return glob.glob(f"{APP_NAME}_Workspace_*")
+    """
+    Find existing workspace folders in the current directory.
+
+    Returns:
+        list: A list of strings, each representing an existing workspace directory.
+    """
+    try:
+        workspaces = glob.glob(f"{APP_NAME}_Workspace_*")
+        logging.info(f"Found {len(workspaces)} existing workspaces.")
+        return workspaces
+    except Exception as e:
+        logging.error(f"Error finding existing workspaces: {e}")
+        raise
 
 def get_user_workspace_choice(existing_workspaces):
     """ Get user's choice for the workspace. """
@@ -111,27 +188,36 @@ def verify_installation(base_path, structure):
     return True
 
 def main():
-    existing_workspaces = find_existing_workspaces()
-    workspace_choice = get_user_workspace_choice(existing_workspaces) if existing_workspaces else "3"
-    workspace_path = handle_workspace_choice(workspace_choice, existing_workspaces)
+    """
+    Main function to orchestrate the workflow of NovaSystem.
+    """
+    try:
+            existing_workspaces = find_existing_workspaces()
+            workspace_choice = get_user_workspace_choice(existing_workspaces) if existing_workspaces else "3"
+            workspace_path = handle_workspace_choice(workspace_choice, existing_workspaces)
 
-    print(f"Using workspace: {workspace_path}")
-    required_structure = load_required_structure()
-    global NOVASYSTEM_WORKSPACE
-    NOVASYSTEM_WORKSPACE = workspace_path
-    setup_environment(required_structure)
+            print(f"Using workspace: {workspace_path}")
+            required_structure = load_required_structure()
+            global NOVASYSTEM_WORKSPACE
+            NOVASYSTEM_WORKSPACE = workspace_path
+            setup_environment(required_structure)
 
-    base_path = Path(NOVASYSTEM_WORKSPACE)
+            base_path = Path(NOVASYSTEM_WORKSPACE)
 
-    if not verify_installation(base_path, required_structure):
-        print("Installation verification failed. Please check the logs.")
-        return
+            if not verify_installation(base_path, required_structure):
+                print("Installation verification failed. Please check the logs.")
+                return
 
-    if not run_test():
-        print("Run test failed. Please check the system's functionality.")
-        return
+            if not run_test():
+                print("Run test failed. Please check the system's functionality.")
+                return
 
-    main_application()  # Start the main application logic
+            zip_workspace(NOVASYSTEM_WORKSPACE)
+
+            main_application()  # Start the main application logic
+
+    except Exception as e:
+        logging.error(f"An error occurred in the main function: {e}")
 
 def main_application():
     print(f"Starting main application in {Path(NOVASYSTEM_WORKSPACE).resolve()}...")
