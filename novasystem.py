@@ -1,63 +1,128 @@
-# {root}/novasystem.py
-# Description: This is the main entry point for the application.
-# Run novasystem.py to start the setup process and install the application.
-
-# Imports
 import os
-import sys
-import datetime
-import subprocess
-import shutil
-import re
-import argparse
 import json
-import logging
-import logging.config
-import configparser
-import pkg_resources
-import pkgutil
-import importlib
-import inspect
-import traceback
-import getpass
-import socket
-import platform
+from pathlib import Path
 import time
-import threading
-import queue
-import multiprocessing
-import abc
-import bs4
-import cachetools
-import celery
-import calendar
-import csv
-import dateutil, dateparser, decorator, difflib, docutils, dotenv
-import email, encodings, enum
-import functools, functorch, future, fuzzywuzzy
-import glob, gzip, getpass, gettext, google, google_auth_oauthlib, graphlib, gspread
-import html, http, humanize, hypothesis, h5py, hashlib, huggingface_hub
-import idna, importlib, inspect, io, ipaddress, ipykernel, ipython_genutils, ipywidgets, imaplib, imghdr, invoke, isapi, isort, isy994, itertools, ipaddress, itertools, itsdangerous, itertools
-import jack, jinja2, jks, joblib, jose, json, jupityer, jose, jwt
-import keras, keyboard, keyword
-import lzma, locale
-import mailbox, markdown, markupsafe, matplotlib, matplotlib_inline, matplotlib_scalebar, matplotlib_venn, mkl, mkl_fft, mkl_random, mpmath, msgpack, msrest, msrestazure, multidict, multiprocessing, multiprocessing_logging, murmurhash, mypy_extensions, mysql, mysqlclient
-import nbclient, nbconvert, nbformat, netifaces, netmiko, networkx, nltk, nose, notebook, numpy, numpydoc, nvidia, nvidia_smi
-import oauth2, oauthlib, olefile, openpyxl, optparse, os, osqp, oss2
-import packaging, pandas, pandocfilters, paramiko, parso, path, pathlib, pathtools, patsy, pbr, pexpect, pickleshare, pillow, pip, pipdeptree, pkg_resources, pkginfo, pkgutil, platform, pluggy, ply, plyer, poplib, portpicker, portend, posixpath, pprint, prettytable, prompt_toolkit, psutil, ptyprocess, py, pyasn1, pyasn1_modules, pycparser, pycryptodome, pycurl, pydoc, pydo, paho, parsimonious, pasta, peewee, pprint, pwd, pyautogui, pika, pipes, pickle, pkgutil, pkg_resources, pkginfo, pkg_resources, pkgutil, pkg_resources, pickletools, playsound, pygments, pygobject, pygubu, pyin, pyinstaller, py
-import qrcode, queue, quopri, qtpy, qtconsole, qtawesome, qtcons, qtconsole, qtaw
-import random, re, readline, requests, requests, redis, regex, regex, reportlab, requests, regutil, resource, retry, rich
-import sass, scapy, scipy, seaborn, setuptools, secrets, select, selenium, setup, setuptools, select, selectors, servicemanager, shelve, send2trash, shelve, slumber, simplejson, signal, sniffio, socket, socketio, sortedcontainers, soupsieve, sphinx, speaklater, stringprep
-import tabulate, tempfile, tensorflow, transformers, termcolorm, termcolor, termios, textwrap, typer, types, typing, typing_extensions, tz
-import urllib, urllib3, urllib3, ujson, unicodedata, unittest, untangle, urllib, urllib3, usersettings, uu, uuid, uvicorn, uvloop, uwsgi
-import venv, vine, vispy, vobject, vpython, versioneer, virtue, virtua, voi, voip, vue, vyper, vyperlang
-import warnings, webbrowser, webencodings, websockets, werkzeug, wheel, wheel, widgetsnbextension, win32api, win32con, win32event, win32evtlog, win32evtlogutil, win32file, win32gui, win32job, win32lz, win32net, win32netcon, win32pdh, win32pdhquery, win32pdhutil, win32pipe, win32print, win32process, win32profile, win32ras, win32rcparser, win32security, win32service, win32serviceutil, win32timezone, win32trace, win32traceutil, win32transaction, win32ts, win32ui, win32uiole, win32verstamp, win32wnet, winerror, winreg, winsound, winxpgui, winxptheme, wmi, wsgiref, wurlitzer, wx, wxpy, wxpython, wxwid, waitress, wave, webbrowser, webob, werkzeug, whatthepatch, wheel, win32, wmi, weakref, workalendar
-import xml, xm, xmltodict, xamarin, xarray, xgboost, xlrd, xlwt, xlsxw, xenon, xgboost, xlsxwriter, xlwings, xlwt, xml, xmlrpc
-import ya, yaml, yello, yellowbrick, yfin, youtube, yarl, yarl, yaspin, yfinance, yurl, yweather
-import zipp, zipapp, zipfile, zi, zipimport, zlib, zoneinfo, zstd, zsta, zo, za, zi, ze, zu, ze, zeep, zipim, zonei, zoo, zoom, zoomus
+import glob
+import logging
+
+# Import package modules
+from novasystem.utils import Utilitizer as util
+from novasystem.settings import SettingsGoblins as settings
+from novasystem.config import Configurator as config
+from novasystem.security import SecurityTroll as security
 
 # Constants
+APP_NAME = "NovaSystem"
+NOVASYSTEM_WORKSPACE = f"{APP_NAME}_Workspace_{time.time_ns()}"
+REQUIRED_SETUP_JSON = 'novasystem_required_setup_files.json'
+
+def find_existing_workspaces():
+    """ Find existing workspace folders in the current directory. """
+    return glob.glob(f"{APP_NAME}_Workspace_*")
+
+def get_user_workspace_choice(existing_workspaces):
+    """ Get user's choice for the workspace. """
+    print("Existing workspaces found:")
+    for i, workspace in enumerate(existing_workspaces, start=1):
+        print(f"{i}. {workspace}")
+
+    print("\nOptions:")
+    print("1. Use the most recent workspace.")
+    print("2. Enter the path to a specific workspace.")
+    print("3. Create a new workspace.")
+    choice = input("Enter your choice (1/2/3): ").strip()
+
+    return choice
+
+def handle_workspace_choice(choice, existing_workspaces):
+    """ Handle the user's workspace choice. """
+    if choice == "1" and existing_workspaces:
+        # Use the most recent workspace
+        return max(existing_workspaces, key=os.path.getctime)
+    elif choice == "2":
+        # Let the user enter a specific path
+        return input("Enter the path to the workspace: ").strip()
+    elif choice == "3" or not existing_workspaces:
+        # Create a new workspace
+        return f"{APP_NAME}_Workspace_{time.time_ns()}"
+    else:
+        print("Invalid choice. A new workspace will be created.")
+        return f"{APP_NAME}_Workspace_{time.time_ns()}"
 
 
+def load_required_structure():
+    """ Load required structure from JSON file. """
+    with open(REQUIRED_SETUP_JSON, 'r') as file:
+        return json.load(file)
 
-Path: {root}/novasystem/__init__.py
+def create_directory(path):
+    Path(path).mkdir(parents=True, exist_ok=True)
+
+def create_file(path):
+    if not Path(path).exists():
+        Path(path).touch()
+
+def setup_environment(structure):
+    """ Set up the required directories and files in NovaSystem Workspace """
+    base_path = Path(NOVASYSTEM_WORKSPACE)
+    for directory in structure['directories']:
+        create_directory(base_path / directory)
+
+    for file in structure['files']:
+        create_file(base_path / file)
+
+    print(f"Environment setup complete in {base_path.resolve()}.")
+
+def user_interaction():
+    """ Simple user interaction: ask for input and echo back. """
+    user_input = input("Enter something: ")
+    print(f"You entered: {user_input}")
+
+def main_application():
+    """ Main application logic after setup """
+    print(f"Starting main application in {Path(NOVASYSTEM_WORKSPACE).resolve()}...")
+    # Placeholder for main application logic
+    print("NovaSystem main application logic goes here.")
+    user_interaction()  # Simple user interaction
+
+def run_test():
+    """ Simple test to ensure basic functionality. """
+    print("Running basic functionality test...")
+    # Example test: Check if a specific file exists
+    test_file = Path(NOVASYSTEM_WORKSPACE) / "README.md"
+    if test_file.exists():
+        print("Test passed: README.md exists.")
+        return True
+    else:
+        logger.error(f"Configuration file {CONFIG_FILE_NAME} not found.")
+        return False
+
+def main():
+    existing_workspaces = find_existing_workspaces()
+    workspace_choice = get_user_workspace_choice(existing_workspaces) if existing_workspaces else "3"
+    workspace_path = handle_workspace_choice(workspace_choice, existing_workspaces)
+
+    print(f"Using workspace: {workspace_path}")
+    required_structure = load_required_structure()
+    global NOVASYSTEM_WORKSPACE
+    NOVASYSTEM_WORKSPACE = workspace_path
+    setup_environment(required_structure)
+
+    base_path = Path(NOVASYSTEM_WORKSPACE)
+
+    if not verify_installation(base_path, required_structure):
+        print("Installation verification failed. Please check the logs.")
+        return
+
+    if not run_test():
+        print("Run test failed. Please check the system's functionality.")
+        return
+
+    main_application()  # Start the main application logic
+
+def main_application():
+    print(f"Starting main application in {Path(NOVASYSTEM_WORKSPACE).resolve()}...")
+    user_interaction()  # Simple user interaction
+
+if __name__ == '__main__':
+    main()
