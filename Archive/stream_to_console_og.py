@@ -9,37 +9,9 @@ from colorama import Fore, Back, Style, init
 # Initialize colorama (required)
 init(autoreset=True)
 
-# Enable blinking text
-blinking_message = Back.BLACK + Fore.WHITE + "This text blinks!"
-
-# Print blinking text
-print(blinking_message)
-
-# Print colored text
-print(Fore.RED + "This text is red")
-print(Fore.GREEN + "This text is green")
-print(Back.YELLOW + Fore.BLACK + "Yellow background with black text")
-
-# Apply text formatting
-print(Style.BRIGHT + "This text is bold")
-print(Style.NORMAL + "This text is normal")
-
-# Use color constants directly (no context manager needed)
-print(Fore.BLUE + "This text is blue")
-
-# Reset formatting automatically due to autoreset=True
-print("This text is back to the default color")
 
 
-# Enable blinking text
-blinking_message = enable_blinking_text("This text blinks!")
-
-# Print blinking text
-print(blinking_message)
-
-
-
-def stream_to_console(message, delay=0.035, foreground_color=None, background_color=None, rainbow_effect=False, bold=False, underline=False, blink=False, invert_colors=False, double_underline=False, hidden=False, font_size=None, italic=False, strikethrough=False, background_intensity=None, foreground_intensity=None):
+def stream_to_console(message, delay=0.035, foreground_color=None, background_color=None, rainbow_effect=False, bold=False, underline=False, invert_colors=False, double_underline=False, hidden=False, font_size=None, italic=False, strikethrough=False, background_intensity=None, foreground_intensity=None):
     """
     Streams a message to the console character by character with optional delay, colors, and effects.
 
@@ -111,8 +83,6 @@ def stream_to_console(message, delay=0.035, foreground_color=None, background_co
                     char = "\033[1m" + char  # Enable bold
                 if underline:
                     char = "\033[4m" + char  # Enable underline
-                if blink:
-                    char = "\033[5m" + char  # Enable blinking
                 if invert_colors:
                     char = "\033[7m" + char  # Enable inverted colors
                 if double_underline:
@@ -273,12 +243,12 @@ if __name__ == "__main__":
     # print("Font size 20")
     # print(font_size_code)
 
-    def enable_blinking_text(text):
-        return "\033[5m" + text + "\033[25m"  # Enable blinking, then reset blinking
+    # def enable_blinking_text(text):
+    #     return "\033[5m" + text + "\033[25m"  # Enable blinking, then reset blinking
 
-    # Usage example
-    blinking_message = enable_blinking_text("This text blinks!")
-    print(blinking_message)
+    # # Usage example
+    # blinking_message = enable_blinking_text("This text blinks!")
+    # print(blinking_message)
 
 
 
@@ -289,3 +259,18 @@ if __name__ == "__main__":
     # # Stream each test case
     # for case in test_cases:
     #     stream_to_console(**case)
+
+    # # Stream the ASCII art first
+    stream_to_console(random_ascii_art, delay=0.0004)
+
+    # # Stream the NovaSystem logo and welcome message
+    stream_to_console("Welcome to NovaSystem AI Framework!", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+
+    # # Stream the start menu
+    stream_to_console("Start Menu", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+    stream_to_console("1. Start NovaSystem", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+    stream_to_console("2. Start NovaSystem in Safe Mode", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+    stream_to_console("3. Start NovaSystem in Debug Mode", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+    stream_to_console("4. Create a new NovaSystem Polymorphic Project", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+    stream_to_console("5. Continue a previous NovaSystem Polymorphic Project", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
+    stream_to_console("6. Exit NovaSystem", delay=0.0004, foreground_color="cyan", background_color="black", bold=True, font_size=18, rainbow_effect=True)
