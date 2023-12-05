@@ -5,6 +5,7 @@ from prototype.test_prototype import main as test_prototype_main
 from singleton.test_singleton import main as test_singleton_main
 from adapter.test_adapter import main as test_adapter_main
 from bridge.test_bridge import main as test_bridge_main
+from composite.test_composite import main as test_composite_main
 
 def run_all_tests():
     print("Testing Factory Pattern:")
@@ -24,6 +25,9 @@ def run_all_tests():
 
     print("\n\nTesting Bridge Pattern:")
     test_bridge_main()
+
+    print("\n\nTesting Composite Pattern:")
+    test_composite_main()
 
     #===========================================================================#
     print()
