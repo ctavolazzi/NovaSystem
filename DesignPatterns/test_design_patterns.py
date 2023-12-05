@@ -11,6 +11,7 @@ from facade.test_facade import main as test_facade_main
 from flyweight.test_flyweight import main as test_flyweight_main
 from proxy.test_proxy import main as test_proxy_main
 from chain_of_responsibility.test_chain_of_responsibility import main as test_chain_of_responsibility_main
+from command.test_command import main as test_command_main
 
 def run_all_tests():
     print("Testing Factory Pattern:")
@@ -48,6 +49,9 @@ def run_all_tests():
 
     print("\n\nTesting Chain of Responsibility Pattern:")
     test_chain_of_responsibility_main()
+
+    print("\n\nTesting Command Pattern:")
+    test_command_main()
 
     #===========================================================================#
     print()
