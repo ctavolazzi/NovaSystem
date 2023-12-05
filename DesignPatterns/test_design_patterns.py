@@ -3,6 +3,7 @@ from factory.test_factory import main as test_factory_main
 from builder.test_builder import main as test_builder_main
 from prototype.test_prototype import main as test_prototype_main
 from singleton.test_singleton import main as test_singleton_main
+from adapter.test_adapter import main as test_adapter_main
 
 def run_all_tests():
     print("Testing Factory Pattern:")
@@ -16,6 +17,9 @@ def run_all_tests():
 
     print("\n\nTesting Singleton Pattern:")
     test_singleton_main()
+
+    print("\n\nTesting Adapter Pattern:")
+    test_adapter_main()
 
     #===========================================================================#
     print()
