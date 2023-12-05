@@ -12,6 +12,7 @@ from flyweight.test_flyweight import main as test_flyweight_main
 from proxy.test_proxy import main as test_proxy_main
 from chain_of_responsibility.test_chain_of_responsibility import main as test_chain_of_responsibility_main
 from command.test_command import main as test_command_main
+from iterator.test_iterator import main as test_iterator_main
 
 def run_all_tests():
     print("Testing Factory Pattern:")
@@ -52,6 +53,9 @@ def run_all_tests():
 
     print("\n\nTesting Command Pattern:")
     test_command_main()
+
+    print("\n\nTesting Iterator Pattern:")
+    test_iterator_main()
 
     #===========================================================================#
     print()
