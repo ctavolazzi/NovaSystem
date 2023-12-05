@@ -8,6 +8,7 @@ from bridge.test_bridge import main as test_bridge_main
 from composite.test_composite import main as test_composite_main
 from decorator.test_decorator import main as test_decorator_main
 from facade.test_facade import main as test_facade_main
+from flyweight.test_flyweight import main as test_flyweight_main
 
 def run_all_tests():
     print("Testing Factory Pattern:")
@@ -36,6 +37,9 @@ def run_all_tests():
 
     print("\n\nTesting Facade Pattern:")
     test_facade_main()
+
+    print("\n\nTesting Flyweight Pattern:")
+    test_flyweight_main()
 
     #===========================================================================#
     print()
