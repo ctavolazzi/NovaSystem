@@ -1,1 +1,1 @@
-from singleton import *
+from .singleton import *
