@@ -31,5 +31,8 @@ class TestStatePattern(unittest.TestCase):
 
     # Optional: Add a test for exception handling if relevant
 
-if __name__ == '__main__':
+def main():
     unittest.main()
+
+if __name__ == '__main__':
+    main()

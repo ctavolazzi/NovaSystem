@@ -41,5 +41,8 @@ class TestMediatorPattern(unittest.TestCase):
             self.assertIn("Component 1 does B.", mock_stdout.getvalue())
             self.assertIn("Component 2 does C.", mock_stdout.getvalue())
 
-if __name__ == '__main__':
+def main():
     unittest.main()
+
+if __name__ == '__main__':
+    main()
