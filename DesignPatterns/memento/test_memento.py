@@ -37,5 +37,8 @@ class TestMementoPattern(unittest.TestCase):
         self.caretaker.undo()
         self.assertEqual(self.originator._state, "State A")
 
-if __name__ == '__main__':
+def main():
     unittest.main()
+
+if __name__ == '__main__':
+    main()

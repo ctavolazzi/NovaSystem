@@ -36,5 +36,8 @@ class TestStrategyPattern(unittest.TestCase):
             context.do_some_business_logic()
             self.assertIn(','.join(reversed(sorted(data))), mock_stdout.getvalue())
 
-if __name__ == '__main__':
+def main():
     unittest.main()
+
+if __name__ == '__main__':
+    main()

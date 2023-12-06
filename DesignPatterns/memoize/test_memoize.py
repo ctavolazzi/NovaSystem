@@ -32,5 +32,8 @@ class TestMemoizeDecorator(unittest.TestCase):
             result = self.test_func(7, 8)  # Recalculate as it should be expired
             self.assertEqual(result, 15)
 
-if __name__ == '__main__':
+def main():
     unittest.main()
+
+if __name__ == '__main__':
+    main()
