@@ -1,4 +1,6 @@
-# Importing the main functions from the test scripts
+# test_design_patterns.py
+
+# Test standard design patterns
 from factory.test_factory import main as test_factory_main
 from builder.test_builder import main as test_builder_main
 from prototype.test_prototype import main as test_prototype_main
@@ -13,6 +15,20 @@ from proxy.test_proxy import main as test_proxy_main
 from chain_of_responsibility.test_chain_of_responsibility import main as test_chain_of_responsibility_main
 from command.test_command import main as test_command_main
 from iterator.test_iterator import main as test_iterator_main
+from observer.test_observer import main as test_observer_main
+from memento.test_memento import main as test_memento_main
+from mediator.test_mediator import main as test_mediator_main
+from memoize.test_memoize import main as test_memoize_main
+from state.test_state import main as test_state_main
+from strategy.test_strategy import main as test_strategy_main
+from template.test_template import main as test_template_main
+from visitor.test_visitor import main as test_visitor_main
+
+# Test composite design patterns
+# from event_queue.test_queue import main as test_event_queue_main
+# from thread_pool.test_thread_pool import main as test_thread_pool_main
+# from web_scraper.test_scraper import main as test_scraper_main
+# from zip_file.test_zip_file import main as test_zip_file_main
 
 def run_all_tests():
     print("Testing Factory Pattern:")
@@ -56,6 +72,42 @@ def run_all_tests():
 
     print("\n\nTesting Iterator Pattern:")
     test_iterator_main()
+
+    print("\n\nTesting Observer Pattern:")
+    test_observer_main()
+
+    print("\n\nTesting State Pattern:")
+    test_state_main()
+
+    print("\n\nTesting Strategy Pattern:")
+    test_strategy_main()
+
+    print("\n\nTesting Template Method Pattern:")
+    test_template_main()
+
+    print("\n\nTesting Visitor Pattern:")
+    test_visitor_main()
+
+    print("\n\nTesting Memento Pattern:")
+    test_memento_main()
+
+    print("\n\nTesting Mediator Pattern:")
+    test_mediator_main()
+
+    print("\n\nTesting Memoize Pattern:")
+    test_memoize_main()
+
+    # print("\n\nTesting Event Queue Pattern:")
+    # test_event_queue_main()
+
+    # print("\n\nTesting Thread Pool Pattern:")
+    # test_thread_pool_main()
+
+    # print("\n\nTesting Web Scraper Pattern:")
+    # test_scraper_main()
+
+    # print("\n\nTesting Zip File Pattern:")
+    # test_zip_file_main()
 
     #===========================================================================#
     print()
