@@ -8,7 +8,7 @@ Welcome to the NovaSystem, a pioneering problem-solving method developed by AIEC
 # 🌟 Introducing NovaGPT
 Big Announcement: Experience NovaGPT, a live instance of the Nova Process.
 
-### ➡️ Click to Try NovaGPT Now! ⬅️
+### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
 Dive into the future of AI-driven problem-solving and innovation today.
 
 #### What can NovaGPT do?
