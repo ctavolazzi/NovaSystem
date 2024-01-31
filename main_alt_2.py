@@ -1,10 +1,6 @@
-# main.py
-from src.novasystem.cli import cli
-
 import os
 import json
-# Commenting out OpenAI for the skeleton; uncomment in the actual implementation
-# import openai
+import openai  # Ensure you've installed the openai package
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,8 +8,7 @@ load_dotenv()
 class ConfigManager:
     def __init__(self):
         self.api_key = os.getenv("OPENAI_API_KEY")
-        # Setting the API key for OpenAI
-        # openai.api_key = self.api_key
+        openai.api_key = self.api_key  # Setting the API key for OpenAI
 
 class StateManager:
     def __init__(self):
@@ -30,6 +25,12 @@ class StateManager:
 
     def query_state(self, key):
         return self.state.get(key, "Unknown")
+# Updated Implementation incorporating all the changes
+
+import os
+import json
+# Commenting out OpenAI for the skeleton; uncomment in the actual implementation
+# import openai
 
 class BBot:
     def __init__(self):
@@ -77,47 +78,67 @@ def validate_input(attribute, user_input):
         return "@" in user_input
     return True  # Placeholder for other attributes
 
-def greet_user(user_data):
-    if user_data:
-        return f"Howdy, {user_data.get('name', 'pardner! 🤠')}! Let's continue, shall we?"
-    else:
-        return "Hello! Let's get started."
+def conduct_conversation():
+    bbot = BBot()
+    user_data = {}
 
-def setup_user(user_setup, user_data):
+    # Check if user.json exists and is readable
+    if read_json_file('user.json'):
+        user_data = read_json_file('user.json')
+        print(f"Hello again, {user_data.get('name', 'there')}! Let's continue, shall we?")
+    else:
+        user_setup = read_json_file('user_setup.json')
+        if user_setup is None:
+            print("Error: user_setup.json not found.")
+            return
+
     previous_user_inputs = []
     max_attempts = 4
+
     for attribute in user_setup['user'].keys():
         if attribute in user_data:
             continue
+
         attempts = 0
         valid_input = False
+
         while not valid_input and attempts < max_attempts:
-            question = BBot().fetch_openai_chatcompletion(attribute)
+            question = bbot.fetch_openai_chatcompletion(attribute)
             print(question)
             user_input = input("> ")
             previous_user_inputs.append(user_input)
+
             valid_input = validate_input(attribute, user_input)
             if not valid_input:
                 attempts += 1
-                error_message = BBot().get_error_message(attempts)
+                error_message = bbot.get_error_message(attempts)
                 print(error_message)
+
         if valid_input:
             user_data[attribute] = user_input if attribute != 'age' else int(user_input)
 
-if __name__ == "__main__":
+    write_json_file('user.json', user_data)
+    print("User data has been saved.")
+
+
+def main():
     config = ConfigManager()
     state_manager = StateManager()
-    bbot = BBot()
-    user_data = read_json_file('user.json')
-    user_setup = read_json_file('user_setup.json')
-    if user_setup is None:
-        print("Error: user_setup.json not found.")
-    else:
-        greeting = greet_user(user_data)
-        print(greeting)
-        if not user_data:
-            user_data = {}
-        setup_user(user_setup, user_data)
-        write_json_file('user.json', user_data)
-        print("User data has been saved.")
-    cli()
+    bbot = BBot(config, state_manager)
+
+    while True:
+        user_input = input("You: ")
+        bbot.add_message("user", user_input)
+        rule_based_response = bbot.rule_based_answer(user_input)
+
+        if rule_based_response:
+            print(f"BBot: {rule_based_response}")
+        else:
+            gpt_response = bbot.get_gpt_response()
+            print(f"BBot: {gpt_response}")
+
+        if user_input.lower() == "quit":
+            break
+
+if __name__ == "__main__":
+    main()
