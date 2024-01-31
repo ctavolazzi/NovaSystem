@@ -1,0 +1,7 @@
+Total files processed: 79
+File types distribution:
+  File: 79
+MIME types distribution:
+  text/x-python: 71
+  Unknown: 1
+  text/plain: 7

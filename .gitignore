@@ -38,6 +38,8 @@ ENV/
 env/
 env.bak/
 venv.bak/
+novasdk/
+novagpt/
 
 ## Spyder project settings
 .spyderproject
@@ -121,3 +123,7 @@ build/
 NovaSystem_file_structure_*.txt
 *.tmp
 *.temp
+
+
+__pycache__/
+*.pyc
