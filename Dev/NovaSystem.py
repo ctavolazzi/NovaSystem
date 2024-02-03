@@ -1,7 +1,6 @@
 # Imports
 import os
 from NovaHelper import NovaHelper, stc
-<<<<<<< HEAD
 import openai
 import os
 from dotenv import load_dotenv
@@ -11,9 +10,6 @@ load_dotenv()
 
 # Retrieve and debug the OpenAI API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
-=======
-
->>>>>>> b6f8c82 (🪄 📌 🔎x)
 
 '''
 The Nova System is an innovative use of AI that allows the AI to dynamically spin up multiple "Experts" that all weigh in on a single problem with multifaceted perspectives and solutions.
@@ -38,20 +34,11 @@ DCE: The DCE weaves the discussion together, summarizing each stage concisely to
 
 CAE: The CAE evaluates proposed strategies, highlighting potential flaws and substantiating their critique with data, evidence, or reasoning.
 '''
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a7bca48 (Your descriptive commit message here)
+
 '''
 This draft is a proof of concept for the NovaSystem. It is a simple implementation of the NovaSystem that uses a single Expert,the AI Tribunal, represented as three separate calls to OpenAI in a recursive iteravtive manner. This recursive iteration is the first step in the NovaSystem's ability to dynamically spin up multiple Experts that all weigh in on a single problem with multifaceted perspectives and solutions.
 '''
 
-
-<<<<<<< HEAD
-=======
->>>>>>> b6f8c82 (🪄 📌 🔎x)
-=======
->>>>>>> a7bca48 (Your descriptive commit message here)
 
 class NovaSystem:
   _DEFAULT_CONFIG = {
@@ -60,20 +47,14 @@ class NovaSystem:
     "version": 0.0,
     "author": "Christopher Tavolazzi",
     "description": "The Nova System is an innovative use of AI that allows the AI to dynamically spin up multiple Experts that all weigh in on a single problem with multifaceted perspectives and solutions.",
-<<<<<<< HEAD
     "duty": "Central Controller",
-=======
     "duty": "NovaSystem",
->>>>>>> b6f8c82 (🪄 📌 🔎x)
     "experts": [NovaHelper()]
   }
 
   def __init__(self, config=None):
-<<<<<<< HEAD
     self.helper = NovaHelper()
     self.stc = self.helper.stc
-=======
->>>>>>> b6f8c82 (🪄 📌 🔎x)
     self.config = {}
     self.config = self.load_default_config()
     self.set_id()
@@ -84,17 +65,14 @@ class NovaSystem:
   def load_default_config(self):
     stc(f'Loading default config for {self._DEFAULT_CONFIG["duty"]}...\n')
     for key, value in self._DEFAULT_CONFIG.items():
-<<<<<<< HEAD
       # print(f'{key}: {value}')
       self.config[key] = value
       # print(f'{self.config[key]} loaded successfully.\n')
     stc(f'Config loaded successfully.\n')
     return self.config
-=======
       print(f'{key}: {value}')
       self.config[key] = value
     stc(f'Config loaded successfully.\n')
->>>>>>> b6f8c82 (🪄 📌 🔎x)
 
   def set_name(self):
     if not hasattr(self, 'name'):
@@ -128,16 +106,12 @@ class NovaSystem:
     # First, check the config to make sure it is not empty and has the required keys
     # Next, check the object to make sure it has the required attributes
     # Finally, run the test() method to make sure the object is set up and ready to run
-<<<<<<< HEAD
     self.stc(f'Running startup tests for {self.name}...\n\n')
-=======
     self.stc(f'Running startup tests for {self.name}...\n')
->>>>>>> b6f8c82 (🪄 📌 🔎x)
 
   def test(self):
     # Run tests
 
-<<<<<<< HEAD
     classname = self.__class__.__name__
     duty = self.config['duty']
 
@@ -197,7 +171,6 @@ if __name__ == "__main__":
   nova = NovaSystem()
   nova.test()
   nova.wait_for_user_input_and_call_openai()
-=======
     self.classname = self.__class__.__name__
     self.stc(f'Testing {self.classname} || ID: {self.id}\n...')
 
@@ -210,4 +183,3 @@ if __name__ == "__main__":
 if __name__ == "__main__":
   nova_system = NovaSystem()
   nova_system.test()
->>>>>>> b6f8c82 (🪄 📌 🔎x)

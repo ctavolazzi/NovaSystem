@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a7bca48 (Your descriptive commit message here)
 # Define the Base Arbiter Class
 class BaseArbiter:
     def ask_question(self, question):
