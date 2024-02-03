@@ -70,9 +70,6 @@ class NovaSystem:
       # print(f'{self.config[key]} loaded successfully.\n')
     stc(f'Config loaded successfully.\n')
     return self.config
-      print(f'{key}: {value}')
-      self.config[key] = value
-    stc(f'Config loaded successfully.\n')
 
   def set_name(self):
     if not hasattr(self, 'name'):
@@ -171,14 +168,6 @@ if __name__ == "__main__":
   nova = NovaSystem()
   nova.test()
   nova.wait_for_user_input_and_call_openai()
-    self.classname = self.__class__.__name__
-    self.stc(f'Testing {self.classname} || ID: {self.id}\n...')
-
-    self.stc(f'{self.classname} instantiated successfully with "duty": {self.duty} and "config":\n')
-    for key, value in self.config:
-      print(f'{key}: {value}')
-    print(f'\n')
-    self.stc(f'{self.classname} test complete.\n')
 
 if __name__ == "__main__":
   nova_system = NovaSystem()
