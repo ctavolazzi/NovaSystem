@@ -39,7 +39,6 @@ CAE: The CAE evaluates proposed strategies, highlighting potential flaws and sub
 This draft is a proof of concept for the NovaSystem. It is a simple implementation of the NovaSystem that uses a single Expert,the AI Tribunal, represented as three separate calls to OpenAI in a recursive iteravtive manner. This recursive iteration is the first step in the NovaSystem's ability to dynamically spin up multiple Experts that all weigh in on a single problem with multifaceted perspectives and solutions.
 '''
 
-
 class NovaSystem:
   _DEFAULT_CONFIG = {
     "id": 00,
@@ -70,6 +69,7 @@ class NovaSystem:
       # print(f'{self.config[key]} loaded successfully.\n')
     stc(f'Config loaded successfully.\n')
     return self.config
+
 
   def set_name(self):
     if not hasattr(self, 'name'):
@@ -104,8 +104,7 @@ class NovaSystem:
     # Next, check the object to make sure it has the required attributes
     # Finally, run the test() method to make sure the object is set up and ready to run
     self.stc(f'Running startup tests for {self.name}...\n\n')
-    self.stc(f'Running startup tests for {self.name}...\n')
-
+  
   def test(self):
     # Run tests
 
