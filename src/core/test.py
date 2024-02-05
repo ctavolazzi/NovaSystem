@@ -36,3 +36,9 @@ user_proxy = UserProxyAgent(
 
 # Initiate a chat between the two agents to perform a task
 user_proxy.initiate_chat(assistant, message="Plot a chart of NVDA and TESLA stock price change YTD.")
+
+def main():
+    print("main worked")
+
+if __name__ == "main":
+    main()
