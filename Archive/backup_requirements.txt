@@ -50,7 +50,7 @@ smmap==5.0.1
 stevedore==5.1.0
 tomlkit==0.12.1
 tqdm==4.66.1
-urllib3==2.0.6
+urllib3==2.2.0
 Werkzeug==3.0.0
 wrapt==1.15.0
 wsproto==1.2.0
