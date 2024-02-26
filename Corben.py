@@ -1,2 +1,0 @@
-# Example user class
-
