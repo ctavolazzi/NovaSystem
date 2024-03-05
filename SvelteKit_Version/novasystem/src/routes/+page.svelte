@@ -1,37 +1,48 @@
+<!-- src/routes/+page.svelte -->
 <script>
-	import Counter from '$lib/components/Counter.svelte';
+	import { writable } from 'svelte/store';
 	import ChatInput from '$lib/components/ChatInput.svelte';
 	import MessageList from '$lib/components/MessageList.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	
+	const messages = writable([]);
+	let inputMessage = '';
+	
+	async function sendMessage() {
+	  const content = inputMessage.trim();
+	  if (content) {
+		messages.update(current => [...current, { role: 'user', content }]);
+		inputMessage = '';
+	
+		const response = await fetch('/api/chat', {
+		  method: 'POST',
+		  headers: {
+			'Content-Type': 'application/json'
+		  },
+		  body: JSON.stringify({ messages: [{ role: 'user', content }] })
+		});
+	
+		if (response.ok) {
+		  const { response: aiResponse } = await response.json();
+		  messages.update(current => [...current, { role: 'ai', content: aiResponse }]);
+		} else {
+		  console.error('Failed to send message');
+		}
+	  }
+	}
   </script>
   
   <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Chat with AI</title>
   </svelte:head>
   
   <section>
-	<h1>
-	  <span class="welcome">
-		<picture>
-		  <source srcset={welcome} type="image/webp" />
-		  <img src={welcome_fallback} alt="Welcome" />
-		</picture>
-	  </span>
-	  to your new<br />SvelteKit app
-	</h1>
-  
-	<h2>
-	  try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-  
-	<Counter />
-	<MessageList />
-	<ChatInput />
+	<MessageList {messages} />
+	<ChatInput bind:value={inputMessage} on:sendMessage={sendMessage} />
   </section>
   
-  <!-- Existing styles can remain as is -->
+
+  
+
   
 
 <style>
