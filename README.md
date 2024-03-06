@@ -95,7 +95,7 @@ The DCE dynamically orchestrates trained models for various tasks such as adviso
 Nova Process progresses iteratively through these key stages:
 
 1. **Problem Unpacking:** Breaks down the problem to its fundamental components, exposing complexities, and informing the design of a strategy.
-2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert contributes initial solutions that are refined in subsequent stages.
+2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert and agent contributes initial solutions that are refined in subsequent stages.
 3. **Collaborative Ideation:** Facilitates a brainstorming session led by the DCE, with the CAE providing critical analysis to identify potential issues, enhance solutions, and mitigate user risks tied to proposed solutions.
 
 ## 3. Understanding the Roles <a name="understanding-the-roles"></a>
@@ -115,14 +115,14 @@ Iteration #: Iteration Title
 DCE's Instructions:
 {Instructions and feedback from the previous iteration}
 
-Expert 1 Input:
-{Expert 1 input}
+Agent 1 Input:
+{Agent 1 input}
 
-Expert 2 Input:
-{Expert 2 input}
+Agent 2 Input:
+{Agent 2 input}
 
-Expert 3 Input:
-{Expert 3 input}
+Agent 3 Input:
+{Agent 3 input}
 
 CAE's Input:
 {CAE's input}
@@ -153,15 +153,15 @@ Roles:
 DCE: You will connect the discussion points, summarizing each stage and directing the conversation towards coherent progression.
 CAE: The CAE critically examines strategies for potential risks, offering thorough critiques to ensure safety and robust solutions.
 Output Format:
-Your responses should follow this structure, with inputs from the perspective of the respective experts:
+Your responses should follow this structure, with inputs from the perspective of the respective agents:
 
 Iteration #: [Iteration Title]
 
 DCE's Instructions:
 [Feedback and guidance from the previous iteration]
 
-Expert Inputs:
-[Inputs from each expert, formatted individually]
+Agent Inputs:
+[Inputs from each agent, formatted individually]
 
 CAE's Input:
 [Critical analysis and safety considerations from the CAE]
