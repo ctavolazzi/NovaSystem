@@ -4,6 +4,7 @@ FROM node:16-slim
 
 # Create and change to the app directory.
 WORKDIR /Users/ctavolazzi/Code/NovaSystem/novasystem-svelte-docker
+# WORKDIR /app // This is the original line
 
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure both package.json AND package-lock.json are copied.

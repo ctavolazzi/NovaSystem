@@ -1,8 +1,11 @@
 <script>
 	export let name;
+	import Viewport from './components/Viewport.svelte';
+	let content = "Welcome to NovaSystem!";
 </script>
 
 <main>
+	<Viewport {content} />
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	<p>Welcome to the Dockerized NovaSystem application.</p>
@@ -11,7 +14,8 @@
 	<p>npm install</p>
 	<p>npm run dev</p>
 	<p>docker-compose up --build</p>
-	<p>If you understand the structure and get this working, please feel compelled to make changes and then make a PR to the main NovaSystem repository, located <a href="https://www.github.com/ctavolazzi/NovaSystem">here: NovaSystem GitHub</a></p>
+	<p>If you understand the structure and get this working, please feel compelled to make changes and then make a PR to the main NovaSystem repository, located <a href="https://www.github.com/ctavolazzi/NovaSystem
+		">here: NovaSystem GitHub</a></p>
 	<p>Good luck!</p>
 </main>
 
