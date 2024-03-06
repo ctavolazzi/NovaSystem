@@ -1,6 +1,6 @@
-# Use the official lightweight Node.js 16 image.
+# Use the official lightweight Node.js 18 image.
 # https://hub.docker.com/_/node
-FROM node:16-slim
+FROM node:18-slim
 
 # Create and change to the app directory.
 WORKDIR /Users/ctavolazzi/Code/NovaSystem/novasystem-svelte-docker
@@ -28,6 +28,3 @@ ENV HOST=0.0.0.0
 
 # Start the Svelte development server on all interfaces
 CMD ["npm", "run", "dev", "--", "--host", "localhost", "--port", "8080"]
-
-
-
