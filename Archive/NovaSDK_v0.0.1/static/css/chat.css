@@ -1,0 +1,32 @@
+/* chat.css located in the static/css directory */
+#chat-container {
+  max-width: 600px;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#messages-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#messages-list li {
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+#message-form {
+  margin-top: 20px;
+}
+
+#message-input {
+  width: 80%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
