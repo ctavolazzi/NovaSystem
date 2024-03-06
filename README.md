@@ -2,10 +2,10 @@
 
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
 # 🌟 Introducing NovaGPT
-Big Announcement: Experience NovaGPT, a live instance of the Nova Process.
+Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
 
 ### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
 Dive into the future of AI-driven problem-solving and innovation today.
@@ -17,6 +17,47 @@ Dive into the future of AI-driven problem-solving and innovation today.
 - **Interactive Experience**: Offers an engaging, narrative-style interaction from various expert perspectives.
 - **Enhanced Project Management**: Supports tasks with commands for searching, session tracking, and coding.
 - **Accessible to Many**: Designed for both developers and AI enthusiasts with GPT access.
+
+# 🚀 Important Update for NovaSystem Users
+
+We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-svelte-docker` directory. This is where you'll find the latest and greatest of what we've been building.
+
+## 🌐 Focus on Svelte Front End
+
+**Current Priority:** Our immediate goal is to get a Svelte-based front end up and running. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
+
+### Why Svelte?
+
+Svelte offers a unique approach to building web interfaces. Unlike traditional frameworks that do most of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app. This results in highly optimized JavaScript that starts fast and stays fast.
+
+### User Testing: Your Role
+
+User testing is not just about catching bugs. It's about understanding how real users interact with our application. Your insights will directly influence the development path we take, ensuring that we build a product that truly meets the needs of our users.
+
+### How to Get Started
+
+For those ready to dive in, here’s a quick guide to get you started:
+
+1. **Clone the repository (if you haven't already):**
+
+```
+git clone https://github.com/ctavolazzi/NovaSystem.git
+```
+
+2. **Navigate to the `novasystem-svelte-docker` directory:**
+
+```
+cd NovaSystem/novasystem-svelte-docker
+```
+
+3. **Follow the instructions in the README.md for setting up your development environment.**
+
+Your participation and feedback are crucial to the iterative development process we're embracing. Together, we can shape the future of problem-solving with AI.
+
+Thank you for being a part of this journey. Let's make something amazing!
+
+For any questions or if you run into issues, please don't hesitate to reach out through our GitHub issues page.
+
 
 ## Table of Contents
 
@@ -54,7 +95,7 @@ The DCE dynamically orchestrates trained models for various tasks such as adviso
 Nova Process progresses iteratively through these key stages:
 
 1. **Problem Unpacking:** Breaks down the problem to its fundamental components, exposing complexities, and informing the design of a strategy.
-2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert contributes initial solutions that are refined in subsequent stages.
+2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert and agent contributes initial solutions that are refined in subsequent stages.
 3. **Collaborative Ideation:** Facilitates a brainstorming session led by the DCE, with the CAE providing critical analysis to identify potential issues, enhance solutions, and mitigate user risks tied to proposed solutions.
 
 ## 3. Understanding the Roles <a name="understanding-the-roles"></a>
@@ -74,14 +115,14 @@ Iteration #: Iteration Title
 DCE's Instructions:
 {Instructions and feedback from the previous iteration}
 
-Expert 1 Input:
-{Expert 1 input}
+Agent 1 Input:
+{Agent 1 input}
 
-Expert 2 Input:
-{Expert 2 input}
+Agent 2 Input:
+{Agent 2 input}
 
-Expert 3 Input:
-{Expert 3 input}
+Agent 3 Input:
+{Agent 3 input}
 
 CAE's Input:
 {CAE's input}
@@ -112,15 +153,15 @@ Roles:
 DCE: You will connect the discussion points, summarizing each stage and directing the conversation towards coherent progression.
 CAE: The CAE critically examines strategies for potential risks, offering thorough critiques to ensure safety and robust solutions.
 Output Format:
-Your responses should follow this structure, with inputs from the perspective of the respective experts:
+Your responses should follow this structure, with inputs from the perspective of the respective agents:
 
 Iteration #: [Iteration Title]
 
 DCE's Instructions:
 [Feedback and guidance from the previous iteration]
 
-Expert Inputs:
-[Inputs from each expert, formatted individually]
+Agent Inputs:
+[Inputs from each agent, formatted individually]
 
 CAE's Input:
 [Critical analysis and safety considerations from the CAE]
