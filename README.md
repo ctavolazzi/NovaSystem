@@ -4,6 +4,20 @@
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
+# 🌟 Introducing NovaGPT
+Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
+
+### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
+Dive into the future of AI-driven problem-solving and innovation today.
+
+#### What can NovaGPT do?
+- **Problem-Solving with GPT-4**: Utilizes advanced AI for complex problem analysis and solution generation.
+- **Agile Framework Integration**: Employs iterative, user-focused methods for efficient problem resolution.
+- **Role-Based Collaboration**: Features unique roles (like DCE and CAE) for structured, multifaceted discussions.
+- **Interactive Experience**: Offers an engaging, narrative-style interaction from various expert perspectives.
+- **Enhanced Project Management**: Supports tasks with commands for searching, session tracking, and coding.
+- **Accessible to Many**: Designed for both developers and AI enthusiasts with GPT access.
+
 # 🚀 Important Update for NovaSystem Users
 
 We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-svelte-docker` directory. This is where you'll find the latest and greatest of what we've been building.
@@ -42,27 +56,8 @@ Your participation and feedback are crucial to the iterative development process
 
 Thank you for being a part of this journey. Let's make something amazing!
 
-![NovaGPT_Banner_Official](https://github.com/ctavolazzi/NovaSystem/assets/61925030/d8229897-b748-448a-8c3f-d70c08a505f4)
-
----
-
 For any questions or if you run into issues, please don't hesitate to reach out through our GitHub issues page.
 
-
-
-# 🌟 Introducing NovaGPT
-Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
-
-### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
-Dive into the future of AI-driven problem-solving and innovation today.
-
-#### What can NovaGPT do?
-- **Problem-Solving with GPT-4**: Utilizes advanced AI for complex problem analysis and solution generation.
-- **Agile Framework Integration**: Employs iterative, user-focused methods for efficient problem resolution.
-- **Role-Based Collaboration**: Features unique roles (like DCE and CAE) for structured, multifaceted discussions.
-- **Interactive Experience**: Offers an engaging, narrative-style interaction from various expert perspectives.
-- **Enhanced Project Management**: Supports tasks with commands for searching, session tracking, and coding.
-- **Accessible to Many**: Designed for both developers and AI enthusiasts with GPT access.
 
 ## Table of Contents
 
