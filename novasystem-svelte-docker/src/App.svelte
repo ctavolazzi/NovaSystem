@@ -1,6 +1,6 @@
 <script>
 	export let name;
-	import Viewport from './components/Viewport.svelte';
+	import Viewport from './components/viewport/Viewport.svelte';
 	let content = "Welcome to NovaSystem!";
 </script>
 
