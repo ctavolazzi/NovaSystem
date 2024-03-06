@@ -2,10 +2,56 @@
 
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
+
+# 🚀 Important Update for NovaSystem Users
+
+We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-svelte-docker` directory. This is where you'll find the latest and greatest of what we've been building.
+
+## 🌐 Focus on Svelte Front End
+
+**Current Priority:** Our immediate goal is to get a Svelte-based front end up and running. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
+
+### Why Svelte?
+
+Svelte offers a unique approach to building web interfaces. Unlike traditional frameworks that do most of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app. This results in highly optimized JavaScript that starts fast and stays fast.
+
+### User Testing: Your Role
+
+User testing is not just about catching bugs. It's about understanding how real users interact with our application. Your insights will directly influence the development path we take, ensuring that we build a product that truly meets the needs of our users.
+
+### How to Get Started
+
+For those ready to dive in, here’s a quick guide to get you started:
+
+1. **Clone the repository (if you haven't already):**
+
+```
+git clone https://github.com/ctavolazzi/NovaSystem.git
+```
+
+2. **Navigate to the `novasystem-svelte-docker` directory:**
+
+```
+cd NovaSystem/novasystem-svelte-docker
+```
+
+3. **Follow the instructions in the README.md for setting up your development environment.**
+
+Your participation and feedback are crucial to the iterative development process we're embracing. Together, we can shape the future of problem-solving with AI.
+
+Thank you for being a part of this journey. Let's make something amazing!
+
+![NovaGPT_Banner_Official](https://github.com/ctavolazzi/NovaSystem/assets/61925030/d8229897-b748-448a-8c3f-d70c08a505f4)
+
+---
+
+For any questions or if you run into issues, please don't hesitate to reach out through our GitHub issues page.
+
+
 
 # 🌟 Introducing NovaGPT
-Big Announcement: Experience NovaGPT, a live instance of the Nova Process.
+Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
 
 ### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
 Dive into the future of AI-driven problem-solving and innovation today.
