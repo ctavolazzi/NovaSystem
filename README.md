@@ -1,4 +1,3 @@
-
 ![NovaGPT_Banner_Official](https://github.com/ctavolazzi/NovaSystem/assets/61925030/d8229897-b748-448a-8c3f-d70c08a505f4)
 
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM

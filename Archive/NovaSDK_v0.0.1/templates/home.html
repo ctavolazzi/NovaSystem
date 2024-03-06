@@ -1,0 +1,41 @@
+<!-- home.html located in the templates directory -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- Conversation Selector -->
+    <select id="conversation-select">
+        <!-- Options will be dynamically populated -->
+    </select>
+
+    <!-- Chat Window -->
+    <div id="chat-window">
+        <!-- Messages will be dynamically added here -->
+    </div>
+
+    <div id="chat-container">
+        <!-- Chat messages will be displayed here -->
+        <ul id="messages-list">
+            {% for message in messages %}
+                <li><strong>User:</strong> {{ message.user_message }}</li>
+                <li><strong>AI:</strong> {{ message.ai_response }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Form for sending messages -->
+    <form id="message-form" action="/send_message" method="POST">
+        <input type="text" id="message-input" name="message" placeholder="Type your message here..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    <!-- JavaScript to handle sending messages and updating the chat interface -->
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
