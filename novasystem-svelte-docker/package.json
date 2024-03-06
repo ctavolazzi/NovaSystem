@@ -19,6 +19,8 @@
     "svelte": "^3.55.0"
   },
   "dependencies": {
+    "ai": "^3.0.7",
+    "openai": "^4.28.4",
     "sirv-cli": "^2.0.0"
   }
 }

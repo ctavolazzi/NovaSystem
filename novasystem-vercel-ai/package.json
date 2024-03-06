@@ -1,5 +1,5 @@
 {
-	"name": "svelte-client-test",
+	"name": "novasystem-vercel-ai",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -14,5 +14,11 @@
 		"svelte": "^4.2.7",
 		"vite": "^5.0.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"ai": "^3.0.7",
+		"marked": "^12.0.1",
+		"openai": "^4.28.4",
+		"writable": "^0.1.0"
+	}
 }
