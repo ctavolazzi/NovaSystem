@@ -1,3 +1,5 @@
+/Users/ctavolazzi/Code/NovaSystem/novasystem-vercel-ai/src/routes/+page.svelte
+
 <script>
   import { useChat } from 'ai/svelte';
  
