@@ -1,9 +1,0 @@
-version: '3.8'
-services:
-  svelte-app:
-    build: .
-    ports:
-      - '8080:8080' # Expose the port used by Svelte, adjust if your app uses a different port
-    volumes:
-      - '.:/usr/src/app' # Mount the project directory to the working directory in the container
-      - '/usr/src/app/node_modules' # Use a volume to persist node_modules
