@@ -4,7 +4,14 @@
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
-# 🌟 Introducing NovaGPT
+### _Now updated to the Daisy Sprocker tech stack!_
+- Daisy UI
+- SvelteKit
+- PocketBase
+- Redis
+- Docker
+
+# 🌟 Try it now! Introducing NovaGPT
 Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
 
 ### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
@@ -20,11 +27,11 @@ Dive into the future of AI-driven problem-solving and innovation today.
 
 # 🚀 Important Update for NovaSystem Users
 
-We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-svelte-docker` directory. This is where you'll find the latest and greatest of what we've been building.
+We're making strides with NovaSystem, but it is very much still in the pre-alpha stage. To ensure you're working with the most recent version of our application, please use the "dev" branch.
 
 ## 🌐 Focus on Svelte Front End
 
-**Current Priority:** Our immediate goal is to get a Svelte-based front end up and running. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
+**Current Priority:** Our immediate goal is to get a SvelteKit front end working for most users. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
 
 ### Why Svelte?
 
@@ -44,13 +51,7 @@ For those ready to dive in, here’s a quick guide to get you started:
 git clone https://github.com/ctavolazzi/NovaSystem.git
 ```
 
-2. **Navigate to the `novasystem-svelte-docker` directory:**
-
-```
-cd NovaSystem/novasystem-svelte-docker
-```
-
-3. **Follow the instructions in the README.md for setting up your development environment.**
+2. **Follow the instructions in the README.md for setting up your development environment.**
 
 Your participation and feedback are crucial to the iterative development process we're embracing. Together, we can shape the future of problem-solving with AI.
 
