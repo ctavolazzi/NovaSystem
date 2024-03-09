@@ -1,4 +1,0 @@
-=== Summary ===
-Total Files Processed: 5
-File Type 'File': 5 files
-MIME Type 'text/x-python': 5 files
