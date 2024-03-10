@@ -4,6 +4,8 @@
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
+[![ctavolazzi's GitHub stats](https://github-readme-stats.vercel.app/api?username=ctavolazzi)](https://github.com/anuraghazra/github-readme-stats)
+
 ### _Now updated to the Daisy Sprocker tech stack!_
 - Daisy UI
 - SvelteKit
