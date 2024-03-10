@@ -9,7 +9,7 @@ import subprocess
 import stat
 from pathlib import Path
 
-from stream_to_console import stc
+from helpers.stream_to_console import stc
 
 
 
