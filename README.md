@@ -4,7 +4,14 @@
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
-# 🌟 Introducing NovaGPT
+### _Now updated to the Daisy Sprocker tech stack!_
+- Daisy UI
+- SvelteKit
+- PocketBase
+- Redis
+- Docker
+
+# 🌟 Try it now! Introducing NovaGPT
 Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
 
 ### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
@@ -24,7 +31,7 @@ We're making strides with NovaSystem and have a crucial update for everyone invo
 
 ## 🌐 Focus on Svelte Front End
 
-**Current Priority:** Our immediate goal is to get a Svelte-based front end up and running. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
+**Current Priority:** Our immediate goal is to get a SvelteKit front end working for most users. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
 
 ### Why Svelte?
 
@@ -52,8 +59,8 @@ cd NovaSystem/novasystem-app
 
 3. **Follow the instructions in the README.md for setting up your development environment.**
 
-1. run ```./pocketbase serve``` from the `novasystem-app` directory
-2. run ```npm run dev``` from the `novasystem-app/client` directory
+- run ```./pocketbase serve``` from the `novasystem-app` directory
+- run ```npm run dev``` from the `novasystem-app/client` directory
 
 Your participation and feedback are crucial to the iterative development process we're embracing. Together, we can shape the future of problem-solving with AI.
 
