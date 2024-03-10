@@ -27,7 +27,7 @@ Dive into the future of AI-driven problem-solving and innovation today.
 
 # 🚀 Important Update for NovaSystem Users
 
-We're making strides with NovaSystem, but it is very much still in the pre-alpha stage. To ensure you're working with the most recent version of our application, please use the "dev" branch.
+We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-app` directory. This is where you'll find the latest and greatest of what we've been building.
 
 ## 🌐 Focus on Svelte Front End
 
@@ -51,7 +51,16 @@ For those ready to dive in, here’s a quick guide to get you started:
 git clone https://github.com/ctavolazzi/NovaSystem.git
 ```
 
-2. **Follow the instructions in the README.md for setting up your development environment.**
+2. **Navigate to the `novasystem-app` directory:**
+
+```
+cd NovaSystem/novasystem-app
+```
+
+3. **Follow the instructions in the README.md for setting up your development environment.**
+
+- run ```./pocketbase serve``` from the `novasystem-app` directory
+- run ```npm run dev``` from the `novasystem-app/client` directory
 
 Your participation and feedback are crucial to the iterative development process we're embracing. Together, we can shape the future of problem-solving with AI.
 
@@ -62,12 +71,23 @@ For any questions or if you run into issues, please don't hesitate to reach out 
 
 ## Table of Contents
 
+- [NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM](#novasystem-a-next-generation-problem-solving-framework-for-gpt-4-or-comparable-llm)
+- [🌟 Introducing NovaGPT](#-introducing-novagpt)
+    - [➡️ Click to Try NovaGPT Now! ⬅️](#️-click-to-try-novagpt-now-️)
+      - [What can NovaGPT do?](#what-can-novagpt-do)
+- [🚀 Important Update for NovaSystem Users](#-important-update-for-novasystem-users)
+  - [🌐 Focus on Svelte Front End](#-focus-on-svelte-front-end)
+    - [Why Svelte?](#why-svelte)
+    - [User Testing: Your Role](#user-testing-your-role)
+    - [How to Get Started](#how-to-get-started)
+  - [Table of Contents](#table-of-contents)
   - [1. About Nova Process ](#1-about-nova-process-)
   - [2. Stages of the Nova Process ](#2-stages-of-the-nova-process-)
   - [3. Understanding the Roles ](#3-understanding-the-roles-)
   - [4. Example Output Structure ](#4-example-output-structure-)
   - [5. Getting Started with Nova Process ](#5-getting-started-with-nova-process-)
-      - [**Nova Prompt**](#nova-prompt)
+    - [Nova Prompt ](#nova-prompt-)
+    - [Nova Work Effort Prompt Template ](#nova-work-effort-prompt-template-)
   - [6. Continuing the Nova Process ](#6-continuing-the-nova-process-)
     - [Standard Continuation Example:](#standard-continuation-example)
     - [Advanced Continuation Example:](#advanced-continuation-example)
