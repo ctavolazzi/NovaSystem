@@ -62,11 +62,11 @@ cd NovaSystem/novasystem-app
 - run ```./pocketbase serve``` from the `novasystem-app` directory
 - run ```npm run dev``` from the `novasystem-app/client` directory
 
-Your participation and feedback are crucial to the iterative development process we're embracing. Together, we can shape the future of problem-solving with AI.
-
-Thank you for being a part of this journey. Let's make something amazing!
+Your participation and feedback are crucial to the iterative development process.
 
 For any questions or if you run into issues, please don't hesitate to reach out through our GitHub issues page.
+
+Thank you for being a part of this journey. Now go make something amazing!
 
 
 ## Table of Contents
