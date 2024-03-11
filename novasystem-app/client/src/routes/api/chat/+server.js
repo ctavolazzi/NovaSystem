@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { OPENAI_API_KEY } from '$env/static/private';
 
-console.log("OPENAI_API_KEY", OPENAI_API_KEY);
+// console.log("OPENAI_API_KEY", OPENAI_API_KEY);
  
 // Create an OpenAI API client (that's edge friendly!)
 const openai = new OpenAI({
