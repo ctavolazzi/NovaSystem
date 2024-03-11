@@ -73,3 +73,34 @@
     <button class="chat-button" type="submit">Send</button>
   </form>
 </div>
+
+
+<!-- App.svelte -->
+<script>
+  import Navbar from './components/Navbar.svelte';
+  import Viewport from './components/Viewport.svelte';
+  import Terminal from './components/Terminal.svelte';
+  import Sidebar from './components/Sidebar.svelte';
+</script>
+
+<div class="app-container">
+  <Navbar />
+  <div class="main-content">
+    <Viewport />
+    <Terminal />
+  </div>
+  <Sidebar />
+</div>
+
+<style>
+  .app-container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
