@@ -4,12 +4,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Get the API keys from environment variables
-serper_api_key = os.getenv("SERPER_API_KEY")
-openai_api_key = os.getenv("OPENAI_API_KEY")
-
 # Set the API keys in the environment
-os.environ["SERPER_API_KEY"] = serper_api_key
-os.environ["OPENAI_API_KEY"] = openai_api_key
+os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 from crewai import Agent
 from crewai_tools import SerperDevTool
