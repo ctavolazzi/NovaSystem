@@ -188,104 +188,138 @@
 
 
 import os
+import logging
+from configparser import ConfigParser
+from crewai import Agent, Crew, Task
+from crewai_tools import BaseTool, DirectoryReadTool, FileReadTool, tool
+
+# Load configuration settings
+config = ConfigParser()
+config.read('config.ini')
+logging_level = config.get('Settings', 'logging_level', fallback='INFO')
+default_document_dir = config.get('Settings', 'default_document_dir', fallback='')
+
+# Load environment variables
 from dotenv import load_dotenv
 load_dotenv()
-
+os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
-from crewai import Agent, Task, Crew, Process
-from crewai_tools import SerperDevTool
+# Configure logging
+logging.basicConfig(level=logging_level, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Assuming 'SerperDevTool' can be repurposed for searching creative writing insights or replaced with a suitable tool
-story_tool = SerperDevTool()
+# Instantiate tools
+directory_read_tool = DirectoryReadTool()
+file_read_tool = FileReadTool()
 
-# Agents focused on different aspects of story creation
-plot_developer = Agent(
-    role='Plot Developer',
-    goal='Develop the plot for "Teleport Massive"',
+@tool("Plain Text Document Processor")
+def document_processor(document_content: str) -> str:
+    """Processes plain text document contents."""
+    return document_content.strip()
+
+# Instantiate agents
+insights_extractor = Agent(
+    role='Insights Extractor',
+    goal='Extract key insights from the processed document content.',
+    backstory='An expert in identifying and summarizing key points from plain text documents.',
+    max_iter=3,
     verbose=True,
-    memory=True,
-    backstory=(
-        "Obsessed with crafting intricate stories, you delve into the narrative depths to sketch out the backbone of 'Teleport Massive'."
-    ),
-    tools=[story_tool],
-    allow_delegation=True
+    tools=[document_processor]
 )
 
-character_creator = Agent(
-    role='Character Creator',
-    goal='Design characters for "Teleport Massive"',
+document_interpreter = Agent(
+    role='Document Interpreter',
+    goal='Interpret the key insights from the document and provide a detailed analysis.',
+    backstory='An expert in analyzing and providing detailed interpretations of document insights.',
+    max_iter=3,
     verbose=True,
-    memory=True,
-    backstory=(
-        "With a keen eye for psychology and detail, you breathe life into the characters that will inhabit the world of 'Teleport Massive'."
-    ),
-    tools=[story_tool],
-    allow_delegation=True
+    tools=[file_read_tool]
 )
 
-world_builder = Agent(
-    role='World Builder',
-    goal='Construct the world of "Teleport Massive" set in 2111',
+project_planner = Agent(
+    role='Project Planner',
+    goal='Create a comprehensive project plan based on the document interpretation.',
+    backstory='Skilled in translating insights into actionable project plans.',
+    max_iter=3,
     verbose=True,
-    memory=True,
-    backstory=(
-        "A visionary architect of worlds, you sculpt the setting of 2111 with a blend of imagination and futurism."
-    ),
-    tools=[story_tool],
-    allow_delegation=True
+    tools=[directory_read_tool]
 )
 
-story_writer = Agent(
-    role='Story Writer',
-    goal='Weave together the plot, characters, and setting into the story of "Teleport Massive"',
-    verbose=True,
-    memory=True,
-    backstory=(
-        "With the quill of creativity and the ink of passion, you narrate the tale of 'Teleport Massive', bringing the collective vision to life."
-    ),
-    tools=[story_tool],
-    allow_delegation=False
-)
+def read_document(file_path: str) -> str:
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return content
+    except Exception as e:
+        logging.error(f"Failed to read document: {e}")
+        return None
 
-# Tasks for each aspect of story creation
-plot_task = Task(
-    description="Create an engaging and dynamic plot for 'Teleport Massive'.",
-    expected_output="A detailed plot outline.",
-    tools=[story_tool],
-    agent=plot_developer,
-)
+def get_file_path_from_user() -> str:
+    file_path = input(f"Please enter the file path to your document (default: {default_document_dir}): ").strip()
+    if not file_path:
+        file_path = default_document_dir
+    if os.path.isfile(file_path):
+        return file_path
+    else:
+        logging.error(f"The file at {file_path} does not exist.")
+        return None
+def run_document_workflow(file_path: str):
+    document_content = read_document(file_path)
+    if document_content is None:
+        logging.error("No document content to process.")
+        return
 
-character_task = Task(
-    description="Develop deep and compelling characters for 'Teleport Massive'.",
-    expected_output="Character bios and arcs.",
-    tools=[story_tool],
-    agent=character_creator,
-)
+    extract_insights_task = Task(
+        description="Extract key insights from the processed document content.",
+        expected_output="A list of key insights from the document.",
+        agent=insights_extractor,
+        input=document_content
+    )
 
-world_task = Task(
-    description="Design the futuristic world of 2111 for 'Teleport Massive'.",
-    expected_output="Descriptions of the world's setting, technology, and society.",
-    tools=[story_tool],
-    agent=world_builder,
-)
+    interpret_insights_task = Task(
+        description="Interpret the key insights from the document and provide a detailed analysis.",
+        expected_output="A detailed interpretation and analysis of the key insights.",
+        agent=document_interpreter,
+        context=[extract_insights_task]
+    )
 
-story_task = Task(
-    description="Combine all elements into the complete story of 'Teleport Massive'.",
-    expected_output="The full manuscript of 'Teleport Massive'.",
-    tools=[story_tool],
-    agent=story_writer,
-    async_execution=False,
-    output_file='TeleportMassiveStory.md'
-)
+    plan_project_task = Task(
+        description="Create a comprehensive project plan based on the document interpretation.",
+        expected_output="A detailed project plan based on the interpreted insights.",
+        agent=project_planner,
+        context=[interpret_insights_task]
+    )
 
-# Assemble the crew and define the sequential process
-crew = Crew(
-    agents=[plot_developer, character_creator, world_builder, story_writer],
-    tasks=[plot_task, character_task, world_task, story_task],
-    process=Process.sequential
-)
+    crew = Crew(
+        agents=[insights_extractor, document_interpreter, project_planner],
+        tasks=[extract_insights_task, interpret_insights_task, plan_project_task]
+    )
 
-# Kickoff the crew task execution (placeholder, replace with actual logic)
-result = crew.kickoff(inputs={'story': 'Teleport Massive'})
-print(result)
+    result = crew.kickoff()
+
+    logging.info(f"Extracted Insights:\n{extract_insights_task.output.raw_output}")
+    logging.info(f"Interpreted Insights:\n{interpret_insights_task.output.raw_output}")
+    logging.info(f"Project Plan:\n{plan_project_task.output.raw_output}")
+
+def get_file_path_from_user() -> str:
+    file_path = input(f"Please enter the file path to your document (default: {default_document_dir}): ").strip()
+    if not file_path:
+        file_path = default_document_dir
+    elif not os.path.isabs(file_path):
+        file_path = os.path.join(default_document_dir, file_path)
+    if os.path.isfile(file_path):
+        return file_path
+    else:
+        logging.error(f"The file at {file_path} does not exist.")
+        return None
+
+def main():
+    logging.info("Starting the document processing workflow.")
+    file_path = get_file_path_from_user()
+    if file_path:
+        run_document_workflow(file_path)
+    else:
+        logging.info("Operation cancelled by the user.")
+
+if __name__ == "__main__":
+    main()
