@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My PocketBase App</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/pocketbase@0.7.0/dist/pocketbase.umd.js"></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <h1>Welcome to My PocketBase App</h1>
+  <script>
+    // Initialize PocketBase client
+    const pb = new PocketBase('http://127.0.0.1:8090');
+
+    // Example: Fetch records from a collection
+    async function fetchRecords() {
+      try {
+        const records = await pb.collection('your_collection_name').getFullList(200, {
+          sort: '-created',
+        });
+        console.log(records);
+        // Process the retrieved records as needed
+      } catch (error) {
+        console.error('Error fetching records:', error);
+      }
+    }
+
+    // Call the fetchRecords function
+    fetchRecords();
+
+    // Example: Create a new record
+    async function createRecord() {
+      try {
+        const data = {
+          // Set the data for the new record
+          field1: 'value1',
+          field2: 'value2',
+          // ...
+        };
+        const record = await pb.collection('your_collection_name').create(data);
+        console.log('Record created:', record);
+      } catch (error) {
+        console.error('Error creating record:', error);
+      }
+    }
+
+    // Call the createRecord function
+    createRecord();
+  </script>
+</body>
+</html>

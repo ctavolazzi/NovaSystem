@@ -1,0 +1,3 @@
+This is a backup folder so that I can have two versions of the NovaSystem app in development at any one time.
+
+The theory is this one will work, and the other one won't, so that I can always refer to this version to make sure I know what the hell I did last.

@@ -1,3 +1,4 @@
+# PYPI configuration metadata
 [tool.poetry]
 name = "novasystem"
 version = "0.1.0"
