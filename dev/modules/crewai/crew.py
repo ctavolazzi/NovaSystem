@@ -187,17 +187,19 @@
 # print(result)
 
 
+
+from langchain.llms import Ollama
 import os
 import logging
 from configparser import ConfigParser
-from crewai import Agent, Crew, Task
+from crewai import Agent, Crew, Task, Process
 from crewai_tools import BaseTool, DirectoryReadTool, FileReadTool, tool
 
 # Load configuration settings
 config = ConfigParser()
 config.read('config.ini')
 logging_level = config.get('Settings', 'logging_level', fallback='INFO')
-default_document_dir = config.get('Settings', 'default_document_dir', fallback='')
+default_document_dir = config.get('Settings', 'default_windows_document_dir', fallback='') # Change to match your operating system
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -216,6 +218,36 @@ file_read_tool = FileReadTool()
 def document_processor(document_content: str) -> str:
     """Processes plain text document contents."""
     return document_content.strip()
+
+researcher = Agent(
+    role='Researcher',
+    goal='Perform in-depth research on the given topic.',
+    backstory='An expert in conducting thorough research and analysis.',
+    verbose=True,
+    allow_delegation=False,
+    tools=[directory_read_tool, file_read_tool, document_processor]
+)
+
+writer = Agent(
+    role='Writer',
+    goal='Write a comprehensive report based on the research findings.',
+    backstory='An experienced writer with a knack for creating engaging content.',
+    verbose=True,
+    allow_delegation=False,
+)
+
+task1 = Task(description="Perform in-depth research on the given topic.", expected_output="A comprehensive report based on the research findings.", agent=researcher)
+task2 = Task(description="Write a comprehensive report based on the research findings.", expected_output="A well-written report based on the research findings.", agent=writer, context=[task1])    
+
+
+crew = Crew(
+    agents=[researcher, writer], 
+    tasks=[task1, task2], 
+    verbose=2,
+    process=Process.sequential
+)
+
+result = crew.kickoff(inputs={'topic': 'Devin AI coding assistant.'})
 
 # Instantiate agents
 insights_extractor = Agent(
