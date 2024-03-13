@@ -1,8 +1,0 @@
-version: '3.8'
-services:
-  app:
-    build: .
-    ports:
-      - "5173:5173" # Make sure this is the port your app runs on
-    volumes:
-      - ./dev/novasystem-app:/app # Maps your local project directory to the container
