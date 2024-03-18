@@ -4,21 +4,24 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain_community.llms import ollama
 from crewai import Agent, Crew, Task, Process
 from crewai_tools import BaseTool, SerperDevTool
-from langchain.agents import Tool
+from langchain.agents import load_tools
 
 # Load environment variables and set up necessary API keys and wrappers
 load_dotenv()
 # google_search = GoogleSerperAPIWrapper()
 
-# Setting up LangChain's Ollama as a language model for CrewAI agents
-ollama_llm = ollama.Ollama(model="openhermes")
-
-import os
+# Set up the necessary API keys and .env variables
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY") or "your_fallback_serper_api_key"
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") or "your_fallback_openai_api_key"
 
+# Setting up LangChain's Ollama as a language model for CrewAI agents
+ollama_llm = ollama.Ollama(model="openhermes")
+
+# Load human agents and tools
+human_tools = load_tools(["human"])
 search_tool = SerperDevTool()
 
+## Set up demo agents and tasks
 # Creating a senior researcher agent with memory and verbose mode
 researcher = Agent(
   role='Senior Researcher',
@@ -50,8 +53,6 @@ writer = Agent(
   tools=[search_tool],
   allow_delegation=False
 )
-
-from crewai import Task
 
 # Research task
 research_task = Task(
@@ -91,7 +92,7 @@ crew = Crew(
 
 ######## Example of task execution with enhanced feedback with the above agents and tasks
 # Starting the task execution process with enhanced feedback
-request = "What are the risks of implementing a new AI-based mixture of experts project in the healthcare industry?"
+# request = "What are the risks of implementing a new AI-based mixture of experts project in the healthcare industry?"
 # result = crew.kickoff(inputs={'topic': request})
 # print(result)
 ######## Uncomment the above lines to run the example ########
@@ -147,8 +148,8 @@ class ArbiterOfPossibility(Arbiter):
             tools=[search_tool, MyTool()],
             llm=ollama_llm,
             function_calling_llm=ollama_llm,
-            max_iter=15,
-            max_rpm=30,
+            max_iter=5,
+            max_rpm=25,
             verbose=True,
             allow_delegation=True,
             step_callback=None,
@@ -167,8 +168,8 @@ class ArbiterOfPermission(Arbiter):
             tools=[search_tool, MyTool()],
             llm=ollama_llm,
             function_calling_llm=ollama_llm,
-            max_iter=15,
-            max_rpm=30,
+            max_iter=5,
+            max_rpm=25,
             verbose=True,
             allow_delegation=True,
             step_callback=None,
@@ -187,8 +188,8 @@ class ArbiterOfPreference(Arbiter):
             tools=[search_tool, MyTool()],
             llm=ollama_llm,
             function_calling_llm=ollama_llm,
-            max_iter=15,
-            max_rpm=30,
+            max_iter=5,
+            max_rpm=25,
             verbose=True,
             allow_delegation=True,
             step_callback=None,
@@ -199,8 +200,87 @@ class ArbiterOfPreference(Arbiter):
 possibility_arbiter = ArbiterOfPossibility()
 permission_arbiter = ArbiterOfPermission()
 preference_arbiter = ArbiterOfPreference()
+print(f"Arbiters instantiated: {possibility_arbiter}, {permission_arbiter}, {preference_arbiter}")
 
 
+# Note: Replace `search_tool` with the actual tool instances your agents need to perform their tasks.
+# decision_making_crew = Crew(
+#     agents=[possibility_arbiter, permission_arbiter, preference_arbiter],
+#     tasks=tasks,
+#     process=Process.sequential,
+#     verbose=True,
+# )
+
+# # Kick off the decision-making process
+# decision_making_crew.kickoff()
+##### Demo of the arbiter process #####
+##############################################################
+
+class Magistrate(Agent):
+    def __init__(self, llm, function_calling_llm, max_iter, max_rpm, verbose, step_callback, memory):
+        super().__init__(
+            role="Magistrate",
+            goal="To make informed decisions by considering the recommendations of the Arbiters.",
+            backstory="""As the Magistrate, your role is to oversee the decision-making process and ensure that all perspectives are considered.
+                        With a deep understanding of the Tribunal system and the expertise of the Arbiters, you are responsible for receiving requests,
+                        delegating tasks to the Arbiters, and making the final decision based on their recommendations.""",
+            llm=llm,
+            function_calling_llm=function_calling_llm,
+            max_iter=max_iter,
+            max_rpm=max_rpm,
+            verbose=verbose,
+            step_callback=step_callback,
+            memory=memory,
+            tools=[search_tool] + human_tools
+        )
+
+    # def receive_request(self, request):
+    #     self.request = request
+    #     print(f"Magistrate received request: {request}")
+
+    # def delegate_to_arbiters(self):
+    #     tasks = []
+    #     for arbiter in self.arbiters:
+    #         task = Task(
+    #             description=f"Assess {arbiter.role.lower()} for: {self.request}",
+    #             agent=arbiter,
+    #             tools=arbiter.tools,
+    #         )
+    #         tasks.append(task)
+    #     print(f"Delegated {len(tasks)} tasks to {len(self.arbiters)} Arbiters.")
+    #     return tasks
+
+    # def make_decision(self, recommendations):
+    #     # Placeholder logic for making the final decision based on Arbiter recommendations
+    #     decision = f"Final decision based on Arbiter recommendations:\n"
+    #     for arbiter, recommendation in recommendations.items():
+    #         decision += f"{arbiter.role}: {recommendation}\n"
+    #     return decision
+
+    # def process_request(self, request):
+    #     self.receive_request(request)
+    #     tasks = self.delegate_to_arbiters()
+    #     recommendations = {}
+    #     for task in tasks:
+    #         result = task.execute()
+    #         recommendations[task.agent] = result
+    #     final_decision = self.make_decision(recommendations)
+    #     print("Final decision:", final_decision)
+    #     return final_decision
+
+# Instantiate the Magistrate
+magistrate = Magistrate(
+    llm=ollama_llm,
+    function_calling_llm=ollama_llm,
+    max_iter=5,
+    max_rpm=25,
+    verbose=True,
+    step_callback=None,
+    memory=False
+)
+
+# Define the tasks and expected outputs for the Arbiters
+request = "Should we invest in developing a new AI-powered chatbot for customer support?"
 
 # Setup tasks with expected_output for each task
 tasks = [
@@ -224,85 +304,17 @@ tasks = [
     ),
 ]
 
-# Note: Replace `search_tool` with the actual tool instances your agents need to perform their tasks.
-
-
-
-decision_making_crew = Crew(
-    agents=[possibility_arbiter, permission_arbiter, preference_arbiter],
+Tribunal = Crew(
+    agents=[possibility_arbiter, permission_arbiter, preference_arbiter, magistrate],
     tasks=tasks,
-    process=Process.sequential,
-    verbose=True,
+    manager_llm=ollama_llm,
+    process=Process.hierarchical,
 )
 
-# Kick off the decision-making process
-decision_making_crew.kickoff()
-
-
-from crewai import Agent, Task
-
-class Magistrate(Agent):
-    def __init__(self, arbiters, llm, function_calling_llm, max_iter, max_rpm, verbose, step_callback, memory):
-        super().__init__(
-            role="Magistrate",
-            goal="To make informed decisions by considering the recommendations of the Arbiters.",
-            backstory="""As the Magistrate, your role is to oversee the decision-making process and ensure that all perspectives are considered.
-                        With a deep understanding of the Tribunal system and the expertise of the Arbiters, you are responsible for receiving requests,
-                        delegating tasks to the Arbiters, and making the final decision based on their recommendations.""",
-            llm=llm,
-            function_calling_llm=function_calling_llm,
-            max_iter=max_iter,
-            max_rpm=max_rpm,
-            verbose=verbose,
-            step_callback=step_callback,
-            memory=memory
-        )
-        self.arbiters = arbiters
-
-    def receive_request(self, request):
-        self.request = request
-        print(f"Magistrate received request: {request}")
-
-    def delegate_to_arbiters(self):
-        tasks = []
-        for arbiter in self.arbiters:
-            task = Task(
-                description=f"Assess {arbiter.role.lower()} for: {self.request}",
-                agent=arbiter,
-                tools=arbiter.tools,
-            )
-            tasks.append(task)
-        return tasks
-
-    def make_decision(self, recommendations):
-        # Placeholder logic for making the final decision based on Arbiter recommendations
-        decision = f"Final decision based on Arbiter recommendations:\n"
-        for arbiter, recommendation in recommendations.items():
-            decision += f"{arbiter.role}: {recommendation}\n"
-        return decision
-
-    def process_request(self, request):
-        self.receive_request(request)
-        tasks = self.delegate_to_arbiters()
-        recommendations = {}
-        for task in tasks:
-            result = task.execute()
-            recommendations[task.agent] = result
-        final_decision = self.make_decision(recommendations)
-        return final_decision
-
-# Instantiate the Magistrate
-magistrate = Magistrate(
-    arbiters=[possibility_arbiter, permission_arbiter, preference_arbiter],
-    llm=ollama_llm,
-    function_calling_llm=ollama_llm,
-    max_iter=15,
-    max_rpm=30,
-    verbose=True,
-    step_callback=None,
-    memory=False
-)
-
-request = "Should we invest in developing a new AI-powered chatbot for customer support?"
-final_decision = magistrate.process_request(request)
+### Example of processing a request with the Magistrate
+print("#" * 50)
+print(f"Processing request: {request}")
+final_decision = Tribunal.kickoff(inputs={'request': request})
 print(final_decision)
+##### Demo of the magistrate process #####
+##############################################################
