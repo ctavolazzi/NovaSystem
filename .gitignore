@@ -4,6 +4,8 @@
 *.token
 .DS_Store
 .env
+token.pickle
+credentials.json
 
 # Python
 ## Byte-compiled / optimized / DLL files

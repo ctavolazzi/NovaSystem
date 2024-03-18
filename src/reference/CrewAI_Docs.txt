@@ -1,4 +1,4 @@
-﻿CrewAI Documentation
+CrewAI Documentation
 
 Agents
 What is an Agent?¶
