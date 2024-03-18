@@ -1,0 +1,35 @@
+/* Coolors Exported Palette - https://coolors.co/fe4a49-2ab7ca-fed766-e6e6ea-f4f4f8 */
+
+- Tailwind
+
+{ 'tomato': { DEFAULT: '#fe4a49', 100: '#410000', 200: '#820101', 300: '#c30101', 400: '#fe0707', 500: '#fe4a49', 600: '#fe6d6d', 700: '#fe9191', 800: '#ffb6b6', 900: '#ffdada' }, 'moonstone': { DEFAULT: '#2ab7ca', 100: '#082529', 200: '#114a51', 300: '#196f7a', 400: '#2193a3', 500: '#2ab7ca', 600: '#4fcbdb', 700: '#7bd8e4', 800: '#a7e5ed', 900: '#d3f2f6' }, 'mustard': { DEFAULT: '#fed766', 100: '#473500', 200: '#8e6b01', 300: '#d5a001', 400: '#fec620', 500: '#fed766', 600: '#fee085', 700: '#ffe8a4', 800: '#fff0c2', 900: '#fff7e1' }, 'platinum': { DEFAULT: '#e6e6ea', 100: '#2a2a33', 200: '#545465', 300: '#818196', 400: '#b3b3c0', 500: '#e6e6ea', 600: '#ebebee', 700: '#f0f0f2', 800: '#f5f5f7', 900: '#fafafb' }, 'ghost_white': { DEFAULT: '#f4f4f8', 100: '#26263c', 200: '#4c4c77', 300: '#7b7bab', 400: '#b7b7d1', 500: '#f4f4f8', 600: '#f5f5f9', 700: '#f8f8fa', 800: '#fafafc', 900: '#fdfdfd' } }
+
+- CSV
+
+fe4a49,2ab7ca,fed766,e6e6ea,f4f4f8
+
+- With #
+
+#fe4a49, #2ab7ca, #fed766, #e6e6ea, #f4f4f8
+
+- Array
+
+["fe4a49","2ab7ca","fed766","e6e6ea","f4f4f8"]
+
+- Object
+
+{"Tomato":"fe4a49","Moonstone":"2ab7ca","Mustard":"fed766","Platinum":"e6e6ea","Ghost white":"f4f4f8"}
+
+- Extended Array
+
+[{"name":"Tomato","hex":"fe4a49","rgb":[254,74,73],"cmyk":[0,71,71,0],"hsb":[0,71,100],"hsl":[0,99,64],"lab":[58,67,41]},{"name":"Moonstone","hex":"2ab7ca","rgb":[42,183,202],"cmyk":[79,9,0,21],"hsb":[187,79,79],"hsl":[187,66,48],"lab":[68,-29,-20]},{"name":"Mustard","hex":"fed766","rgb":[254,215,102],"cmyk":[0,15,60,0],"hsb":[45,60,100],"hsl":[45,99,70],"lab":[87,1,60]},{"name":"Platinum","hex":"e6e6ea","rgb":[230,230,234],"cmyk":[2,2,0,8],"hsb":[240,2,92],"hsl":[240,9,91],"lab":[91,1,-2]},{"name":"Ghost white","hex":"f4f4f8","rgb":[244,244,248],"cmyk":[2,2,0,3],"hsb":[240,2,97],"hsl":[240,22,96],"lab":[96,1,-2]}]
+
+- XML
+
+<palette>
+  <color name="Tomato" hex="fe4a49" r="254" g="74" b="73" />
+  <color name="Moonstone" hex="2ab7ca" r="42" g="183" b="202" />
+  <color name="Mustard" hex="fed766" r="254" g="215" b="102" />
+  <color name="Platinum" hex="e6e6ea" r="230" g="230" b="234" />
+  <color name="Ghost white" hex="f4f4f8" r="244" g="244" b="248" />
+</palette>

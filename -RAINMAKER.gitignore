@@ -1,0 +1,131 @@
+# General
+*.log
+*.pyc
+*.token
+.DS_Store
+.env
+token.pickle
+credentials.json
+
+# Python
+## Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+## C extensions
+*.so
+
+## Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+## Virtual environment
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+novasdk/
+novagpt/
+
+## Spyder project settings
+.spyderproject
+.spyproject
+
+## PyCharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+## Jupyter Notebook
+.ipynb_checkpoints
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Configurations
+config/private/
+
+# OAuth
+token.json
+
+# Test reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
+
+# Database
+*.db
+*.sql
+*.sqlite
+
+# Others
+instance/
+.webassets-cache
+
+# .gitignore
+
+# Ignore private credentials and sensitive data
+config/private/
+NovaSystem-Personal-Desktop-credentials.json
+
+# Ignore environment files
+.env
+
+# Ignore OAuth 2.0 token file
+token.json
+
+# Ignore system files
+.DS_Store
+
+# Ignore node modules for JavaScript projects
+node_modules/
+
+# Ignore Python virtual environments and cache files
+venv/
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore build files
+dist/
+build/
+
+# Ignore token files
+*.token
+
+# Ignore specific file structures and temporary files
+NovaSystem_file_structure_*.txt
+*.tmp
+*.temp
+
+
+__pycache__/
+*.pyc
