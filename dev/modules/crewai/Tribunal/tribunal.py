@@ -305,7 +305,8 @@ tasks = [
 ]
 
 Tribunal = Crew(
-    agents=[possibility_arbiter, permission_arbiter, preference_arbiter, magistrate],
+    # agents=[possibility_arbiter, permission_arbiter, preference_arbiter, magistrate], # Uncomment to include the magistrate for human interaction
+    agents=[possibility_arbiter, permission_arbiter, preference_arbiter],
     tasks=tasks,
     manager_llm=ollama_llm,
     process=Process.hierarchical,
