@@ -1,0 +1,11 @@
+packages:
+  - path: "pb/somepkg"
+    output_path: "../sk/src/lib/pocketbase/go-types.ts"
+    type_mappings:
+      time.Time: "string /* RFC3339 */"
+      null.String: "null | string"
+      null.Bool: "null | boolean"
+      uuid.UUID: "string /* uuid */"
+      uuid.NullUUID: "null | string /* uuid */"
+    exclude_files:
+      - db.go
