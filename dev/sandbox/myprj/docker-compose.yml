@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  pb:
+    image: golang:1.20-alpine
+    entrypoint: "/app/pb/entrypoint.sh"
+    # build & run
+    command: sh -c "go mod tidy && go build && /app/pb/pb serve --http 0.0.0.0:8090 --publicDir ../sk/build"
+    # just run
+    # command: "/app/pb/pb serve --http 0.0.0.0:8090 --publicDir ../sk/build"
+    # develop: see docker-compose.override.yml*
+    user: ${UID}:${GID}
+    expose:
+      - 8090
+    working_dir: /app/pb
+    environment:
+      - HOME=/app
+      - CGO_ENABLED=0 # static linking
+      - FASTAPI_PREFIX=${FASTAPI_PREFIX}
+    volumes:
+      - ${PWD}:/app
+      - ${HOME}/go/pkg:/go/pkg
+  py:
+    image: python:3-alpine
+    user: ${UID}:${GID}
+    # add "--reload" for dev
+    command: sh -c "pip install -r requirements.txt && /app/py/.local/bin/uvicorn --reload --host 0.0.0.0 web:app"
+    expose:
+      - 8000
+    volumes:
+      - ${PWD}/py:/app/py
+    working_dir: /app/py
+    environment:
+      - HOME=/app/py
+      - FASTAPI_PREFIX=${FASTAPI_PREFIX}
+  sk:
+    image: node:alpine
+    user: ${UID}:${GID}
+    # sveltekit build
+    command: sh -c "npx pnpm install && npm run build"
+    # sveltekit dev
+    # command: sh -c "npx pnpm install && npm run dev -- --host 0.0.0.0"
+    expose:
+      - 5173
+    volumes:
+      - ${PWD}:/app
+    environment:
+      - HOME=/app
+    working_dir: /app/sk
+  mb:
+    image: metabase/metabase
+    volumes:
+      - ${PWD}/mb/plugins:/plugins
+      - ${PWD}/mb/metabase.db:/metabase.db
+    environment:
+      #- MB_DB_FILE=/home/metabase/metabase.db
+      - MUID=${UID}
+      - MGID=${GID}
+      - MB_ANON_TRACKING_ENABLED=false
+      - MB_CHECK_FOR_UPDATES=false
+    expose:
+      - 3000

@@ -1,0 +1,49 @@
+version: "3.5"
+
+services:
+  pb:
+    # live dev
+    command: modd
+  sk:
+    expose:
+      - 5173
+    # build
+    # command: sh -c "npx pnpm install && npm run build"
+    # live dev
+    command: sh -c "npx pnpm install && npm run dev -- --host 0.0.0.0"
+    # keep the "labels" and "networks" blocks in whichever container is the main HTTP server for the app (pb/sk/py/etc)
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${HTTP_HOSTNAME}`)
+      - traefik.docker.network=traefik_default
+    networks:
+      - default
+      - traefik_default
+  mb:
+    command: "echo 'this service is disabled'"
+    labels:
+      #traefik ingress proxy
+      - traefik.enable=true
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}-mb.rule=Host(`${HTTP_HOSTNAME}`) && PathPrefix(`/bi`)
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}-mb.middlewares=${COMPOSE_PROJECT_NAME}-mb
+      - traefik.http.middlewares.${COMPOSE_PROJECT_NAME}-mb.stripprefix.prefixes=/bi
+      - traefik.docker.network=traefik_default
+    environment:
+      - MB_SITE_URL=https://${HTTP_HOSTNAME}/bi
+    networks:
+      - default
+      - traefik_default
+  py:
+    command: "echo 'this service is disabled'"
+    labels:
+      #traefik ingress proxy
+      - traefik.enable=true
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}-py.rule=Host(`${HTTP_HOSTNAME}`) && PathPrefix(`/apy`)
+      - traefik.docker.network=traefik_default
+    networks:
+      - default
+      - traefik_default
+
+networks:
+  traefik_default:
+    external: true
