@@ -5,10 +5,10 @@ from langchain_community.llms import ollama
 from crewai import Agent, Crew, Task, Process
 from crewai_tools import BaseTool, SerperDevTool
 from langchain.agents import load_tools
+from uuid import uuid4
 
 # Load environment variables and set up necessary API keys and wrappers
 load_dotenv()
-# google_search = GoogleSerperAPIWrapper()
 
 # Set up the necessary API keys and .env variables
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY") or "your_fallback_serper_api_key"
@@ -25,7 +25,7 @@ search_tool = SerperDevTool()
 # Creating a senior researcher agent with memory and verbose mode
 researcher = Agent(
   role='Senior Researcher',
-  goal='Uncover groundbreaking technologies in {topic}',
+  goal='Research the Vercel AI SDK, its key features, use cases, and code implementations',
   llm=ollama_llm,
   verbose=True,
   memory=True,
@@ -41,7 +41,7 @@ researcher = Agent(
 # Creating a writer agent with custom tools and delegation capability
 writer = Agent(
   role='Writer',
-  goal='Narrate compelling tech stories about {topic}',
+  goal='Summarize the research findings on the Vercel AI SDK, including use cases and code examples',
   llm=ollama_llm,
   verbose=True,
   memory=True,
@@ -57,12 +57,12 @@ writer = Agent(
 # Research task
 research_task = Task(
   description=(
-    "Identify the next big trend in {topic}."
-    "Focus on identifying pros and cons and the overall narrative."
-    "Your final report should clearly articulate the key points"
-    "its market opportunities, and potential risks."
+    "Research the Vercel AI SDK, its key features, use cases, and code implementations. "
+    "Focus on identifying the main components, their purposes, and how they can be used in different scenarios. "
+    "Include code examples for each use case to demonstrate the implementation. "
+    "Your final report should provide a comprehensive overview of the Vercel AI SDK, its capabilities, and practical applications."
   ),
-  expected_output='A comprehensive 3 paragraphs long report on the latest AI trends.',
+  expected_output='A detailed report on the Vercel AI SDK, including key features, use cases, and code implementations.',
   tools=[search_tool],
   agent=researcher,
 )
@@ -70,15 +70,15 @@ research_task = Task(
 # Writing task with language model configuration
 write_task = Task(
   description=(
-    "Compose an insightful article on {topic}."
-    "Focus on the latest trends and how it's impacting the industry."
-    "This article should be easy to understand, engaging, and positive."
+    "Compose a well-structured summary of the research findings on the Vercel AI SDK. "
+    "Focus on the main takeaways, use cases, and code examples that demonstrate how developers can leverage the SDK. "
+    "The summary should be easy to understand, providing clear explanations and practical insights. "
+    "Include code snippets and explanations for each use case to showcase the implementation process."
   ),
-  expected_output='A 4 paragraph article on {topic} advancements formatted as markdown.',
+  expected_output='A comprehensive summary of the Vercel AI SDK research findings, including use cases and code implementations.',
   tools=[search_tool],
   agent=writer,
   async_execution=False,
-  output_file='new-blog-post.md'  # Example of output customization
 )
 
 from crewai import Crew, Process
@@ -90,13 +90,20 @@ crew = Crew(
   process=Process.sequential  # Optional: Sequential task execution is default
 )
 
-######## Example of task execution with enhanced feedback with the above agents and tasks
-# Starting the task execution process with enhanced feedback
-# request = "What are the risks of implementing a new AI-based mixture of experts project in the healthcare industry?"
-# result = crew.kickoff(inputs={'topic': request})
-# print(result)
-######## Uncomment the above lines to run the example ########
-##############################################################
+# Function to append text to a file
+def append_to_file(filename, text):
+    with open(filename, 'a') as file:
+        file.write(text + '\n')
+
+# Starting the task execution process
+request = "Research the Vercel AI SDK, its key features, use cases, and code implementations. Specifically, focus on identifying the main components, their purposes, and how they can be used in different scenarios. Include code examples for each use case to demonstrate the implementation. Your final report should provide a comprehensive overview of the Vercel AI SDK, its capabilities, and practical applications."
+result = crew.kickoff(inputs={'topic': request})
+run_id = uuid4().hex
+
+# Append the research findings to the file
+append_to_file('vercel_ai_sdk_findings.txt', f"Run: {run_id}\nRequest: {request}\n# Research Findings #")
+append_to_file('vercel_ai_sdk_findings.txt', result)
+append_to_file('vercel_ai_sdk_findings.txt', "Task completed successfully.")
 
 # Create custom tools
 class MyTool(BaseTool):
@@ -141,7 +148,7 @@ class ArbiterOfPossibility(Arbiter):
     def __init__(self):
         super().__init__(
             role="Arbiter of Possibility",
-            goal="To assess the feasibility and potential outcomes of proposed projects, ensuring they are grounded in reality and have a tangible pathway to success.",
+            goal="To assess the feasibility and potential applications of the Vercel AI SDK, considering various use cases.",
             backstory="""With a keen analytical mind and a pragmatic approach, you've always been able to sift through ideas to find those with true potential. 
                         Your career spans various industries, giving you a broad perspective on what it takes to turn concepts into realities.
                         Your passion is to assess the feasibility and potential outcomes of proposed projects, ensuring they are grounded in reality and have a tangible pathway to success.""",
@@ -161,7 +168,7 @@ class ArbiterOfPermission(Arbiter):
     def __init__(self):
         super().__init__(
             role="Arbiter of Permission",
-            goal="To ensure all initiatives comply with legal, ethical, and organizational standards, safeguarding the integrity and values of our endeavors.",
+            goal="To ensure the use of the Vercel AI SDK complies with legal, ethical, and organizational standards across different use cases.",
             backstory="""As a digital legal advocate with a passion for ethics in technology, you bring a deep understanding of the regulatory landscape and a commitment to upholding high moral standards in all projects.
                         Your history of navigating complex legal and ethical challenges has made you a trusted advisor in the organization, ensuring all initiatives comply with legal, ethical, and organizational standards, safeguarding the integrity and values of our endeavors.
                         It is your passion to ensure all initiatives comply with legal, ethical, and organizational standards, safeguarding the integrity and values of our endeavors.""",
@@ -181,10 +188,10 @@ class ArbiterOfPreference(Arbiter):
     def __init__(self):
         super().__init__(
             role="Arbiter of Preference",
-            goal="To gauge stakeholder preferences and market demands, ensuring our projects align with user expectations and have the potential for positive impact.",
+            goal="To gauge developer preferences and market demand for the Vercel AI SDK across various use cases.",
             backstory="""With a background in market research and user experience design, you have a pulse on consumer trends and a talent for predicting what will resonate with our audience.
                         Your expertise in gauging stakeholder preferences and market demands has been instrumental in shaping successful products and initiatives, ensuring they align with user expectations and have the potential for positive impact.
-                        Your passion is to gauge stakeholder preferences and market demands, ensuring our projects align with user expectations and have the potential for positive impact.""",
+                        Your passion is to ensure that users have access to the most preferential options.""",
             tools=[search_tool, MyTool()],
             llm=ollama_llm,
             function_calling_llm=ollama_llm,
@@ -201,20 +208,6 @@ possibility_arbiter = ArbiterOfPossibility()
 permission_arbiter = ArbiterOfPermission()
 preference_arbiter = ArbiterOfPreference()
 print(f"Arbiters instantiated: {possibility_arbiter}, {permission_arbiter}, {preference_arbiter}")
-
-
-# Note: Replace `search_tool` with the actual tool instances your agents need to perform their tasks.
-# decision_making_crew = Crew(
-#     agents=[possibility_arbiter, permission_arbiter, preference_arbiter],
-#     tasks=tasks,
-#     process=Process.sequential,
-#     verbose=True,
-# )
-
-# # Kick off the decision-making process
-# decision_making_crew.kickoff()
-##### Demo of the arbiter process #####
-##############################################################
 
 class Magistrate(Agent):
     def __init__(self, llm, function_calling_llm, max_iter, max_rpm, verbose, step_callback, memory):
@@ -234,40 +227,6 @@ class Magistrate(Agent):
             tools=[search_tool] + human_tools
         )
 
-    # def receive_request(self, request):
-    #     self.request = request
-    #     print(f"Magistrate received request: {request}")
-
-    # def delegate_to_arbiters(self):
-    #     tasks = []
-    #     for arbiter in self.arbiters:
-    #         task = Task(
-    #             description=f"Assess {arbiter.role.lower()} for: {self.request}",
-    #             agent=arbiter,
-    #             tools=arbiter.tools,
-    #         )
-    #         tasks.append(task)
-    #     print(f"Delegated {len(tasks)} tasks to {len(self.arbiters)} Arbiters.")
-    #     return tasks
-
-    # def make_decision(self, recommendations):
-    #     # Placeholder logic for making the final decision based on Arbiter recommendations
-    #     decision = f"Final decision based on Arbiter recommendations:\n"
-    #     for arbiter, recommendation in recommendations.items():
-    #         decision += f"{arbiter.role}: {recommendation}\n"
-    #     return decision
-
-    # def process_request(self, request):
-    #     self.receive_request(request)
-    #     tasks = self.delegate_to_arbiters()
-    #     recommendations = {}
-    #     for task in tasks:
-    #         result = task.execute()
-    #         recommendations[task.agent] = result
-    #     final_decision = self.make_decision(recommendations)
-    #     print("Final decision:", final_decision)
-    #     return final_decision
-
 # Instantiate the Magistrate
 magistrate = Magistrate(
     llm=ollama_llm,
@@ -280,33 +239,32 @@ magistrate = Magistrate(
 )
 
 # Define the tasks and expected outputs for the Arbiters
-request = "Should we invest in developing a new AI-powered chatbot for customer support?"
+request = "How can the Vercel AI SDK be used to create a python chatbot for developer support? Specifically, the chatbot should be made using the Vercel AI SDK and should be able to answer common questions about its own construction and use, and provide code examples for different use cases, and be able to explain its own code."
 
 # Setup tasks with expected_output for each task
 tasks = [
     Task(
-        description=f'Assess possibilities for: {request}',
-        expected_output=f'A detailed analysis of the feasibility and potential outcomes for: {request}.',
+        description=f'Assess possibilities for: {request}. Consider various use cases and their feasibility.',
+        expected_output=f'A detailed analysis of the feasibility and potential outcomes for: {request}, taking into account different use cases.',
         agent=possibility_arbiter,
         tools=[search_tool],  # Assuming search_tool is a tool instance available to the agent
     ),
     Task(
-        description=f'Verify permissions for: {request}',
-        expected_output=f'A report on legal and ethical permissions concerning: {request}.',
+        description=f'Verify permissions for: {request}. Ensure compliance across different use cases.',
+        expected_output=f'A report on legal and ethical permissions concerning: {request}, considering various use cases.',
         agent=permission_arbiter,
         tools=[search_tool],  # Adjust the tool list as needed for the agent
     ),
     Task(
-        description=f'Gauge preferences for: {request}',
-        expected_output=f'An assessment of stakeholder and market preferences for: {request}.',
+        description=f'Gauge preferences for: {request}. Assess developer preferences and market demand for different use cases.',
+        expected_output=f'An assessment of stakeholder and market preferences for: {request}, taking into account various use cases.',
         agent=preference_arbiter,
         tools=[search_tool],  # Adjust the tool list as needed for the agent
     ),
 ]
 
 Tribunal = Crew(
-    agents=[possibility_arbiter, permission_arbiter, preference_arbiter, magistrate], # Uncomment to include the magistrate for human interaction
-    # agents=[possibility_arbiter, permission_arbiter, preference_arbiter],
+    agents=[possibility_arbiter, permission_arbiter, preference_arbiter],
     tasks=tasks,
     manager_llm=ollama_llm,
     process=Process.hierarchical,
@@ -317,5 +275,10 @@ print("#" * 50)
 print(f"Processing request: {request}")
 final_decision = Tribunal.kickoff(inputs={'request': request})
 print(final_decision)
-##### Demo of the magistrate process #####
-##############################################################
+
+# Append the final decision to the file
+append_to_file('vercel_ai_sdk_findings.txt', final_decision)
+append_to_file('vercel_ai_sdk_findings.txt', "Tribunal task completed successfully.")
+append_to_file('vercel_ai_sdk_findings.txt', f"End of Run: {run_id}")
+append_to_file('vercel_ai_sdk_findings.txt', "#" * 50)
+print("#" * 50)
