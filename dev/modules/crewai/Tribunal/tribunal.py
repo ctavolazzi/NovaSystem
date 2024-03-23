@@ -280,7 +280,7 @@ magistrate = Magistrate(
 )
 
 # Define the tasks and expected outputs for the Arbiters
-request = "Should we invest in developing a new AI-powered chatbot for customer support?"
+request = input("Enter your request: ")
 
 # Setup tasks with expected_output for each task
 tasks = [
