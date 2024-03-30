@@ -97,11 +97,12 @@ def append_to_file(filename, text):
 
 # Starting the task execution process
 request = "Research the Vercel AI SDK, its key features, use cases, and code implementations. Specifically, focus on identifying the main components, their purposes, and how they can be used in different scenarios. Include code examples for each use case to demonstrate the implementation. Your final report should provide a comprehensive overview of the Vercel AI SDK, its capabilities, and practical applications."
+document_path = "vercel_ai_sdk_findings.txt"
 result = crew.kickoff(inputs={'topic': request})
 run_id = uuid4().hex
 
 # Append the research findings to the file
-append_to_file('vercel_ai_sdk_findings.txt', f"Run: {run_id}\nRequest: {request}\n# Research Findings #")
+append_to_file(document_path, f"Run: {run_id}\nRequest: {request}\n# Research Findings #")
 append_to_file('vercel_ai_sdk_findings.txt', result)
 append_to_file('vercel_ai_sdk_findings.txt', "Task completed successfully.")
 

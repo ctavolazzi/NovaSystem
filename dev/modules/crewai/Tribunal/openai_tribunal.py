@@ -181,8 +181,8 @@ crew = Crew(
 
 ######## Example of task execution with enhanced feedback with the above agents and tasks
 # Starting the task execution process
-request = "Research the Vercel AI SDK, its key features, use cases, and code implementations. Specifically, focus on identifying the main components, their purposes, and how they can be used in different scenarios. Include code examples for each use case to demonstrate the implementation. Your final report should provide a comprehensive overview of the Vercel AI SDK, its capabilities, and practical applications."
-document_path = "vercel_ai_sdk_findings.txt"
+request = input("Enter a topic for the agents to research and write about: ")
+document_path = "research_findings.txt"
 result = crew.kickoff(inputs={'topic': request})
 run_id = uuid4().hex
 
@@ -361,7 +361,7 @@ magistrate = Magistrate(
 )
 
 # Define the tasks and expected outputs for the Arbiters
-request = "How can we use Vercel AI SDK to build a scalable and efficient chatbot?"
+request = input("Enter a request for the Arbiters: ")
 
 
 # Setup tasks with expected_output for each task
