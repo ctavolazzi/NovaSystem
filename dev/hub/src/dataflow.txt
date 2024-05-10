@@ -1,0 +1,20 @@
+User -> Hub -> Controller -> RequestProcessor -> WorkOrder
+                    |
+                    | (WorkOrder)
+                    |
+                    v
+                WorkerAssigner -> Arbiters -> Router -> Models
+                                                  |
+                                                  | (Model Results)
+                                                  |
+                Arbiters <-----------------------|
+                    |
+                    | (Arbiter Results)
+                    |
+                    v
+                Controller -> Magistrate
+                    |
+                    | (Synthesized Response)
+                    |
+                    v
+User <- Hub <--- Controller
