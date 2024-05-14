@@ -1,6 +1,6 @@
 ![NovaGPT_Banner_Official](https://github.com/ctavolazzi/NovaSystem/assets/61925030/d8229897-b748-448a-8c3f-d70c08a505f4)
 
-# NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
+# NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4o or Comparable LLM
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
