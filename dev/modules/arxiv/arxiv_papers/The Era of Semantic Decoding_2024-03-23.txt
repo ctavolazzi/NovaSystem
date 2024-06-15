@@ -1,0 +1,34 @@
+Title: The Era of Semantic Decoding
+Authors: Maxime Peyrard, Martin Josifoski, Robert West
+Abstract: Recent work demonstrated great promise in the idea of orchestrating
+collaborations between LLMs, human input, and various tools to address the
+inherent limitations of LLMs. We propose a novel perspective called semantic
+decoding, which frames these collaborative processes as optimization procedures
+in semantic space. Specifically, we conceptualize LLMs as semantic processors
+that manipulate meaningful pieces of information that we call semantic tokens
+(known thoughts). LLMs are among a large pool of other semantic processors,
+including humans and tools, such as search engines or code executors.
+Collectively, semantic processors engage in dynamic exchanges of semantic
+tokens to progressively construct high-utility outputs. We refer to these
+orchestrated interactions among semantic processors, optimizing and searching
+in semantic space, as semantic decoding algorithms. This concept draws a direct
+parallel to the well-studied problem of syntactic decoding, which involves
+crafting algorithms to best exploit auto-regressive language models for
+extracting high-utility sequences of syntactic tokens. By focusing on the
+semantic level and disregarding syntactic details, we gain a fresh perspective
+on the engineering of AI systems, enabling us to imagine systems with much
+greater complexity and capabilities. In this position paper, we formalize the
+transition from syntactic to semantic tokens as well as the analogy between
+syntactic and semantic decoding. Subsequently, we explore the possibilities of
+optimizing within the space of semantic tokens via semantic decoding
+algorithms. We conclude with a list of research opportunities and questions
+arising from this fresh perspective. The semantic decoding perspective offers a
+powerful abstraction for search and optimization directly in the space of
+meaningful concepts, with semantic tokens as the fundamental units of a new
+type of computation.
+Published: 2024-03-21 17:06:17+00:00
+Updated: 2024-03-21 17:06:17+00:00
+arXiv ID: 2403.14562v1
+Category: cs.CL
+arXiv URL: http://arxiv.org/abs/2403.14562v1
+PDF URL: http://arxiv.org/pdf/2403.14562v1
