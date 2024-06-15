@@ -1,0 +1,29 @@
+Title: Changing human's impression of empathy from agent by verbalizing agent's position
+Authors: Takahiro Tsumura, Seiji Yamada
+Abstract: As anthropomorphic agents (AI and robots) are increasingly used in society,
+empathy and trust between people and agents are becoming increasingly
+important. A better understanding of agents by people will help to improve the
+problems caused by the future use of agents in society. In the past, there has
+been a focus on the importance of self-disclosure and the relationship between
+agents and humans in their interactions. In this study, we focused on the
+attributes of self-disclosure and the relationship between agents and people.
+An experiment was conducted to investigate hypotheses on trust and empathy with
+agents through six attributes of self-disclosure (opinions and attitudes,
+hobbies, work, money, personality, and body) and through competitive and
+cooperative relationships before a robotic agent performs a joint task. The
+experiment consisted of two between-participant factors: six levels of
+self-disclosure attributes and two levels of relationship with the agent. The
+results showed that the two factors had no effect on trust in the agent, but
+there was statistical significance for the attribute of self-disclosure
+regarding a person's empathy toward the agent. In addition, statistical
+significance was found regarding the agent's ability to empathize with a person
+as perceived by the person only in the case where the type of relationship,
+competitive or cooperative, was presented. The results of this study could lead
+to an effective method for building relationships with agents, which are
+increasingly used in society.
+Published: 2024-03-21 16:56:46+00:00
+Updated: 2024-03-21 16:56:46+00:00
+arXiv ID: 2403.14557v1
+Category: cs.HC
+arXiv URL: http://arxiv.org/abs/2403.14557v1
+PDF URL: http://arxiv.org/pdf/2403.14557v1
