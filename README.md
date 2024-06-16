@@ -4,13 +4,6 @@
 
 Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
-### _Now updated to the Daisy Sprocker tech stack!_
-- Daisy UI
-- SvelteKit
-- PocketBase
-- Redis
-- Docker
-
 # 🌟 Try it now! Introducing NovaGPT
 Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
 
@@ -72,7 +65,7 @@ Thank you for being a part of this journey. Now go make something amazing!
 ## Table of Contents
 
 - [NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM](#novasystem-a-next-generation-problem-solving-framework-for-gpt-4-or-comparable-llm)
-- [🌟 Introducing NovaGPT](#-introducing-novagpt)
+- [🌟 Try it now! Introducing NovaGPT](#-try-it-now-introducing-novagpt)
     - [➡️ Click to Try NovaGPT Now! ⬅️](#️-click-to-try-novagpt-now-️)
       - [What can NovaGPT do?](#what-can-novagpt-do)
 - [🚀 Important Update for NovaSystem Users](#-important-update-for-novasystem-users)
