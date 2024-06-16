@@ -1,0 +1,40 @@
+This is a message.
+This is a message.
+This is a message.
+This is a message.
+This is a message.
+This is a message.
+This is a message.
+This is a message.
+This should work.
+Does this fucking work or not?
+WebSocket server started on ws://localhost:8080
+Port created successfully: test_websocket_connection
+Disconnected
+2024-06-15 14:31:50,877 - INFO - This is a message.
+2024-06-15 14:31:50,878 - INFO - This should work.
+2024-06-15 14:31:50,901 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:31:50,901 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:32:06,830 - INFO - Disconnected
+2024-06-15 14:34:19,436 - INFO - This is a message.
+2024-06-15 14:34:19,436 - INFO - This should work.
+2024-06-15 14:34:19,445 - INFO - Let's see if it will print.
+2024-06-15 14:34:25,079 - INFO - This is a message.
+2024-06-15 14:34:25,079 - INFO - This should work.
+2024-06-15 14:34:25,079 - INFO - Let's see if it will print.
+2024-06-15 14:35:05,916 - INFO - This is a message.
+2024-06-15 14:35:05,917 - INFO - This should work.
+2024-06-15 14:35:05,917 - INFO - Let's see if it will print.
+2024-06-15 14:35:06,958 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:35:17,792 - INFO - Disconnected
+2024-06-15 14:37:30,103 - INFO - This is a message.
+2024-06-15 14:37:30,103 - INFO - This should work.
+2024-06-15 14:37:30,103 - INFO - Let's see if it will print.
+2024-06-15 14:37:59,104 - INFO - This is a message.
+2024-06-15 14:37:59,105 - INFO - This should work.
+2024-06-15 14:37:59,105 - INFO - Let's see if it will print.
+2024-06-15 14:38:32,560 - INFO - This is a message.
+2024-06-15 14:38:32,561 - INFO - This should work.
+2024-06-15 14:38:32,561 - INFO - Let's see if it will print.
+2024-06-15 14:44:15,506 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:44:28,556 - INFO - WebSocket server started on ws://localhost:8080

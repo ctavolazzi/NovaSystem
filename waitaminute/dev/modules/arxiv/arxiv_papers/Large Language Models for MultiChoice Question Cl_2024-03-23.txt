@@ -1,0 +1,18 @@
+Title: Large Language Models for Multi-Choice Question Classification of Medical Subjects
+Authors: Víctor Ponce-López
+Abstract: The aim of this paper is to evaluate whether large language models trained on
+multi-choice question data can be used to discriminate between medical
+subjects. This is an important and challenging task for automatic question
+answering. To achieve this goal, we train deep neural networks for multi-class
+classification of questions into the inferred medical subjects. Using our
+Multi-Question (MQ) Sequence-BERT method, we outperform the state-of-the-art
+results on the MedMCQA dataset with an accuracy of 0.68 and 0.60 on their
+development and test sets, respectively. In this sense, we show the capability
+of AI and LLMs in particular for multi-classification tasks in the Healthcare
+domain.
+Published: 2024-03-21 17:36:08+00:00
+Updated: 2024-03-21 17:36:08+00:00
+arXiv ID: 2403.14582v1
+Category: cs.CL
+arXiv URL: http://arxiv.org/abs/2403.14582v1
+PDF URL: http://arxiv.org/pdf/2403.14582v1

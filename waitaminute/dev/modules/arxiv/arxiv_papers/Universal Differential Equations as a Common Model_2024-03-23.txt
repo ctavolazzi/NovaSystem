@@ -1,0 +1,30 @@
+Title: Universal Differential Equations as a Common Modeling Language for Neuroscience
+Authors: Ahmed ElGazzar, Marcel van Gerven
+Abstract: The unprecedented availability of large-scale datasets in neuroscience has
+spurred the exploration of artificial deep neural networks (DNNs) both as
+empirical tools and as models of natural neural systems. Their appeal lies in
+their ability to approximate arbitrary functions directly from observations,
+circumventing the need for cumbersome mechanistic modeling. However, without
+appropriate constraints, DNNs risk producing implausible models, diminishing
+their scientific value. Moreover, the interpretability of DNNs poses a
+significant challenge, particularly with the adoption of more complex
+expressive architectures. In this perspective, we argue for universal
+differential equations (UDEs) as a unifying approach for model development and
+validation in neuroscience. UDEs view differential equations as
+parameterizable, differentiable mathematical objects that can be augmented and
+trained with scalable deep learning techniques. This synergy facilitates the
+integration of decades of extensive literature in calculus, numerical analysis,
+and neural modeling with emerging advancements in AI into a potent framework.
+We provide a primer on this burgeoning topic in scientific machine learning and
+demonstrate how UDEs fill in a critical gap between mechanistic,
+phenomenological, and data-driven models in neuroscience. We outline a flexible
+recipe for modeling neural systems with UDEs and discuss how they can offer
+principled solutions to inherent challenges across diverse neuroscience
+applications such as understanding neural computation, controlling neural
+systems, neural decoding, and normative modeling.
+Published: 2024-03-21 16:07:30+00:00
+Updated: 2024-03-21 16:07:30+00:00
+arXiv ID: 2403.14510v1
+Category: cs.CE
+arXiv URL: http://arxiv.org/abs/2403.14510v1
+PDF URL: http://arxiv.org/pdf/2403.14510v1
