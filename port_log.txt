@@ -1,0 +1,178 @@
+2024-06-15 13:54:31,468 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 13:54:35,582 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 13:54:35,582 - INFO - Disconnected
+2024-06-15 13:54:59,702 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 13:55:03,766 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 13:55:03,766 - INFO - Disconnected
+2024-06-15 13:55:52,242 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 13:55:56,320 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 13:55:56,320 - INFO - Disconnected
+2024-06-15 14:00:04,918 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:00:09,014 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:00:09,014 - INFO - Disconnected
+2024-06-15 14:02:04,983 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:02:09,069 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:02:09,069 - INFO - Disconnected
+2024-06-15 14:06:44,798 - INFO - server listening on [::1]:8080
+2024-06-15 14:06:44,798 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:06:44,798 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:06:44,798 - INFO - server closing
+2024-06-15 14:06:44,798 - INFO - server closed
+2024-06-15 14:07:17,603 - INFO - server listening on [::1]:8080
+2024-06-15 14:07:17,603 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:07:17,603 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:07:17,603 - INFO - server closing
+2024-06-15 14:07:17,603 - INFO - server closed
+2024-06-15 14:07:17,603 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:07:21,689 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:08:05,114 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:08:05,114 - INFO - server listening on [::1]:8080
+2024-06-15 14:08:05,114 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:08:05,114 - INFO - server closing
+2024-06-15 14:08:05,114 - INFO - server closed
+2024-06-15 14:08:05,115 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:08:09,173 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:08:09,173 - INFO - Disconnected
+2024-06-15 14:08:28,002 - INFO - server listening on [::1]:8080
+2024-06-15 14:08:28,002 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:08:28,002 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:08:28,002 - INFO - server closing
+2024-06-15 14:08:28,002 - INFO - server closed
+2024-06-15 14:08:28,002 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:08:32,072 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:08:32,072 - INFO - Disconnected
+2024-06-15 14:12:21,238 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:12:21,238 - INFO - server listening on [::1]:8080
+2024-06-15 14:12:21,238 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:12:21,238 - INFO - server closing
+2024-06-15 14:12:21,239 - INFO - server closed
+2024-06-15 14:12:21,239 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:12:25,309 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:12:25,309 - INFO - Disconnected
+2024-06-15 14:13:40,809 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:13:40,809 - INFO - server listening on [::1]:8080
+2024-06-15 14:13:40,809 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:13:40,810 - INFO - server closing
+2024-06-15 14:13:40,810 - INFO - server closed
+2024-06-15 14:13:40,810 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:13:44,860 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:13:44,860 - INFO - Disconnected
+2024-06-15 14:17:21,000 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:17:21,000 - INFO - server listening on [::1]:8080
+2024-06-15 14:17:21,000 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:17:21,000 - INFO - server closing
+2024-06-15 14:17:21,000 - INFO - server closed
+2024-06-15 14:17:21,000 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:17:25,082 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:17:25,082 - INFO - Disconnected
+2024-06-15 14:17:41,683 - INFO - Does this fucking work or not?
+2024-06-15 14:17:41,707 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:17:41,707 - INFO - server listening on [::1]:8080
+2024-06-15 14:17:41,707 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:17:41,707 - INFO - server closing
+2024-06-15 14:17:41,708 - INFO - server closed
+2024-06-15 14:17:41,708 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:17:45,752 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:17:45,752 - INFO - Disconnected
+2024-06-15 14:17:52,615 - INFO - Does this fucking work or not?
+2024-06-15 14:17:52,637 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:17:52,637 - INFO - server listening on [::1]:8080
+2024-06-15 14:17:52,637 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:17:52,637 - INFO - server closing
+2024-06-15 14:17:52,637 - INFO - server closed
+2024-06-15 14:17:52,637 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:17:56,687 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:17:56,687 - INFO - Disconnected
+2024-06-15 14:19:29,187 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:19:33,230 - ERROR - Error during connection or receiving data: Could not establish WebSocket connection: [WinError 1225] The remote computer refused the network connection
+2024-06-15 14:19:33,230 - INFO - Disconnected
+2024-06-15 14:21:54,489 - INFO - Does this fucking work or not?
+2024-06-15 14:21:54,511 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:21:54,511 - INFO - server listening on [::1]:8080
+2024-06-15 14:21:54,511 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:21:54,511 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:21:54,514 - INFO - connection open
+2024-06-15 14:24:56,622 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:24:56,622 - INFO - Disconnected
+2024-06-15 14:24:56,622 - INFO - server closing
+2024-06-15 14:24:56,622 - INFO - connection closed
+2024-06-15 14:24:56,622 - INFO - server closed
+2024-06-15 14:25:02,729 - INFO - This should work.
+2024-06-15 14:25:02,730 - INFO - Does this fucking work or not?
+2024-06-15 14:25:02,750 - INFO - server listening on [::1]:8080
+2024-06-15 14:25:02,750 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:25:02,750 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:25:02,750 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:25:02,752 - INFO - connection open
+2024-06-15 14:25:04,430 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:25:04,430 - INFO - Disconnected
+2024-06-15 14:25:04,430 - INFO - server closing
+2024-06-15 14:25:04,430 - INFO - connection closed
+2024-06-15 14:25:04,430 - INFO - server closed
+2024-06-15 14:27:23,793 - INFO - This should work.
+2024-06-15 14:27:23,794 - INFO - Does this fucking work or not?
+2024-06-15 14:27:23,821 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:27:23,821 - INFO - server listening on [::1]:8080
+2024-06-15 14:27:23,821 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:27:23,821 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:27:23,824 - INFO - connection open
+2024-06-15 14:27:39,457 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:27:39,458 - INFO - Disconnected
+2024-06-15 14:27:39,458 - INFO - server closing
+2024-06-15 14:27:39,458 - INFO - connection closed
+2024-06-15 14:27:39,458 - INFO - server closed
+2024-06-15 14:27:40,842 - INFO - This should work.
+2024-06-15 14:27:40,843 - INFO - Does this fucking work or not?
+2024-06-15 14:27:40,864 - INFO - server listening on [::1]:8080
+2024-06-15 14:27:40,864 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:27:40,864 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:27:40,864 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:27:40,866 - INFO - connection open
+2024-06-15 14:27:45,375 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:27:45,375 - INFO - Disconnected
+2024-06-15 14:27:45,375 - INFO - server closing
+2024-06-15 14:27:45,375 - INFO - connection closed
+2024-06-15 14:27:45,375 - INFO - server closed
+2024-06-15 14:27:54,438 - INFO - This should work.
+2024-06-15 14:27:54,439 - INFO - Does this fucking work or not?
+2024-06-15 14:27:54,460 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:27:54,460 - INFO - server listening on [::1]:8080
+2024-06-15 14:27:54,460 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:27:54,460 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:27:54,463 - INFO - connection open
+2024-06-15 14:27:56,040 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:27:56,041 - INFO - Disconnected
+2024-06-15 14:27:56,041 - INFO - server closing
+2024-06-15 14:27:56,041 - INFO - connection closed
+2024-06-15 14:27:56,041 - INFO - server closed
+2024-06-15 14:28:58,568 - INFO - Does this fucking work or not?
+2024-06-15 14:28:58,592 - INFO - server listening on [::1]:8080
+2024-06-15 14:28:58,592 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:28:58,592 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:28:58,592 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:28:58,595 - INFO - connection open
+2024-06-15 14:29:36,940 - INFO - connection rejected (426 Upgrade Required)
+2024-06-15 14:29:36,940 - INFO - connection closed
+2024-06-15 14:29:37,151 - INFO - connection rejected (426 Upgrade Required)
+2024-06-15 14:29:37,151 - INFO - connection closed
+2024-06-15 14:31:13,009 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:31:13,009 - INFO - Disconnected
+2024-06-15 14:31:13,011 - INFO - server closing
+2024-06-15 14:31:13,011 - INFO - connection closed
+2024-06-15 14:31:13,011 - INFO - server closed
+2024-06-15 14:31:50,877 - INFO - This is a message.
+2024-06-15 14:31:50,878 - INFO - This should work.
+2024-06-15 14:31:50,900 - INFO - server listening on 127.0.0.1:8080
+2024-06-15 14:31:50,901 - INFO - server listening on [::1]:8080
+2024-06-15 14:31:50,901 - INFO - WebSocket server started on ws://localhost:8080
+2024-06-15 14:31:50,901 - INFO - Port created successfully: test_websocket_connection
+2024-06-15 14:31:50,904 - INFO - connection open
+2024-06-15 14:31:57,507 - INFO - connection rejected (426 Upgrade Required)
+2024-06-15 14:31:57,507 - INFO - connection closed
+2024-06-15 14:31:57,567 - INFO - connection rejected (426 Upgrade Required)
+2024-06-15 14:31:57,567 - INFO - connection closed
+2024-06-15 14:32:06,830 - INFO - WebSocket connection closed for port test_websocket_connection
+2024-06-15 14:32:06,830 - INFO - Disconnected
+2024-06-15 14:32:06,831 - INFO - server closing
+2024-06-15 14:32:06,831 - INFO - connection closed
+2024-06-15 14:32:06,831 - INFO - server closed
