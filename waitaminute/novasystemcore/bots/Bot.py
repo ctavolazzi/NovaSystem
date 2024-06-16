@@ -38,7 +38,9 @@ def is_acceptable_name(name):
         if seq in name:
             return False
     return True
-
+#################    
+### BOT START ###
+#################    S
 class Bot(ABC):
     def __init__(self, config):
         if 'name' not in config:
@@ -53,9 +55,23 @@ class Bot(ABC):
         print(f"[{self.name} - {self.log_level}] {message}")
 
     @abstractmethod
-    def execute(self):
+    def execute(self, input_text):
         pass
 
+    def say_name(self):
+        return f"My name is {self.name}."
+
+    def generate_random_phrase(self):
+        phrases = [
+            "I'm here to assist you!",
+            "How can I help you today?",
+            "I'm ready to answer your questions."
+        ]
+        return random.choice(phrases)
+###############
+### BOT END ###
+###############
+### TESTING ###
 class TestBotInitialization(unittest.TestCase):
     def test_custom_bot_initialization(self):
         """Tests that CustomBot initializes correctly with a specific name."""
