@@ -1,0 +1,1 @@
+This is the backend for NovaSystem. It is a simple API that allows you to interact with the NovaSystem from the frontend.
