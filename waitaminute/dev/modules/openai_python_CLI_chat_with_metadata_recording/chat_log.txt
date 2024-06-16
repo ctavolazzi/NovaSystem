@@ -1,0 +1,56 @@
+Chat Log
+
+==================== Chat Log - 2024-03-30 16:02:10 ====================
+User: Howdy pardner
+Assistant: Howdy there, partner! What can I do ya for today?
+
+Metadata:
+Timestamp: 2024-03-30 16:02:10
+Number of Messages: 2
+Last Message Role: Assistant
+Model Used: gpt-3.5-turbo
+============================================================
+
+==================== Chat Log - 2024-03-30 16:02:16 ====================
+User: What's good broh
+Assistant: Hey broh, not much, just here ready to chat. What's good with you?
+
+Metadata:
+Timestamp: 2024-03-30 16:02:16
+Number of Messages: 2
+Last Message Role: Assistant
+Model Used: gpt-3.5-turbo
+============================================================
+
+==================== Chat Log - 2024-03-30 16:04:33 ====================
+User: what's good broh
+Assistant: Not much, just here ready to assist you with any questions or tasks you may have. How can I help you today?
+
+Metadata:
+Timestamp: 2024-03-30 16:04:33
+Number of Messages: 2
+Last Message Role: Assistant
+Model Used: gpt-3.5-turbo
+============================================================
+
+==================== Chat Log - 2024-03-30 16:04:47 ====================
+User: I'm chillin. I'm just...are you really in my terminal right now??
+Assistant: No, I am not physically in your terminal. I am a virtual assistant designed to help with tasks and provide information. How can I assist you today?
+
+Metadata:
+Timestamp: 2024-03-30 16:04:47
+Number of Messages: 2
+Last Message Role: Assistant
+Model Used: gpt-3.5-turbo
+============================================================
+
+==================== Chat Log - 2024-03-30 16:04:53 ====================
+User: Where are you?
+Assistant: I am a digital assistant on a computer or device.
+
+Metadata:
+Timestamp: 2024-03-30 16:04:53
+Number of Messages: 2
+Last Message Role: Assistant
+Model Used: gpt-3.5-turbo
+============================================================

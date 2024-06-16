@@ -1,0 +1,26 @@
+Title: Dynamic Explanation Emphasis in Human-XAI Interaction with Communication Robot
+Authors: Yosuke Fukuchi, Seiji Yamada
+Abstract: Communication robots have the potential to contribute to effective human-XAI
+interaction as an interface that goes beyond textual or graphical explanations.
+One of their strengths is that they can use physical and vocal expressions to
+add detailed nuances to explanations. However, it is not clear how a robot can
+apply such expressions, or in particular, how we can develop a strategy to
+adaptively use such expressions depending on the task and user in dynamic
+interactions. To address this question, this paper proposes DynEmph, a method
+for a communication robot to decide where to emphasize XAI-generated
+explanations with physical expressions. It predicts the effect of emphasizing
+certain points on a user and aims to minimize the expected difference between
+predicted user decisions and AI-suggested ones. DynEmph features a strategy for
+deciding where to emphasize in a data-driven manner, relieving engineers from
+the need to manually design a strategy. We further conducted experiments to
+investigate how emphasis selection strategies affect the performance of user
+decisions. The results suggest that, while a naive strategy (emphasizing
+explanations for an AI's most probable class) does not necessarily work better,
+DynEmph effectively guides users to better decisions under the condition that
+the performance of the AI suggestion is high.
+Published: 2024-03-21 16:50:12+00:00
+Updated: 2024-03-21 16:50:12+00:00
+arXiv ID: 2403.14550v1
+Category: cs.HC
+arXiv URL: http://arxiv.org/abs/2403.14550v1
+PDF URL: http://arxiv.org/pdf/2403.14550v1

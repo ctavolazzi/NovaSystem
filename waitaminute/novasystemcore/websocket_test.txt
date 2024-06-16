@@ -1,0 +1,45 @@
+2024-06-15 20:07:16,728 - INFO - server listening on 127.0.0.1:8081
+2024-06-15 20:07:16,728 - INFO - server listening on [::1]:8081
+2024-06-15 20:07:26,493 - INFO - Serving HTML page
+2024-06-15 20:07:26,493 - INFO - ::1 [15/Jun/2024:19:07:26 -0800] "GET / HTTP/1.1" 200 1494 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+2024-06-15 20:07:26,529 - INFO - connection open
+2024-06-15 20:07:26,530 - INFO - WebSocket connection opened: ('::1', 62843, 0, 0)
+2024-06-15 20:07:43,024 - INFO - Received message from browser: Browser: Test
+2024-06-15 20:07:52,117 - INFO - Sending message to browser:
+Console: Test Baby Doll
+2024-06-15 20:08:27,125 - INFO - server closing
+2024-06-15 20:08:27,135 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<send_from_console() done, defined at C:\Users\ctavo\OneDrive\Desktop\Code\GitHub\NovaSystem\novasystemcore\test.py:62> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\ctavo\OneDrive\Desktop\Code\GitHub\NovaSystem\novasystemcore\test.py", line 65, in send_from_console
+    message = await aioconsole.ainput(prompt_message)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ctavo\Miniconda3\Lib\site-packages\aioconsole\stream.py", line 297, in ainput
+    raise EOFError
+EOFError
+2024-06-15 20:08:27,136 - INFO - connection closed
+2024-06-15 20:08:27,137 - INFO - server closed
+2024-06-15 20:08:30,190 - INFO - server listening on [::1]:8081
+2024-06-15 20:08:30,190 - INFO - server listening on 127.0.0.1:8081
+2024-06-15 20:08:32,765 - INFO - Serving HTML page
+2024-06-15 20:08:32,765 - INFO - ::1 [15/Jun/2024:19:08:32 -0800] "GET / HTTP/1.1" 200 1494 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+2024-06-15 20:08:32,805 - INFO - connection open
+2024-06-15 20:08:32,806 - INFO - WebSocket connection opened: ('::1', 62853, 0, 0)
+2024-06-15 20:08:35,742 - INFO - Received message from browser: Browser: test again
+2024-06-15 20:08:42,133 - INFO - Sending message to browser: Console: Test again??
+2024-06-15 20:09:08,346 - INFO - server closing
+2024-06-15 20:09:08,347 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-16' coro=<send_from_console() done, defined at C:\Users\ctavo\OneDrive\Desktop\Code\GitHub\NovaSystem\novasystemcore\test.py:62> exception=EOFError()>
+Traceback (most recent call last):
+  File "C:\Users\ctavo\OneDrive\Desktop\Code\GitHub\NovaSystem\novasystemcore\test.py", line 65, in send_from_console
+    message = await aioconsole.ainput(prompt_message)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ctavo\Miniconda3\Lib\site-packages\aioconsole\stream.py", line 297, in ainput
+    raise EOFError
+EOFError
+2024-06-15 20:09:08,348 - INFO - connection closed
+2024-06-15 20:09:08,348 - INFO - server closed
+2024-06-16 09:46:05,940 - INFO - server listening on [::1]:8081
+2024-06-16 09:46:05,941 - INFO - server listening on 127.0.0.1:8081
+2024-06-16 09:46:12,019 - INFO - server closing
+2024-06-16 09:46:12,020 - INFO - server closed
