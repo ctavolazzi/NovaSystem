@@ -1,0 +1,34 @@
+Document ID: 94ae6de8-5812-4815-9edf-237dcb7ca4ed
+
+import numpy as np
+from numpy import random
+
+def generate_random_name(first_names: list, last_names: list) -> str:
+    """ Generates a randomly generated name in the format "Firstname Lastname".
+    
+    Args:
+        first_names (list): A list of first names.
+        last_names (list): A list of last names.
+    
+    Returns:
+        str: A randomly generated name in the format "Firstname Lastname".
+    
+    Raises:
+        ValueError: If either the first or last name lists are empty.
+    """
+    if not first_names or not last_names:
+        raise ValueError("Input lists cannot be empty")
+
+    # Generate a random index for the first and last names
+    first_index = np.random.choice(len(first_names))
+    last_index = np.random.choice(len(last_names))
+    
+    # Return the randomly generated name in the format "Firstname Lastname"
+    return f"{first_names[first_index]} {last_names[last_index]}"
+
+# Test the function
+first_names = ["Alice", "Bob", "Charlie"]
+last_names = ["Smith", "Johnson", "Brown"]
+print(generate_random_name(first_names, last_names)) # Output: Alice Johnson
+print(generate_random_name(first_names, last_names)) # Output: Bob Brown
+print(generate_random_name(first_names, last_names)) # Output: Charlie Smith

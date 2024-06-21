@@ -1,0 +1,22 @@
+Document ID: 9ca197c3-2e2f-477b-bdcf-7bba8489ecfa
+
+```python
+import random
+
+def generate_name(first_names, last_names):
+    """
+    Generates a random name for a character in the format "Firstname Lastname".
+
+    Args:
+        first_names (list of str): A list of possible first names to choose from.
+        last_names (list of str): A list of possible last names to choose from.
+
+    Returns:
+        str: A random name for a character, in the format "Firstname Lastname".
+    """
+    # Select a random first and last name from the input lists
+    first_name = random.choice(first_names)
+    last_name = random.choice(last_names)
+
+    return f"{first_name} {last_name}"
+```

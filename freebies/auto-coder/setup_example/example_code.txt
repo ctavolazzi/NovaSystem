@@ -1,0 +1,1 @@
+This is the default content of example_code.txt

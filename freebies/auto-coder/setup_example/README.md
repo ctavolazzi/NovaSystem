@@ -1,0 +1,1 @@
+run `node setup.js` to install the necessary dependencies and setup the project

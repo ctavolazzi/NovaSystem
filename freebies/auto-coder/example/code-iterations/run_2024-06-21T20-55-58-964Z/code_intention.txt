@@ -1,0 +1,3 @@
+Document ID: c2c0e5e5-8f5c-4501-aa4a-8690ce7799e1
+
+Write a function that creates a random name for a character, with extra features like backstory and more. The name should be the return of the function in the module called 'generateRandomName' and the module should have other functions to add additional features. The whole module should be exported and importable into other parts of a program as a class called 'IDGenerator' which will be developed later into a full customized identity generator class.
