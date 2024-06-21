@@ -1,0 +1,9 @@
+{
+  "language": "JavaScript",
+  "functionality": "example functionality",
+  "exampleCodePath": "C:\\Users\\ctavo\\OneDrive\\Desktop\\Code\\GitHub\\NovaSystem\\freebies\\auto-coder\\setup_example\\example_code.txt",
+  "iterations": 5,
+  "codeIntention": "Create a sample function",
+  "focusArea": "Initial focus on code structure and functionality",
+  "nextSteps": "Begin by implementing basic functionality and ensuring code structure is sound."
+}

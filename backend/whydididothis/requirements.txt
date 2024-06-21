@@ -11,3 +11,4 @@ requests
 # speed up installation and avoid errors from missing libraries/headers.
 psycopg[c]; sys_platform == "linux"
 psycopg[binary]; sys_platform != "linux"
+django-cors-headers

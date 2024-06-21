@@ -1,0 +1,65 @@
+Document ID: de8b9f5b-8354-4414-8822-453708f75c0f
+
+import random
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///identities.db"
+db = SQLAlchemy(app)
+
+class Identity(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    backstory = db.Column(db.String(128))
+
+@app.route("/", methods=["GET"])
+def index():
+    return "Welcome to the identity generation API!"
+
+@app.route("/identities", methods=["GET"])
+def get_identities():
+    identities = Identity.query.all()
+    return jsonify([identity.to_json() for identity in identities])
+
+@app.route("/identities/<int:id>", methods=["GET"])
+def get_identity(id):
+    identity = Identity.query.get(id)
+    if not identity:
+        return {"message": "Identity with id {} not found".format(id)}, 404
+    return jsonify(identity.to_json())
+
+@app.route("/identities", methods=["POST"])
+def create_identity():
+    first_name = request.get_json()["first_name"]
+    last_name = request.get_json()["last_name"]
+    backstory = request.get_json().get("backstory")
+    identity = Identity(name=" ".join([first_name, last_name]), backstory=backstory)
+    db.session.add(identity)
+    db.session.commit()
+    return jsonify(identity.to_json())
+
+@app.route("/identities/<int:id>", methods=["PUT"])
+def update_identity(id):
+    identity = Identity.query.get(id)
+    if not identity:
+        return {"message": "Identity with id {} not found".format(id)}, 404
+    first_name = request.get_json()["first_name"]
+    last_name = request.get_json()["last_name"]
+    backstory = request.get_json().get("backstory")
+    identity.name = " ".join([first_name, last_name])
+    identity.backstory = backstory
+    db.session.commit()
+    return jsonify(identity.to_json())
+
+@app.route("/identities/<int:id>", methods=["DELETE"])
+def delete_identity(id):
+    identity = Identity.query.get(id)
+    if not identity:
+        return {"message": "Identity with id {} not found".format(id)}, 404
+    db.session.delete(identity)
+    db.session.commit()
+    return jsonify({"message": "Identity deleted successfully."})
+
+if __name__ == "__main__":
+    app.run(debug=True)
