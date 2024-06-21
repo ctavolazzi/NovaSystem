@@ -1,8 +1,9 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { exec } from 'child_process';
-import { promisify } from 'util';
-import https from 'https';
+const fs = require('fs');
+const fsp = require('fs/promises');
+const path = require('path');
+const { exec } = require('child_process');
+const https = require('https');
+const { promisify } = require('util');
 
 const execAsync = promisify(exec);
 
@@ -25,11 +26,11 @@ async function createExampleCodeFile() {
   const defaultContent = 'This is the default content of example_code.txt';
 
   try {
-    await fs.access(filePath);
+    await fsp.access(filePath);
     console.log(`File already exists: ${filePath}`);
   } catch (error) {
     console.log(`Creating file: ${filePath}`);
-    await fs.writeFile(filePath, defaultContent, 'utf8');
+    await fsp.writeFile(filePath, defaultContent, 'utf8');
     console.log(`File created successfully with default content: ${filePath}`);
   }
 }
@@ -47,11 +48,11 @@ async function createConfigFile() {
   };
 
   try {
-    await fs.access(configPath);
+    await fsp.access(configPath);
     console.log(`Config file already exists: ${configPath}`);
   } catch (error) {
     console.log(`Creating config file: ${configPath}`);
-    await fs.writeFile(configPath, JSON.stringify(defaultConfig, null, 2), 'utf8');
+    await fsp.writeFile(configPath, JSON.stringify(defaultConfig, null, 2), 'utf8');
     console.log(`Config file created successfully: ${configPath}`);
   }
 }
@@ -72,18 +73,49 @@ async function downloadFile(url, dest) {
 }
 
 async function downloadAutoMainScript() {
-  const url = 'https://raw.githubusercontent.com/your-repo-path/auto-main.js'; // Replace with the actual URL
-  const dest = path.join(process.cwd(), 'auto-main.js');
+  const url = 'https://raw.githubusercontent.com/ctavolazzi/NovaSystem/main/freebies/auto-coder/auto-coder.js';
+  const dest = path.join(process.cwd(), 'auto-coder.js');
 
   try {
     await downloadFile(url, dest);
-    console.log('auto-main.js downloaded successfully.');
+    console.log('auto-coder.js downloaded successfully.');
   } catch (error) {
-    console.error(`Error downloading auto-main.js: ${error}`);
+    console.error(`Error downloading auto-coder.js: ${error}`);
   }
 }
 
+async function createPackageJson() {
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
+  let packageJson = {
+    name: "setup_example",
+    version: "1.0.0",
+    type: "module",
+    dependencies: {
+      "@langchain/community": "^0.0.1"
+    }
+  };
+
+  try {
+    const existingPackageJson = JSON.parse(await fsp.readFile(packageJsonPath, 'utf8'));
+    packageJson = {
+      ...existingPackageJson,
+      ...packageJson,
+      dependencies: {
+        ...existingPackageJson.dependencies,
+        ...packageJson.dependencies
+      }
+    };
+    console.log(`Updating existing package.json at ${packageJsonPath}`);
+  } catch (error) {
+    console.log(`Creating new package.json at ${packageJsonPath}`);
+  }
+
+  await fsp.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8');
+  console.log(`package.json file created/updated successfully.`);
+}
+
 async function setup() {
+  await createPackageJson();
   await installPackages();
   await createExampleCodeFile();
   await createConfigFile();
