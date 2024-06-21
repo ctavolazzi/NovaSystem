@@ -1,0 +1,22 @@
+Document ID: 79f5ea87-ffec-463e-add3-e37aa4281f50
+
+```
+function sampleFunction() {
+  let myVariable = "Hello World";
+  const myArray = [1, 2, 3, 4, 5];
+  myArray.forEach(number => console.log(number));
+  console.log(myVariable);
+}
+
+function arrayOfNumbers(start, end) {
+  let myArray = [];
+  for (let i = start; i <= end; i++) {
+    myArray.push(i);
+  }
+  return myArray;
+}
+
+sampleFunction();
+console.log(arrayOfNumbers(1, 5));
+console.log(arrayOfNumbers(6, 9));
+```

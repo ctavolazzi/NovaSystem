@@ -1,0 +1,12 @@
+Document ID: 49ac09d6-bf1e-455e-8d09-911bf2d0fe1a
+
+```
+const numbers = [1, 2, 3, 4, 5]; // Define a variable to store the array of numbers
+
+function sampleFunction(numbers) {
+  console.log("Hello World!");
+}
+
+// Call the function with specific arguments
+sampleFunction([1, 2, 3, 4, 5]);
+```

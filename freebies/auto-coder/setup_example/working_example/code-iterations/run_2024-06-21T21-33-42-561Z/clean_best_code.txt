@@ -1,0 +1,19 @@
+Document ID: bcab075c-6368-4533-9907-9ec031b813aa
+
+```javascript
+const numberHashTable = {1: 2, 3: 4, 5};
+
+function sampleFunction(numberHashTable) {
+  if (numberHashTable === null || numberHashTable === undefined) {
+    console.log("Error: 'numberHashTable' is not defined.");
+    return;
+  }
+
+  const sum = Object.values(numberHashTable).reduce((a, b) => a + b);
+  const average = sum / numberHashTable.length;
+  console.log(`The sum of the numbers is ${sum}`);
+  console.log(`The average of the numbers is ${average}`);
+}
+
+sampleFunction(numberHashTable);
+```
