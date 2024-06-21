@@ -1,7 +1,3 @@
-// This is a simple script that uses Ollama to generate code based on a user's intention.
-// It uses the Ollama API to generate code and then cleans the code to remove any unnecessary parts.
-// It then saves the code to a file and logs the path to the console.
-
 // Chunk 1: Imports and Initial Setup
 import { Ollama } from "@langchain/community/llms/ollama";
 import { PromptTemplate } from "@langchain/core/prompts";
@@ -206,6 +202,30 @@ async function compareCode(newCode, bestCode, previousCode, focusArea) {
   return comparisonResult.trim();
 }
 
+async function generateAggregateCode(cleanBestCode, cleanInitialCode, goodEnoughCode) {
+    const aggregatePrompt = `
+        Compare and analyze the following code versions:
+
+        Clean Best Code:
+        ${cleanBestCode}
+
+        Clean Initial Code:
+        ${cleanInitialCode}
+
+        Good Enough Code:
+        ${goodEnoughCode}
+
+        Based on these code versions, generate a final, optimized version that combines the best aspects of each. 
+        Consider readability, efficiency, error handling, and overall code quality.
+        Provide a brief explanation of the choices made in creating this aggregate version.
+
+        Aggregate Code:
+    `;
+
+    const aggregateResult = await llm.invoke(aggregatePrompt);
+    return aggregateResult.trim();
+}
+
 // Chunk 4: Code Evaluation and Cleaning Functions
 async function evaluateCodeFitness(code, codeIntention, codeIntent, focusArea, iterationDir) {
     const evaluationPrompt = `
@@ -280,6 +300,13 @@ async function createIterationFolder(runDir, iteration) {
 async function saveExampleCode(code, filePath) {
     await fs.writeFile(filePath, code, 'utf8');
     console.log(`Example code saved to ${filePath}`);
+}
+
+async function saveAutoCode(code) {
+    const autoCodePath = path.join(process.cwd(), 'auto_code.txt');
+    const cleanedCode = await cleanCode(code);
+    await fs.writeFile(autoCodePath, cleanedCode, 'utf8');
+    console.log(`Auto code saved to: ${autoCodePath}`);
 }
 
 async function loadConfig(configPath) {
@@ -370,6 +397,7 @@ async function runCodeImprovement(language, functionality, exampleCodePath, code
             console.log(`\nGood Enough Code saved to: ${goodEnoughCodePath}`);
         }
   
+        console.log(`\nChecking User Intent Alignment...`);
         const intentCheckResult = await checkUserIntentAlignment(improvedCode, codeIntention, codeIntent, focusArea);
         console.log(`\nUser Intent Alignment Check:`);
         console.log(intentCheckResult);
@@ -382,7 +410,6 @@ async function runCodeImprovement(language, functionality, exampleCodePath, code
         discrepancyCheckPath = path.join(iterationDir, 'discrepancy_check.txt');
         await saveToFile(discrepancyCheck, discrepancyCheckPath);
   
-// Continuation of Chunk 6: Main Code Improvement Function
         improvedCode = await improveCode(improvedCode, suggestions + '\n' + discrepancyCheck, codeIntention, codeIntent, focusArea);
         await saveToFile(improvedCode, improvedCodeFilePath);
 
@@ -410,6 +437,16 @@ async function runCodeImprovement(language, functionality, exampleCodePath, code
         console.log(cleanedImprovedCode);
         console.log(`Saved to: ${cleanedImprovedCodePath}`);
 
+        // Generate and save the aggregate code after each iteration
+        const aggregateCode = await generateAggregateCode(cleanedImprovedCode, await cleanCode(initialCode), goodEnoughCode || cleanedImprovedCode);
+        const aggregateCodePath = path.join(iterationDir, 'aggregate_code.txt');
+        await saveToFile(aggregateCode, aggregateCodePath);
+
+        console.log(`\nAggregate Code generated and saved to: ${aggregateCodePath}`);
+
+        // Save the cleaned aggregate code as auto_code.txt
+        await saveAutoCode(aggregateCode);
+
         const endTime = performance.now();
         const duration = (endTime - startTime) / 1000;
 
@@ -421,6 +458,7 @@ async function runCodeImprovement(language, functionality, exampleCodePath, code
             cleanedImprovedCodePath,
             suggestionsPath,
             iterationAnalysisPath,
+            aggregateCodePath,
             duration,
             documentIds: {
                 improvedCode: await saveToFile(improvedCode, improvedCodeFilePath),
@@ -428,6 +466,7 @@ async function runCodeImprovement(language, functionality, exampleCodePath, code
                 suggestions: suggestionsPath ? await saveToFile(suggestions, suggestionsPath) : '',
                 iterationAnalysis: iterationAnalysisPath ? await saveToFile(iterationAnalysis, iterationAnalysisPath) : '',
                 discrepancyCheck: discrepancyCheckPath ? await saveToFile(discrepancyCheck, discrepancyCheckPath) : '',
+                aggregateCode: await saveToFile(aggregateCode, aggregateCodePath),
             },
         };
 
@@ -451,6 +490,16 @@ async function runCodeImprovement(language, functionality, exampleCodePath, code
     const cleanInitialCode = await cleanCode(initialCode);
     const cleanInitialCodePath = path.join(runDir, 'clean_initial_code.txt');
     await saveToFile(cleanInitialCode, cleanInitialCodePath);
+
+    // Generate final aggregate code
+    const finalAggregateCode = await generateAggregateCode(cleanBestCode, cleanInitialCode, goodEnoughCode || cleanBestCode);
+    const finalAggregateCodePath = path.join(runDir, 'final_aggregate_code.txt');
+    await saveToFile(finalAggregateCode, finalAggregateCodePath);
+
+    console.log(`\nFinal Aggregate Code generated and saved to: ${finalAggregateCodePath}`);
+
+    // Save the final cleaned aggregate code as auto_code.txt
+    await saveAutoCode(finalAggregateCode);
 
     receipt.endTime = new Date();
     receipt.duration = (receipt.endTime - receipt.startTime) / 1000;
@@ -501,6 +550,7 @@ function generateReceiptContent(receipt) {
             content += `- **Discrepancy Check:** ${detail.discrepancyCheckPath} (ID: ${detail.documentIds.discrepancyCheck})\n`;
         }
         content += `- **Iteration Analysis:** ${detail.iterationAnalysisPath} (ID: ${detail.documentIds.iterationAnalysis})\n`;
+        content += `- **Aggregate Code:** ${detail.aggregateCodePath} (ID: ${detail.documentIds.aggregateCode})\n`;
         content += `- **Duration:** ${detail.duration.toFixed(2)} seconds\n\n`;
     }
 
@@ -603,8 +653,9 @@ async function main() {
 
         config.focusArea = focusArea;
         config.nextSteps = nextSteps;
+        config.lastAggregateCodePath = path.join(runDir, 'final_aggregate_code.txt');
         await saveConfig(configPath, config);
-        console.log("Config updated with new focus area and next steps.");
+        console.log("Config updated with new focus area, next steps, and last aggregate code path.");
 
         await new Promise(resolve => setTimeout(resolve, 5000));
     }
