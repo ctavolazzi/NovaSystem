@@ -1,0 +1,37 @@
+Document ID: d625dcdc-cc4b-4f86-a874-0ad865b97bab
+
+
+function sampleFunction() {
+  // Define a variable to store a simple value
+  let myVariable = "Hello World";
+
+  // Create an array of numbers
+  const myArray = [1, 2, 3, 4, 5];
+
+  // Iterate through the array and log each number to the console
+  myArray.forEach(number => console.log(number));
+
+  // Log the value of the variable to the console
+  console.log(myVariable);
+}
+
+// Call the function to demonstrate its functionality
+sampleFunction();
+
+// Define a function to create an array of numbers between two specified endpoints
+function arrayOfNumbers(start, end) {
+  // Initialize an empty array
+  let myArray = [];
+
+  // Iterate from the start to the end and push each number to the array
+  for (let i = start; i <= end; i++) {
+    myArray.push(i);
+  }
+
+  // Return the array of numbers
+  return myArray;
+}
+
+// Call the function with specific arguments to demonstrate its functionality
+console.log(arrayOfNumbers(1, 5));
+console.log(arrayOfNumbers(6, 9));

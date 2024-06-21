@@ -1,0 +1,22 @@
+Document ID: f97fbafa-da0f-4529-ae0e-eb856535bc93
+
+```
+      function sampleFunction(start, end) {
+        // Define variables to store values
+        let myVariable = "Hello World";
+        const myArray = [];
+
+        for (let i = start; i <= end; i++) {
+          myArray.push(i);
+        }
+
+        // Log the value of the variable to the console
+        console.log(myVariable);
+
+        return myArray;
+      }
+
+      // Call the function with specific arguments to demonstrate its functionality
+      console.log(sampleFunction(1, 5));
+      console.log(sampleFunction(6, 9));
+      ```

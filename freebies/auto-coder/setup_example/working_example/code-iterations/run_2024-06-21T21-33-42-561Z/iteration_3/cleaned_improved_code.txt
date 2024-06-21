@@ -1,0 +1,11 @@
+Document ID: ccf2d25e-b266-4ea9-8b9a-6a923160467c
+
+```markdown
+const numbers = [1, 2, 3, 4, 5]; // Define a variable to store the array of numbers
+
+function sampleFunction(numbers) {
+  console.log("Hello World!");
+}
+
+sampleFunction(numbers); // Call the function with specific arguments
+```

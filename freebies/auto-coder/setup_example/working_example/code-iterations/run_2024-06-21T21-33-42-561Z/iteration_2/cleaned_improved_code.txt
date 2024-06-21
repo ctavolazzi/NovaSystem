@@ -1,0 +1,23 @@
+Document ID: 294be3ab-194e-4117-8344-74d129cba393
+
+Here is the cleaned and formatted code:
+  
+  ```
+  function arrayOfNumbers(n) {
+    const numbers = [];
+  
+    for (let i = 1; i <= n; i++) {
+      numbers.push(i);
+    }
+  
+    return numbers;
+  }
+  
+  function sampleFunction(nums) {
+    const sum = nums.reduce((acc, curr) => acc + curr, 0);
+    console.log(`The sum of the array is ${sum}.`);
+  }
+  
+  const numbers = arrayOfNumbers(10);
+  sampleFunction(numbers);
+  ```
