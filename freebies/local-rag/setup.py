@@ -7,8 +7,8 @@ import os
 import subprocess
 import requests
 
-REPO_OWNER = 'yourusername'
-REPO_NAME = 'rag-chatbot'
+REPO_OWNER = 'ctavolazzi'
+REPO_NAME = 'NovaSystem'
 BRANCH = 'main'
 FOLDER_PATH = 'freebies/local-rag'
 FILES_TO_DOWNLOAD = [
