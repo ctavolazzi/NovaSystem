@@ -12,25 +12,27 @@ This is a Retrieval-Augmented Generation (RAG) chatbot application using Langcha
 ## Setup
 
 1. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/rag-chatbot.git
-   cd rag-chatbot
-   ```
+```
+git clone https://github.com/yourusername/rag-chatbot.git
+cd rag-chatbot
+```
 
 2. Run the setup script:
-   ```
-   python setup.py
-   ```
-   This will download necessary files, install dependencies, and set up Ollama.
+
+```python
+python setup.py
+```
+This will download necessary files, install dependencies, and set up Ollama.
 
 3. Activate the virtual environment:
-   - On Windows: `.\venv\Scripts\activate`
-   - On macOS/Linux: `source venv/bin/activate`
+- On Windows: `.\venv\Scripts\activate`
+- On macOS/Linux: `source venv/bin/activate`
 
 4. Run the application:
-   ```
-   python app.py
-   ```
+
+```python
+python app.py
+```
 
 5. Open your web browser and go to `http://localhost:7860` to interact with the chatbot.
 
@@ -59,14 +61,11 @@ vector_store = get_vector_store()
 add_documents_to_store(vector_store, new_chunks)
 ```
 
-## Troubleshooting
-
+### Troubleshooting
 If you encounter any issues, please check the application logs or file an issue on the GitHub repository.
 
-## Contributing
-
+### Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
-
-This project is licensed under the MIT License.
+### License
+This project is licensed under the GPL-3 license.

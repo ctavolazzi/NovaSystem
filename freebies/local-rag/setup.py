@@ -1,14 +1,14 @@
 """
 Setup script for the RAG Chatbot application.
-This script downloads necessary files from the NovaSystem repository and sets up the application.
+This script downloads necessary files from the specified repository and sets up the application.
 """
 
 import os
 import subprocess
 import requests
 
-REPO_OWNER = 'ctavolazzi'
-REPO_NAME = 'NovaSystem'
+REPO_OWNER = 'yourusername'
+REPO_NAME = 'rag-chatbot'
 BRANCH = 'main'
 FOLDER_PATH = 'freebies/local-rag'
 FILES_TO_DOWNLOAD = [
@@ -18,7 +18,8 @@ FILES_TO_DOWNLOAD = [
     'vector_store.py',
     'llm.py',
     'chatbot.py',
-    'requirements.txt'
+    'requirements.txt',
+    'README.md'
 ]
 
 def download_file(file_name):
