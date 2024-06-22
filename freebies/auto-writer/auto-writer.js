@@ -1,4 +1,403 @@
-const intentCheckResult = await checkUserIntentAlignment(improvedDocument, documentIntention, documentIntent, focusArea);
+// auto-writer.js
+// Chunk 1: Imports and Initial Setup
+import { Ollama } from "@langchain/community/llms/ollama";
+import { PromptTemplate } from "@langchain/core/prompts";
+import fs from 'fs/promises';
+import path from 'path';
+import { performance } from 'perf_hooks';
+import readline from 'readline';
+import { v4 as uuidv4 } from 'uuid';
+
+const llm = new Ollama({
+  model: "mistral", // or another suitable model for text generation
+  baseUrl: "http://localhost:11434",
+});
+
+function generateUniqueId() {
+    return uuidv4();
+}
+
+// Chunk 2: Prompt Templates
+const documentPrompt = PromptTemplate.fromTemplate(`
+Document Intention: {documentIntention}
+Document Intent Interpretation: {documentIntent}
+Focus Area: {focusArea}
+
+Write a {documentType} about {topic}. The document should have the following characteristics:
+
+- Clear and engaging content
+- Proper structure and flow
+- Efficient conveyance of information
+- Well-formatted with appropriate headings and sections
+- Special focus on {focusArea}
+
+Here's an example of what the document structure might look like:
+
+{exampleDocument}
+
+Now, please write a {documentType} about {topic}, keeping in mind the desired characteristics, the example provided, the document intention, the interpreted document intent, and the specified focus area.
+`);
+
+const analysisPrompt = PromptTemplate.fromTemplate(`
+Document Intention: {documentIntention}
+Document Intent Interpretation: {documentIntent}
+Focus Area: {focusArea}
+
+Please analyze the following document:
+
+{document}
+
+Provide specific suggestions for improving the document in terms of:
+
+1. Clarity and engagement
+2. Structure and flow
+3. Informativeness and relevance
+4. Formatting and presentation
+5. Alignment with the document intention and interpreted document intent
+6. Addressing the specified focus area: {focusArea}
+
+Please offer specific examples and concrete revisions where applicable. The suggestions should be actionable and aimed at elevating the overall quality of the document and ensuring it meets the user's requirements.
+`);
+
+const improvementPrompt = PromptTemplate.fromTemplate(`
+Document Intention: {documentIntention}
+Document Intent Interpretation: {documentIntent}
+Focus Area: {focusArea}
+
+Here is the original document:
+
+{document}
+
+And here are the suggestions for improvement:
+
+{suggestions}
+
+Please revise the document, incorporating the provided suggestions while maintaining the original topic and purpose. Focus on enhancing the clarity, structure, informativeness, formatting, alignment with the document intention and interpreted document intent, and addressing the specified focus area.
+
+Implement the suggestions directly into the document, making the necessary changes and refinements. The goal is to elevate the quality of the document based on the analysis and feedback provided and ensure it meets the user's requirements.
+
+Please present the revised document, showcasing the improvements made.
+`);
+
+const intentCheckPrompt = PromptTemplate.fromTemplate(`
+Document Intention: {documentIntention}
+Document Intent Interpretation: {documentIntent}
+Focus Area: {focusArea}
+
+Here is the latest version of the document:
+
+{document}
+
+Please answer the following questions:
+
+1. Does this new document match the document intent?
+2. Is it fully expressing the nature of what was asked for in the document intention?
+3. Does it adequately address the specified focus area?
+4. Is there more room for improvement and better alignment with the document intent and focus area?
+
+Provide detailed feedback on each question and suggest specific improvements if necessary.
+`);
+
+const discrepancyCheckPrompt = PromptTemplate.fromTemplate(`
+Original example document:
+{exampleDocument}
+
+Generated document:
+{generatedDocument}
+
+Focus Area: {focusArea}
+
+Please analyze the two documents above and answer the following questions:
+
+1. Are there any major discrepancies between the original example document and the generated document?
+2. If there are discrepancies, what are they?
+3. How can the generated document be improved to better align with the original example document?
+4. Does the generated document adequately address the specified focus area?
+
+Provide a detailed analysis and specific suggestions for improvement.
+`);
+
+// Chunk 3: Utility Functions
+function getUserInput(question) {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+  
+    return new Promise((resolve) => {
+      rl.question(question, (answer) => {
+        rl.close();
+        resolve(answer);
+      });
+    });
+}
+
+async function interpretUserIntent(documentIntention, focusArea) {
+    const intentPrompt = PromptTemplate.fromTemplate(`
+      Please interpret the user's intent from the following input and focus area:
+  
+      Document Intention: {documentIntention}
+      Focus Area: {focusArea}
+  
+      Provide a concise interpretation of what the user is asking for, including:
+      - The main goal or purpose of the document
+      - Any specific topics or requirements
+      - The document type (if specified)
+      - Any constraints or additional context
+      - How the focus area should be incorporated into the document and its content
+  
+      Your interpretation should explicitly address how the focus area affects the overall intent and desired outcome.
+
+      Your interpretation:
+    `);
+  
+    const prompt = await intentPrompt.format({ documentIntention, focusArea });
+    return await llm.invoke(prompt);
+}
+
+async function generateDocument(documentType, topic, exampleDocument, documentIntention, documentIntent, focusArea) {
+  const prompt = await documentPrompt.format({ documentType, topic, exampleDocument, documentIntention, documentIntent, focusArea });
+  return await llm.invoke(prompt);
+}
+
+async function analyzeDocument(document, documentIntention, documentIntent, focusArea) {
+  const prompt = await analysisPrompt.format({ document, documentIntention, documentIntent, focusArea });
+  return await llm.invoke(prompt);
+}
+
+async function improveDocument(document, suggestions, documentIntention, documentIntent, focusArea) {
+  const prompt = await improvementPrompt.format({ document, suggestions, documentIntention, documentIntent, focusArea });
+  return await llm.invoke(prompt);
+}
+
+async function checkUserIntentAlignment(document, documentIntention, documentIntent, focusArea) {
+  const prompt = await intentCheckPrompt.format({ document, documentIntention, documentIntent, focusArea });
+  return await llm.invoke(prompt);
+}
+
+async function checkForDiscrepancies(exampleDocument, generatedDocument, focusArea) {
+  const prompt = await discrepancyCheckPrompt.format({ exampleDocument, generatedDocument, focusArea });
+  return await llm.invoke(prompt);
+}
+
+async function compareDocuments(newDocument, bestDocument, previousDocument, focusArea) {
+  const comparePrompt = `
+    Compare the following document versions:
+
+    New Document:
+    ${newDocument}
+
+    Best Document:
+    ${bestDocument}
+
+    Previous Document:
+    ${previousDocument}
+
+    Focus Area: ${focusArea}
+
+    Provide a detailed analysis of the improvements made in the new document compared to the best document and previous document. Consider factors such as clarity, structure, informativeness, formatting, alignment with the user's requirements, and how well it addresses the focus area.
+
+    Indicate which document version is the best overall and explain why.
+  `;
+  const comparisonResult = await llm.invoke(comparePrompt);
+  return comparisonResult.trim();
+}
+
+async function generateAggregateDocument(cleanBestDocument, cleanInitialDocument, goodEnoughDocument) {
+    const aggregatePrompt = `
+        Compare and analyze the following document versions:
+
+        Clean Best Document:
+        ${cleanBestDocument}
+
+        Clean Initial Document:
+        ${cleanInitialDocument}
+
+        Good Enough Document:
+        ${goodEnoughDocument}
+
+        Based on these document versions, generate a final, optimized version that combines the best aspects of each. 
+        Consider clarity, structure, informativeness, formatting, and overall document quality.
+        Provide a brief explanation of the choices made in creating this aggregate version.
+
+        Aggregate Document:
+    `;
+
+    const aggregateResult = await llm.invoke(aggregatePrompt);
+    return aggregateResult.trim();
+}
+
+// Chunk 4: Document Evaluation and Cleaning Functions
+async function evaluateDocumentFitness(document, documentIntention, documentIntent, focusArea, iterationDir) {
+    const evaluationPrompt = `
+      Given the following document:
+      ${document}
+  
+      And the document intention:
+      ${documentIntention}
+  
+      And the interpreted document intent:
+      ${documentIntent}
+  
+      And the focus area:
+      ${focusArea}
+  
+      Please evaluate if the document meets the user's requirements and aligns with their intent. Consider the following criteria:
+      - Content: Does the document fulfill the desired content based on the document intention?
+      - Clarity: Is the document clear and easy to understand?
+      - Structure: Is the document well-structured and organized?
+      - Informativeness: Does the document effectively convey the necessary information?
+      - Formatting: Is the document well-formatted with appropriate headings and sections?
+      - Alignment: Is the document consistent with the interpreted document intent?
+      - Focus Area: Does the document adequately address the specified focus area?
+  
+      Provide a detailed analysis of the document's fitness and indicate whether it successfully meets the user's requirements and intent. Explain your reasoning.
+    `;
+    const evaluationResult = await llm.invoke(evaluationPrompt);
+    
+    const fitnessPath = path.join(iterationDir, 'fitness_evaluation.txt');
+    await fs.writeFile(fitnessPath, evaluationResult, 'utf8');
+    
+    const meetsRequirements = evaluationResult.toLowerCase().includes('meets the user\'s requirements');
+    return meetsRequirements;
+}
+
+async function cleanDocument(document) {
+    const cleanPrompt = `
+      Here is a document that needs to be cleaned and formatted correctly:
+  
+      ${document}
+  
+      Please correct any grammatical errors, fix formatting issues, and ensure the document follows best practices for structure and presentation. Return only the cleaned and formatted document. Do not return any additional text or comments. Return ONLY the document and nothing else.
+    `;
+    const cleanedDocument = await llm.invoke(cleanPrompt);
+    return cleanedDocument.trim();
+}
+
+// Chunk 5: File Operations and Iteration Setup
+async function saveToFile(content, filePath, id = generateUniqueId()) {
+    console.log(`Saving content to ${filePath} with ID: ${id}`);
+    if (content === undefined) {
+      console.warn(`Warning: Content is undefined. Skipping save to ${filePath}`);
+      return;
+    }
+    if (typeof content !== 'string' && !(content instanceof Buffer)) {
+      throw new TypeError('The "data" argument must be of type string or an instance of Buffer. Received ' + typeof content);
+    }
+    const contentWithId = `Document ID: ${id}\n\n${content}`;
+    await fs.writeFile(filePath, contentWithId, 'utf8');
+    console.log(`File saved to ${filePath}`);
+    return id;
+}
+
+async function createIterationFolder(runDir, iteration) {
+    const iterationDir = path.join(runDir, `iteration_${iteration}`);
+    await fs.mkdir(iterationDir);
+    return iterationDir;
+}
+
+async function saveExampleDocument(document, filePath) {
+    await fs.writeFile(filePath, document, 'utf8');
+    console.log(`Example document saved to ${filePath}`);
+}
+
+async function saveAutoDocument(document) {
+    const autoDocumentPath = path.join(process.cwd(), 'auto_document.txt');
+    const cleanedDocument = await cleanDocument(document);
+    await fs.writeFile(autoDocumentPath, cleanedDocument, 'utf8');
+    console.log(`Auto document saved to: ${autoDocumentPath}`);
+}
+
+async function loadConfig(configPath) {
+    const config = JSON.parse(await fs.readFile(configPath, 'utf8'));
+    return config;
+}
+
+async function saveConfig(configPath, config) {
+    await fs.writeFile(configPath, JSON.stringify(config, null, 2), 'utf8');
+    console.log(`Config saved to ${configPath}`);
+}
+
+// Chunk 6: Main Document Improvement Function
+async function runDocumentImprovement(documentType, topic, exampleDocumentPath, documentIntention, documentIntent, iterations, runDir, focusArea) {
+    const receipt = {
+      documentType,
+      topic,
+      documentIntention,
+      documentIntent,
+      focusArea,
+      iterations,
+      startTime: new Date(),
+      endTime: null,
+      duration: null,
+      initialDocumentPath: '',
+      bestDocumentPath: '',
+      goodEnoughDocumentPath: '',
+      iterationDetails: [],
+      documentIds: {
+        initialDocument: '',
+        bestDocument: '',
+        goodEnoughDocument: '',
+      },
+    };
+  
+    console.log(`\n--- Document Improvement Process ---`);
+    console.log(`Document Type: ${documentType}`);
+    console.log(`Topic: ${topic}`);
+    console.log(`Document Intention: ${documentIntention}`);
+    console.log(`Focus Area: ${focusArea}`);
+    console.log(`Number of Iterations: ${iterations}`);
+    console.log(`Run Directory: ${runDir}`);
+    console.log(`Start Time: ${receipt.startTime.toLocaleString()}`);
+    console.log(`----------------------------------`);
+  
+    const exampleDocument = await fs.readFile(exampleDocumentPath, 'utf8');
+    console.log(`Example document read from ${exampleDocumentPath}`);
+  
+    const documentIntentionPath = path.join(runDir, 'document_intention.txt');
+    await saveToFile(documentIntention, documentIntentionPath);
+  
+    const documentIntentPath = path.join(runDir, 'document_intent.txt');
+    await saveToFile(documentIntent, documentIntentPath);
+  
+    let initialDocument = await generateDocument(documentType, topic, exampleDocument, documentIntention, documentIntent, focusArea);
+    const initialDocumentPath = path.join(runDir, 'initial_document.txt');
+    receipt.documentIds.initialDocument = await saveToFile(initialDocument, initialDocumentPath);
+    receipt.initialDocumentPath = initialDocumentPath;
+  
+    console.log(`\nInitial Document:`);
+    console.log(`--------------`);
+    console.log(initialDocument);
+    console.log(`Saved to: ${initialDocumentPath}`);
+  
+    let bestDocument = initialDocument;
+    let previousDocument = initialDocument;
+    let goodEnoughDocument = null;
+    let improvedDocument = initialDocument;
+
+    for (let i = 1; i <= iterations; i++) {
+        console.log(`\n--- Iteration ${i} ---`);
+        const startTime = performance.now();
+
+        const iterationDir = await createIterationFolder(runDir, i);
+        let improvedDocumentFilePath = path.join(iterationDir, 'improved_document.txt');
+        let suggestionsPath = '';
+        let iterationAnalysisPath = '';
+        let discrepancyCheckPath = '';
+
+        const meetsRequirements = await evaluateDocumentFitness(improvedDocument, documentIntention, documentIntent, focusArea, iterationDir);
+        console.log(`\nDocument Fitness Evaluation: ${meetsRequirements ? 'Pass' : 'Fail'}`);
+  
+        if (meetsRequirements && !goodEnoughDocument) {
+            goodEnoughDocument = improvedDocument;
+            const goodEnoughDocumentPath = path.join(runDir, 'good_enough_document.txt');
+            await saveToFile(goodEnoughDocument, goodEnoughDocumentPath);
+            receipt.goodEnoughDocumentPath = goodEnoughDocumentPath;
+            console.log(`\nGood Enough Document saved to: ${goodEnoughDocumentPath}`);
+        }
+  
+        console.log(`\nChecking User Intent Alignment...`);
+        const intentCheckResult = await checkUserIntentAlignment(improvedDocument, documentIntention, documentIntent, focusArea);
         console.log(`\nUser Intent Alignment Check:`);
         console.log(intentCheckResult);
   
