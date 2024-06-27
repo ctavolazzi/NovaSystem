@@ -1,0 +1,27 @@
+{
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/components": [
+		"src/routes/+layout.ts"
+	],
+	"/components/[...path]": [
+		"src/routes/components/[...path]/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/posts": [
+		"src/routes/posts/+page.ts",
+		"src/routes/+layout.ts"
+	],
+	"/posts/[id]": [
+		"src/routes/posts/[id]/+layout.ts",
+		"src/routes/+layout.ts",
+		"src/routes/posts/[id]/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/posts/[id]/edit": [
+		"src/routes/posts/[id]/+layout.ts",
+		"src/routes/+layout.ts"
+	]
+}
