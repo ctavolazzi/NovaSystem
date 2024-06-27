@@ -1,0 +1,7 @@
+Player chose: Join in on the Harvest Festival preparations
+Received: Freshly Baked Baguette
+Received: Harvest Festival Brochure
+Received: Town's Best Pastry Recipe
+Equipped: Explore the Town Square
+Equipped: Ask Jake about his Bakery's History
+Equipped: Join in on Harvest Festival Preparations

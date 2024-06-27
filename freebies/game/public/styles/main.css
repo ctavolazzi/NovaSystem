@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#start-screen, #game-screen {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.active { display: block !important; }
+
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+#new-game-section, #load-game-section {
+    margin-bottom: 30px;
+}
+
+#story { 
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+#choices { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+button, input, select {
+    margin: 5px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button { 
+    background-color: #4CAF50; 
+    color: white; 
+    transition: background-color 0.3s ease;
+}
+
+button:hover { background-color: #45a049; }
+
+input, select { 
+    border: 1px solid #ddd; 
+    background-color: #f9f9f9;
+}
+
+#game-info, #character-info, #inventory {
+    background-color: #e9e9e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#game-info p, #character-info p {
+    margin: 5px 0;
+}
+
+#character-info h2, #inventory h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+#inventory ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#inventory li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#inventory li:last-child {
+    border-bottom: none;
+}
+
+.choice {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.choice button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background-color: #3498db;
+}
+
+.choice button:hover {
+    background-color: #2980b9;
+}
+
+.effects {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.effects p {
+    margin: 2px 0;
+}
