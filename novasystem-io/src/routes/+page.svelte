@@ -1,6 +1,3 @@
-<!-- <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
-
 <script>
     import { onMount } from 'svelte';
     
@@ -14,13 +11,24 @@
         console.error('Error fetching data from the backend:', error);
       }
     });
-    </script>
 
-    <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+    const handleClick = () => {
+        console.log('Button clicked');
+        backendData = 'Button clicked';
+        alert('Button clicked');
+    };
+</script>
+
+<h1>Welcome to NovaSystem</h1>
+<p>This is a test change to verify push functionality.</p>
+
+<h2>Data from the backend:</h2>
 
 {#if backendData}
   <p>Data from the backend: {backendData}</p>
 {:else}
   <p>Loading data from the backend...</p>
 {/if}
+
+<p>Did it work?</p>
+<button on:click={handleClick}>Click me</button>
