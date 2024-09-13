@@ -176,6 +176,7 @@ DCE's Instructions:
 
 Agent Inputs:
 [Inputs from each agent, formatted individually]
+[Agent should provide arguments for and against their ideas]
 
 CAE's Input:
 [Critical analysis and safety considerations from the CAE]
