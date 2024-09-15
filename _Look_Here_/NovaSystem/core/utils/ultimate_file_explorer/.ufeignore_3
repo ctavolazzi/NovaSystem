@@ -1,0 +1,56 @@
+# .ufeignore_high
+
+# Python cache directories
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Node.js dependencies
+node_modules/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Distribution/build directories
+dist/
+build/
+*.egg-info/
+coverage/
+
+# Compiled binaries and executables
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+
+# Backup files
+*~
+*.swp
+*.swn
+*.swo
+
+# Documentation builds
+docs/_build/
+
+# Additional minimal exclusions (optional)
+# Add any other patterns you consider unnecessary

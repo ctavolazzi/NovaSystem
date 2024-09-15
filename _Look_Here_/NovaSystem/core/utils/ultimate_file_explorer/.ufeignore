@@ -1,0 +1,36 @@
+# .ufeignore_low
+
+# Python cache directories
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Node.js dependencies
+node_modules/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Distribution/build directories
+dist/
+build/
+*.egg-info/
+coverage/

@@ -1,0 +1,118 @@
+Full directory path: C:/Users/ctavo/OneDrive/Desktop/Code/GitHub/NovaSystem/_Look_Here_/NovaSystem
+===================================================================================================
+
+backend/
+    adaptive_contextual_memory/
+        acl.py - 25.7 kB, modified 2024-07-14T10:00:28.436576, type text/x-python
+        acm.py - 25.7 kB, modified 2024-07-14T09:40:24.411838, type text/x-python
+        dab.py - 10.0 kB, modified 2024-07-14T09:41:49.733243, type text/x-python
+        ecs.py - 10.0 kB, modified 2024-07-14T09:42:01.321066, type text/x-python
+        ideas.py - 0 Bytes, modified 2024-07-14T09:42:30.852414, type inode/x-empty
+    simple_context_linker/
+        scl.py - 1.7 kB, modified 2024-07-14T10:03:06.952407, type text/x-python
+    whatevenisthis/
+        .gitignore - 3.6 kB, modified 2024-06-16T17:24:41.091934, type text/plain
+        LICENSE - 35.8 kB, modified 2024-06-16T17:19:20.959696, type text/plain
+        main/
+            asgi.py - 385 Bytes, modified 2024-06-16T17:24:41.224935, type text/x-python
+            local_settings.py - 3.3 kB, modified 2024-06-16T17:24:41.247935, type text/x-python
+            production_settings.py - 3.6 kB, modified 2024-06-16T17:24:41.271935, type text/x-python
+            settings.py - 139 Bytes, modified 2024-06-16T17:24:41.293935, type text/plain
+            urls.py - 746 Bytes, modified 2024-06-16T17:24:41.311934, type text/x-python
+            wsgi.py - 385 Bytes, modified 2024-06-16T17:24:41.328934, type text/x-python
+            __init__.py - 0 Bytes, modified 2024-06-16T17:24:41.204934, type inode/x-empty
+        manage.py - 660 Bytes, modified 2024-06-16T17:24:41.137935, type text/x-python
+        railway.json - 343 Bytes, modified 2024-06-16T17:24:41.162935, type text/plain
+        README.md - 1.7 kB, modified 2024-06-16T17:24:41.115934, type text/plain
+        requirements.txt - 195 Bytes, modified 2024-06-16T17:24:41.183934, type text/plain
+        static/
+            .gitkeep - 0 Bytes, modified 2024-06-16T17:24:41.341935, type inode/x-empty
+    whydididothis/
+        .env - 280 Bytes, modified 2024-06-16T13:29:50.023407, type text/plain
+        .github/
+            CODEOWNERS - 367 Bytes, modified 2024-06-16T12:54:32.395640, type text/plain
+            dependabot.yml - 114 Bytes, modified 2024-06-16T12:54:32.395640, type text/plain
+            PULL_REQUEST_TEMPLATE.MD - 466 Bytes, modified 2024-06-16T12:54:32.395640, type text/plain
+        .gitignore - 117 Bytes, modified 2024-06-16T12:54:32.396674, type text/plain
+        .venv/
+        app.json - 540 Bytes, modified 2024-06-16T12:54:32.396674, type text/plain
+        db.sqlite3 - 122.9 kB, modified 2024-06-16T14:12:41.465586, type application/x-sqlite3
+        gettingstarted/
+            asgi.py - 421 Bytes, modified 2024-06-16T12:54:32.397724, type text/x-python
+            settings.py - 7.2 kB, modified 2024-06-16T14:14:31.331443, type text/x-python
+            urls.py - 1.1 kB, modified 2024-06-16T13:45:54.685891, type text/x-python
+            wsgi.py - 421 Bytes, modified 2024-06-16T12:54:32.398717, type text/x-python
+            __init__.py - 0 Bytes, modified 2024-06-16T12:54:32.397724, type inode/x-empty
+            __pycache__/
+        hello/
+            admin.py - 66 Bytes, modified 2024-06-16T12:54:32.398717, type text/x-python
+            apps.py - 148 Bytes, modified 2024-06-16T12:54:32.398717, type text/x-python
+            migrations/
+                0001_initial.py - 834 Bytes, modified 2024-06-16T12:54:32.399827, type text/x-python
+                __init__.py - 0 Bytes, modified 2024-06-16T12:54:32.399827, type inode/x-empty
+                __pycache__/
+            models.py - 163 Bytes, modified 2024-06-16T12:54:32.399827, type text/x-python
+            static/
+                lang-logo.png - 2.2 kB, modified 2024-06-16T12:54:32.399827, type image/png
+            templates/
+                base.html - 3.6 kB, modified 2024-06-16T12:54:32.400858, type text/html
+                db.html - 257 Bytes, modified 2024-06-16T12:54:32.400858, type text/plain
+                echo.html - 381 Bytes, modified 2024-06-16T13:42:14.564791, type text/html
+                index.html - 4.1 kB, modified 2024-06-16T12:54:32.401679, type text/html
+            tests.py - 1.1 kB, modified 2024-06-16T12:54:32.401679, type text/x-python
+            views.py - 1.4 kB, modified 2024-06-16T13:42:03.019567, type text/x-python
+            __init__.py - 0 Bytes, modified 2024-06-16T12:54:32.398717, type inode/x-empty
+            __pycache__/
+        manage.py - 692 Bytes, modified 2024-06-16T12:54:32.401679, type text/x-python
+        Procfile - 381 Bytes, modified 2024-06-16T13:32:42.982826, type text/plain
+        Procfile.windows - 40 Bytes, modified 2024-06-16T12:54:32.396674, type text/plain
+        README.md - 1.5 kB, modified 2024-06-16T12:54:32.396674, type text/plain
+        requirements.txt - 625 Bytes, modified 2024-06-16T14:18:57.263075, type text/plain
+        runtime.txt - 15 Bytes, modified 2024-06-16T12:54:32.402763, type text/plain
+core/
+    bots/
+        Bot-01.py - 11.0 kB, modified 2024-09-14T20:34:52.285208, type text/x-python
+        Bot.py - 7.6 kB, modified 2024-09-14T20:34:58.380456, type text/x-python
+        test_bot.py - 8.8 kB, modified 2024-09-14T20:37:06.251134, type text/x-python
+        _init_.py - 0 Bytes, modified 2024-06-16T11:29:45.303799, type inode/x-empty
+    controllers/
+        Controller.py - 473 Bytes, modified 2024-06-16T11:29:45.304799, type text/x-python
+        _init_.py - 0 Bytes, modified 2024-06-16T11:29:45.304799, type inode/x-empty
+    display/
+        flagged/
+            log.csv - 63 Bytes, modified 2024-06-16T11:29:45.304799, type text/plain
+        main.py - 1.9 kB, modified 2024-06-16T11:29:45.305799, type text/x-python
+    filetree.txt - 865 Bytes, modified 2024-06-16T11:29:45.305799, type text/plain
+    hubs/
+        BotFactory.py - 2.1 kB, modified 2024-06-16T11:29:45.305799, type text/x-python
+        Hub.py - 794 Bytes, modified 2024-06-16T11:29:45.305799, type text/x-python
+        _init_.py - 0 Bytes, modified 2024-06-16T11:29:45.306799, type inode/x-empty
+    ports/
+        data_serializer.py - 1.0 kB, modified 2024-06-16T11:29:45.306799, type text/x-python
+        json_serializer.py - 329 Bytes, modified 2024-06-16T11:29:45.306799, type text/x-python
+        Port.py - 1.4 kB, modified 2024-06-16T11:29:45.307802, type text/x-python
+        port_factory.py - 850 Bytes, modified 2024-06-16T11:29:45.307802, type text/x-python
+        port_interface.py - 1.8 kB, modified 2024-06-16T11:29:45.307802, type text/x-python
+        README-Ports.md - 2.0 kB, modified 2024-06-16T11:29:45.306799, type text/plain
+        simple-example.py - 421 Bytes, modified 2024-06-16T11:29:45.307802, type text/x-python
+        tcp_port_adapter.py - 5.9 kB, modified 2024-06-16T11:29:45.307802, type text/x-python
+        websocket-example.py - 641 Bytes, modified 2024-06-16T11:29:45.308799, type text/x-python
+        websocket_port_adapter.py - 7.4 kB, modified 2024-06-16T11:29:45.308799, type text/x-python
+        __pycache__/
+    README.md - 11.5 kB, modified 2024-06-16T11:29:45.302799, type text/plain
+    routers/
+        Router.py - 15 Bytes, modified 2024-06-16T11:29:45.309799, type text/plain
+        _init_.py - 0 Bytes, modified 2024-06-16T11:29:45.309799, type inode/x-empty
+    SUPPLEMENTAL/
+        Design_Patterns/
+            NovaSystem_Design.md - 4.4 kB, modified 2024-06-16T11:29:45.303799, type text/plain
+        READ_US.md - 0 Bytes, modified 2024-06-16T11:29:45.303799, type inode/x-empty
+    utils/
+        ultimate_file_explorer/
+            .ufeignore - 423 Bytes, modified 2024-09-15T00:27:50.484029, type text/plain
+            .ufeignore_2 - 459 Bytes, modified 2024-09-15T00:28:04.322084, type text/plain
+            .ufeignore_3 - 684 Bytes, modified 2024-09-15T00:28:16.450319, type text/plain
+            maps/
+                directory_map_NovaSystem_2024-09-15_11-16-22.txt - 961.9 kB, modified 2024-09-15T11:16:22.120028, type text/plain
+            README.md - 7.3 kB, modified 2024-09-14T23:57:52.771010, type text/plain
+            ultimate_file_explorer.py - 11.9 kB, modified 2024-09-15T11:15:27.581952, type text/x-python
