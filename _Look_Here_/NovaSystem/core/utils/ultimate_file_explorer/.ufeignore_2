@@ -1,0 +1,43 @@
+# .ufeignore_medium
+
+# All patterns from .ufeignore_low
+__pycache__/
+*.pyc
+venv/
+env/
+.venv/
+.env/
+node_modules/
+*.log
+*.tmp
+*.temp
+*.bak
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+dist/
+build/
+*.egg-info/
+coverage/
+
+# Additional exclusions
+
+# Compiled binaries and executables
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+
+# Backup files
+*~
+*.swp
+*.swn
+*.swo
+
+# Documentation builds
+docs/_build/
