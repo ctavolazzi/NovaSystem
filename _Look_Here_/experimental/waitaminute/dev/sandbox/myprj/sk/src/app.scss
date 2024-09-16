@@ -1,0 +1,110 @@
+@import "water.css/out/water.css";
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:ital,wght@1,500&display=swap");
+:root {
+  --danger: red;
+  --font-main: Roboto, Arial, Helvetica, sans-serif;
+  --font-alt: Sofia Sans Condensed, sans-serif;
+}
+
+// change some defaults from water.css
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-alt);
+}
+
+body {
+  font-family: var(--font-main);
+  // font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  // font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  // main body container centered
+  margin: 0 auto;
+  // slight box shadow
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+  // fill height
+  min-height: 100vh;
+  // water.css default is too narrow
+  max-width: 996px;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+table {
+  // water.css default is 'fixed'
+  table-layout: auto;
+}
+
+label {
+  // water.css default is 'inline-block'
+  display: block;
+}
+
+// utilities
+
+// a[href] links without decortions
+a.plain {
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// buttons without too much padding
+button.small {
+  padding-right: inherit;
+  padding-left: inherit;
+  padding: 10px;
+}
+
+// buttons with almost no padding
+button.tight {
+  padding: 0px 5px;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+// credit: https://iros.github.io/patternfills/sample_css.html
+.diagonal-stripe-1 {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScvPgogIDxwYXRoIGQ9J00tMSwxIGwyLC0yCiAgICAgICAgICAgTTAsMTAgbDEwLC0xMAogICAgICAgICAgIE05LDExIGwyLC0yJyBzdHJva2U9J2JsYWNrJyBzdHJva2Utd2lkdGg9JzEnLz4KPC9zdmc+Cg==");
+  background-repeat: repeat;
+}
+
+.lightstripe {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc1JyBoZWlnaHQ9JzUnPgogIDxyZWN0IHdpZHRoPSc1JyBoZWlnaHQ9JzUnIGZpbGw9J3doaXRlJy8+CiAgPHBhdGggZD0nTTAgNUw1IDBaTTYgNEw0IDZaTS0xIDFMMSAtMVonIHN0cm9rZT0nIzg4OCcgc3Ryb2tlLXdpZHRoPScxJy8+Cjwvc3ZnPg==");
+  background-repeat: repeat;
+}
+
+.crosshatch {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==");
+  background-repeat: repeat;
+}
+
+.carbon-fiber {
+  background: // credit: https://projects.verou.me/css3patterns/
+    radial-gradient(rgba(0, 0, 0, 1) 15%, transparent 16%) 0 0,
+    radial-gradient(rgba(0, 0, 0, 1) 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
+  background-color: #282828;
+  background-size: 16px 16px;
+}
+
+// dark mode settings
+@media (prefers-color-scheme: dark) {
+  //
+}

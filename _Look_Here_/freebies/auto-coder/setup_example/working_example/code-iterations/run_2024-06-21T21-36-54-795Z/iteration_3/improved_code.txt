@@ -1,0 +1,144 @@
+Document ID: 336f94f7-7142-4cfa-afa9-c044e0cad9b2
+
+import java.util.*;
+public class HashTable {
+public static void main(String[] args) {
+//Test case for add and get methods
+HashTable hashTable = new HashTable();
+hashTable.add(1); // Hashes to index 0
+hashTable.add(2); // Hashes to index 1
+hashTable.add(3); // Hashes to index 2
+System.out.println("Size of hashtable: " + hashTable.size()); // Output: Size of hashtable: 3
+//Test case for contains method
+if (hashTable.contains(1)) {
+System.out.println("Contains 1: true");
+} else {
+System.out.println("Contains 1: false");
+} // Output: Contains 1: true
+//Test case for hash method
+int index = hashTable.hash(2); // Hashes to index 1
+System.out.println("Index of 2: " + index); // Output: Index of 2: 1
+//Test case for get and set methods
+hashTable.set(1, 4); // Hashes to index 0
+int value = hashTable.get(1); // Returns 4
+System.out.println("Getting value from index 0: " + value); // Output: Getting value from index 0: 4
+//Test case for remove method
+hashTable.remove(2); // Hashes to index 2
+System.out.println("Size of hashtable after removing 2: " + hashTable.size()); // Output: Size of hashtable after removing 2: 2
+}
+private int size;
+private LinkedList[] linkedLists;
+public HashTable() {
+this.size = 0;
+this.linkedLists = new LinkedList[8];
+for (int i = 0; i < this.linkedLists.length; i++) {
+this.linkedLists[i] = new LinkedList();
+}
+}
+public void add(int key) {
+int index = hash(key); // Hashes the key to an index in the linked list
+LinkedList currentList = this.linkedLists[index];
+currentList.append(new Node(key));
+this.size++;
+}
+public boolean contains(int key) {
+int index = hash(key); // Hashes the key to an index in the linked list
+LinkedList currentList = this.linkedLists[index];
+return currentList.contains(key);
+}
+public int hash(int key) {
+return key % this.linkedLists.length; // Hashes the key to an index in the linked list
+}
+public void set(int key, int value) {
+int index = hash(key); // Hashes the key to an index in the linked list
+LinkedList currentList = this.linkedLists[index];
+currentList.setValue(key, value);
+}
+public int get(int key) {
+int index = hash(key); // Hashes the key to an index in the linked list
+LinkedList currentList = this.linkedLists[index];
+return currentList.getValue(key);
+}
+public void remove(int key) {
+int index = hash(key); // Hashes the key to an index in the linked list
+LinkedList currentList = this.linkedLists[index];
+currentList.remove(key);
+this.size--;
+}
+private class Node {
+public int key;
+public int value;
+public Node(int key) {
+this.key = key;
+}
+}
+private class LinkedList {
+private Node head; // Pointer to first node in list
+private Node tail; // Pointer to last node in list
+public LinkedList() {
+this.head = null;
+this.tail = null;
+}
+public void append(Node node) {
+if (this.tail == null) {
+this.head = node;
+this.tail = node;
+} else {
+this.tail.next = node;
+this.tail = node;
+}
+}
+public void setValue(int key, int value) {
+Node currentNode = this.head; // Start at the beginning of the list
+while (currentNode != null) {
+if (currentNode.key == key) {
+currentNode.value = value;
+break;
+}
+currentNode = currentNode.next;
+}
+}
+public int getValue(int key) {
+Node currentNode = this.head; // Start at the beginning of the list
+while (currentNode != null) {
+if (currentNode.key == key) {
+return currentNode.value;
+}
+currentNode = currentNode.next;
+}
+return -1;
+}
+public boolean contains(int key) {
+Node currentNode = this.head; // Start at the beginning of the list
+while (currentNode != null) {
+if (currentNode.key == key) {
+return true;
+}
+currentNode = currentNode.next;
+}
+return false;
+}
+public void remove(int key) {
+Node previousNode = null; // Start at the beginning of the list
+Node currentNode = this.head;
+while (currentNode != null) {
+if (currentNode.key == key) {
+// If we reach the node to be removed,
+// update the links of the previous and next nodes
+if (previousNode == null) {
+this.head = currentNode.next;
+} else {
+previousNode.next = currentNode.next;
+}
+if (currentNode == this.tail) {
+this.tail = previousNode;
+}
+break;
+}
+previousNode = currentNode;
+currentNode = currentNode.next;
+}
+this.size--;
+}
+}
+}

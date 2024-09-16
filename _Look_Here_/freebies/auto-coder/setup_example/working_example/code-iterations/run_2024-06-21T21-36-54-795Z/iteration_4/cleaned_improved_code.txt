@@ -1,0 +1,31 @@
+Document ID: 41fdd934-2994-48a8-a427-163b29ce39e0
+
+```
+# A simple hash table implementation using an array of linked lists to store key-value pairs.
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.data = [[None for _ in range(size)] for _ in range(size)]
+
+    def put(self, key, value):
+        hashedKey = self.hash(key)
+        currentIndex = 0
+        while self.data[currentIndex][hashedKey] is not None:
+            if self.data[currentIndex][hashedKey].key == key:
+                self.data[currentIndex][hashedKey].value = value
+                return
+            currentIndex = (currentIndex + 1) % self.size
+        self.data[currentIndex][hashedKey] = Node(key, value)
+
+    def get(self, key):
+        hashedKey = self.hash(key)
+        currentIndex = 0
+        while self.data[currentIndex][hashedKey] is not None:
+            if self.data[currentIndex][hashedKey].key == key:
+                return self.data[currentIndex][hashedKey].value
+            currentIndex = (currentIndex + 1) % self.size
+        return None
+
+    def hash(self, key):
+        return key % self.size
+```

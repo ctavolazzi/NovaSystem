@@ -1,0 +1,64 @@
+NovaSystem/
+│
+├── __init__.py
+|
+├── src/
+│   ├── api/
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── routers/
+│   │   └── utils/
+│   │
+│   ├── cli/
+│   │   ├── commands/
+│   │   └── utils/
+│   │
+│   ├── core/
+│   │   ├── __init__.py      # Core module entry point
+│   │   ├── setup.py         # Setup script for core module
+│   │   ├── logic.py        # Core application logic
+│   │   ├── config.py        # Enhanced Configuration settings
+│   │   ├── models.py        # Core data models
+│   │   ├── security.py      # Security management
+│   │   └── ai_utils.py      # AI and Machine Learning utilities
+│   │
+│   ├── gui/                 # Tkinter GUI related modules
+│   │   └── main_gui.py      # GUI entry point
+│   │
+│   └── utils/               # General utilities and helpers
+│       ├── logger.py        # Custom logging module
+│       ├── db_connector.py  # Database connection utilities
+│       └── performance.py   # Performance monitoring tools
+│
+├── tests/
+│   ├── api/
+│   ├── cli/
+│   ├── gui/
+│   └── core/
+│
+├── logs/                    # Log files directory
+│   └── application.log      # Main log file
+│
+├── .env                     # Environment variables
+├── .gitignore               # Git ignore rules
+├── README.md                # Basic documentation
+├── requirements.txt         # Dependency list
+└── setup.py                 # Setup script for project
+
+
+
+
+It will need to become:
+
+novasystem/
+│
+├── __init__.py
+├── main.py  # Entry point of the application
+├── cli.py  # CLI related functions and commands
+├── workspace.py  # Workspace management functions
+├── settings.py  # Settings management functions
+├── security.py  # Security-related functions
+├── utils.py  # Utility functions
+└── config.py  # Configuration related functions

@@ -1,0 +1,6 @@
+.npm
+.local
+.cache
+.ash_history
+node_modules
+.env

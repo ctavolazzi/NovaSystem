@@ -1,0 +1,1503 @@
+{
+  "nodes": {
+    "eedfc1b4-da80-44ab-8d22-3c5fe50805ab": {
+      "id": "eedfc1b4-da80-44ab-8d22-3c5fe50805ab",
+      "data": {
+        "id": 1,
+        "title": "Glorbo's Journey: A Wandering Mage's Quest Begins",
+        "text": "You find yourself standing in the middle of Willow Creek's bustling town square. The air is crisp with the scent of freshly baked goods wafting from Jake's family bakery next door to where you're staying. As a Wandering Mage, you've arrived in this small town seeking adventure and perhaps a fresh start. Your reputation as a skilled mage has preceded you, and whispers of your abilities have already spread throughout the community. With the Harvest Festival just around the corner, the townsfolk are busy preparing for the grand celebration. What would you like to do first, Glorbo?",
+        "choices": [
+          "Follow the rumors of a mysterious tower",
+          "Visit the local tavern for information and gossip",
+          "Explore the nearby woods and ruins"
+        ],
+        "characters": [
+          {
+            "id": "char_2",
+            "name": "Glorbo",
+            "description": "The player, a wandering mage seeking adventure and knowledge",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_3",
+            "name": "Eira Brightshore",
+            "description": "A skilled warrior with a mysterious past",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_4",
+            "name": "Arin the Bold",
+            "description": "A charismatic rogue with a talent for thievery",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "name": "Staff of the Wandering Mage",
+            "description": "A sturdy wooden staff imbued with magical energy.",
+            "effect": "Basic spellcasting abilities"
+          },
+          {
+            "id": "2",
+            "name": "Tome of Traveler's Tales",
+            "description": "An old book filled with stories of adventure and mystery.",
+            "effect": "Provides inspiration for future endeavors."
+          },
+          {
+            "id": "3",
+            "name": "Pouch of Gold Coins",
+            "description": "A small pouch containing a decent amount of gold coins.",
+            "effect": "Sufficient funds for basic supplies."
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Mystic's Guide",
+            "description": "A worn leather-bound book containing ancient spells and incantations.",
+            "attributes": {
+              "weight": 0.5,
+              "value": 10
+            }
+          },
+          {
+            "id": 2,
+            "name": "Silver Studded Belt",
+            "description": "A sturdy belt with intricate silver studs, providing moderate armor class.",
+            "attributes": {
+              "armor_class": 6,
+              "weight": 1,
+              "value": 20
+            }
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": "1d137b00-cdba-4d98-8e1a-373fc158c4e8",
+          "data": {
+            "id": "1d3f132f-e80d-4348-a0fb-9cf3f7ed697b",
+            "title": "The Wandering Mage's Quest Begins",
+            "text": "You find yourself standing in the middle of Willow Creek's bustling town square. The air is crisp with the scent of freshly baked goods wafting from Jake's family bakery next door to where you're staying. As a Wandering Mage, you've arrived in this small town seeking adventure and perhaps a fresh start. Your reputation as a skilled mage has preceded you, and whispers of your abilities have already spread throughout the community. With the Harvest Festival just around the corner, the townsfolk are busy preparing for the grand celebration. What would you like to do first, Glorbo? You can explore the town square, visit Jake's bakery, or follow the rumors of a mysterious tower that has been whispering secrets to those brave enough to listen.",
+            "choices": [
+              "Visit Jake's Family Bakery",
+              "Explore the Town's Shops",
+              "Attend the Harvest Festival Preparations"
+            ],
+            "characters": [
+              {
+                "id": "char_5",
+                "name": "Mayor Jenkins",
+                "description": "The mayor of Willow Creek, known for his charming smile and love of festivities.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_6",
+                "name": "Jake",
+                "description": "A skilled baker and owner of the family bakery next to where Glorbo is staying, who might have some valuable information or requests.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_7",
+                "name": "Eira Shadowglow",
+                "description": "A mysterious traveler who has been seen wandering around town, rumored to possess dark magic abilities.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_8",
+                "name": "Finnley Swiftfoot",
+                "description": "The town's young apprentice blacksmith, eager to prove himself and gain recognition.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_9",
+                "name": "Lila Moonwhisper",
+                "description": "A local healer and respected member of the community, known for her wisdom and knowledge of herbalism.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              }
+            ],
+            "items": [
+              {
+                "id": "1",
+                "name": "Visit Jake's Family Bakery",
+                "description": "Grab a fresh pastry and catch up on local gossip.",
+                "effect": "Gain a boost in reputation"
+              },
+              {
+                "id": "2",
+                "name": "Explore the Town",
+                "description": "Get familiar with the town's layout, people, and rumors.",
+                "effect": "Discover hidden locations and clues"
+              },
+              {
+                "id": "3",
+                "name": "Harvest Festival Preparations",
+                "description": "Help out with festival preparations to earn favor and resources.",
+                "effect": "Gain access to exclusive items and activities during the festival"
+              },
+              {
+                "id": "4",
+                "name": "Visit the Local Tavern",
+                "description": "Share tales of your adventures and gather information from travelers.",
+                "effect": "Learn about rumors, quests, and potential allies"
+              }
+            ],
+            "loot": [
+              {
+                "id": 1,
+                "name": "Mysterious Scroll",
+                "description": "A worn-out scroll with ancient runes. Might contain a useful spell.",
+                "attributes": {
+                  "type": "scroll"
+                }
+              },
+              {
+                "id": 2,
+                "name": "Harvest Festival Token",
+                "description": "A shiny token from the Harvest Festival organizers. Can be traded for exclusive rewards.",
+                "attributes": {
+                  "rarity": "uncommon"
+                }
+              }
+            ]
+          },
+          "children": []
+        },
+        {
+          "id": "57724d02-3c31-4bdd-a6a4-00d5e0d5944a",
+          "data": {
+            "id": "3be4729c-de8d-4bc4-a8a0-9b1a54c56f53",
+            "title": "New Adventures Awaits Glorbo in Willow Creek",
+            "text": "You've decided to visit Jake's family bakery! As you step inside, the aroma of freshly baked goods envelops you. Jake greets you warmly, his eyes twinkling with a mix of curiosity and friendliness. He offers you a warm baguette fresh from the oven, and you take a bite, savoring the flavors and textures. The bakery is bustling with activity as Jake's family prepares for the Harvest Festival. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. What would you like to do next, Glorbo? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+            "choices": [
+              "Explore the town square",
+              "Visit Jake's bakery",
+              "Follow the rumors of the mysterious tower"
+            ],
+            "characters": [
+              {
+                "id": "char_10",
+                "name": "Glorbo",
+                "description": "Wandering Mage and protagonist of the story",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_11",
+                "name": "Jake",
+                "description": "Owner of Jake's family bakery, known for his delicious baked goods and warm hospitality",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_12",
+                "name": "Elara",
+                "description": "Town elder who knows more about the mysterious tower than she's letting on",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_13",
+                "name": "Arin",
+                "description": "Young apprentice mage seeking to learn from Glorbo's expertise",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_14",
+                "name": "Mayor Thorne",
+                "description": "Town leader overseeing preparations for the Harvest Festival and eager to capitalize on Glorbo's magical abilities",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              }
+            ],
+            "items": [
+              {
+                "id": "1",
+                "name": "Explore the town square",
+                "description": "Walk around and take in the sights and sounds of Willow Creek's bustling town square.",
+                "effect": ""
+              },
+              {
+                "id": "2",
+                "name": "Visit Jake's bakery",
+                "description": "Step inside Jake's family bakery and sample some freshly baked treats.",
+                "effect": ""
+              },
+              {
+                "id": "3",
+                "name": "Follow the rumors of a mysterious tower",
+                "description": "Head towards the outskirts of town to investigate the whispers of a mysterious tower that has been sharing secrets with brave adventurers.",
+                "effect": ""
+              }
+            ],
+            "loot": [
+              {
+                "id": 1,
+                "name": "Tattered Tome",
+                "description": "A worn-out book filled with forgotten spells and incantations.",
+                "attributes": {
+                  "rarity": "uncommon"
+                }
+              },
+              {
+                "id": 2,
+                "name": "Moonstone Amulet",
+                "description": "An amulet that glows softly in the light of a full moon, granting the wearer minor magical resistance.",
+                "attributes": {
+                  "type": "jewelry",
+                  "rarity": "rare"
+                }
+              },
+              {
+                "id": 3,
+                "name": "Festival Token",
+                "description": "A commemorative token from the Harvest Festival, allowing the bearer to participate in exclusive events and activities.",
+                "attributes": {
+                  "type": "token",
+                  "rarity": "common"
+                }
+              }
+            ]
+          },
+          "children": []
+        },
+        {
+          "id": "46f00fdb-577f-476d-bb99-d788af11baec",
+          "data": {
+            "id": "a574ebed-479d-4659-89a1-1d6b82527e04",
+            "title": "A Scent of Wonder: Exploring Jake's Family Bakery",
+            "text": "You've decided to visit Jake's family bakery! As you step inside, the aroma of freshly baked goods envelops you. Jake greets you warmly, his eyes twinkling with a mix of curiosity and friendliness. He offers you a warm baguette fresh from the oven, and you take a bite, savoring the flavors and textures. The bakery is bustling with activity as Jake's family prepares for the Harvest Festival. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. What would you like to do next, Glorbo? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+            "choices": [
+              "Explore the town square",
+              "Ask Jake about his bakery's history",
+              "Join in on the Harvest Festival preparations"
+            ],
+            "characters": [
+              {
+                "id": "char_15",
+                "name": "Jake",
+                "description": "The baker and owner of the family bakery. He's warm, friendly, and curious about you.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_16",
+                "name": "Townsfolk",
+                "description": "A group of villagers gathered near the door, chatting about the Harvest Festival. They seem to be sizing you up as an outsider.",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              }
+            ],
+            "items": [
+              {
+                "id": "explore-town-square",
+                "name": "Explore the Town Square",
+                "description": "Take a stroll around the bustling town square, observing the preparations for the Harvest Festival.",
+                "effect": "leads to 'town_square' node"
+              },
+              {
+                "id": "ask-jake-about-bakery",
+                "name": "Ask Jake about the Bakery's History",
+                "description": "Inquire with Jake about his family's bakery and its history in the town.",
+                "effect": "gives insight into the bakery's past, potentially revealing new information or connections."
+              },
+              {
+                "id": "join-harvest-fest-prep",
+                "name": "Join in on Harvest Festival Preparations",
+                "description": "Lend a hand with the festival preparations, possibly gaining favors or learning new skills.",
+                "effect": "grants temporary buffs to reputation and skill levels."
+              }
+            ],
+            "loot": [
+              {
+                "id": 1,
+                "name": "Fresh Baguette",
+                "description": "A warm baguette fresh from the oven at Jake's family bakery.",
+                "attributes": {}
+              },
+              {
+                "id": 2,
+                "name": "Harvest Festival Invitation",
+                "description": "An invitation to join in on the Harvest Festival preparations and celebrations.",
+                "attributes": {}
+              }
+            ]
+          },
+          "children": []
+        },
+        {
+          "id": "d4a5dce9-97d1-4dd1-8d19-6f743d2fcb88",
+          "data": {
+            "id": "b8bf11b4-c2d1-4a5b-9c1e-31fb091726da",
+            "title": "Glorbo's Bakery Visit",
+            "text": "You take another bite of the warm baguette, savoring the flavors and textures. As you chew, Jake's family prepares for the Harvest Festival with a flurry of activity. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. The aroma of freshly baked goods wafts through the air, mingling with the sound of laughter and chatter. What would you like to do next, Glorbo? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+            "choices": [
+              "Explore the town square",
+              "Ask Jake about his bakery's history",
+              "Join in on the Harvest Festival preparations"
+            ],
+            "characters": [
+              {
+                "id": "char_17",
+                "name": "Glorbo",
+                "description": "The player character, a Wandering Mage",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_18",
+                "name": "Jake",
+                "description": "Owner of the family bakery, warm and welcoming",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_19",
+                "name": "Townsfolk",
+                "description": "Residents of the town gathered near the door, chatting about the Harvest Festival",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              }
+            ],
+            "items": [
+              {
+                "id": "1",
+                "name": "Explore the town square",
+                "description": "Take a stroll around the bustling town square and see what's happening for the Harvest Festival.",
+                "effect": ""
+              },
+              {
+                "id": "2",
+                "name": "Ask Jake about his bakery's history",
+                "description": "Learn more about Jake's family bakery and its role in the town's celebrations.",
+                "effect": ""
+              },
+              {
+                "id": "3",
+                "name": "Join in on the Harvest Festival preparations",
+                "description": "Roll up your sleeves and help Jake's family get ready for the big day.",
+                "effect": ""
+              }
+            ],
+            "loot": [
+              {
+                "id": 1,
+                "name": "Freshly Baked Baguette",
+                "description": "A warm baguette fresh from the oven, still emitting a sweet aroma.",
+                "attributes": {
+                  "type": "food"
+                }
+              },
+              {
+                "id": 2,
+                "name": "Harvest Festival Brochure",
+                "description": "A colorful brochure detailing the schedule and activities for the upcoming Harvest Festival.",
+                "attributes": {
+                  "type": "document"
+                }
+              }
+            ]
+          },
+          "children": []
+        },
+        {
+          "id": "4d683983-3221-4702-9915-8724d675f3db",
+          "data": {
+            "id": "a0cee441-c033-4d8a-be5c-d8bddd40240b",
+            "title": "Harvest Festival Preparations",
+            "text": "You take another bite of the warm baguette, savoring the flavors and textures. As you chew, Jake's family prepares for the Harvest Festival with a flurry of activity. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. The aroma of freshly baked goods wafts through the air, mingling with the sound of laughter and chatter. What would you like to do next? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+            "choices": [
+              "Explore the town square",
+              "Ask Jake about his bakery's history",
+              "Join in on the Harvest Festival preparations"
+            ],
+            "characters": [
+              {
+                "id": "char_20",
+                "name": "Glorbo",
+                "description": "Wandering Mage",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_21",
+                "name": "Jake",
+                "description": "Baker and father of Jake's family",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_22",
+                "name": "Townsfolk",
+                "description": "Residents of the town gathered near the door, chatting about the Harvest Festival",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              }
+            ],
+            "items": [
+              {
+                "id": "explore",
+                "name": "Explore the Town Square",
+                "description": "Take a stroll around the bustling town square and see what's happening.",
+                "effect": ""
+              },
+              {
+                "id": "ask_jake",
+                "name": "Ask Jake about his Bakery's History",
+                "description": "Poke your head into the bakery and ask Jake about the history of his shop.",
+                "effect": ""
+              },
+              {
+                "id": "help_preparations",
+                "name": "Join in on Harvest Festival Preparations",
+                "description": "Roll up your sleeves and help Jake's family get ready for the big celebration.",
+                "effect": ""
+              }
+            ],
+            "loot": [
+              {
+                "id": 1,
+                "name": "Freshly Baked Baguette",
+                "description": "A warm baguette straight from the oven.",
+                "attributes": {
+                  "weight": 0.5
+                }
+              },
+              {
+                "id": 2,
+                "name": "Harvest Festival Brochure",
+                "description": "A colorful brochure detailing the events and activities for the Harvest Festival.",
+                "attributes": {}
+              },
+              {
+                "id": 3,
+                "name": "Town's Best Pastry Recipe",
+                "description": "A secret recipe book containing the town's most treasured pastry recipes.",
+                "attributes": {
+                  "rarity": "uncommon"
+                }
+              }
+            ]
+          },
+          "children": []
+        },
+        {
+          "id": "b27ed2bf-496f-44f1-ad83-ed5af36862ae",
+          "data": {
+            "id": "ad8aa1b7-7575-4048-a79f-24bef5a7c096",
+            "title": "Harvest Festival Preparations: A Wandering Mage's Delight",
+            "text": "As you take another bite of the warm baguette, savoring the flavors and textures, you can't help but feel a sense of belonging among Jake's family as they prepare for the Harvest Festival. The aroma of freshly baked goods wafts through the air, mingling with the sound of laughter and chatter from the townsfolk gathered near the door. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. You notice a few townsfolk chatting about the upcoming celebration, their excitement palpable. The atmosphere is lively, and you can't help but feel drawn to the festivities. What would you like to do next? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+            "choices": [
+              "Explore the town square",
+              "Ask Jake about his bakery's history",
+              "Join in on the Harvest Festival preparations"
+            ],
+            "characters": [
+              {
+                "id": "char_23",
+                "name": "Glorbo",
+                "description": "Player, a Wandering Mage",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_24",
+                "name": "Jake",
+                "description": "Local baker and friend of Glorbo",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              },
+              {
+                "id": "char_25",
+                "name": "Townsfolk",
+                "description": "Various townspeople gathered near the door, chatting about the Harvest Festival",
+                "attributes": {
+                  "strength": 0,
+                  "dexterity": 0,
+                  "intelligence": 0,
+                  "constitution": 0
+                },
+                "level": 1,
+                "experience": 0,
+                "skills": {},
+                "traits": {},
+                "inventory": [],
+                "equipped_items": []
+              }
+            ],
+            "items": [
+              {
+                "id": "1",
+                "name": "Explore the town square",
+                "description": "Walk around and take in the sights and sounds of the festival preparations.",
+                "effect": ""
+              },
+              {
+                "id": "2",
+                "name": "Ask Jake about his bakery's history",
+                "description": "Learn more about Jake's family and their baking traditions.",
+                "effect": ""
+              },
+              {
+                "id": "3",
+                "name": "Join in on the Harvest Festival preparations",
+                "description": "Help with the final touches of preparing for the festival, and maybe even learn some new recipes or techniques.",
+                "effect": ""
+              }
+            ],
+            "loot": [
+              {
+                "id": 1,
+                "name": "Warm Baguette Crumbs",
+                "description": "A small pile of crumbs from the warm baguette you're currently eating.",
+                "attributes": {}
+              },
+              {
+                "id": 2,
+                "name": "Fresh Fruit",
+                "description": "A few pieces of fresh fruit that have been left out in the town square.",
+                "attributes": {}
+              }
+            ]
+          },
+          "children": []
+        }
+      ]
+    },
+    "1d137b00-cdba-4d98-8e1a-373fc158c4e8": {
+      "id": "1d137b00-cdba-4d98-8e1a-373fc158c4e8",
+      "data": {
+        "id": "1d3f132f-e80d-4348-a0fb-9cf3f7ed697b",
+        "title": "The Wandering Mage's Quest Begins",
+        "text": "You find yourself standing in the middle of Willow Creek's bustling town square. The air is crisp with the scent of freshly baked goods wafting from Jake's family bakery next door to where you're staying. As a Wandering Mage, you've arrived in this small town seeking adventure and perhaps a fresh start. Your reputation as a skilled mage has preceded you, and whispers of your abilities have already spread throughout the community. With the Harvest Festival just around the corner, the townsfolk are busy preparing for the grand celebration. What would you like to do first, Glorbo? You can explore the town square, visit Jake's bakery, or follow the rumors of a mysterious tower that has been whispering secrets to those brave enough to listen.",
+        "choices": [
+          "Visit Jake's Family Bakery",
+          "Explore the Town's Shops",
+          "Attend the Harvest Festival Preparations"
+        ],
+        "characters": [
+          {
+            "id": "char_5",
+            "name": "Mayor Jenkins",
+            "description": "The mayor of Willow Creek, known for his charming smile and love of festivities.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_6",
+            "name": "Jake",
+            "description": "A skilled baker and owner of the family bakery next to where Glorbo is staying, who might have some valuable information or requests.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_7",
+            "name": "Eira Shadowglow",
+            "description": "A mysterious traveler who has been seen wandering around town, rumored to possess dark magic abilities.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_8",
+            "name": "Finnley Swiftfoot",
+            "description": "The town's young apprentice blacksmith, eager to prove himself and gain recognition.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_9",
+            "name": "Lila Moonwhisper",
+            "description": "A local healer and respected member of the community, known for her wisdom and knowledge of herbalism.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "name": "Visit Jake's Family Bakery",
+            "description": "Grab a fresh pastry and catch up on local gossip.",
+            "effect": "Gain a boost in reputation"
+          },
+          {
+            "id": "2",
+            "name": "Explore the Town",
+            "description": "Get familiar with the town's layout, people, and rumors.",
+            "effect": "Discover hidden locations and clues"
+          },
+          {
+            "id": "3",
+            "name": "Harvest Festival Preparations",
+            "description": "Help out with festival preparations to earn favor and resources.",
+            "effect": "Gain access to exclusive items and activities during the festival"
+          },
+          {
+            "id": "4",
+            "name": "Visit the Local Tavern",
+            "description": "Share tales of your adventures and gather information from travelers.",
+            "effect": "Learn about rumors, quests, and potential allies"
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Mysterious Scroll",
+            "description": "A worn-out scroll with ancient runes. Might contain a useful spell.",
+            "attributes": {
+              "type": "scroll"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Harvest Festival Token",
+            "description": "A shiny token from the Harvest Festival organizers. Can be traded for exclusive rewards.",
+            "attributes": {
+              "rarity": "uncommon"
+            }
+          }
+        ]
+      },
+      "children": []
+    },
+    "57724d02-3c31-4bdd-a6a4-00d5e0d5944a": {
+      "id": "57724d02-3c31-4bdd-a6a4-00d5e0d5944a",
+      "data": {
+        "id": "3be4729c-de8d-4bc4-a8a0-9b1a54c56f53",
+        "title": "New Adventures Awaits Glorbo in Willow Creek",
+        "text": "You've decided to visit Jake's family bakery! As you step inside, the aroma of freshly baked goods envelops you. Jake greets you warmly, his eyes twinkling with a mix of curiosity and friendliness. He offers you a warm baguette fresh from the oven, and you take a bite, savoring the flavors and textures. The bakery is bustling with activity as Jake's family prepares for the Harvest Festival. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. What would you like to do next, Glorbo? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+        "choices": [
+          "Explore the town square",
+          "Visit Jake's bakery",
+          "Follow the rumors of the mysterious tower"
+        ],
+        "characters": [
+          {
+            "id": "char_10",
+            "name": "Glorbo",
+            "description": "Wandering Mage and protagonist of the story",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_11",
+            "name": "Jake",
+            "description": "Owner of Jake's family bakery, known for his delicious baked goods and warm hospitality",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_12",
+            "name": "Elara",
+            "description": "Town elder who knows more about the mysterious tower than she's letting on",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_13",
+            "name": "Arin",
+            "description": "Young apprentice mage seeking to learn from Glorbo's expertise",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_14",
+            "name": "Mayor Thorne",
+            "description": "Town leader overseeing preparations for the Harvest Festival and eager to capitalize on Glorbo's magical abilities",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "name": "Explore the town square",
+            "description": "Walk around and take in the sights and sounds of Willow Creek's bustling town square.",
+            "effect": ""
+          },
+          {
+            "id": "2",
+            "name": "Visit Jake's bakery",
+            "description": "Step inside Jake's family bakery and sample some freshly baked treats.",
+            "effect": ""
+          },
+          {
+            "id": "3",
+            "name": "Follow the rumors of a mysterious tower",
+            "description": "Head towards the outskirts of town to investigate the whispers of a mysterious tower that has been sharing secrets with brave adventurers.",
+            "effect": ""
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Tattered Tome",
+            "description": "A worn-out book filled with forgotten spells and incantations.",
+            "attributes": {
+              "rarity": "uncommon"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Moonstone Amulet",
+            "description": "An amulet that glows softly in the light of a full moon, granting the wearer minor magical resistance.",
+            "attributes": {
+              "type": "jewelry",
+              "rarity": "rare"
+            }
+          },
+          {
+            "id": 3,
+            "name": "Festival Token",
+            "description": "A commemorative token from the Harvest Festival, allowing the bearer to participate in exclusive events and activities.",
+            "attributes": {
+              "type": "token",
+              "rarity": "common"
+            }
+          }
+        ]
+      },
+      "children": []
+    },
+    "46f00fdb-577f-476d-bb99-d788af11baec": {
+      "id": "46f00fdb-577f-476d-bb99-d788af11baec",
+      "data": {
+        "id": "a574ebed-479d-4659-89a1-1d6b82527e04",
+        "title": "A Scent of Wonder: Exploring Jake's Family Bakery",
+        "text": "You've decided to visit Jake's family bakery! As you step inside, the aroma of freshly baked goods envelops you. Jake greets you warmly, his eyes twinkling with a mix of curiosity and friendliness. He offers you a warm baguette fresh from the oven, and you take a bite, savoring the flavors and textures. The bakery is bustling with activity as Jake's family prepares for the Harvest Festival. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. What would you like to do next, Glorbo? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+        "choices": [
+          "Explore the town square",
+          "Ask Jake about his bakery's history",
+          "Join in on the Harvest Festival preparations"
+        ],
+        "characters": [
+          {
+            "id": "char_15",
+            "name": "Jake",
+            "description": "The baker and owner of the family bakery. He's warm, friendly, and curious about you.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_16",
+            "name": "Townsfolk",
+            "description": "A group of villagers gathered near the door, chatting about the Harvest Festival. They seem to be sizing you up as an outsider.",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "explore-town-square",
+            "name": "Explore the Town Square",
+            "description": "Take a stroll around the bustling town square, observing the preparations for the Harvest Festival.",
+            "effect": "leads to 'town_square' node"
+          },
+          {
+            "id": "ask-jake-about-bakery",
+            "name": "Ask Jake about the Bakery's History",
+            "description": "Inquire with Jake about his family's bakery and its history in the town.",
+            "effect": "gives insight into the bakery's past, potentially revealing new information or connections."
+          },
+          {
+            "id": "join-harvest-fest-prep",
+            "name": "Join in on Harvest Festival Preparations",
+            "description": "Lend a hand with the festival preparations, possibly gaining favors or learning new skills.",
+            "effect": "grants temporary buffs to reputation and skill levels."
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Fresh Baguette",
+            "description": "A warm baguette fresh from the oven at Jake's family bakery.",
+            "attributes": {}
+          },
+          {
+            "id": 2,
+            "name": "Harvest Festival Invitation",
+            "description": "An invitation to join in on the Harvest Festival preparations and celebrations.",
+            "attributes": {}
+          }
+        ]
+      },
+      "children": []
+    },
+    "d4a5dce9-97d1-4dd1-8d19-6f743d2fcb88": {
+      "id": "d4a5dce9-97d1-4dd1-8d19-6f743d2fcb88",
+      "data": {
+        "id": "b8bf11b4-c2d1-4a5b-9c1e-31fb091726da",
+        "title": "Glorbo's Bakery Visit",
+        "text": "You take another bite of the warm baguette, savoring the flavors and textures. As you chew, Jake's family prepares for the Harvest Festival with a flurry of activity. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. The aroma of freshly baked goods wafts through the air, mingling with the sound of laughter and chatter. What would you like to do next, Glorbo? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+        "choices": [
+          "Explore the town square",
+          "Ask Jake about his bakery's history",
+          "Join in on the Harvest Festival preparations"
+        ],
+        "characters": [
+          {
+            "id": "char_17",
+            "name": "Glorbo",
+            "description": "The player character, a Wandering Mage",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_18",
+            "name": "Jake",
+            "description": "Owner of the family bakery, warm and welcoming",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_19",
+            "name": "Townsfolk",
+            "description": "Residents of the town gathered near the door, chatting about the Harvest Festival",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "name": "Explore the town square",
+            "description": "Take a stroll around the bustling town square and see what's happening for the Harvest Festival.",
+            "effect": ""
+          },
+          {
+            "id": "2",
+            "name": "Ask Jake about his bakery's history",
+            "description": "Learn more about Jake's family bakery and its role in the town's celebrations.",
+            "effect": ""
+          },
+          {
+            "id": "3",
+            "name": "Join in on the Harvest Festival preparations",
+            "description": "Roll up your sleeves and help Jake's family get ready for the big day.",
+            "effect": ""
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Freshly Baked Baguette",
+            "description": "A warm baguette fresh from the oven, still emitting a sweet aroma.",
+            "attributes": {
+              "type": "food"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Harvest Festival Brochure",
+            "description": "A colorful brochure detailing the schedule and activities for the upcoming Harvest Festival.",
+            "attributes": {
+              "type": "document"
+            }
+          }
+        ]
+      },
+      "children": []
+    },
+    "4d683983-3221-4702-9915-8724d675f3db": {
+      "id": "4d683983-3221-4702-9915-8724d675f3db",
+      "data": {
+        "id": "a0cee441-c033-4d8a-be5c-d8bddd40240b",
+        "title": "Harvest Festival Preparations",
+        "text": "You take another bite of the warm baguette, savoring the flavors and textures. As you chew, Jake's family prepares for the Harvest Festival with a flurry of activity. You notice a few townsfolk gathered near the door, chatting about the upcoming celebration. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. The aroma of freshly baked goods wafts through the air, mingling with the sound of laughter and chatter. What would you like to do next? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+        "choices": [
+          "Explore the town square",
+          "Ask Jake about his bakery's history",
+          "Join in on the Harvest Festival preparations"
+        ],
+        "characters": [
+          {
+            "id": "char_20",
+            "name": "Glorbo",
+            "description": "Wandering Mage",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_21",
+            "name": "Jake",
+            "description": "Baker and father of Jake's family",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_22",
+            "name": "Townsfolk",
+            "description": "Residents of the town gathered near the door, chatting about the Harvest Festival",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "explore",
+            "name": "Explore the Town Square",
+            "description": "Take a stroll around the bustling town square and see what's happening.",
+            "effect": ""
+          },
+          {
+            "id": "ask_jake",
+            "name": "Ask Jake about his Bakery's History",
+            "description": "Poke your head into the bakery and ask Jake about the history of his shop.",
+            "effect": ""
+          },
+          {
+            "id": "help_preparations",
+            "name": "Join in on Harvest Festival Preparations",
+            "description": "Roll up your sleeves and help Jake's family get ready for the big celebration.",
+            "effect": ""
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Freshly Baked Baguette",
+            "description": "A warm baguette straight from the oven.",
+            "attributes": {
+              "weight": 0.5
+            }
+          },
+          {
+            "id": 2,
+            "name": "Harvest Festival Brochure",
+            "description": "A colorful brochure detailing the events and activities for the Harvest Festival.",
+            "attributes": {}
+          },
+          {
+            "id": 3,
+            "name": "Town's Best Pastry Recipe",
+            "description": "A secret recipe book containing the town's most treasured pastry recipes.",
+            "attributes": {
+              "rarity": "uncommon"
+            }
+          }
+        ]
+      },
+      "children": []
+    },
+    "b27ed2bf-496f-44f1-ad83-ed5af36862ae": {
+      "id": "b27ed2bf-496f-44f1-ad83-ed5af36862ae",
+      "data": {
+        "id": "ad8aa1b7-7575-4048-a79f-24bef5a7c096",
+        "title": "Harvest Festival Preparations: A Wandering Mage's Delight",
+        "text": "As you take another bite of the warm baguette, savoring the flavors and textures, you can't help but feel a sense of belonging among Jake's family as they prepare for the Harvest Festival. The aroma of freshly baked goods wafts through the air, mingling with the sound of laughter and chatter from the townsfolk gathered near the door. Some of them glance at you with interest, sensing that you're not just any ordinary visitor. You notice a few townsfolk chatting about the upcoming celebration, their excitement palpable. The atmosphere is lively, and you can't help but feel drawn to the festivities. What would you like to do next? You can explore the town square, ask Jake about his bakery's history, or join in on the Harvest Festival preparations.",
+        "choices": [
+          "Explore the town square",
+          "Ask Jake about his bakery's history",
+          "Join in on the Harvest Festival preparations"
+        ],
+        "characters": [
+          {
+            "id": "char_23",
+            "name": "Glorbo",
+            "description": "Player, a Wandering Mage",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_24",
+            "name": "Jake",
+            "description": "Local baker and friend of Glorbo",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          },
+          {
+            "id": "char_25",
+            "name": "Townsfolk",
+            "description": "Various townspeople gathered near the door, chatting about the Harvest Festival",
+            "attributes": {
+              "strength": 0,
+              "dexterity": 0,
+              "intelligence": 0,
+              "constitution": 0
+            },
+            "level": 1,
+            "experience": 0,
+            "skills": {},
+            "traits": {},
+            "inventory": [],
+            "equipped_items": []
+          }
+        ],
+        "items": [
+          {
+            "id": "1",
+            "name": "Explore the town square",
+            "description": "Walk around and take in the sights and sounds of the festival preparations.",
+            "effect": ""
+          },
+          {
+            "id": "2",
+            "name": "Ask Jake about his bakery's history",
+            "description": "Learn more about Jake's family and their baking traditions.",
+            "effect": ""
+          },
+          {
+            "id": "3",
+            "name": "Join in on the Harvest Festival preparations",
+            "description": "Help with the final touches of preparing for the festival, and maybe even learn some new recipes or techniques.",
+            "effect": ""
+          }
+        ],
+        "loot": [
+          {
+            "id": 1,
+            "name": "Warm Baguette Crumbs",
+            "description": "A small pile of crumbs from the warm baguette you're currently eating.",
+            "attributes": {}
+          },
+          {
+            "id": 2,
+            "name": "Fresh Fruit",
+            "description": "A few pieces of fresh fruit that have been left out in the town square.",
+            "attributes": {}
+          }
+        ]
+      },
+      "children": []
+    }
+  }
+}

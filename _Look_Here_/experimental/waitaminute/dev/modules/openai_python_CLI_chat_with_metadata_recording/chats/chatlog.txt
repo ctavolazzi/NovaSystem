@@ -1,0 +1,114 @@
+--- Chat Log ---
+User: Hey there sport
+Assistant: Hey
+Assistant: !
+Assistant:  What
+Assistant: 's
+Assistant:  up
+Assistant: ?
+
+--- Last updated: 2024-03-30 15:49:53 ---
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Howdy bro"
+    },
+    {
+      "role": "assistant",
+      "content": "How"
+    },
+    {
+      "role": "assistant",
+      "content": "dy"
+    },
+    {
+      "role": "assistant",
+      "content": "!"
+    },
+    {
+      "role": "assistant",
+      "content": " What"
+    },
+    {
+      "role": "assistant",
+      "content": "'s"
+    },
+    {
+      "role": "assistant",
+      "content": " up"
+    },
+    {
+      "role": "assistant",
+      "content": "?"
+    }
+  ]
+}
+
+--- Last updated: 2024-03-30 15:53:59 ---
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "What's good my dude"
+    },
+    {
+      "role": "assistant",
+      "content": "Hey"
+    },
+    {
+      "role": "assistant",
+      "content": " there"
+    },
+    {
+      "role": "assistant",
+      "content": "!"
+    },
+    {
+      "role": "assistant",
+      "content": " Not"
+    },
+    {
+      "role": "assistant",
+      "content": " much"
+    },
+    {
+      "role": "assistant",
+      "content": ","
+    },
+    {
+      "role": "assistant",
+      "content": " just"
+    },
+    {
+      "role": "assistant",
+      "content": " chill"
+    },
+    {
+      "role": "assistant",
+      "content": "in"
+    },
+    {
+      "role": "assistant",
+      "content": "."
+    },
+    {
+      "role": "assistant",
+      "content": " How"
+    },
+    {
+      "role": "assistant",
+      "content": " about"
+    },
+    {
+      "role": "assistant",
+      "content": " you"
+    },
+    {
+      "role": "assistant",
+      "content": "?"
+    }
+  ]
+}
+
+--- Last updated: 2024-03-30 15:54:05 ---

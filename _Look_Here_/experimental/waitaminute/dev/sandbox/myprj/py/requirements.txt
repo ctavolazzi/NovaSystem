@@ -1,0 +1,4 @@
+databases[sqlite]
+python-multipart
+uvicorn==0.20.0
+fastapi==0.92.0

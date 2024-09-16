@@ -1,0 +1,127 @@
+Document ID: aa1eee4b-16f7-45b8-9dbf-d483778b3360
+
+```
+  import java.util.*;
+
+public class HashTable {
+    public static void main(String[] args) {
+        //Test case for add and get methods
+        HashTable hashTable = new HashTable();
+        hashTable.add(1); // Hashes to index 0
+        hashTable.add(2); // Hashes to index 1
+        hashTable.add(3); // Hashes to index 2
+        System.out.println("Size of hashtable: " + hashTable.size()); // Output: Size of hashtable: 3
+
+        //Test case for contains method
+        if (hashTable.contains(1)) {
+            System.out.println("Contains 1: true");
+        } else {
+            System.out.println("Contains 1: false");
+        } // Output: Contains 1: true
+
+        //Test case for hash method
+        int index = hashTable.hash(2); // Hashes to index 1
+        System.out.println("Index of 2: " + index); // Output: Index of 2: 1
+
+        //Test case for get and set methods
+        hashTable.set(1, 4); // Hashes to index 0
+        int value = hashTable.get(1); // Returns 4
+        System.out.println("Getting value from index 0: " + value); // Output: Getting value from index 0: 4
+
+        //Test case for remove method
+        hashTable.remove(2); // Hashes to index 2
+        System.out.println("Size of hashtable after removing 2: " + hashTable.size()); // Output: Size of hashtable after removing 2: 2
+    }
+
+    private int size;
+    private LinkedList[] linkedLists;
+
+    public HashTable() {
+        this.size = 0;
+        this.linkedLists = new LinkedList[8];
+        for (int i = 0; i < this.linkedLists.length; i++) {
+            this.linkedLists[i] = new LinkedList();
+        }
+    }
+
+    public void add(int key) {
+        int index = hash(key); // Hashes the key to an index in the linked list
+        LinkedList currentList = this.linkedLists[index];
+        Node node = new Node(key, null);
+        if (currentList.head == null) {
+            currentList.head = node;
+        } else {
+            currentList.tail.next = node;
+        }
+        currentList.tail = node;
+        this.size++;
+    }
+
+    public int get(int key) {
+        int index = hash(key); // Hashes the key to an index in the linked list
+        LinkedList currentList = this.linkedLists[index];
+        Node currentNode = currentList.head;
+        while (currentNode != null) {
+            if (currentNode.data == key) {
+                return currentNode.value;
+            }
+            currentNode = currentNode.next;
+        }
+        return -1;
+    }
+
+    public void set(int key, int value) {
+        int index = hash(key); // Hashes the key to an index in the linked list
+        LinkedList currentList = this.linkedLists[index];
+        Node node = new Node(key, value);
+        if (currentList.head == null) {
+            currentList.head = node;
+        } else {
+            currentList.tail.next = node;
+        }
+        currentList.tail = node;
+    }
+
+    public boolean contains(int key) {
+        int index = hash(key); // Hashes the key to an index in the linked list
+        LinkedList currentList = this.linkedLists[index];
+        Node currentNode = currentList.head;
+        while (currentNode != null) {
+            if (currentNode.data == key) {
+                return true;
+            }
+            currentNode = currentNode.next;
+        }
+        return false;
+    }
+
+    public void remove(int key) {
+        int index = hash(key); // Hashes the key to an index in the linked list
+        LinkedList currentList = this.linkedLists[index];
+        Node previousNode = null;
+        Node currentNode = currentList.head;
+        while (currentNode != null) {
+            if (currentNode.data == key) {
+                // If we reach the node to be removed,
+                // update the links of the previous and next nodes
+                if (previousNode == null) {
+                    currentList.head = currentNode.next;
+                } else {
+                    previousNode.next = currentNode.next;
+                }
+                if (currentNode == currentList.tail) {
+                    currentList.tail = previousNode;
+                }
+                break;
+            }
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+        this.size--;
+    }
+
+    private int hash(int key) {
+        return key % this.linkedLists.length;
+    }
+}
+```

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Persistent Adventure</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div id="start-screen" class="active">
+        <h1>Welcome to Ollama Adventure</h1>
+        <div id="new-game-section">
+            <h2>Start New Game</h2>
+            <input type="text" id="player-name" placeholder="Enter your name">
+            <select id="character-class">
+                <option value="warrior">Warrior</option>
+                <option value="mage">Mage</option>
+                <option value="rogue">Rogue</option>
+            </select>
+            <button onclick="startNewGame()">Start New Game</button>
+        </div>
+        <div id="load-game-section">
+            <h2>Load Game</h2>
+            <select id="session-select">
+                <option value="">Select a saved game</option>
+            </select>
+            <button onclick="loadGame()">Load Selected Game</button>
+        </div>
+    </div>
+
+    <div id="game-screen">
+        <h1>Ollama Adventure</h1>
+        <div id="game-info">
+            <p>Session ID: <span id="current-session-id"></span></p>
+            <p>Current Scene: <span id="current-scene"></span></p>
+        </div>
+        <div id="character-info"></div>
+        <div id="inventory"></div>
+        <div id="story"></div>
+        <div id="choices"></div>
+    </div>
+
+    <script src="/scripts/game.js"></script>
+</body>
+</html>

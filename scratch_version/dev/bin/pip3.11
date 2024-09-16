@@ -1,4 +1,4 @@
-#!/Users/ctavolazzi/Code/AIECO/Winfo/Nova_System/dev/bin/python3.11
+#!/Users/ctavolazzi/Code/WinfoNova/Nova_System_Git/NovaSystem/novagpt/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

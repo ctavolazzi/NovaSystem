@@ -1,0 +1,9 @@
+langchain==0.0.351
+langchain-community==0.0.13
+chromadb==0.4.22
+pdfplumber==0.10.3
+gradio==4.14.0
+ollama==0.1.6
+python-dotenv==1.0.0
+requests==2.31.0
+scrapegraphai==0.1.0

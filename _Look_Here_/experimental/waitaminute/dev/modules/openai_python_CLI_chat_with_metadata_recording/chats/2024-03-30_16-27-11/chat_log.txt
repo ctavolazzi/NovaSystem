@@ -1,0 +1,18 @@
+System: You are a helpful and friendly AI assistant.
+
+Chat Log
+
+= Chat Log - 2024-03-30 16:27:16 =
+User: Howdy cowboy
+Assistant: Howdy! How can I assist you today?
+
+= Chat Log - 2024-03-30 16:27:29 =
+User: I'm just a lonesome stronger, you got any saloons around here?
+Assistant: I'm here to help you, partner! It sounds like you're looking for a place to socialize. There may be bars or saloons nearby where you can grab a drink and meet new folks. Would you like me to look up some options for you?
+
+= Metadata =
+Last Updated: 2024-03-30 16:27:33
+Number of Messages: 4
+Last Message Role: Assistant
+Model Used: gpt-3.5-turbo
+==

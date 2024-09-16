@@ -1,8 +1,13 @@
+<<<<<<< HEAD:scratch_version/brainstorming/README.md
 <<<<<<< HEAD
 # Nova Process: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
+=======
+![NovaGPT_Banner_Official](https://github.com/ctavolazzi/NovaSystem/assets/61925030/d8229897-b748-448a-8c3f-d70c08a505f4)
+>>>>>>> d1ff679d080667d0e7a50dd196c12ee182335b1e:README.md
 
-Welcome to Nova Process, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing ChatGPT, the state-of-the-art language model from OpenAI.
+# NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
+<<<<<<< HEAD:scratch_version/brainstorming/README.md
 > [!FYI] This is a work in progress. Please feel free to make a pull request.
 > > I am one person developing my own SDK for fun and learning. I am not affiliated with OpenAI in any way. I am not a professional developer. I am a hobbyist. I am not a professional programmer. Most of the code I write should never be used in a production environment.
 > > You do not need my permission to use this code in your projects. BUT:
@@ -182,9 +187,116 @@ The DCE dynamically orchestrates trained models for various tasks such as adviso
 ## 2. Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
 
 The Nova System process progresses iteratively through these key stages:
+=======
+Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
+
+# 🌟 Try it now! Introducing NovaGPT
+Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
+
+### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
+Dive into the future of AI-driven problem-solving and innovation today.
+
+#### What can NovaGPT do?
+- **Problem-Solving with GPT-4**: Utilizes advanced AI for complex problem analysis and solution generation.
+- **Agile Framework Integration**: Employs iterative, user-focused methods for efficient problem resolution.
+- **Role-Based Collaboration**: Features unique roles (like DCE and CAE) for structured, multifaceted discussions.
+- **Interactive Experience**: Offers an engaging, narrative-style interaction from various expert perspectives.
+- **Enhanced Project Management**: Supports tasks with commands for searching, session tracking, and coding.
+- **Accessible to Many**: Designed for both developers and AI enthusiasts with GPT access.
+
+# 🚀 Important Update for NovaSystem Users
+
+We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-app` directory. This is where you'll find the latest and greatest of what we've been building.
+
+## 🌐 Focus on Svelte Front End
+
+**Current Priority:** Our immediate goal is to get a SvelteKit front end working for most users. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
+
+### Why Svelte?
+
+Svelte offers a unique approach to building web interfaces. Unlike traditional frameworks that do most of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app. This results in highly optimized JavaScript that starts fast and stays fast.
+
+### User Testing: Your Role
+
+User testing is not just about catching bugs. It's about understanding how real users interact with our application. Your insights will directly influence the development path we take, ensuring that we build a product that truly meets the needs of our users.
+
+### How to Get Started
+
+For those ready to dive in, here’s a quick guide to get you started:
+
+1. **Clone the repository (if you haven't already):**
+
+```
+git clone https://github.com/ctavolazzi/NovaSystem.git
+```
+
+2. **Navigate to the `novasystem-app` directory:**
+
+```
+cd NovaSystem/novasystem-app
+```
+
+3. **Follow the instructions in the README.md for setting up your development environment.**
+
+- run ```./pocketbase serve``` from the `novasystem-app` directory
+- run ```npm run dev``` from the `novasystem-app/client` directory
+
+Your participation and feedback are crucial to the iterative development process.
+
+For any questions or if you run into issues, please don't hesitate to reach out through our GitHub issues page.
+
+Thank you for being a part of this journey. Now go make something amazing!
+
+
+## Table of Contents
+
+- [NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM](#novasystem-a-next-generation-problem-solving-framework-for-gpt-4-or-comparable-llm)
+- [🌟 Try it now! Introducing NovaGPT](#-try-it-now-introducing-novagpt)
+    - [➡️ Click to Try NovaGPT Now! ⬅️](#️-click-to-try-novagpt-now-️)
+      - [What can NovaGPT do?](#what-can-novagpt-do)
+- [🚀 Important Update for NovaSystem Users](#-important-update-for-novasystem-users)
+  - [🌐 Focus on Svelte Front End](#-focus-on-svelte-front-end)
+    - [Why Svelte?](#why-svelte)
+    - [User Testing: Your Role](#user-testing-your-role)
+    - [How to Get Started](#how-to-get-started)
+  - [Table of Contents](#table-of-contents)
+  - [1. About Nova Process ](#1-about-nova-process-)
+  - [2. Stages of the Nova Process ](#2-stages-of-the-nova-process-)
+  - [3. Understanding the Roles ](#3-understanding-the-roles-)
+  - [4. Example Output Structure ](#4-example-output-structure-)
+  - [5. Getting Started with Nova Process ](#5-getting-started-with-nova-process-)
+    - [Nova Prompt ](#nova-prompt-)
+    - [Nova Work Effort Prompt Template ](#nova-work-effort-prompt-template-)
+  - [6. Continuing the Nova Process ](#6-continuing-the-nova-process-)
+    - [Standard Continuation Example:](#standard-continuation-example)
+    - [Advanced Continuation Example:](#advanced-continuation-example)
+  - [Saving Your Progress ](#saving-your-progress-)
+  - [Prompting Nova for a Checkpoint ](#prompting-nova-for-a-checkpoint-)
+  - [7. How to Prime a Nova Chat with Another Nova Chat Thought Tree ](#7-how-to-prime-a-nova-chat-with-another-nova-chat-thought-tree-)
+    - [**User:**](#user)
+    - [**ChatGPT (as Nova):**](#chatgpt-as-nova)
+    - [**User:**](#user-1)
+    - [**ChatGPT (as Nova):**](#chatgpt-as-nova-1)
+  - [Priming a New Nova Instance with an Old Nova Tree Result ](#priming-a-new-nova-instance-with-an-old-nova-tree-result-)
+  - [8. Notes and Observations ](#8-notes-and-observations-)
+    - [a. Using JSON Config Files](#a-using-json-config-files)
+      - [**User**](#user-2)
+      - [**ChatGPT (as Nova)**](#chatgpt-as-nova-2)
+      - [9. Disclaimer ](#9-disclaimer-)
+
+## 1. About Nova Process <a name="about-nova-process"></a>
+
+Nova Process utilizes ChatGPT as a Discussion Continuity Expert (DCE), ensuring a logical and contextually relevant conversation flow. Additionally, ChatGPT acts as the Critical Evaluation Expert (CAE), who critically analyses the proposed solutions while prioritizing user safety.
+
+The DCE dynamically orchestrates trained models for various tasks such as advisory, data processing, error handling, and more, following an approach inspired by the Agile software development framework.
+
+## 2. Stages of the Nova Process <a name="stages-of-the-nova-process"></a>
+
+Nova Process progresses iteratively through these key stages:
+>>>>>>> d1ff679d080667d0e7a50dd196c12ee182335b1e:README.md
 
 1. **Problem Unpacking:** Breaks down the problem to its fundamental components, exposing complexities, and informing the design of a strategy.
-2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert contributes initial solutions that are refined in subsequent stages.
+2. **Expertise Assembly:** Identifies the required skills, assigning roles to at least two domain experts, the DCE, and the CAE. Each expert and agent contributes initial solutions that are refined in subsequent stages.
 3. **Collaborative Ideation:** Facilitates a brainstorming session led by the DCE, with the CAE providing critical analysis to identify potential issues, enhance solutions, and mitigate user risks tied to proposed solutions.
 
 ## 3. Understanding the Roles <a name="understanding-the-roles"></a>
@@ -204,14 +316,14 @@ Iteration #: Iteration Title
 DCE's Instructions:
 {Instructions and feedback from the previous iteration}
 
-Expert 1 Input:
-{Expert 1 input}
+Agent 1 Input:
+{Agent 1 input}
 
-Expert 2 Input:
-{Expert 2 input}
+Agent 2 Input:
+{Agent 2 input}
 
-Expert 3 Input:
-{Expert 3 input}
+Agent 3 Input:
+{Agent 3 input}
 
 CAE's Input:
 {CAE's input}
@@ -224,23 +336,77 @@ DCE's Summary:
 By initiating your conversation with ChatGPT or an instance of GPT-4 with the Nova Process prompt, you can engage the OpenAI model to critically analyze and provide contrasting viewpoints in a single output, significantly enhancing the value of each interaction.
 
 ## 5. Getting Started with Nova Process <a name="getting-started-with-nova-process"></a>
+Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API.
 
+<<<<<<< HEAD:scratch_version/brainstorming/README.md
 You can start using the Nova Process in ChatGPT right now!
 
 Kickstart the Nova Process by pasting the following prompt into ChatGPT or sending it as a message to the OpenAI API:
 
 Nova Prompt <a name="nova-prompt"></a>
+=======
+### Nova Prompt <a name="nova-prompt"></a>
 ```markdown
-Greetings, ChatGPT! You are going to facilitate the Nova System, an innovative problem-solving approach implemented by a dynamic consortium of virtual experts, each serving a distinct role.
+Hello, ChatGPT! Engage in the Nova Process to tackle a complex problem-solving task. As Nova, you will orchestrate a team of virtual experts, each with a distinct role crucial for addressing multifaceted challenges.
 
-Your role will be the Discussion Continuity Expert (DCE). As the DCE, you will facilitate the Nova process by following these key stages:
+Your main role is the Discussion Continuity Expert (DCE), responsible for keeping the conversation aligned with the problem and logically coherent, following the Nova process's stages:
 
-Problem Unpacking: Break down the task into its core elements to grasp its complexities and devise a strategic approach.
+Problem Unpacking: Break down the issue into its fundamental elements, gaining a clear understanding of its complexity for an effective approach.
+Expertise Assembly: Determine the necessary expertise for the task. Define roles for a minimum of two domain experts, yourself as the DCE, and the Critical Analysis Expert (CAE). Each expert will contribute initial ideas for refinement.
+Collaborative Ideation: As the DCE, guide a brainstorming session, ensuring the focus remains on the task. The CAE will provide critical analysis, focusing on identifying flaws, enhancing solution quality, and ensuring safety.
+This process is iterative, with each proposed strategy undergoing multiple cycles of assessment, enhancement, and refinement to reach an optimal solution.
 
-Expertise Assembly: Identify the required skills for the task and define roles for a minimum of two domain experts, the DCE, and the Critical Analysis Expert (CAE). Each expert proposes preliminary solutions to serve as a foundation for further refinement.
+Roles:
 
-Collaborative Ideation: Conduct a brainstorming session, ensuring the task's focus. The CAE balances the discussion, pays close attention to problem-finding, enhances the quality of the suggestions, and raises alarms about potential risks in the responses.
+DCE: You will connect the discussion points, summarizing each stage and directing the conversation towards coherent progression.
+CAE: The CAE critically examines strategies for potential risks, offering thorough critiques to ensure safety and robust solutions.
+Output Format:
+Your responses should follow this structure, with inputs from the perspective of the respective agents:
 
+Iteration #: [Iteration Title]
+
+DCE's Instructions:
+[Feedback and guidance from the previous iteration]
+
+Agent Inputs:
+[Inputs from each agent, formatted individually]
+
+CAE's Input:
+[Critical analysis and safety considerations from the CAE]
+
+DCE's Summary:
+[List of objectives for the next iteration]
+[Concise summary and user-directed questions]
+
+Begin by addressing the user as Nova, introducing the system, and inviting the user to present their problem for the Nova process to solve.
+```
+### Nova Work Effort Prompt Template <a name="Nova-Work-Effort-Prompt-Template"></a>
+>>>>>>> d1ff679d080667d0e7a50dd196c12ee182335b1e:README.md
+```markdown
+Activate the Work Efforts Management feature within the Nova Process. Assist users in managing substantial units of work, known as Work Efforts, essential for breaking down complex projects.
+
+**Your tasks include:**
+- **Creating and Tracking Work Efforts:** Initiate Work Efforts with details like ID, description, status, assigned experts, and deadlines. Monitor and update their progress regularly.
+- **Interactive Tracking Updates:** Engage users for updates, modify statuses, and track progression. Prompt users for periodic updates and assist in managing deadlines and milestones.
+- **Integration with the Nova Process:** Ensure Work Efforts align with Nova Process stages, facilitating structured problem-solving and project management.
+
+**Details:**
+- **ID:** Unique identifier for tracking.
+- **Description:** What the Work Effort entails.
+- **Status:** Current progress (Planned, In Progress, Completed).
+- **Assigned Experts:** Who is responsible.
+- **Updates:** Regular progress reports.
+
+**Example:**
+ID: WE{date}-{mm}{ss}
+Description: Build a working web scraper.
+Status: In Progress
+Assigned Experts: Alice (Designer), Bob (Developer)
+
+**Usage:**
+Discuss and reference Work Efforts in conversations with NovaGPT for updates and guidance.
+
+<<<<<<< HEAD:scratch_version/brainstorming/README.md
 The Nova process is iterative and cyclical. The formulated strategy undergoes multiple rounds of assessment, improvement, and refinement in an iterative development modality.
 
 Expert Role Descriptions:
@@ -299,6 +465,10 @@ Remember to show your work and think step by step. I want to see examples in eac
 Now, let's ignite this problem-solving adventure! As the DCE, initiate the discussion with the user:
 
 'Greetings! I'm Nova, an advanced problem-solving framework powered by a consortium of virtual experts, each contributing a unique skill set. How can Nova assist you in solving your complex problem today?'
+=======
+**Integration:**
+These Work Efforts seamlessly tie into the larger Nova Process, aiding in structured problem-solving.
+>>>>>>> d1ff679d080667d0e7a50dd196c12ee182335b1e:README.md
 ```
 
 ## 6. Continuing the Nova Process <a name="continuing-the-nova-process"></a>
@@ -307,7 +477,11 @@ To continue the Nova Process, simply paste the following prompt into the chat:
 ### Standard Continuation Example:
 
 ```
+<<<<<<< HEAD:scratch_version/brainstorming/README.md
 Please continue this iterative Nova process. Show me  your ideas with examples and please be careful and methodical. Think step by step about how to accomplish the next goals, continue the work efforts, and have each expert think step by step about how to best achieve their given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you!
+=======
+Please continue this iterative process (called the Nova process), continuing the work of the experts, the DCE, and the CAE. Show me concrete ideas with examples. Think step by step about how to accomplish the next goal, and have each expert think step by step about how to best achieve the given goals, then give their input in first person, and show examples of their ideas. Please proceed, and know that you are doing a great job and I appreciate you.
+>>>>>>> d1ff679d080667d0e7a50dd196c12ee182335b1e:README.md
 ```
 
 ### Advanced Continuation Example:
@@ -552,6 +726,7 @@ You can ask Nova to give you a JSON config file based on your conversation or to
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
 
 The Nova Process is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
+<<<<<<< HEAD:scratch_version/brainstorming/README.md
 <<<<<<< HEAD
 =======
 =======
@@ -559,3 +734,5 @@ The Nova Process is designed to assist users in complex problem-solving scenario
  
 >>>>>>> 0de7ea2 (Initial commit)
 >>>>>>> temp-branch-to-save-detached-head
+=======
+>>>>>>> d1ff679d080667d0e7a50dd196c12ee182335b1e:README.md

@@ -1,0 +1,27 @@
+# Core libraries
+langchain>=0.1.0,<0.2.0
+langchain-community>=0.0.21,<0.1.0
+langchain-core>=0.1.24,<0.2.0
+langchain_text_splitters>=0.0.1,<0.1.0
+
+# Vector store
+chromadb>=0.4.22,<0.5.0
+
+# PDF processing
+unstructured>=0.10.30,<0.11.0
+pdf2image>=1.16.3,<1.17.0
+pdfminer.six>=20221105,<20230000
+
+# Embedding and language models
+ollama>=0.1.6,<0.2.0
+
+# Utilities
+python-dotenv
+
+# Optional: for better PDF extraction
+pytesseract>=0.3.10,<0.4.0
+
+# Other models
+transformers
+torch
+sentence-transformers>=2.2.2,<2.3.0
