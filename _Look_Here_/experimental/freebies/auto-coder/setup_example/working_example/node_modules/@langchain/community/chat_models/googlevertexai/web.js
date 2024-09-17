@@ -1,0 +1,1 @@
+export * from '../../dist/chat_models/googlevertexai/web.js'
