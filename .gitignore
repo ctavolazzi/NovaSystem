@@ -156,7 +156,6 @@ cython_debug/
 **/node_modules/
 node_modules/
 
-
 # JavaScript build artifacts
 /dist/
 /build/
@@ -182,9 +181,24 @@ Thumbs.db
 
 # Other generated files
 *.tsbuildinfo
+directory_tree.txt
 
 # Backup and temporary files
 backup_requirements.txt
 requirements_backup.txt
 directory_structure.txt
 test_project/
+
+# Python cache files (additional patterns)
+**/__pycache__/
+*.pyc
+
+# Database files
+*.db
+
+# Game-specific files
+**/game_logs/
+**/Games/
+
+# Local development files
+.vscode/
