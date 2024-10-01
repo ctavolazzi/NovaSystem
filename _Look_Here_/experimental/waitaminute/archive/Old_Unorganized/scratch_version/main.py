@@ -1,7 +1,24 @@
-from uuid import uuid4
-from apps.nova_prototype.versions.Tomato.nova_tomato import App
+from Dev.NovaHelper import NovaHelper
+import time
 
-result = App()
+# Instantiate NovaHelper
+helper = NovaHelper()
 
-print(result)
-print(result.id)
+# Alias for helper.stc method
+stc = helper.stc
+
+# Display initial message
+stc(f"You're a curious son of a bitch, aren't you?\n")
+
+# Start the loading indicator
+helper.start_loading_indicator()
+
+# Allow the indicator to run for a few seconds (simulate some processing)
+time.sleep(2)
+
+# Stop the loading indicator
+helper.stop_loading_indicator()
+
+# Display second message
+message = "Well, what do you want?"
+stc(message)
