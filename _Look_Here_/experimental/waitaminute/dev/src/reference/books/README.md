@@ -1,1 +1,0 @@
-This folder should contain any supplemental information, docs, code - anything you want NovaSystem to know about. You can just dump stuff inside here and NovaSystem will use it.

@@ -1,1 +1,0 @@
-This src folder contains the backend for NovaSystem. It is a simple API that allows you to interact with the NovaSystem from the frontend. It is built with FastAPI and uses PocketBase as the database.
