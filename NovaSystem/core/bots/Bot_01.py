@@ -4,7 +4,8 @@ import json
 import logging
 from datetime import datetime
 import asyncio
-from openai import OpenAI
+from openai import AsyncOpenAI
+import aiohttp
 from abc import ABC, abstractmethod
 
 class Bot(ABC):
@@ -118,17 +119,18 @@ class Port:
         return data
 
 class ChatBot(Bot):
-    def __init__(self, log_dir: str = './logs', api_key: str = None, report_directory: str = './reports'):
+    def __init__(self, log_dir: str = './logs', openai_api_key: str = None, report_directory: str = './reports', conversation_file: str = None):
         super().__init__(log_dir, report_directory)
-        self.api_key = api_key or os.getenv('OPENAI_API_KEY')
-        if not self.api_key:
-            self.logger.error("OpenAI API key not found. Please set the 'OPENAI_API_KEY' environment variable.")
-            raise ValueError("OpenAI API key not found. Please set the 'OPENAI_API_KEY' environment variable.")
-        self.client = OpenAI(api_key=self.api_key)
-        self.running = False
+        self.openai_api_key = openai_api_key or os.getenv('OPENAI_API_KEY')
+        if not self.openai_api_key:
+            raise ValueError("OpenAI API key not found. Please set the 'OPENAI_API_KEY' environment variable or provide it as a parameter.")
+        self.openai_client = AsyncOpenAI(api_key=self.openai_api_key)
+        self.current_model = "openai"
+        self.name = "AI Assistant"
+        self.conversation_file = conversation_file or os.path.join(self.report_directory, 'conversations.json')
         self.conversations = {}
-        self.conversation_file = os.path.join(self.report_directory, 'conversations.json')
         self.load_conversations()
+        self.running = False
 
     def load_conversations(self):
         try:
@@ -156,7 +158,7 @@ class ChatBot(Bot):
         })
         self.save_conversations()
 
-    async def generate_response(self, prompt: str, conversation_id: str = None) -> str:
+    async def generate_response(self, prompt: str, conversation_id: str = None, model: str = "openai") -> str:
         if not isinstance(prompt, str) or not prompt.strip():
             self.logger.error("Invalid prompt provided to generate_response.")
             return "Invalid prompt"
@@ -166,34 +168,49 @@ class ChatBot(Bot):
         
         try:
             self.logger.info(f"Generating response for prompt: {prompt}")
-            loop = asyncio.get_event_loop()
-            stream = await loop.run_in_executor(None, lambda: self.client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": prompt}],
-                stream=True,
-            ))
-            
-            response_content = ""
-            for chunk in stream:
-                if chunk.choices[0].delta.content is not None:
-                    content = chunk.choices[0].delta.content
-                    response_content += content
-                    self.logger.debug(f"Received chunk: {content}")
-
-            self.logger.info(f"Generated response: {response_content}")
-            
-            self.save_interaction(conversation_id, "user", prompt)
-            self.save_interaction(conversation_id, "assistant", response_content)
-            
-            return f"Response to: {prompt}\n{response_content}"
+            if model == "openai":
+                response = await self.openai_client.chat.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.7,
+                )
+                response_content = response.choices[0].message.content
+                marked_response = f"[OpenAI] {response_content}"
+                self.logger.info(f"Generated response: {marked_response}")
+                self.save_interaction(conversation_id, "user", prompt)
+                self.save_interaction(conversation_id, "assistant", marked_response)
+                return marked_response
+            elif model == "ollama":
+                async with aiohttp.ClientSession() as session:
+                    async with session.post('http://localhost:11434/api/generate', 
+                                            json={"model": "llama2", "prompt": prompt}) as response:
+                        if response.status == 200:
+                            full_response = ""
+                            async for line in response.content:
+                                try:
+                                    data = json.loads(line)
+                                    if 'response' in data:
+                                        full_response += data['response']
+                                    if data.get('done', False):
+                                        break
+                                except json.JSONDecodeError:
+                                    self.logger.error(f"Error decoding JSON: {line}")
+                            marked_response = f"[Ollama] {full_response}"
+                            self.logger.info(f"Generated response: {marked_response}")
+                            self.save_interaction(conversation_id, "user", prompt)
+                            self.save_interaction(conversation_id, "assistant", marked_response)
+                            return marked_response
+                        else:
+                            return f"Error: Ollama API returned status code {response.status}"
+            else:
+                return "Invalid model selected"
         except Exception as e:
             self.logger.error(f"Error generating response: {e}")
             return f"Error: {str(e)}"
 
     async def _is_content_allowed(self, content: str) -> bool:
         try:
-            loop = asyncio.get_event_loop()
-            response = await loop.run_in_executor(None, lambda: self.client.moderations.create(input=content))
+            response = await self.openai_client.moderations.create(input=content)
             flagged = response.results[0].flagged
             self.logger.info(f"Content flagged: {flagged}")
             return not flagged
@@ -212,7 +229,7 @@ class ChatBot(Bot):
         while self.running:
             success, data = self.listen()
             if success:
-                response = await self.generate_response(data)
+                response = await self.generate_response(data, model=self.current_model)
                 self.say(response)
                 self.write_offboard_memory(response)
             await asyncio.sleep(0.1)
@@ -222,6 +239,9 @@ class ChatBot(Bot):
 
     def base_action(self):
         asyncio.run(self._main_loop())
+
+    def set_model(self, model: str):
+        self.current_model = model
 
 if __name__ == '__main__':
     try:
