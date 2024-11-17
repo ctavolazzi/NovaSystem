@@ -203,7 +203,7 @@ Activate the Work Efforts Management feature within the Nova Process. Assist use
 - **Updates:** Regular progress reports.
 
 **Example:**
-ID: WE{date}-{mm}{ss}
+ID: WE{ss}-{mm}-{yyyy}
 Description: Build a working web scraper.
 Status: In Progress
 Assigned Experts: Alice (Designer), Bob (Developer)
