@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NovaSystem Chat</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .chat-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chat-box {
+            height: 400px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            max-width: 80%;
+        }
+        .sender { background: #007bff; color: white; margin-right: auto; }
+        .receiver { background: #6c757d; color: white; margin-left: auto; }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>NovaSystem Chat</h1>
+
+        <!-- Bot Creation -->
+        <div class="input-group">
+            <input type="text" id="botName" placeholder="Bot name">
+            <button onclick="createBot()">Create Bot</button>
+        </div>
+
+        <!-- Bot Selection -->
+        <div class="input-group" style="margin-top: 20px;">
+            <select id="senderBot"></select>
+            <select id="receiverBot"></select>
+        </div>
+
+        <!-- Chat Display -->
+        <div id="chatBox" class="chat-box"></div>
+
+        <!-- Message Input -->
+        <div class="input-group">
+            <input type="text" id="messageInput" placeholder="Type a message..." style="flex: 1;">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        let bots = [];
+
+        // Load bots on startup
+        loadBots();
+
+        async function loadBots() {
+            const response = await fetch(`${API_URL}/bots`);
+            bots = await response.json();
+            updateBotLists();
+        }
+
+        function updateBotLists() {
+            const lists = ['senderBot', 'receiverBot'];
+            lists.forEach(id => {
+                const select = document.getElementById(id);
+                select.innerHTML = bots.map(bot =>
+                    `<option value="${bot.id}">${bot.name}</option>`
+                ).join('');
+            });
+        }
+
+        async function createBot() {
+            const name = document.getElementById('botName').value;
+            if (!name) return;
+
+            await fetch(`${API_URL}/bots`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name })
+            });
+
+            document.getElementById('botName').value = '';
+            loadBots();
+        }
+
+        async function sendMessage() {
+            const message = document.getElementById('messageInput').value;
+            if (!message) return;
+
+            const senderId = document.getElementById('senderBot').value;
+            const receiverId = document.getElementById('receiverBot').value;
+
+            // Add sender message to chat
+            addMessage(message, 'sender');
+
+            // Send to API and get response
+            const response = await fetch(`${API_URL}/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    sender_id: senderId,
+                    receiver_id: receiverId,
+                    message: message
+                })
+            });
+
+            const data = await response.json();
+            addMessage(data.response, 'receiver');
+
+            document.getElementById('messageInput').value = '';
+        }
+
+        function addMessage(text, type) {
+            const chatBox = document.getElementById('chatBox');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Handle Enter key
+        document.getElementById('messageInput').addEventListener('keypress', e => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "task_name": "demo_task",
+  "status": "completed",
+  "start_time": "2024-12-07T01:04:02.288528",
+  "end_time": "2024-12-07T01:04:07.293982",
+  "duration_seconds": 5.005454,
+  "events": [
+    {
+      "timestamp": "2024-12-07T01:04:02.288536",
+      "message": "Task started"
+    },
+    {
+      "timestamp": "2024-12-07T01:04:07.293734",
+      "message": "Task completed successfully"
+    }
+  ]
+}

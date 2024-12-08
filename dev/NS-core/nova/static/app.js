@@ -132,3 +132,87 @@ class ChatApp {
 document.addEventListener('DOMContentLoaded', () => {
     new ChatApp();
 });
+
+async function executeChain() {
+    // Get the system prompt and agents
+    const systemPrompt = document.getElementById('systemPrompt').value;
+    const agents = getAgents();
+    const modelConfig = {
+        model: document.getElementById('modelSelect').value
+    };
+
+    // Create the request body
+    const requestBody = {
+        systemPrompt: systemPrompt,
+        agents: agents,
+        modelConfig: modelConfig
+    };
+
+    try {
+        const response = await fetch('/execute-chain-stream', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const jsonStr = line.slice(6);
+                    try {
+                        const data = JSON.parse(jsonStr);
+                        updateChainVisualization(data);
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        // Update UI to show error
+        const visualizationDiv = document.getElementById('chainVisualization');
+        visualizationDiv.innerHTML += `<div class="error">Error: ${error.message}</div>`;
+    }
+}
+
+function updateChainVisualization(agentResult) {
+    const visualizationDiv = document.getElementById('chainVisualization');
+    const resultDiv = document.createElement('div');
+    resultDiv.className = 'agent-result';
+
+    // Sanitize the content to prevent XSS
+    const sanitizeHTML = (str) => {
+        return str.replace(/[&<>"']/g, function(match) {
+            const escape = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            };
+            return escape[match];
+        });
+    };
+
+    resultDiv.innerHTML = `
+        <h3>${sanitizeHTML(agentResult.agentName)}</h3>
+        <p><strong>Thought:</strong> ${sanitizeHTML(agentResult.thought)}</p>
+        <p><strong>Output:</strong> ${sanitizeHTML(agentResult.output)}</p>
+    `;
+    visualizationDiv.appendChild(resultDiv);
+
+    // Scroll to the bottom to show new content
+    visualizationDiv.scrollTop = visualizationDiv.scrollHeight;
+}

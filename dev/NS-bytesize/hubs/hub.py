@@ -2,37 +2,33 @@
 from typing import Optional
 import os
 from pathlib import Path
-
-# Third party
-from openai import OpenAI, AsyncOpenAI
-from dotenv import load_dotenv
-from utils.connection_manager import ConnectionManager
-from utils.openai_key_validator import OpenAIKeyValidator
+import aiohttp
 
 class NovaHub:
     def __init__(self, host: str = "http://localhost:11434"):
-        self.connection_manager = ConnectionManager()
-        # Get and validate API key
-        self.key_validator = OpenAIKeyValidator()
+        self.base_url = host
 
-        # Initialize OpenAI client with validated key
-        self.openai_client = AsyncOpenAI(api_key=self.key_validator.key)
+    async def generate_response(self, prompt: str, system: Optional[str] = None) -> str:
+        """Generate a response using Ollama"""
+        async with aiohttp.ClientSession() as session:
+            messages = []
+            if system:
+                messages.append({"role": "system", "content": system})
+            messages.append({"role": "user", "content": prompt})
 
-        # Initialize Ollama client
-        self.ollama_client = AsyncOpenAI(
-            base_url=f"{host}/v1",
-            api_key="ollama"
-        )
+            data = {
+                "model": "llama2",  # Using llama2 as default model
+                "messages": messages
+            }
 
-    async def generate_response(self, prompt: str, model: str = "gpt-4", system: Optional[str] = None) -> str:
-        async with self.connection_manager.get_connection() as client:
-            messages = self.connection_manager.format_messages(prompt, system)
-            response = await client.chat.completions.create(
-                model=model,
-                messages=messages,
-                max_tokens=50
-            )
-            return response.choices[0].message.content
+            try:
+                async with session.post(f"{self.base_url}/v1/chat/completions", json=data) as response:
+                    if response.status != 200:
+                        return "I'm having trouble connecting to the language model. Make sure Ollama is running and you've pulled the llama2 model."
+                    result = await response.json()
+                    return result["choices"][0]["message"]["content"]
+            except Exception as e:
+                return f"Error connecting to Ollama: {str(e)}. Make sure Ollama is running and you've pulled the llama2 model using 'ollama pull llama2'"
 
     async def cleanup(self):
-        pass  # OpenAI clients don't need cleanup
+        pass  # No cleanup needed

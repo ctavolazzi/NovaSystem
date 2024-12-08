@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  discussion-hub:
+    build: .
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PYTHONPATH=/app
+    ports:
+      - "8000:8000"
+    command: python -m pytest
+
+  demo:
+    build: .
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PYTHONPATH=/app
+    command: python -m examples.discussion_hub_demo

@@ -1,0 +1,17 @@
+{
+  "task_name": "demo_task",
+  "status": "completed",
+  "start_time": "2024-12-07T01:07:56.500616",
+  "end_time": "2024-12-07T01:08:01.507080",
+  "duration_seconds": 5.006464,
+  "progress": {
+    "current": 5,
+    "total": 5,
+    "message": "Processing iteration 5/5"
+  },
+  "system_stats": {
+    "final_memory_mb": 14.9921875,
+    "cpu_percent": 0.0,
+    "pid": 17072
+  }
+}

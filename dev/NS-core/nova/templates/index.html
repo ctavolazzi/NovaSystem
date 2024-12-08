@@ -5,38 +5,117 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f5f5f5;
         }
-        #chat-container {
-            border: 1px solid #ccc;
+
+        .config-section {
+            background: white;
             padding: 20px;
-            height: 400px;
-            overflow-y: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .model-selector {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .model-selector select {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        #system-prompt {
+            width: 100%;
+            min-height: 100px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        #chat-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
-        .message {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
+
+        .agent-response {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #2196f3;
         }
-        .user-message {
+
+        .thought {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .output {
+            margin: 10px 0;
+            padding: 15px;
             background-color: #e3f2fd;
-            margin-left: 20%;
+            border-radius: 4px;
+            font-weight: 500;
         }
-        .assistant-message {
-            background-color: #f5f5f5;
-            margin-right: 20%;
+
+        .agent-name {
+            font-size: 1.2em;
+            color: #1976d2;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
-        #input-container {
-            display: flex;
-            gap: 10px;
-        }
-        #message-input {
-            flex-grow: 1;
+
+        .agent-connection {
+            text-align: center;
             padding: 10px;
+            color: #666;
+            position: relative;
         }
+
+        .agent-connection::before {
+            content: "↓";
+            font-size: 24px;
+            color: #2196f3;
+        }
+
+        .thinking {
+            display: inline-block;
+            margin-left: 10px;
+            color: #666;
+        }
+
+        .thinking::after {
+            content: "...";
+            animation: thinking 1.5s infinite;
+        }
+
+        @keyframes thinking {
+            0% { content: "."; }
+            33% { content: ".."; }
+            66% { content: "..."; }
+        }
+
         button {
             padding: 10px 20px;
             background-color: #2196f3;
@@ -44,88 +123,234 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
+
         button:hover {
             background-color: #1976d2;
         }
-        #model-selector {
-            margin-bottom: 20px;
+
+        .error {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            color: #b71c1c;
         }
     </style>
 </head>
 <body>
-    <h1>NovaSystem Chat</h1>
+    <h1>NovaSystem Agent Chain</h1>
 
-    <div id="model-selector">
-        <label for="model">Model:</label>
-        <select id="model">
-            <option value="gpt4o">GPT-4o</option>
-            <option value="llama3.2">Llama 3.2</option>
-        </select>
+    <div class="config-section">
+        <div class="model-selector">
+            <label for="model-select">Select Model:</label>
+            <select id="model-select">
+                <option value="gpt-4o">GPT-4o (OpenAI)</option>
+                <option value="llama3.2">Llama 3.2 (Local)</option>
+            </select>
+        </div>
+
+        <h2>System Prompt</h2>
+        <textarea id="system-prompt" placeholder="Enter the system instructions...">You are Nova, a system that uses multiple agents that are specialized in certain perspectives to solve complex problems.</textarea>
+
+        <div id="agents-list">
+            <!-- Agents will be added here -->
+        </div>
+
+        <button onclick="addAgent()">Add Agent</button>
+        <button onclick="executeChain()">Execute Chain</button>
     </div>
 
-    <div id="chat-container"></div>
-
-    <div id="input-container">
-        <input type="text" id="message-input" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
+    <div id="chat-container">
+        <h2>Chain Execution Visualization</h2>
+        <div id="execution-flow">
+            <!-- Execution results will appear here -->
+        </div>
     </div>
 
     <script>
-        const chatContainer = document.getElementById('chat-container');
-        const messageInput = document.getElementById('message-input');
-        const modelSelect = document.getElementById('model');
+        let agents = [];
 
-        let messages = [];
+        function getSelectedModel() {
+            return document.getElementById('model-select').value;
+        }
 
-        async function sendMessage() {
-            const content = messageInput.value.trim();
-            if (!content) return;
+        function getModelConfig() {
+            const model = getSelectedModel();
+            if (model === 'gpt-4o') {
+                return {
+                    baseUrl: '/v1',
+                    model: 'gpt-4o'
+                };
+            } else {
+                return {
+                    baseUrl: 'http://localhost:11434/v1',
+                    model: 'llama3.2'
+                };
+            }
+        }
 
-            // Add user message to UI
-            const userMessage = { role: 'user', content };
-            messages.push(userMessage);
-            addMessageToUI('user', content);
-            messageInput.value = '';
+        function addAgent() {
+            const agent = {
+                id: Date.now(),
+                name: `Agent ${agents.length + 1}`,
+                role: 'Assistant',
+                instructions: ''
+            };
+            agents.push(agent);
+            updateAgentsUI();
+        }
+
+        function updateAgentsUI() {
+            const agentsList = document.getElementById('agents-list');
+            agentsList.innerHTML = agents.map(agent => `
+                <div class="agent-config" id="agent-${agent.id}">
+                    <div class="agent-header">
+                        <span class="agent-name">${agent.name}</span>
+                        <button onclick="removeAgent(${agent.id})">Remove</button>
+                    </div>
+                    <input type="text"
+                           value="${agent.name}"
+                           onchange="updateAgentName(${agent.id}, this.value)"
+                           placeholder="Agent Name">
+                    <textarea
+                        onchange="updateAgentInstructions(${agent.id}, this.value)"
+                        placeholder="Enter specific instructions for this agent...">${agent.instructions}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function removeAgent(agentId) {
+            agents = agents.filter(a => a.id !== agentId);
+            updateAgentsUI();
+        }
+
+        function updateAgentName(agentId, name) {
+            const agent = agents.find(a => a.id === agentId);
+            if (agent) agent.name = name;
+        }
+
+        function updateAgentInstructions(agentId, instructions) {
+            const agent = agents.find(a => a.id === agentId);
+            if (agent) agent.instructions = instructions;
+        }
+
+        async function executeChain() {
+            const systemPrompt = document.getElementById('system-prompt').value;
+            const executionFlow = document.getElementById('execution-flow');
+
+            // Check if we have at least 2 agents
+            if (agents.length < 2) {
+                executionFlow.innerHTML = '<div class="agent-thought error">Error: Please add at least 2 agents to create a conversation.</div>';
+                return;
+            }
+
+            executionFlow.innerHTML = '<div class="status">Starting agent conversation...</div>';
+
+            const modelConfig = getModelConfig();
 
             try {
-                const response = await fetch('/chat', {
+                const response = await fetch('/execute-chain-stream', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        messages: messages,
-                        model: modelSelect.value
+                        systemPrompt,
+                        agents: agents,
+                        modelConfig: modelConfig
                     })
                 });
 
-                const data = await response.json();
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
 
-                // Add assistant message to UI and messages array
-                const assistantMessage = { role: 'assistant', content: data.response };
-                messages.push(assistantMessage);
-                addMessageToUI('assistant', data.response);
+                while (true) {
+                    const {value, done} = await reader.read();
+                    if (done) break;
+
+                    buffer += decoder.decode(value, {stream: true});
+                    const lines = buffer.split('\n');
+
+                    buffer = lines.pop() || '';
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = JSON.parse(line.slice(6));
+
+                            if (data.error) {
+                                executionFlow.innerHTML += `<div class="agent-thought error">Error: ${data.error}</div>`;
+                                continue;
+                            }
+
+                            let agentDiv = document.getElementById(`agent-${data.agentName}`);
+                            if (!agentDiv) {
+                                agentDiv = document.createElement('div');
+                                agentDiv.id = `agent-${data.agentName}`;
+                                agentDiv.className = 'agent-response';
+                                executionFlow.appendChild(agentDiv);
+                            }
+
+                            agentDiv.innerHTML = `
+                                <div class="agent-name">${data.agentName}</div>
+                                <div class="thought">
+                                    <strong>Thinking:</strong><br/>
+                                    ${data.thought}
+                                </div>
+                                <div class="output">
+                                    <strong>Response:</strong><br/>
+                                    ${data.output}
+                                </div>
+                            `;
+
+                            agentDiv.classList.add('new');
+                            setTimeout(() => agentDiv.classList.remove('new'), 2000);
+
+                            if (executionFlow.children.length < agents.length) {
+                                const connectionDiv = document.createElement('div');
+                                connectionDiv.className = 'agent-connection';
+                                connectionDiv.innerHTML = '<div class="thinking">Next agent thinking</div>';
+                                executionFlow.appendChild(connectionDiv);
+                            }
+                        }
+                    }
+                }
             } catch (error) {
                 console.error('Error:', error);
-                addMessageToUI('assistant', 'Sorry, there was an error processing your request.');
+                executionFlow.innerHTML = `<div class="agent-thought error">Error: ${error.message}</div>`;
             }
         }
 
-        function addMessageToUI(role, content) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${role}-message`;
-            messageDiv.textContent = content;
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
+        // Initialize with default agents
+        window.onload = function() {
+            // Add Possibility Expert
+            agents.push({
+                id: Date.now(),
+                name: 'Possibility Expert',
+                role: 'Expert',
+                instructions: 'You are the Possibility Expert. You are responsible for considering what is possible and expanding the solution space with creative ideas and approaches.'
+            });
 
-        // Handle Enter key
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+            // Add Permission Expert
+            agents.push({
+                id: Date.now() + 1,
+                name: 'Permission Expert',
+                role: 'Expert',
+                instructions: 'You are the Permission Expert. You are responsible for considering what is permissible, ethical, and aligned with best practices and guidelines.'
+            });
+
+            // Add Preference Expert
+            agents.push({
+                id: Date.now() + 2,
+                name: 'Preference Expert',
+                role: 'Expert',
+                instructions: 'You are the Preference Expert. You are responsible for considering what is preferred, optimal, and most beneficial for the user and stakeholders.'
+            });
+
+            updateAgentsUI();
+        };
     </script>
 </body>
 </html>
+
+</```rewritten_file>

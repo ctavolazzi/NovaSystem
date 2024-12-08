@@ -1,0 +1,17 @@
+{
+  "task_name": "discussion_1",
+  "status": "failed",
+  "start_time": "2024-12-07T01:23:51.098176",
+  "end_time": "2024-12-07T01:23:51.098480",
+  "duration_seconds": 0.000304,
+  "progress": {
+    "current": 0.2,
+    "total": "Starting discussion...",
+    "message": ""
+  },
+  "system_stats": {
+    "final_memory_mb": 82.00390625,
+    "cpu_percent": 0.0,
+    "pid": 18222
+  }
+}

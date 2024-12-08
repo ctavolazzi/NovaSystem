@@ -1,0 +1,67 @@
+{
+  "test_run": "20241206_224302",
+  "total_iterations": 10,
+  "successful_validations": 0,
+  "results": [
+    {
+      "iteration": 1,
+      "timestamp": "2024-12-06T22:43:01.505943",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 2,
+      "timestamp": "2024-12-06T22:43:01.614758",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 3,
+      "timestamp": "2024-12-06T22:43:01.723009",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 4,
+      "timestamp": "2024-12-06T22:43:01.829880",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 5,
+      "timestamp": "2024-12-06T22:43:01.936645",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 6,
+      "timestamp": "2024-12-06T22:43:02.055364",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 7,
+      "timestamp": "2024-12-06T22:43:02.164161",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 8,
+      "timestamp": "2024-12-06T22:43:02.269965",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 9,
+      "timestamp": "2024-12-06T22:43:02.376155",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    },
+    {
+      "iteration": 10,
+      "timestamp": "2024-12-06T22:43:02.481220",
+      "is_valid": false,
+      "host": "http://localhost:11434"
+    }
+  ]
+}

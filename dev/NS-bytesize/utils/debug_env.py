@@ -2,6 +2,7 @@
 import os
 from typing import Optional, List
 from pathlib import Path
+import sys
 
 # Third party
 from dotenv import load_dotenv, find_dotenv
@@ -78,4 +79,16 @@ def print_api_key_status():
     print(f"   Length: {len(api_key)} characters")
 
 if __name__ == "__main__":
+    print("Python Path:")
+    for path in sys.path:
+        print(f"  {path}")
+
+    try:
+        import dotenv
+        print("\nDotenv found at:")
+        print(f"  {dotenv.__file__}")
+    except ImportError as e:
+        print("\nFailed to import dotenv:")
+        print(f"  {e}")
+
     print_api_key_status()

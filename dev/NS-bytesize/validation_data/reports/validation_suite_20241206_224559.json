@@ -1,0 +1,45 @@
+{
+  "test_run": "20241206_224559",
+  "total_scenarios": 4,
+  "passed_scenarios": 4,
+  "total_duration": 2.0126492977142334,
+  "average_duration": 6.140700043033576e-05,
+  "results": [
+    {
+      "scenario": "normal_operation",
+      "timestamp": "2024-12-06T22:45:59.358527",
+      "duration": 6.235300315893255e-05,
+      "is_valid": true,
+      "expected_valid": true,
+      "host": "http://localhost:11434",
+      "test_passed": true
+    },
+    {
+      "scenario": "slow_response",
+      "timestamp": "2024-12-06T22:46:01.364428",
+      "duration": 8.357100159628317e-05,
+      "is_valid": true,
+      "expected_valid": true,
+      "host": "http://localhost:11434",
+      "test_passed": true
+    },
+    {
+      "scenario": "service_error",
+      "timestamp": "2024-12-06T22:46:01.367121",
+      "duration": 4.8240999603876844e-05,
+      "is_valid": false,
+      "expected_valid": false,
+      "host": "http://localhost:11434",
+      "test_passed": true
+    },
+    {
+      "scenario": "connection_timeout",
+      "timestamp": "2024-12-06T22:46:01.368839",
+      "duration": 5.146299736225046e-05,
+      "is_valid": false,
+      "expected_valid": false,
+      "host": "http://localhost:11434",
+      "test_passed": true
+    }
+  ]
+}
