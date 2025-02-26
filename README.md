@@ -2,10 +2,85 @@
 
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
-Welcome to the NovaSystem, a pioneering problem-solving method developed by AIECO that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
+Welcome to the NovaSystem, a pioneering problem-solving method that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
+
+# ⚠️ Development Status - Please Read
+
+**NovaSystem is currently in ALPHA development stage.**
+
+> **IMPORTANT:** This project is NOT artificial general intelligence (AGI) or anything remotely close. NovaSystem is simply a framework and methodology for augmenting existing frontier language models to help organize their output in more useful ways. It does not introduce new AI capabilities beyond what the underlying models already possess.
+
+This software is provided strictly as an **experimental research tool**, offered as-is with no guarantees of reliability, accuracy, or fitness for any particular purpose. The codebase is rapidly evolving, may contain bugs, and significant architectural changes may occur between versions.
+
+**Usage Recommendations:**
+- **Research & Exploration Only**: Suitable for experimentation, research, and learning
+- **Not Production-Ready**: Do not deploy in production environments
+- **Thorough Testing Required**: Any outputs should be thoroughly validated before use in any important context
+- **Supervised Use**: All outputs should be reviewed by humans before taking any action based on them
+
+By using NovaSystem, you acknowledge these limitations and agree to exercise appropriate caution.
+
+# 🚀 NEW: NovaSystem v0.1.1 - Automated Repository Installation Tool
+
+**NovaSystem v0.1.1** introduces an entirely new functionality: an automated repository installation tool that extracts installation commands from repository documentation and executes them in an isolated Docker environment.
+
+## Key Features of NovaSystem v0.1.1
+
+- **Automatic repository cloning and analysis**
+- **Documentation parsing to extract installation commands**
+- **Command execution in isolated Docker containers**
+- **Command sequencing based on dependencies and priorities**
+- **Persistent storage of run data and execution results**
+- **Command-line interface for easy interaction**
+
+## Installation
+
+Install NovaSystem using pip:
+
+```bash
+pip install novasystem
+```
+
+## Requirements
+
+- Python 3.8 or higher
+- Docker installed and running on your system
+- Git client installed
+
+## Basic Usage
+
+### Installing a Repository
+
+To install a repository from GitHub:
+
+```bash
+novasystem install https://github.com/username/repository
+```
+
+For a local repository:
+
+```bash
+novasystem install /path/to/local/repository
+```
+
+### Viewing Previous Runs
+
+List previous installation runs:
+
+```bash
+novasystem list-runs
+```
+
+View details of a specific run:
+
+```bash
+novasystem show-run 1
+```
+
+For more information about the NovaSystem v0.1.1 repository installation tool, see the [documentation in the NovaSystem directory](./NovaSystem/README.md).
 
 # 🌟 Try it now! Introducing NovaGPT
-Big Announcement: Experience NovaGPT, a live instance proof-of-concept exaple of the Nova Process.
+Big Announcement: Experience NovaGPT, a live instance proof-of-concept example of the Nova Process.
 
 ### ➡️ [Click to Try NovaGPT Now!](https://chat.openai.com/g/g-nT1RqVJLg-novagpt) ⬅️
 Dive into the future of AI-driven problem-solving and innovation today.
@@ -20,40 +95,50 @@ Dive into the future of AI-driven problem-solving and innovation today.
 
 # 🚀 Important Update for NovaSystem Users
 
-We're making strides with NovaSystem and have a crucial update for everyone involved. To ensure you're working with the most recent version of our application, please navigate to the `novasystem-app` directory. This is where you'll find the latest and greatest of what we've been building.
+We're making strides with NovaSystem and have a crucial update for everyone involved. Our recent v0.1.1 release introduces an automated repository installation tool that represents a complete rebuild of the codebase with a proper Python package structure.
 
-## 🌐 Focus on Svelte Front End
+## Getting Started with NovaSystem v0.1.1
 
-**Current Priority:** Our immediate goal is to get a SvelteKit front end working for most users. This step is crucial for us to perform iterative user testing effectively. Your feedback and contributions are invaluable during this phase, as they will help us refine and enhance the user experience.
+For those ready to dive in, here's how to get started with the latest version:
 
-### Why Svelte?
+1. **Install NovaSystem using pip:**
 
-Svelte offers a unique approach to building web interfaces. Unlike traditional frameworks that do most of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app. This results in highly optimized JavaScript that starts fast and stays fast.
-
-### User Testing: Your Role
-
-User testing is not just about catching bugs. It's about understanding how real users interact with our application. Your insights will directly influence the development path we take, ensuring that we build a product that truly meets the needs of our users.
-
-### How to Get Started
-
-For those ready to dive in, here’s a quick guide to get you started:
-
-1. **Clone the repository (if you haven't already):**
-
+```bash
+pip install novasystem
 ```
+
+2. **Ensure you have the prerequisites:**
+   - Python 3.8 or higher
+   - Docker installed and running on your system
+   - Git client installed
+
+3. **Try the repository installation tool:**
+
+```bash
+# Installing a repository from GitHub
+novasystem install https://github.com/username/repository
+
+# View previous installation runs
+novasystem list-runs
+
+# See detailed information about a specific run
+novasystem show-run 1
+```
+
+For development and contribution to the NovaSystem project:
+
+1. **Clone the repository:**
+
+```bash
 git clone https://github.com/ctavolazzi/NovaSystem.git
+cd NovaSystem
 ```
 
-2. **Navigate to the `novasystem-app` directory:**
+2. **Install development dependencies:**
 
+```bash
+pip install -e ".[dev]"
 ```
-cd NovaSystem/novasystem-app
-```
-
-3. **Follow the instructions in the README.md for setting up your development environment.**
-
-- run ```./pocketbase serve``` from the `novasystem-app` directory
-- run ```npm run dev``` from the `novasystem-app/client` directory
 
 Your participation and feedback are crucial to the iterative development process.
 
@@ -61,10 +146,32 @@ For any questions or if you run into issues, please don't hesitate to reach out 
 
 Thank you for being a part of this journey. Now go make something amazing!
 
+# 📜 Legal Information
+
+## License
+This project is licensed under the GNU General Public License v3 (GPL-3.0) - see the [LICENSE](LICENSE) file for details.
+
+## Trademark Notice
+"GPT", "GPT-4" and related terms are trademarks of OpenAI. "NovaGPT" is a project name used for descriptive purposes and is not intended to imply any endorsement by or affiliation with OpenAI.
+
+## API Usage Terms
+When using NovaSystem with the OpenAI API, you must comply with [OpenAI's Terms of Service](https://openai.com/policies/terms-of-use) and [API Usage Policies](https://openai.com/policies/api-data-usage). This project is independently developed and not affiliated with OpenAI.
+
+## Privacy Statement
+NovaSystem's repository installation tool processes repository data locally on your machine. While the tool stores execution results in a local database, it does not transmit your repository data or credentials to any external servers. Please review the source code if you have specific privacy concerns.
+
+## Security Notice
+While NovaSystem executes commands in isolated Docker containers to provide separation from your host system, no security measure is perfect. Users should review extracted installation commands before execution, especially from untrusted repositories. NovaSystem cannot guarantee the security or safety of third-party repository code.
 
 ## Table of Contents
 
 - [NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM](#novasystem-a-next-generation-problem-solving-framework-for-gpt-4-or-comparable-llm)
+- [⚠️ Development Status - Please Read](#️-development-status---please-read)
+- [🚀 NEW: NovaSystem v0.1.1 - Automated Repository Installation Tool](#-new-novasystem-v011---automated-repository-installation-tool)
+  - [Key Features of NovaSystem v0.1.1](#key-features-of-novasystem-v011)
+  - [Installation](#installation)
+  - [Requirements](#requirements)
+  - [Basic Usage](#basic-usage)
 - [🌟 Try it now! Introducing NovaGPT](#-try-it-now-introducing-novagpt)
     - [➡️ Click to Try NovaGPT Now! ⬅️](#️-click-to-try-novagpt-now-️)
       - [What can NovaGPT do?](#what-can-novagpt-do)
@@ -73,30 +180,36 @@ Thank you for being a part of this journey. Now go make something amazing!
     - [Why Svelte?](#why-svelte)
     - [User Testing: Your Role](#user-testing-your-role)
     - [How to Get Started](#how-to-get-started)
-  - [Table of Contents](#table-of-contents)
-  - [1. About Nova Process ](#1-about-nova-process-)
-  - [2. Stages of the Nova Process ](#2-stages-of-the-nova-process-)
-  - [3. Understanding the Roles ](#3-understanding-the-roles-)
-  - [4. Example Output Structure ](#4-example-output-structure-)
-  - [5. Getting Started with Nova Process ](#5-getting-started-with-nova-process-)
-    - [Nova Prompt ](#nova-prompt-)
-    - [Nova Work Effort Prompt Template ](#nova-work-effort-prompt-template-)
-  - [6. Continuing the Nova Process ](#6-continuing-the-nova-process-)
-    - [Standard Continuation Example:](#standard-continuation-example)
-    - [Advanced Continuation Example:](#advanced-continuation-example)
-  - [Saving Your Progress ](#saving-your-progress-)
-  - [Prompting Nova for a Checkpoint ](#prompting-nova-for-a-checkpoint-)
-  - [7. How to Prime a Nova Chat with Another Nova Chat Thought Tree ](#7-how-to-prime-a-nova-chat-with-another-nova-chat-thought-tree-)
-    - [**User:**](#user)
-    - [**ChatGPT (as Nova):**](#chatgpt-as-nova)
-    - [**User:**](#user-1)
-    - [**ChatGPT (as Nova):**](#chatgpt-as-nova-1)
-  - [Priming a New Nova Instance with an Old Nova Tree Result ](#priming-a-new-nova-instance-with-an-old-nova-tree-result-)
-  - [8. Notes and Observations ](#8-notes-and-observations-)
-    - [a. Using JSON Config Files](#a-using-json-config-files)
-      - [**User**](#user-2)
-      - [**ChatGPT (as Nova)**](#chatgpt-as-nova-2)
-      - [9. Disclaimer ](#9-disclaimer-)
+- [📜 Legal Information](#-legal-information)
+  - [License](#license)
+  - [Trademark Notice](#trademark-notice)
+  - [API Usage Terms](#api-usage-terms)
+  - [Privacy Statement](#privacy-statement)
+  - [Security Notice](#security-notice)
+- [Table of Contents](#table-of-contents)
+- [1. About Nova Process](#1-about-nova-process-)
+- [2. Stages of the Nova Process](#2-stages-of-the-nova-process-)
+- [3. Understanding the Roles](#3-understanding-the-roles-)
+- [4. Example Output Structure](#4-example-output-structure-)
+- [5. Getting Started with Nova Process](#5-getting-started-with-nova-process-)
+  - [Nova Prompt](#nova-prompt-)
+  - [Nova Work Effort Prompt Template](#nova-work-effort-prompt-template-)
+- [6. Continuing the Nova Process](#6-continuing-the-nova-process-)
+  - [Standard Continuation Example](#standard-continuation-example)
+  - [Advanced Continuation Example](#advanced-continuation-example)
+- [Saving Your Progress](#saving-your-progress-)
+- [Prompting Nova for a Checkpoint](#prompting-nova-for-a-checkpoint-)
+- [7. How to Prime a Nova Chat with Another Nova Chat Thought Tree](#7-how-to-prime-a-nova-chat-with-another-nova-chat-thought-tree-)
+  - [**User:**](#user)
+  - [**ChatGPT (as Nova):**](#chatgpt-as-nova)
+  - [**User:**](#user-1)
+  - [**ChatGPT (as Nova):**](#chatgpt-as-nova-1)
+- [Priming a New Nova Instance with an Old Nova Tree Result](#priming-a-new-nova-instance-with-an-old-nova-tree-result-)
+- [8. Notes and Observations](#8-notes-and-observations-)
+  - [a. Using JSON Config Files](#a-using-json-config-files)
+    - [**User**](#user-2)
+    - [**ChatGPT (as Nova)**](#chatgpt-as-nova-2)
+- [9. Disclaimer and Legal Notices](#9-disclaimer-and-legal-notices-)
 
 ## 1. About Nova Process <a name="about-nova-process"></a>
 
@@ -462,7 +575,35 @@ You can ask Nova to give you a JSON config file based on your conversation or to
     }
 
 
-#### 9. Disclaimer <a name="disclaimer"></a>
+## 9. Disclaimer and Legal Notices <a name="disclaimer-and-legal-notices"></a>
+
+### Nova Process Disclaimer
 The Nova Process is a conceptual framework developed to enhance the problem-solving capabilities of language models like GPT-4. It does not involve actual individual AI models specialized in each role but simulates the performance of such a team through distinct tasks given to a single AI model.
 
+**NOT AGI**: The Nova Process is **not** artificial general intelligence or anything close to it. It is merely a structured methodology for organizing and leveraging existing AI models' outputs. It cannot perform tasks beyond the capabilities of the underlying models.
+
+**EXPERIMENTAL STATUS**: This methodology is experimental and should be treated as a research tool. Results may vary significantly based on the underlying model, prompt quality, and specific problem domain.
+
 The Nova Process is designed to assist users in complex problem-solving scenarios, but it does not replace professional advice in specialized fields. Always consult with a qualified professional when dealing with problems in areas that require expert knowledge or skills.
+
+### NovaSystem v0.1.1 Disclaimer
+**ALPHA SOFTWARE**: The NovaSystem repository installation tool is in ALPHA development status. It may be unstable, contain bugs, or undergo significant changes between versions.
+
+**NOT FOR PRODUCTION**: This software is not intended for use in production environments. All outputs, especially extracted commands, should be thoroughly reviewed before execution in any important context.
+
+**NO WARRANTY**: The NovaSystem repository installation tool is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability arising from the use of this software.
+
+**SECURITY RISKS**: Using this software to execute installation commands from third-party repositories carries inherent risks. The authors are not responsible for any damage or data loss that may result from commands executed through NovaSystem. Always review extracted commands before permitting their execution.
+
+**LIMITATIONS**: This tool attempts to determine the correct installation sequence but may not always identify dependencies or security concerns in third-party code. Users should exercise caution, especially when installing repositories from untrusted sources.
+
+**SUPERVISED USE ONLY**: All command extraction and execution should be reviewed by a human with appropriate expertise before taking any action based on the tool's output.
+
+### Copyright and Attribution
+Copyright © 2023-2024 NovaSystem Contributors
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+By contributing to this project, contributors agree to license their work under the terms of the GNU General Public License v3.
