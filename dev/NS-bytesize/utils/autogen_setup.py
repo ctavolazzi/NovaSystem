@@ -48,7 +48,7 @@ class AutogenSetup:
                  model_name: Optional[str] = None,
                  test_mode: bool = False):
         self.use_ollama = use_ollama
-        self.model_name = model_name or ("llama3.2" if use_ollama else "gpt-4o")
+        self.model_name = model_name or ("llama3" if use_ollama else "gpt-4o-mini")
         self.test_mode = test_mode
 
         # Create configuration based on backend

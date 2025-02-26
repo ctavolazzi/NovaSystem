@@ -1,0 +1,57 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.0, pytest-8.3.4, pluggy-1.4.0
+rootdir: /Users/ctavolazzi/Code/NovaSystem
+plugins: asyncio-0.23.5
+collected 10 items
+
+NovaSystem/backend/tests/test_sample.py::test_addition PASSED
+NovaSystem/backend/tests/test_sample.py::test_division FAILED
+NovaSystem/backend/tests/test_sample.py::test_import FAILED
+NovaSystem/backend/tests/test_sample.py::test_dependency FAILED
+NovaSystem/backend/tests/test_sample.py::test_timeout FAILED
+NovaSystem/backend/tests/test_sample.py::test_runtime FAILED
+
+================================== FAILURES ===================================
+________________________________ test_division _______________________________
+
+    def test_division():
+>       assert 1 / 0 == 1
+E       ZeroDivisionError: division by zero
+
+NovaSystem/backend/tests/test_sample.py:12: ZeroDivisionError
+_________________________________ test_import ________________________________
+
+    def test_import():
+>       import nonexistent_module
+E       ModuleNotFoundError: No module named 'nonexistent_module'
+
+NovaSystem/backend/tests/test_sample.py:16: ModuleNotFoundError
+_______________________________ test_dependency ______________________________
+
+    def test_dependency():
+>       import numpy as np
+E       ModuleNotFoundError: No module named 'numpy'
+
+NovaSystem/backend/tests/test_sample.py:20: ModuleNotFoundError
+________________________________ test_timeout ________________________________
+
+    @pytest.mark.timeout(1)
+    def test_timeout():
+>       time.sleep(2)
+E       Failed: DID NOT RAISE <class 'TimeoutError'>
+
+NovaSystem/backend/tests/test_sample.py:25: Failed
+________________________________ test_runtime ________________________________
+
+    def test_runtime():
+>       raise RuntimeError("This is a runtime error")
+E       RuntimeError: This is a runtime error
+
+NovaSystem/backend/tests/test_sample.py:29: RuntimeError
+=========================== short test summary info ===========================
+FAILED NovaSystem/backend/tests/test_sample.py::test_division - ZeroDivisionError: division by zero
+FAILED NovaSystem/backend/tests/test_sample.py::test_import - ModuleNotFoundError: No module named 'nonexistent_module'
+FAILED NovaSystem/backend/tests/test_sample.py::test_dependency - ModuleNotFoundError: No module named 'numpy'
+FAILED NovaSystem/backend/tests/test_sample.py::test_timeout - Failed: DID NOT RAISE <class 'TimeoutError'>
+FAILED NovaSystem/backend/tests/test_sample.py::test_runtime - RuntimeError: This is a runtime error
+========================= 5 failed, 1 passed in 0.10s =========================

@@ -8,7 +8,7 @@ from dataclasses import dataclass
 class OllamaConfig:
     """Configuration for Ollama service"""
     host: str = "http://localhost:11434"
-    default_model: str = "llama2"
+    default_model: str = "llama3"
     timeout: int = 120
 
 class OllamaService:
@@ -114,7 +114,7 @@ if __name__ == "__main__":
         # Create service with custom config
         config = OllamaConfig(
             host="http://localhost:11434",
-            default_model="llama2",
+            default_model="llama3",
             timeout=60
         )
         service = OllamaService(config)

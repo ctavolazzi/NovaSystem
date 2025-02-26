@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Build artifacts
+.build/
+
+# PyCharm/IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+*.iws
+.idea_modules/
+out/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Logs
+logs/
+*.log
+
+# Local environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+.pytest_cache/

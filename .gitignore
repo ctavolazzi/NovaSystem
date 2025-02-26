@@ -205,5 +205,8 @@ test_project/
 # Local development files
 .vscode/
 
+# Additional NovaSystem specific items
+system_log.log
+novasystem.db
 
 OAI_CONFIG_LIST

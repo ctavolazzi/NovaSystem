@@ -50,22 +50,23 @@ class Agent(Protocol):
     async def a_generate_reply(self, messages: Optional[List[Dict[str, Any]]] = None, sender: Optional["Agent"] = None, **kwargs: Any) -> Union[str, Dict[str, Any], None]:
         """Generate a reply using the hub."""
         if not messages:
-            messages = self.message_history
+            return None
 
         # Get the last message content
         last_message = messages[-1]["content"] if messages else ""
 
-        # Create a contextualized prompt
-        prompt = f"You are {self.name}. Respond to: {last_message}"
-
         # Generate response using the hub
-        response = await self.hub.generate_response(prompt, system=self.system_prompt)
+        response = await self.hub.generate_response(
+            prompt=last_message,
+            system=self.system_prompt,
+            **kwargs
+        )
 
         # Add response to history
         response_dict = {"role": "assistant", "content": response}
         self.message_history.append(response_dict)
 
-        return response
+        return response_dict
 
     async def process_message(self, message: str, model: str = "mistral") -> str:
         """Legacy method: Process a user message and return a response"""
@@ -159,22 +160,23 @@ class NovaBot(Agent):
     async def a_generate_reply(self, messages: Optional[List[Dict[str, Any]]] = None, sender: Optional["Agent"] = None, **kwargs: Any) -> Union[str, Dict[str, Any], None]:
         """Generate a reply using the hub."""
         if not messages:
-            messages = self.message_history
+            return None
 
         # Get the last message content
         last_message = messages[-1]["content"] if messages else ""
 
-        # Create a contextualized prompt
-        prompt = f"You are {self.name}. Respond to: {last_message}"
-
         # Generate response using the hub
-        response = await self.hub.generate_response(prompt, system=self.system_prompt)
+        response = await self.hub.generate_response(
+            prompt=last_message,
+            system=self.system_prompt,
+            **kwargs
+        )
 
         # Add response to history
         response_dict = {"role": "assistant", "content": response}
         self.message_history.append(response_dict)
 
-        return response
+        return response_dict
 
     async def process_message(self, message: str, model: str = "mistral") -> str:
         """Legacy method: Process a user message and return a response"""

@@ -32,14 +32,14 @@ class AutogenValidator:
         """Get default configuration based on backend."""
         if self._backend == "openai":
             return {
-                "model": "gpt-4",
+                "model": "gpt-4o-mini",
                 "temperature": 0.7,
                 "max_tokens": 2000,
                 "seed": 42
             }
         else:  # ollama
             return {
-                "model": "llama2",
+                "model": "llama3",
                 "temperature": 0.7,
                 "num_predict": 2000,
                 "seed": 42
@@ -50,6 +50,8 @@ class AutogenValidator:
         # Try to load from env_path first if provided
         if self._env_path and self._env_path.exists():
             load_dotenv(self._env_path, override=True)
+            # Update configuration from environment variables
+            self._update_from_env()
 
         # Try to load from config file if provided
         if self._config_path and self._config_path.exists():
@@ -59,8 +61,8 @@ class AutogenValidator:
             except json.JSONDecodeError:
                 pass
 
-        # Load from environment variables
-        if self._backend == "openai":
+        # Load from environment variables for OpenAI API key only if we're searching the tree
+        if self._search_tree and self._backend == "openai":
             api_key = os.getenv("OPENAI_API_KEY")
             if api_key:
                 self._config["api_key"] = api_key
@@ -145,6 +147,10 @@ class AutogenValidator:
         if not self._config:
             return False
 
+        # Check if this is a default initialization without any explicit config
+        if self._env_path is None and self._config_path is None and not self._search_tree:
+            return False
+
         if self._backend == "openai":
             # For testing, accept dummy API keys
             api_key = self._config.get("api_key")
@@ -160,9 +166,14 @@ class AutogenValidator:
         if not (0 <= temp <= 2):
             return False
 
-        # Check max tokens is positive
-        max_tokens = self._config.get("max_tokens", 0)
-        if max_tokens <= 0:
+        # Check appropriate token field based on backend
+        if self._backend == "openai":
+            tokens_field = "max_tokens"
+        else:  # ollama
+            tokens_field = "num_predict"
+
+        tokens = self._config.get(tokens_field, 0)
+        if tokens <= 0:
             return False
 
         return True

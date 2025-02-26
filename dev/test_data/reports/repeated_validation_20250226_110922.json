@@ -1,0 +1,91 @@
+{
+  "test_run": "20250226_110922",
+  "total_iterations": 10,
+  "successful_validations": 6,
+  "expected_successes": 6,
+  "accuracy": 1.0,
+  "total_duration": 0.0008001327514648438,
+  "average_duration": 8.001327514648438e-05,
+  "results": [
+    {
+      "iteration": 1,
+      "timestamp": "2025-02-26T11:09:21.871771",
+      "duration": 5.412101745605469e-05,
+      "is_valid": false,
+      "host": "http://localhost:11434",
+      "expected_valid": false
+    },
+    {
+      "iteration": 2,
+      "timestamp": "2025-02-26T11:09:21.973888",
+      "duration": 4.887580871582031e-05,
+      "is_valid": true,
+      "host": "http://localhost:11434",
+      "expected_valid": true
+    },
+    {
+      "iteration": 3,
+      "timestamp": "2025-02-26T11:09:22.083025",
+      "duration": 7.605552673339844e-05,
+      "is_valid": true,
+      "host": "http://localhost:11434",
+      "expected_valid": true
+    },
+    {
+      "iteration": 4,
+      "timestamp": "2025-02-26T11:09:22.190100",
+      "duration": 7.891654968261719e-05,
+      "is_valid": false,
+      "host": "http://localhost:11434",
+      "expected_valid": false
+    },
+    {
+      "iteration": 5,
+      "timestamp": "2025-02-26T11:09:22.299131",
+      "duration": 8.606910705566406e-05,
+      "is_valid": true,
+      "host": "http://localhost:11434",
+      "expected_valid": true
+    },
+    {
+      "iteration": 6,
+      "timestamp": "2025-02-26T11:09:22.403011",
+      "duration": 0.0001590251922607422,
+      "is_valid": true,
+      "host": "http://localhost:11434",
+      "expected_valid": true
+    },
+    {
+      "iteration": 7,
+      "timestamp": "2025-02-26T11:09:22.507743",
+      "duration": 8.106231689453125e-05,
+      "is_valid": false,
+      "host": "http://localhost:11434",
+      "expected_valid": false
+    },
+    {
+      "iteration": 8,
+      "timestamp": "2025-02-26T11:09:22.613277",
+      "duration": 7.510185241699219e-05,
+      "is_valid": true,
+      "host": "http://localhost:11434",
+      "expected_valid": true
+    },
+    {
+      "iteration": 9,
+      "timestamp": "2025-02-26T11:09:22.718309",
+      "duration": 6.008148193359375e-05,
+      "is_valid": true,
+      "host": "http://localhost:11434",
+      "expected_valid": true
+    },
+    {
+      "iteration": 10,
+      "timestamp": "2025-02-26T11:09:22.825578",
+      "duration": 8.082389831542969e-05,
+      "is_valid": false,
+      "host": "http://localhost:11434",
+      "expected_valid": false
+    }
+  ]
+}

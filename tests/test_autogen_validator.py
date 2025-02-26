@@ -1,5 +1,16 @@
 import pytest
 import json
+import sys
+import os
+from pathlib import Path
+
+# Add the NS-bytesize utils directory to the Python path
+ns_bytesize_utils_path = Path(__file__).parent.parent / "dev" / "NS-bytesize" / "utils"
+if str(ns_bytesize_utils_path) not in sys.path:
+    sys.path.insert(0, str(ns_bytesize_utils_path))
+
+# Now import the AutogenValidator class
+from autogen_validator import AutogenValidator
 
 @pytest.fixture
 def temp_config_file_openai(tmp_path):
@@ -19,7 +30,7 @@ def temp_config_file_ollama(tmp_path):
     """Create a temporary config file for Ollama testing."""
     config_file = tmp_path / "autogen_ollama_config.json"
     config = {
-        "model": "llama3.2",
+        "model": "llama3",
         "temperature": 0.7,
         "num_predict": 2000,
         "seed": 123
@@ -32,7 +43,7 @@ def test_custom_config_path_ollama(temp_config_file_ollama):
     validator = AutogenValidator(backend="ollama", config_path=temp_config_file_ollama)
     assert validator.is_valid
     config = validator.config
-    assert config["model"] == "llama3.2"  # Using llama3.2 as requested
+    assert config["model"] == "llama3"  # Using llama3 as requested
 
 def test_custom_config_path_openai(temp_config_file_openai):
     """Test initialization with custom config file path for OpenAI."""

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Failure Analysis Report</title>
+    
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { color: #333; }
+    .summary { background: #f5f5f5; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    .failure { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+    .critical { border-left: 5px solid #d9534f; }
+    .high { border-left: 5px solid #f0ad4e; }
+    .medium { border-left: 5px solid #5bc0de; }
+    .low { border-left: 5px solid #5cb85c; }
+    .info { border-left: 5px solid #337ab7; }
+    .recommendations { background: #e8f4f8; padding: 10px; border-radius: 5px; }
+</style>
+
+</head>
+<body>
+    <h1>Test Failure Analysis Report</h1>
+    <div class="summary">
+        <h2>Summary</h2>
+        <p><strong>Framework:</strong> pytest</p>
+        <p><strong>Analyzed At:</strong> 2025-02-26T11:56:47.607184</p>
+        <p><strong>Failures:</strong> 5</p>
+    </div>
+<h2>Failures</h2>
+<div class="failure medium">
+    <h3>Failure #1: test_division</h3>
+    <p><strong>File:</strong> NovaSystem/backend/tests/test_sample.py:12</p>
+    <p><strong>Error Type:</strong> ZeroDivisionError</p>
+    <p><strong>Category:</strong> runtime_error (Confidence: 0.7)</p>
+    <p><strong>Message:</strong> ZeroDivisionError: division by zero</p>
+</div>
+
+<div class="failure high">
+    <h3>Failure #2: test_import</h3>
+    <p><strong>File:</strong> NovaSystem/backend/tests/test_sample.py:16</p>
+    <p><strong>Error Type:</strong> ModuleNotFoundError</p>
+    <p><strong>Category:</strong> import_error (Confidence: 0.9)</p>
+    <p><strong>Message:</strong> ModuleNotFoundError: No module named 'nonexistent_module'</p>
+</div>
+
+<div class="failure high">
+    <h3>Failure #3: test_dependency</h3>
+    <p><strong>File:</strong> NovaSystem/backend/tests/test_sample.py:20</p>
+    <p><strong>Error Type:</strong> ModuleNotFoundError</p>
+    <p><strong>Category:</strong> import_error (Confidence: 0.9)</p>
+    <p><strong>Message:</strong> ModuleNotFoundError: No module named 'numpy'</p>
+</div>
+
+<div class="failure medium">
+    <h3>Failure #4: test_timeout</h3>
+    <p><strong>File:</strong> NovaSystem/backend/tests/test_sample.py:25</p>
+    <p><strong>Error Type:</strong> Unknown Error</p>
+    <p><strong>Category:</strong> runtime_error (Confidence: 0.7)</p>
+    <p><strong>Message:</strong> Failed: DID NOT RAISE <class 'TimeoutError'></p>
+</div>
+
+<div class="failure medium">
+    <h3>Failure #5: test_runtime</h3>
+    <p><strong>File:</strong> NovaSystem/backend/tests/test_sample.py:29</p>
+    <p><strong>Error Type:</strong> RuntimeError</p>
+    <p><strong>Category:</strong> runtime_error (Confidence: 0.7)</p>
+    <p><strong>Message:</strong> RuntimeError: This is a runtime error
+<class 'TimeoutError'></p>
+</div>
+<h2>Recommendations</h2>
+<div class="recommendations">
+    <h3>For: test_division</h3>
+    <h4>General Recommendations:</h4>
+    <ul>
+<li>Debug the application to identify the specific cause of the error</li><li>Add error handling for edge cases</li><li>Review the logic around the error location</li></ul></div>
+<div class="recommendations">
+    <h3>For: test_import</h3>
+    <h4>General Recommendations:</h4>
+    <ul>
+<li>Verify that the imported module is installed</li><li>Check that the module path is correct</li><li>Ensure the module is compatible with the current Python/Node.js version</li></ul><h4>Specific Recommendations:</h4><ul><li>Run 'pip install {match_1}'</li><li>Check if the module name is spelled correctly</li><li>Verify that the module is compatible with your Python version</li></ul></div>
+<div class="recommendations">
+    <h3>For: test_dependency</h3>
+    <h4>General Recommendations:</h4>
+    <ul>
+<li>Verify that the imported module is installed</li><li>Check that the module path is correct</li><li>Ensure the module is compatible with the current Python/Node.js version</li></ul><h4>Specific Recommendations:</h4><ul><li>Run 'pip install {match_1}'</li><li>Check if the module name is spelled correctly</li><li>Verify that the module is compatible with your Python version</li></ul></div>
+<div class="recommendations">
+    <h3>For: test_timeout</h3>
+    <h4>General Recommendations:</h4>
+    <ul>
+<li>Debug the application to identify the specific cause of the error</li><li>Add error handling for edge cases</li><li>Review the logic around the error location</li></ul></div>
+<div class="recommendations">
+    <h3>For: test_runtime</h3>
+    <h4>General Recommendations:</h4>
+    <ul>
+<li>Debug the application to identify the specific cause of the error</li><li>Add error handling for edge cases</li><li>Review the logic around the error location</li></ul></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.0, pytest-8.3.4, pluggy-1.5.0 -- /Users/ctavolazzi/Code/NovaSystem/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/ctavolazzi/Code/NovaSystem
+configfile: pytest.ini
+plugins: asyncio-0.24.0, cov-6.0.0, anyio-3.7.1, timeout-2.3.1, mock-3.14.0
+asyncio: mode=strict, default_loop_scope=None
+timeout: 300.0s
+timeout method: signal
+timeout func_only: False
+collecting ... collected 9 items
+
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_initialization PASSED [ 11%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_detect_framework PASSED [ 22%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_parse_pytest_results PASSED [ 33%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_analyze_test_output_empty PASSED [ 44%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_analyze_test_output_pytest PASSED [ 55%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_categorize_failures PASSED [ 66%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_generate_recommendations PASSED [ 77%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_generate_report_formats PASSED [ 88%]
+NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py::TestFailureAnalyzer::test_real_world_pytest_failure PASSED [100%]
+
+=============================== warnings summary ===============================
+NovaSystem/backend/agents/analysis/failure_analyzer.py:39
+  /Users/ctavolazzi/Code/NovaSystem/NovaSystem/backend/agents/analysis/failure_analyzer.py:39: PytestCollectionWarning: cannot collect test class 'TestFramework' because it has a __new__ constructor (from: NovaSystem/backend/tests/unit/analysis/test_failure_analyzer.py)
+    class TestFramework(Enum):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 9 passed, 1 warning in 0.06s =========================

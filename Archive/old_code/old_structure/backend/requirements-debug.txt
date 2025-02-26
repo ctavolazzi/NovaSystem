@@ -1,0 +1,11 @@
+# Debug and visualization requirements
+requests>=2.28.0
+matplotlib>=3.5.0
+networkx>=2.8.0
+graphviz>=0.20.0
+python-dotenv>=0.20.0
+fastapi>=0.95.0
+pydantic>=1.10.0
+uvicorn>=0.20.0
+pytest>=7.0.0
+pytest-asyncio>=0.18.0

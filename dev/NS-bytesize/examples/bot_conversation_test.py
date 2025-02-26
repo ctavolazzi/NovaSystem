@@ -3,8 +3,14 @@ import asyncio
 import sys
 from dataclasses import dataclass
 from datetime import datetime
-sys.path.append("../utils")
-from ollama_service import OllamaService, OllamaConfig
+from pathlib import Path
+
+# Add NS-bytesize to path
+ns_bytesize_path = Path(__file__).parent.parent
+if str(ns_bytesize_path) not in sys.path:
+    sys.path.insert(0, str(ns_bytesize_path))
+
+from utils.ollama_service import OllamaService, OllamaConfig
 
 @dataclass
 class Message:
@@ -89,7 +95,7 @@ class ConversationOrchestrator:
 async def setup_conversation() -> ConversationOrchestrator:
     """Setup the conversation components"""
     # Initialize Ollama service
-    service = OllamaService(OllamaConfig(default_model="llama3.2"))
+    service = OllamaService(OllamaConfig(default_model="llama3"))
 
     # Test connection
     if not await service.test_connection():
@@ -98,7 +104,7 @@ async def setup_conversation() -> ConversationOrchestrator:
     # Create bot configurations
     first_bot_config = BotConfig(
         name="Analyzer",
-        model="llama3.2",
+        model="llama3",
         system_prompt="""You are an analytical bot that breaks down user questions
         into clear, logical components. Explain your understanding of the question
         and rephrase it to be more precise."""
@@ -106,7 +112,7 @@ async def setup_conversation() -> ConversationOrchestrator:
 
     second_bot_config = BotConfig(
         name="Responder",
-        model="llama3.2",
+        model="llama3",
         system_prompt="""You are a helpful bot that provides clear, concise answers.
         You will receive an analyzed version of a user's question.
         Provide a direct and practical response."""

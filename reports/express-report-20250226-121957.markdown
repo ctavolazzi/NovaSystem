@@ -1,0 +1,76 @@
+
+# Test Failure Analysis Report
+
+## Summary
+
+- **Framework:** unknown
+- **Analyzed At:** 2025-02-26T12:19:57.834649
+- **Failures:** 4
+
+## Failures
+
+### Failure #1: Unknown Test
+
+- **File:** None:None
+- **Error Type:** Unknown Error
+- **Category:** runtime_error (Confidence: 0.7)
+- **Severity:** medium
+- **Message:** tests/sample.test.js
+
+### Failure #2: Unknown Test
+
+- **File:** None:None
+- **Error Type:** Unknown Error
+- **Category:** runtime_error (Confidence: 0.7)
+- **Severity:** medium
+- **Message:** tests/core.test.js
+
+### Failure #3: Unknown Test
+
+- **File:** None:None
+- **Error Type:** Unknown Error
+- **Category:** runtime_error (Confidence: 0.7)
+- **Severity:** medium
+- **Message:** , 0 passed, 2 total
+
+### Failure #4: Unknown Test
+
+- **File:** None:None
+- **Error Type:** Unknown Error
+- **Category:** runtime_error (Confidence: 0.7)
+- **Severity:** medium
+- **Message:** , 4 passed, 6 total
+
+## Recommendations
+
+### For: Unknown Test
+
+#### General Recommendations:
+
+- Debug the application to identify the specific cause of the error
+- Add error handling for edge cases
+- Review the logic around the error location
+
+### For: Unknown Test
+
+#### General Recommendations:
+
+- Debug the application to identify the specific cause of the error
+- Add error handling for edge cases
+- Review the logic around the error location
+
+### For: Unknown Test
+
+#### General Recommendations:
+
+- Debug the application to identify the specific cause of the error
+- Add error handling for edge cases
+- Review the logic around the error location
+
+### For: Unknown Test
+
+#### General Recommendations:
+
+- Debug the application to identify the specific cause of the error
+- Add error handling for edge cases
+- Review the logic around the error location

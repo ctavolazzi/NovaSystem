@@ -1,0 +1,50 @@
+
+# Test Failure Analysis Report
+
+## Summary
+
+- **Framework:** pytest
+- **Analyzed At:** 2025-02-26T12:26:39.442346
+- **Failures:** 2
+
+## Failures
+
+### Failure #1: test_division
+
+- **File:** tests/test_sample.py:12
+- **Error Type:** ZeroDivisionError
+- **Category:** runtime_error (Confidence: 0.7)
+- **Severity:** medium
+- **Message:** ZeroDivisionError: division by zero
+
+### Failure #2: test_import_module
+
+- **File:** tests/test_core.py:16
+- **Error Type:** ModuleNotFoundError
+- **Category:** import_error (Confidence: 0.9)
+- **Severity:** high
+- **Message:** ModuleNotFoundError: No module named 'nonexistent_module'
+
+## Recommendations
+
+### For: test_division
+
+#### General Recommendations:
+
+- Debug the application to identify the specific cause of the error
+- Add error handling for edge cases
+- Review the logic around the error location
+
+### For: test_import_module
+
+#### General Recommendations:
+
+- Verify that the imported module is installed
+- Check that the module path is correct
+- Ensure the module is compatible with the current Python/Node.js version
+
+#### Specific Recommendations:
+
+- Run 'pip install {match_1}'
+- Check if the module name is spelled correctly
+- Verify that the module is compatible with your Python version
