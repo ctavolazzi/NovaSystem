@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novasystem"
+version = "0.1.1"
+description = "NovaSystem - A system for managing GitHub repositories, Docker, and documentation"
+readme = "README.md"
+authors = [
+    {name = "NovaSystem Team"}
+]
+requires-python = ">=3.8"
+dependencies = [
+    "pytest>=7.0.0",
+    "gitpython",
+    "docker",
+    "tqdm",
+    "requests",
+]
+
+[project.scripts]
+novasystem = "novasystem.cli:main"
+
+[tool.setuptools]
+packages = ["novasystem"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
