@@ -1,0 +1,15 @@
+{
+  "repositories": [
+    {
+      "name": "News-Web-App",
+      "url": "https://github.com/MohammadBilalCSE/News-Web-App",
+      "added_date": "2024-02-27",
+      "status": "pending",
+      "description": "News Web Application",
+      "test_priority": 1,
+      "notes": "First module to test through NovaSystem",
+      "dependencies": [],
+      "test_results": null
+    }
+  ]
+}
