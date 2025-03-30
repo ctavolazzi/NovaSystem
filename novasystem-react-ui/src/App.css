@@ -680,3 +680,36 @@ html::-webkit-scrollbar {
 .mr-1 {
     margin-right: 0.25rem;
 }
+
+/* Styles for Expanded Activity Row */
+.activity-row > td {
+    /* Inherits background from expanded-row-content > td */
+}
+.activity-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+    padding: 0.75rem 1rem; /* Adjusted padding */
+    font-size: 0.85rem;
+}
+.activity-info p {
+    margin: 0.3rem 0;
+    color: var(--text-color-secondary);
+}
+.activity-info p strong {
+    color: var(--text-color-primary);
+    min-width: 100px; /* Align labels */
+    display: inline-block;
+}
+.activity-info .inline-code {
+    background-color: rgba(0,0,0,0.3);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+}
+
+.activity-actions {
+    /* Button aligns to the right due to flex justify-content: space-between */
+}

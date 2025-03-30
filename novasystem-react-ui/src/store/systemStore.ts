@@ -24,6 +24,8 @@ export interface BotState {
   status: 'idle' | 'running' | 'error';
   journal: JournalEntry[]; // Use the new interface
   logs: string[];    // Added
+  currentTaskDescription: string | null; // Added
+  lastActivityTimestamp: string | null;   // Added
 }
 
 // Interface for Task state
@@ -137,13 +139,15 @@ const mockBots: Record<string, BotState> = {
         `[DEBUG] ${new Date().toISOString()} - Pinging hub ${mockHubId1}...`,
         `[INFO] ${new Date().toISOString()} - Hub connection successful.`,
         `[INFO] ${new Date().toISOString()} - Diagnostics OK.`
-    ]
+    ],
+    currentTaskDescription: null, // Idle, so no current task description
+    lastActivityTimestamp: new Date().toISOString() // Last activity is now (idle)
   },
   [mockBotIdB]: {
     id: mockBotIdB,
     hubId: mockHubId1,
     name: `Bot ${mockBotIdB.substring(0, 6)}`,
-    status: 'idle',
+    status: 'running', // Let's make this one seem busy
     journal: [
          {
             timestamp: new Date(Date.now() - 1000 * 60 * 10).toISOString(),
@@ -158,8 +162,11 @@ const mockBots: Record<string, BotState> = {
         }
     ], // Array of objects
     logs: [
-        `[INFO] ${new Date().toISOString()} - Bot online.`
-    ]
+        `[INFO] ${new Date(Date.now() - 1000 * 60 * 10).toISOString()} - Bot online.`,
+        `[INFO] ${new Date(Date.now() - 1000 * 5).toISOString()} - Starting task: Analyze sensor data feed.` // Add a recent log
+    ],
+    currentTaskDescription: 'Analyzing sensor data feed (Batch 7/10)', // Example active task
+    lastActivityTimestamp: new Date(Date.now() - 1000 * 5).toISOString() // Corresponds to last log entry
   }
 };
 

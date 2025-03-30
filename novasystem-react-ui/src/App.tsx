@@ -8,7 +8,6 @@ import HubsPage from './pages/HubsPage';
 import BotsPage from './pages/BotsPage';
 import TasksPage from './pages/TasksPage';
 import WorkEffortsPage from './pages/WorkEffortsPage';
-import BotDetailPage from './pages/BotDetailPage';
 import './App.css';
 
 interface TooltipState {
@@ -103,7 +102,6 @@ function App() {
             <Route path="/" element={<DashboardPage />} />
             <Route path="/hubs" element={<HubsPage />} />
             <Route path="/bots" element={<BotsPage />} />
-            <Route path="/bots/:botId" element={<BotDetailPage />} />
             <Route path="/tasks" element={<TasksPage />} />
             <Route path="/work-efforts" element={<WorkEffortsPage />} />
           </Routes>

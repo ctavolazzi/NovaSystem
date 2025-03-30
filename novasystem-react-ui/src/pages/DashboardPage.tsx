@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useSystemStore } from '../store/systemStore';
 import HubCard from '../components/HubCard';
 import { LuServer, LuBot, LuActivity, LuTriangle } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
 
 function DashboardPage() {
   const systemStatus = useSystemStore((state: any) => state.systemStatus);
@@ -44,6 +45,23 @@ function DashboardPage() {
       e.stopPropagation();
       console.log(`[DashboardPage] Stop Bot ${botId} clicked`);
       showClickTooltip(e, 'Stop Bot: Not Implemented'); // Use tooltip
+  };
+
+  const navigate = useNavigate();
+
+  const handleViewDetailsClick = (e: React.MouseEvent<HTMLButtonElement>, botId: string) => {
+      e.stopPropagation();
+      console.log(`[DashboardPage] Navigate to details for ${botId}`);
+      navigate(`/bots/${botId}`);
+  }
+
+  const formatDate = (isoString: string | null) => {
+    if (!isoString) return '-';
+    try {
+      return new Date(isoString).toLocaleString();
+    } catch (e) {
+      return 'Invalid Date';
+    }
   };
 
   return (
@@ -129,6 +147,7 @@ function DashboardPage() {
                     botIds.flatMap((botId) => {
                       const bot = bots[botId];
                       const isExpanded = expandedBotId === botId;
+                      const lastLogEntry = bot.logs && bot.logs.length > 0 ? bot.logs[bot.logs.length - 1] : 'No recent logs.';
                       return [
                         <tr key={botId} onClick={() => handleBotRowClick(botId)} className={isExpanded ? 'expanded-row-trigger' : ''} style={{ cursor: 'pointer' }}>
                           <td>{bot.name || botId}</td>
@@ -144,23 +163,27 @@ function DashboardPage() {
                           </td>
                         </tr>,
                         isExpanded && (
-                           <tr key={`${botId}-details`} className="expanded-row-content">
+                           <tr key={`${botId}-details`} className="expanded-row-content activity-row">
                               <td colSpan={4}>
-                                <div style={{ padding: '1rem' }}>
-                                  <h4>Details for {bot.name || botId}</h4>
-                                  <p>Journal:</p>
-                                  <pre>
-                                    Log entry 1...
-                                    Log entry 2...
-                                  </pre>
-                                  <p>Logs:</p>
-                                  <pre>
-                                    Debug message...
-                                    Info message...
-                                  </pre>
+                                <div className="details-content activity-details">
+                                    <div className="activity-info">
+                                        <p><strong>Current Activity:</strong> {bot.currentTaskDescription || 'Idle'}</p>
+                                        <p><strong>Last Update:</strong> {formatDate(bot.lastActivityTimestamp)}</p>
+                                        <p><strong>Last Log:</strong>
+                                            <code className="inline-code">{lastLogEntry}</code>
+                                        </p>
+                                    </div>
+                                    <div className="activity-actions">
+                                        <button
+                                            className="button button-secondary"
+                                            onClick={(e) => handleViewDetailsClick(e, botId)}
+                                        >
+                                            View Full Details
+                                        </button>
+                                    </div>
                                 </div>
                               </td>
-                            </tr>
+                           </tr>
                         )
                       ];
                     })
