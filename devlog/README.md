@@ -29,6 +29,21 @@ This directory contains development logs documenting significant changes, fixes,
   - Solutions for common test failures
   - Methods for addressing deprecation warnings
 
+## $(date +%Y-%m-%d): Initiated Work Effort WE_01 - NovaSystem Vision Alignment
+
+**Goal:** Enhance the NovaSystem codebase to begin implementing the broader vision outlined in the root README.md, moving beyond the v0.1.1 repository installation tool towards features like the Nova Process and potentially agent-based architectures.
+
+**Initial Plan:**
+1.  Define Scope (Prioritize vision elements).
+2.  Architecture Design (Integrate new components).
+3.  Component Implementation (Iterative: Base classes, Nova Process logic, LLM integration, UI).
+4.  Testing.
+5.  Documentation Update.
+
+**(See `work_efforts/WE_01_VisionAlignment.md` for full details)**
+
+*   $(date +%Y-%m-%d): Scope defined for WE_01 (Core Unit: Bot, Hub, Controller). Plan refined.
+
 ## How to Add New Entries
 
 When making significant changes to the codebase, please document them by:

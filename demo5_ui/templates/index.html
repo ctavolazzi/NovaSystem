@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo5 Script Runner</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Placeholder Favicon -->
+    <link rel="icon" href="data:,">
+    <style>
+        body { background-color: #f8f9fa; } /* Light gray background */
+        .container { margin-top: 2rem; }
+        .card { margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title mb-4">Demo5 Script Runner</h1>
+
+                {# Container for dynamically added flash messages #}
+                <div id="flash-container"></div>
+
+                {# Display Flashed Messages (for messages flashed via redirect, e.g., after delete) #}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category or 'info' }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form action="{{ url_for('run_demo') }}" method="post" id="run-demo-form">
+                    <button type="submit" class="btn btn-primary btn-lg mb-3" id="run-button">
+                        <span id="run-button-text">Run New Demo</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="loading-spinner"></span>
+                    </button>
+                </form>
+
+                <hr class="my-4">
+
+                 {# --- Run Task with AI Section --- #}
+                <h2 class="mt-4 mb-3">Run Task with AI</h2>
+                <form action="{{ url_for('run_task') }}" method="post" id="run-task-form">
+                    <div class="mb-3">
+                        <label for="aiTaskInput" class="form-label">Enter Initial Problem/Task:</label>
+                        <textarea class="form-control" id="aiTaskInput" name="task_input" rows="3" required placeholder="e.g., Design a basic login system for a web application."></textarea>
+                    </div>
+                     {# Optional: Add model selection later #}
+                     {# <div class="mb-3">
+                         <label for="aiModelSelect" class="form-label">Select Model:</label>
+                         <select class="form-select" id="aiModelSelect" name="model_name">
+                             <option selected>llama3</option>
+                             <option>other_model</option>
+                         </select>
+                     </div> #}
+                    <button type="submit" class="btn btn-success btn-lg mb-3" id="run-task-button">
+                        <span id="run-task-button-text">Run Task</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="run-task-loading-spinner"></span>
+                    </button>
+                </form>
+
+                {# --- Live Stream Output Area --- #}
+                <div id="stream-container" class="mt-4" style="display: none;">
+                    <h5>Live AI Output:</h5>
+                    <pre id="stream-output" class="border bg-white p-3 rounded" style="min-height: 100px; white-space: pre-wrap; word-wrap: break-word;"></pre>
+                    <div id="stream-status" class="text-muted small mt-1"></div>
+                </div>
+
+                {# --- Latest Run Section --- #}
+                {% if latest_run %}
+                    <h2 class="mt-5 mb-3">Latest Run</h2>
+                    <div class="list-group mb-4">
+                         <div class="list-group-item d-flex justify-content-between align-items-center bg-light border-primary border-2">
+                            <div>
+                                <span class="d-block fw-bold">{{ latest_run.formatted_ts }}</span>
+                                <small class="text-muted">ID: {{ latest_run.id }}</small>
+                            </div>
+                             <div class="ms-3 text-nowrap">
+                                 <a href="{{ url_for('view_report', run_id=latest_run.id) }}" class="btn btn-sm btn-primary me-1" title="View Summary Report">
+                                     <i class="bi bi-file-earmark-text"></i> Report
+                                 </a>
+                                 <a href="{{ url_for('explore_run_files', run_id=latest_run.id) }}" class="btn btn-sm btn-info me-1" title="Explore Run Files">
+                                     <i class="bi bi-folder2-open"></i> Explore
+                                 </a>
+                                 <form action="{{ url_for('delete_run', run_id=latest_run.id) }}" method="post" class="d-inline" onsubmit="return confirmDelete('{{ latest_run.id }}');">
+                                     <button type="submit" class="btn btn-sm btn-danger" title="Delete Run">
+                                         <i class="bi bi-trash"></i>
+                                     </button>
+                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                {% elif not historical_runs %}
+                     {# Show this only if there are no runs at all #}
+                     <div class="alert alert-info mt-4" role="alert">
+                        No demo runs found yet. Click the button above to generate one.
+                    </div>
+                {% endif %}
+
+                {# --- Historical Runs Section (Collapsible) --- #}
+                {% if historical_runs %}
+                    <div class="accordion" id="historicalRunsAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Historical Runs ({{ historical_runs|length }})
+                            </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#historicalRunsAccordion">
+                                <div class="accordion-body p-0"> {# Remove padding from body to let list-group fit #}
+                                    <div class="list-group list-group-flush"> {# Flush to remove borders #}
+                                    {% for run in historical_runs %}
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="d-block fw-bold">{{ run.formatted_ts }}</span>
+                                                <small class="text-muted">ID: {{ run.id }}</small>
+                                            </div>
+                                            <div class="ms-3 text-nowrap">
+                                                <a href="{{ url_for('view_report', run_id=run.id) }}" class="btn btn-sm btn-outline-secondary me-1" title="View Summary Report">
+                                                    <i class="bi bi-file-earmark-text"></i> Report
+                                                </a>
+                                                <a href="{{ url_for('explore_run_files', run_id=run.id) }}" class="btn btn-sm btn-outline-info me-1" title="Explore Run Files">
+                                                    <i class="bi bi-folder2-open"></i> Explore
+                                                </a>
+                                                <form action="{{ url_for('delete_run', run_id=run.id) }}" method="post" class="d-inline" onsubmit="return confirmDelete('{{ run.id }}');">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Run">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const form = document.getElementById('run-demo-form');
+        const runButton = document.getElementById('run-button');
+        const buttonText = document.getElementById('run-button-text');
+        const spinner = document.getElementById('loading-spinner');
+        const flashContainer = document.getElementById('flash-container');
+
+        // --- New Selectors for AI Task Form ---
+        const taskForm = document.getElementById('run-task-form');
+        const taskInput = document.getElementById('aiTaskInput');
+        const taskRunButton = document.getElementById('run-task-button');
+        const taskButtonText = document.getElementById('run-task-button-text');
+        const taskSpinner = document.getElementById('run-task-loading-spinner');
+
+        // Function to create and show a flash message
+        function showFlashMessage(message, category) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${category || 'info'} alert-dismissible fade show`;
+            alertDiv.setAttribute('role', 'alert');
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            // Clear previous messages and add the new one
+            flashContainer.innerHTML = '';
+            flashContainer.appendChild(alertDiv);
+
+             // Automatically dismiss after some time (optional)
+             // setTimeout(() => {
+             //     const alertInstance = bootstrap.Alert.getOrCreateInstance(alertDiv);
+             //     if (alertInstance) alertInstance.close();
+             // }, 5000);
+        }
+
+        // Reset button to original state
+        function resetDemoButton() {
+            runButton.disabled = false;
+            buttonText.textContent = 'Run New Demo';
+            spinner.classList.add('d-none');
+        }
+
+        function resetTaskButton() {
+            taskRunButton.disabled = false;
+            taskButtonText.textContent = 'Run Task';
+            taskSpinner.classList.add('d-none');
+        }
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop default form submission
+
+            // Disable button and show spinner
+            runButton.disabled = true;
+            buttonText.textContent = 'Running...';
+            spinner.classList.remove('d-none');
+            flashContainer.innerHTML = ''; // Clear old flash messages
+
+            try {
+                const response = await fetch("{{ url_for('run_demo') }}", {
+                    method: 'POST',
+                    headers: {
+                        // Add CSRF token header if using Flask-WTF CSRF protection
+                        // 'X-CSRFToken': '...' // Removed Jinja call
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    showFlashMessage(data.message, 'success');
+                    // Reload after a short delay to see the new run
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500); // Adjust delay as needed
+                    // Keep button disabled until reload
+                } else {
+                    showFlashMessage(data.message || 'An error occurred.', 'danger');
+                    resetDemoButton(); // Use specific reset
+                }
+            } catch (error) {
+                console.error('Fetch error (Run Demo):', error);
+                showFlashMessage('Network error or server issue. Check console.', 'danger');
+                resetDemoButton(); // Use specific reset
+            }
+        });
+
+        // --- Event Listener for Run Task Form (SSE) ---
+        taskForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop default form submission
+
+            const taskValue = taskInput.value.trim();
+            if (!taskValue) {
+                showFlashMessage('Task input cannot be empty.', 'warning');
+                return;
+            }
+
+            // --- UI Setup for Streaming ---
+            taskRunButton.disabled = true;
+            taskButtonText.textContent = 'Running...';
+            taskSpinner.classList.remove('d-none');
+            flashContainer.innerHTML = ''; // Clear old flash messages
+            document.getElementById('stream-output').textContent = ''; // Clear previous stream output
+            document.getElementById('stream-status').textContent = 'Initiating run...';
+            document.getElementById('stream-container').style.display = 'block';
+
+            const formData = new FormData(taskForm);
+            let eventSource = null; // To hold the EventSource object
+
+            try {
+                // 1. Initial request to set up the run and get run_id
+                const initResponse = await fetch("{{ url_for('run_task') }}", {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const initData = await initResponse.json();
+
+                if (!initResponse.ok || initData.status !== 'pending') {
+                    throw new Error(initData.message || `Failed to initiate task run (HTTP ${initResponse.status})`);
+                }
+
+                const runId = initData.run_id;
+                document.getElementById('stream-status').textContent = `Run ${runId} initiated. Connecting to stream...`;
+
+                // 2. Connect to the SSE stream endpoint
+                const streamUrl = `{{ url_for('stream_task', run_id='RUN_ID_PLACEHOLDER') }}`.replace('RUN_ID_PLACEHOLDER', runId);
+                eventSource = new EventSource(streamUrl);
+                const streamOutputElement = document.getElementById('stream-output');
+
+                eventSource.onmessage = function(event) {
+                    // Append incoming data chunks
+                    // Need to replace escaped newlines
+                    const decodedData = event.data.replace(/\\n/g, '\n');
+                    streamOutputElement.textContent += decodedData;
+                    // Auto-scroll to bottom
+                    streamOutputElement.scrollTop = streamOutputElement.scrollHeight;
+                    document.getElementById('stream-status').textContent = 'Streaming response...';
+                };
+
+                eventSource.addEventListener('done', function(event) {
+                    console.log('Stream finished:', event.data);
+                    document.getElementById('stream-status').textContent = 'Stream completed successfully!';
+                    showFlashMessage(`Task run ${runId} completed. Output saved.`, 'success');
+                    eventSource.close();
+                    // Reload after a delay to update the run list
+                    setTimeout(() => { window.location.reload(); }, 1500);
+                });
+
+                eventSource.addEventListener('error_stream', function(event) {
+                    console.error('Stream error event:', event.data);
+                    document.getElementById('stream-status').textContent = 'Error during stream.';
+                    showFlashMessage(`Error during task execution: ${event.data}`, 'danger');
+                    eventSource.close();
+                    resetTaskButton();
+                });
+
+                eventSource.onerror = function(err) {
+                    // Handle connection errors
+                    console.error("EventSource failed:", err);
+                    document.getElementById('stream-status').textContent = 'Stream connection error.';
+                    showFlashMessage('Failed to connect to the event stream. Check server logs.', 'danger');
+                    if (eventSource) eventSource.close(); // Ensure closure
+                    resetTaskButton();
+                };
+
+            } catch (error) {
+                console.error('Error setting up or connecting to stream:', error);
+                showFlashMessage(error.message || 'Client-side error initiating task. Check console.', 'danger');
+                document.getElementById('stream-container').style.display = 'none'; // Hide stream area on setup error
+                if (eventSource) eventSource.close(); // Ensure closure
+                resetTaskButton();
+            }
+        });
+
+        // Confirmation for delete
+        function confirmDelete(runId) {
+            return confirm(`Are you sure you want to delete the run: ${runId}? This cannot be undone.`);
+        }
+    </script>
+</body>
+</html>

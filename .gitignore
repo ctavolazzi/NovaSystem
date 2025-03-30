@@ -207,11 +207,10 @@ test_project/
 
 # Additional NovaSystem specific items
 system_log.log
-novasystem.db
+*.db
 
 OAI_CONFIG_LIST
 
 # Standardization related
 /backups/
-/NovaSystem/
 /test_repo/

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title id="head-title">test_report.html</title>
+      <style type="text/css">body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  /* do not increase min-width as some may use split screens */
+  min-width: 800px;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  color: black;
+}
+
+h2 {
+  font-size: 16px;
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+a {
+  color: #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/******************************
+ * SUMMARY INFORMATION
+ ******************************/
+#environment td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  vertical-align: top;
+}
+#environment tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+#environment ul {
+  margin: 0;
+  padding: 0 20px;
+}
+
+/******************************
+ * TEST RESULT COLORS
+ ******************************/
+span.passed,
+.passed .col-result {
+  color: green;
+}
+
+span.skipped,
+span.xfailed,
+span.rerun,
+.skipped .col-result,
+.xfailed .col-result,
+.rerun .col-result {
+  color: orange;
+}
+
+span.error,
+span.failed,
+span.xpassed,
+.error .col-result,
+.failed .col-result,
+.xpassed .col-result {
+  color: red;
+}
+
+.col-links__extra {
+  margin-right: 3px;
+}
+
+/******************************
+ * RESULTS TABLE
+ *
+ * 1. Table Layout
+ * 2. Extra
+ * 3. Sorting items
+ *
+ ******************************/
+/*------------------
+ * 1. Table Layout
+ *------------------*/
+#results-table {
+  border: 1px solid #e6e6e6;
+  color: #999;
+  font-size: 12px;
+  width: 100%;
+}
+#results-table th,
+#results-table td {
+  padding: 5px;
+  border: 1px solid #e6e6e6;
+  text-align: left;
+}
+#results-table th {
+  font-weight: bold;
+}
+
+/*------------------
+ * 2. Extra
+ *------------------*/
+.logwrapper {
+  max-height: 230px;
+  overflow-y: scroll;
+  background-color: #e6e6e6;
+}
+.logwrapper.expanded {
+  max-height: none;
+}
+.logwrapper.expanded .logexpander:after {
+  content: "collapse [-]";
+}
+.logwrapper .logexpander {
+  z-index: 1;
+  position: sticky;
+  top: 10px;
+  width: max-content;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 7px;
+  margin: 10px 0 10px calc(100% - 80px);
+  cursor: pointer;
+  background-color: #e6e6e6;
+}
+.logwrapper .logexpander:after {
+  content: "expand [+]";
+}
+.logwrapper .logexpander:hover {
+  color: #000;
+  border-color: #000;
+}
+.logwrapper .log {
+  min-height: 40px;
+  position: relative;
+  top: -50px;
+  height: calc(100% + 50px);
+  border: 1px solid #e6e6e6;
+  color: black;
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px;
+  padding-right: 80px;
+  white-space: pre-wrap;
+}
+
+div.media {
+  border: 1px solid #e6e6e6;
+  float: right;
+  height: 240px;
+  margin: 0 5px;
+  overflow: hidden;
+  width: 320px;
+}
+
+.media-container {
+  display: grid;
+  grid-template-columns: 25px auto 25px;
+  align-items: center;
+  flex: 1 1;
+  overflow: hidden;
+  height: 200px;
+}
+
+.media-container--fullscreen {
+  grid-template-columns: 0px auto 0px;
+}
+
+.media-container__nav--right,
+.media-container__nav--left {
+  text-align: center;
+  cursor: pointer;
+}
+
+.media-container__viewport {
+  cursor: pointer;
+  text-align: center;
+  height: inherit;
+}
+.media-container__viewport img,
+.media-container__viewport video {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.media__name,
+.media__counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0 0 25px;
+  align-items: center;
+}
+
+.collapsible td:not(.col-links) {
+  cursor: pointer;
+}
+.collapsible td:not(.col-links):hover::after {
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.col-result {
+  width: 130px;
+}
+.col-result:hover::after {
+  content: " (hide details)";
+}
+
+.col-result.collapsed:hover::after {
+  content: " (show details)";
+}
+
+#environment-header h2:hover::after {
+  content: " (hide details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#environment-header.collapsed h2:hover::after {
+  content: " (show details)";
+  color: #bbb;
+  font-style: italic;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*------------------
+ * 3. Sorting items
+ *------------------*/
+.sortable {
+  cursor: pointer;
+}
+.sortable.desc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: -12.5px;
+  border: 10px solid #4caf50;
+  border-bottom: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.sortable.asc:after {
+  content: " ";
+  position: relative;
+  left: 5px;
+  bottom: 12.5px;
+  border: 10px solid #4caf50;
+  border-top: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.hidden, .summary__reload__button.hidden {
+  display: none;
+}
+
+.summary__data {
+  flex: 0 0 550px;
+}
+.summary__reload {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+}
+.summary__reload__button {
+  flex: 0 0 300px;
+  display: flex;
+  color: white;
+  font-weight: bold;
+  background-color: #4caf50;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.summary__reload__button:hover {
+  background-color: #46a049;
+}
+.summary__spacer {
+  flex: 0 0 550px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters,
+.collapse {
+  display: flex;
+  align-items: center;
+}
+.filters button,
+.collapse button {
+  color: #999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.filters button:hover,
+.collapse button:hover {
+  color: #ccc;
+}
+
+.filter__label {
+  margin-right: 10px;
+}
+
+      </style>
+    
+  </head>
+  <body>
+    <h1 id="title">test_report.html</h1>
+    <p>Report generated on 29-Mar-2025 at 20:45:27 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a>
+        v4.1.1</p>
+    <div id="environment-header">
+      <h2>Environment</h2>
+    </div>
+    <table id="environment"></table>
+    <!-- TEMPLATES -->
+      <template id="template_environment_row">
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+    <template id="template_results-table__body--empty">
+      <tbody class="results-table-row">
+        <tr id="not-found-message">
+          <td colspan="4">No results found. Check the filters.</th>
+        </tr>
+    </template>
+    <template id="template_results-table__tbody">
+      <tbody class="results-table-row">
+        <tr class="collapsible">
+        </tr>
+        <tr class="extras-row">
+          <td class="extra" colspan="4">
+            <div class="extraHTML"></div>
+            <div class="media">
+              <div class="media-container">
+                  <div class="media-container__nav--left"><</div>
+                  <div class="media-container__viewport">
+                    <img src="" />
+                    <video controls>
+                      <source src="" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="media-container__nav--right">></div>
+                </div>
+                <div class="media__name"></div>
+                <div class="media__counter"></div>
+            </div>
+            <div class="logwrapper">
+              <div class="logexpander"></div>
+              <div class="log"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </template>
+    <!-- END TEMPLATES -->
+    <div class="summary">
+      <div class="summary__data">
+        <h2>Summary</h2>
+        <div class="additional-summary prefix">
+        </div>
+        <p class="run-count">49 tests took 00:00:04.</p>
+        <p class="filter">(Un)check the boxes to filter the results.</p>
+        <div class="summary__reload">
+          <div class="summary__reload__button hidden" onclick="location.reload()">
+            <div>There are still tests running. <br />Reload this page to get the latest results!</div>
+          </div>
+        </div>
+        <div class="summary__spacer"></div>
+        <div class="controls">
+          <div class="filters">
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="failed" disabled/>
+            <span class="failed">0 Failed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="passed" />
+            <span class="passed">49 Passed,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="skipped" disabled/>
+            <span class="skipped">0 Skipped,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xfailed" disabled/>
+            <span class="xfailed">0 Expected failures,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="xpassed" disabled/>
+            <span class="xpassed">0 Unexpected passes,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="error" disabled/>
+            <span class="error">0 Errors,</span>
+            <input checked="true" class="filter" name="filter_checkbox" type="checkbox" data-test-result="rerun" disabled/>
+            <span class="rerun">0 Reruns</span>
+          </div>
+          <div class="collapse">
+            <button id="show_all_details">Show all details</button>&nbsp;/&nbsp;<button id="hide_all_details">Hide all details</button>
+          </div>
+        </div>
+      </div>
+      <div class="additional-summary summary">
+      </div>
+      <div class="additional-summary postfix">
+      </div>
+    </div>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable" data-column-type="result">Result</th>
+          <th class="sortable" data-column-type="testId">Test</th>
+          <th class="sortable" data-column-type="duration">Duration</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+    </table>
+  </body>
+  <footer>
+    <div id="data-container" data-jsonblob="{&#34;environment&#34;: {&#34;Python&#34;: &#34;3.10.0&#34;, &#34;Platform&#34;: &#34;macOS-12.7.4-x86_64-i386-64bit&#34;, &#34;Packages&#34;: {&#34;pytest&#34;: &#34;8.3.4&#34;, &#34;pluggy&#34;: &#34;1.5.0&#34;}, &#34;Plugins&#34;: {&#34;asyncio&#34;: &#34;0.24.0&#34;, &#34;cov&#34;: &#34;6.0.0&#34;, &#34;html&#34;: &#34;4.1.1&#34;, &#34;metadata&#34;: &#34;3.1.1&#34;, &#34;anyio&#34;: &#34;3.7.1&#34;, &#34;timeout&#34;: &#34;2.3.1&#34;, &#34;mock&#34;: &#34;3.14.0&#34;}}, &#34;tests&#34;: {&#34;tests/test_core_functions.py::test_repository_handler&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_core_functions.py::test_repository_handler&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_core_functions.py::test_repository_handler&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing RepositoryHandler ===\nInitializing RepositoryHandler...\nTesting with local repository: /Users/ctavolazzi/Code/NovaSystem/test_repo\nDocumentation file found: /Users/ctavolazzi/Code/NovaSystem/test_repo/README.md\n\nReading documentation:\n# Test Repository\n\n\nFinding configuration files:\nNo configuration files found.\n\nRepository handler test completed successfully.\n&#34;}], &#34;tests/test_core_functions.py::test_documentation_parser&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_core_functions.py::test_documentation_parser&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_core_functions.py::test_documentation_parser&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing DocumentationParser ===\nInitializing DocumentationParser...\nExtracting installation commands...\n\nExtracted Commands:\nCommand 1:\n  Text: pip install test-package\n  Type: CommandType.SHELL\n  Source: CommandSource.CODE_BLOCK\n  Priority: 85\n  Context: # Test Documentation\n\n## Installation\nInstall usin...\n\nCommand 2:\n  Text: import test_package\ntest_package.hello()\n  Type: CommandType.PYTHON\n  Source: CommandSource.CODE_BLOCK\n  Priority: 50\n  Context: # Test Documentation\n\n## Installation\nInstall usin...\n\nCommand 3:\n  Text: bash\npip install test-package\n  Type: CommandType.SHELL\n  Source: CommandSource.INLINE_CODE\n  Priority: 80\n  Context: # Test Documentation\n\n## Installation\nInstall usin...\n\nCommand 4:\n  Text: python\nimport test_package\ntest_package.hello()\n  Type: CommandType.PYTHON\n  Source: CommandSource.INLINE_CODE\n  Priority: 45\n  Context: Documentation\n\n## Installation\nInstall using pip:\n...\n\nDocumentation parser test completed successfully.\n&#34;}], &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_basic&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_basic&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_basic&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_custom_patterns&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_custom_patterns&#34;, &#34;duration&#34;: &#34;5 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_custom_patterns&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;5 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_custom_excludes&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_custom_excludes&#34;, &#34;duration&#34;: &#34;6 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_custom_excludes&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;6 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_error_handling&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_error_handling&#34;, &#34;duration&#34;: &#34;5 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_core_utils.py::TestDocMap::test_generate_doc_map_error_handling&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;5 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_package_import&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_package_import&#34;, &#34;duration&#34;: &#34;1 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_package_import&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;1 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_core_modules_import&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_core_modules_import&#34;, &#34;duration&#34;: &#34;1 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_core_modules_import&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;1 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_core_classes_import&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_core_classes_import&#34;, &#34;duration&#34;: &#34;1 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_novasystem_pytest.py::TestNovaSystemImports::test_core_classes_import&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;1 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;tests/test_system_validation.py::test_imports&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_imports&#34;, &#34;duration&#34;: &#34;2 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_imports&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;2 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing Package Imports ===\n\u2713 Successfully imported novasystem package\n\u2713 Found version: 0.1.1\n\u2713 Package file located at: /Users/ctavolazzi/Code/NovaSystem/novasystem/__init__.py\n\u2713 Successfully imported novasystem.cli\n\u2713 Successfully imported novasystem.repository\n\u2713 Successfully imported novasystem.parser\n\u2713 Successfully imported novasystem.docker\n\u2713 Successfully imported novasystem.database\n\u2713 Successfully imported novasystem.nova\n\u2713 Successfully imported novasystem.core_utils\n\u2713 Successfully imported core classes and utilities directly from package\n&#34;}], &#34;tests/test_system_validation.py::test_cli&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_cli&#34;, &#34;duration&#34;: &#34;635 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_cli&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;635 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing CLI Functionality ===\nRunning: python -m novasystem.cli --help\n\u2713 CLI help command executed successfully\n\u2713 Found expected command: install\n\u2713 Found expected command: list-runs\n\u2713 Found expected command: show-run\n\u2713 Found expected command: delete-run\n\u2713 Found expected command: cleanup\n\u2713 CLI shows correct version: 0.1.1\n&#34;}], &#34;tests/test_system_validation.py::test_package_installation&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_package_installation&#34;, &#34;duration&#34;: &#34;870 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_package_installation&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;870 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing Package Installation ===\nRunning: pip list | grep novasystem\n\u2713 Package is installed via pip\n\u2713 Package is installed in editable mode\n&#34;}], &#34;tests/test_system_validation.py::test_package_paths&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_package_paths&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_package_paths&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing Package Paths ===\n\u2713 Directory exists: novasystem\n\u2713 Directory exists: tests\n\u2713 Directory exists: scripts\n\u2713 Directory exists: utils\n\u2713 Directory exists: utils/dev_tools\n\u2713 Directory exists: utils/maintenance\n\u2713 Directory exists: novasystem/core_utils\n\u2713 File exists: pyproject.toml\n\u2713 File exists: novasystem/__init__.py\n\u2713 File exists: novasystem/cli.py\n\u2713 File exists: novasystem/core_utils/__init__.py\n\u2713 File exists: novasystem/core_utils/doc_map.py\n\u2713 File exists: utils/README.md\n&#34;}], &#34;tests/test_system_validation.py::test_archive_handling&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_archive_handling&#34;, &#34;duration&#34;: &#34;00:00:01&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_archive_handling&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:01&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing Archive Directory Handling ===\n\u2713 Found archive directory: archive\n! pytest may be collecting tests from archive directory\nOutput: 4. Archive directory handling\n      &amp;lt;Function test_archive_handling&amp;gt;\n        Test archive directory handling.\n\u2713 Found archive exclusion in dev/pytest.ini\n&#34;}], &#34;tests/test_system_validation.py::test_component_functionality&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_component_functionality&#34;, &#34;duration&#34;: &#34;2 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_component_functionality&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;2 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing Component Functionality ===\n\u2713 RepositoryHandler initializes successfully\n\u2713 RepositoryHandler.find_documentation_file method is available\n\u2713 DocumentationParser initializes successfully\n\u2713 DocumentationParser.get_installation_commands method is available\n&#34;}], &#34;tests/test_system_validation.py::test_module_structure&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_module_structure&#34;, &#34;duration&#34;: &#34;2 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_module_structure&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;2 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\n\n=== Testing Module Structure ===\n\u2713 Found 9 modules in novasystem package\n\u2713 - __main__\n\u2713 - cli\n\u2713 - core_utils\n\u2713 - database\n\u2713 - docker\n\u2713 - nova\n\u2713 - parser\n\u2713 - repository\n\u2713 - version\n&#34;}], &#34;tests/test_system_validation.py::test_full_test_suite&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;tests/test_system_validation.py::test_full_test_suite&#34;, &#34;duration&#34;: &#34;00:00:01&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;tests/test_system_validation.py::test_full_test_suite&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;00:00:01&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;----------------------------- Captured stdout call -----------------------------\nRunning: python -m pytest tests/test_novasystem_pytest.py tests/test_core_utils.py -v\n&#34;}], &#34;core_components/tests/test_core_components.py::test_is_valid_uuid_helper&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::test_is_valid_uuid_helper&#34;, &#34;duration&#34;: &#34;2 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::test_is_valid_uuid_helper&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;2 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;No log output captured.&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_default_id&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_default_id&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_default_id&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_provided_id&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_provided_id&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_provided_id&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_associated_hub&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_associated_hub&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_associated_hub&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action&#34;, &#34;duration&#34;: &#34;6 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;6 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action_custom_filename&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action_custom_filename&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action_custom_filename&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_memory_list_get&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_memory_list_get&#34;, &#34;duration&#34;: &#34;17 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_memory_list_get&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;17 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.base_bot:base_bot.py:92 Memory file not found: bot_memory/3c86d428-a2a1-40b4-9702-1530c0028dc5/memory/nonexistent.md\nWARNING  core_components.base_bot:base_bot.py:92 Memory file not found: bot_memory/3c86d428-a2a1-40b4-9702-1530c0028dc5/memory/some_other_file.txt.md\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_str&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_str&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_str&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_repr&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_repr&#34;, &#34;duration&#34;: &#34;2 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_repr&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;2 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_mkdir_fails&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_mkdir_fails&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_init_mkdir_fails&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.base_bot:base_bot.py:51 Failed to create memory directory bot_memory/1f830d51-94de-40c7-9fba-5e4732b828e4/memory: Test permission denied\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action_write_fails&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action_write_fails&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_log_action_write_fails&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.base_bot:base_bot.py:81 Failed to write action log bot_memory/e7f8da86-8240-4aa5-a201-fb4aa0025a01/memory/20250329_204526_543173.md: Test disk full\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_get_memory_content_read_fails&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_get_memory_content_read_fails&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_get_memory_content_read_fails&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.base_bot:base_bot.py:95 Failed to read memory file bot_memory/2f845982-839a-47fa-a489-0420bfee088f/memory/dummy_read_fail.md: Test read error\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_list_memory_files_not_found&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_list_memory_files_not_found&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestBaseBot::test_basebot_list_memory_files_not_found&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.base_bot:base_bot.py:104 Memory directory not found when listing files: bot_memory/901dd0c7-93ff-4810-a9ca-f1f28dfda2d0/memory\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_init&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_init&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_init&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_record_event&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_record_event&#34;, &#34;duration&#34;: &#34;17 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_record_event&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;17 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_bot_management&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_bot_management&#34;, &#34;duration&#34;: &#34;6 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_bot_management&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;6 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.hub:hub.py:88 Bot nonexistent not found in Hub a19f30f6-6d7a-4b08-a8ea-052fb0f8fa34 for removal.\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_add_same_bot_twice&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_add_same_bot_twice&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_add_same_bot_twice&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.hub:hub.py:75 Bot bot-001 already exists in Hub b08b173a-4fa4-415a-a25b-c393cdbbbebe. Overwriting.\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_str&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_str&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_str&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_repr&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_repr&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_repr&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_init_mkdir_fails&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_init_mkdir_fails&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_init_mkdir_fails&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.hub:hub.py:56 Failed to create hub directory test_run_output/hubs/f16a7e06-3a25-4647-ab19-7ca9be69b4b7: Test hub permission denied\nERROR    core_components.hub:hub.py:70 Failed to write to hub log test_run_output/hubs/f16a7e06-3a25-4647-ab19-7ca9be69b4b7/hub.log: Test hub permission denied\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_record_event_write_fails&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_record_event_write_fails&#34;, &#34;duration&#34;: &#34;5 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_record_event_write_fails&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;5 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n----------------------------- Captured stdout call -----------------------------\nSuccessfully triggered and caught FileNotFoundError outside mock for read\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.hub:hub.py:70 Failed to write to hub log test_run_output/hubs/820a9f7c-bf5f-4cab-9365-372a4432e28b/hub.log: Test hub log disk full\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestHub::test_hub_assign_same_controller_twice_logs_warning&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestHub::test_hub_assign_same_controller_twice_logs_warning&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestHub::test_hub_assign_same_controller_twice_logs_warning&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.hub:hub.py:107 Controller test-controller-id is already assigned to Hub 97dc63d0-42f1-450f-b9d2-9fbd4704afc3.\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_init&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_init&#34;, &#34;duration&#34;: &#34;4 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_init&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;4 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_assign_hub&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_assign_hub&#34;, &#34;duration&#34;: &#34;5 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_assign_hub&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;5 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_assign_same_hub_twice&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_assign_same_hub_twice&#34;, &#34;duration&#34;: &#34;5 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_assign_same_hub_twice&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;5 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.controller:controller.py:40 Controller dad0cf6e-6fc3-4614-9274-d82baefdb1c1 already manages Hub 95700fb2-8de6-4a42-95db-a4d6f2b2eb18. No action taken.\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_assign_same_hub_twice_logs_warning&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_assign_same_hub_twice_logs_warning&#34;, &#34;duration&#34;: &#34;6 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_assign_same_hub_twice_logs_warning&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;6 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nWARNING  core_components.controller:controller.py:40 Controller 1ad86d58-cf5a-494f-b5fe-525e2992f8e5 already manages Hub 3d935f52-2081-4e70-88a8-2bc52ff36e3d. No action taken.\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_hub_management_conflict&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_hub_management_conflict&#34;, &#34;duration&#34;: &#34;6 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_hub_management_conflict&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;6 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.hub:hub.py:111 Hub 46f00c71-d8a0-4f6f-b203-70f4c5ad27d8 is already managed by Controller 9e9059b9-129c-4642-8044-a23e265bce36. Cannot assign 691fb5e3-e189-4644-8fdf-12a6fdc322c2.\nERROR    core_components.controller:controller.py:58 Controller 691fb5e3-e189-4644-8fdf-12a6fdc322c2 failed to assign Hub 46f00c71-d8a0-4f6f-b203-70f4c5ad27d8 because it is already managed by 9e9059b9-129c-4642-8044-a23e265bce36.\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_create_bot&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_create_bot&#34;, &#34;duration&#34;: &#34;7 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_create_bot&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;7 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_create_bot_failure&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_create_bot_failure&#34;, &#34;duration&#34;: &#34;7 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_create_bot_failure&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;7 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n\n------------------------------ Captured log call -------------------------------\nERROR    core_components.controller:controller.py:96 Failed to create bot in Hub 36ee74db-c746-44e9-b8ff-dc612d740b1f: Simulated add_bot failure\nTraceback (most recent call last):\n  File &amp;quot;/Users/ctavolazzi/Code/NovaSystem/core_components/controller.py&amp;quot;, line 84, in create_bot\n    hub.add_bot(new_bot)\n  File &amp;quot;/Users/ctavolazzi/Code/NovaSystem/core_components/tests/test_core_components.py&amp;quot;, line 585, in mock_add_bot_fails\n    raise ValueError(&amp;quot;Simulated add_bot failure&amp;quot;)\nValueError: Simulated add_bot failure\n\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_str&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_str&#34;, &#34;duration&#34;: &#34;3 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_str&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;3 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_core_components.py::TestController::test_controller_repr&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_core_components.py::TestController::test_controller_repr&#34;, &#34;duration&#34;: &#34;5 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_core_components.py::TestController::test_controller_repr&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;5 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCreated test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning up test output dir: /Users/ctavolazzi/Code/NovaSystem/test_run_output\n&#34;}], &#34;core_components/tests/test_demo_script.py::test_demo_script_execution&#34;: [{&#34;extras&#34;: [], &#34;result&#34;: &#34;Passed&#34;, &#34;testId&#34;: &#34;core_components/tests/test_demo_script.py::test_demo_script_execution&#34;, &#34;duration&#34;: &#34;315 ms&#34;, &#34;resultsTableRow&#34;: [&#34;&lt;td class=\&#34;col-result\&#34;&gt;Passed&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-testId\&#34;&gt;core_components/tests/test_demo_script.py::test_demo_script_execution&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-duration\&#34;&gt;315 ms&lt;/td&gt;&#34;, &#34;&lt;td class=\&#34;col-links\&#34;&gt;&lt;/td&gt;&#34;], &#34;log&#34;: &#34;---------------------------- Captured stdout setup -----------------------------\n\nCleaning demo output dirs before test...\n\n----------------------------- Captured stdout call -----------------------------\n--- Demo Script STDOUT ---\n--- Starting Core Components Demo ---\nDemo output will be in: /Users/ctavolazzi/Code/NovaSystem/demo_run_output\nRoot Bot/Controller memory will be in: /Users/ctavolazzi/Code/NovaSystem/bot_memory\n\n&amp;gt;&amp;gt;&amp;gt; Creating Hub...\nCreated: Hub(id=00f529b2-58a0-4f6d-87dc-abd1e27ac97c, name=&amp;#x27;Demo Hub&amp;#x27;, bots=0) at demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n\n&amp;gt;&amp;gt;&amp;gt; Creating Controller...\nCreated: Controller(id=d79a3633-eb26-46c6-aae9-88e1ea9ba989, name=&amp;#x27;Demo Controller&amp;#x27;) (memory: bot_memory/d79a3633-eb26-46c6-aae9-88e1ea9ba989/memory)\n\n&amp;gt;&amp;gt;&amp;gt; Assigning Controller to Hub...\n\n&amp;gt;&amp;gt;&amp;gt; Controller creating Bots...\nController created Bot A (d2cb5663-4de6-4faa-af3a-3e1af0a53191) in Hub (memory: demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/bots/d2cb5663-4de6-4faa-af3a-3e1af0a53191/memory)\nController created Bot B (032e93c7-6059-4df4-a846-3ed340f212f9) in Hub (memory: demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/bots/032e93c7-6059-4df4-a846-3ed340f212f9/memory)\n\n&amp;gt;&amp;gt;&amp;gt; Bot A (d2cb5663-4de6-4faa-af3a-3e1af0a53191) creating data...\nBot A logged data to secret_data_exchange.md\n\n&amp;gt;&amp;gt;&amp;gt; Simulating Bot B (032e93c7-6059-4df4-a846-3ed340f212f9) reading Bot A&amp;#x27;s data...\nSuccessfully retrieved data from Bot A&amp;#x27;s memory: &amp;#x27;Generated data: &amp;#x27;This is a secret message from Bot A.&amp;#x27;&amp;#x27;\nBot B logged the read action.\n\n&amp;gt;&amp;gt;&amp;gt; Inspecting Logs and Memory...\n\n--- Hub (00f529b2-58a0-4f6d-87dc-abd1e27ac97c) Log (demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/hub.log): ---\n2025-03-29T20:45:26.946644 [00f529b2-58a0-4f6d-87dc-abd1e27ac97c] - Hub &amp;#x27;Demo Hub&amp;#x27; (00f529b2-58a0-4f6d-87dc-abd1e27ac97c) initialized at demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c.\n2025-03-29T20:45:26.948072 [00f529b2-58a0-4f6d-87dc-abd1e27ac97c] - Controller d79a3633-eb26-46c6-aae9-88e1ea9ba989 assigned to manage hub.\n2025-03-29T20:45:26.949058 [00f529b2-58a0-4f6d-87dc-abd1e27ac97c] - Bot d2cb5663-4de6-4faa-af3a-3e1af0a53191 added to hub.\n2025-03-29T20:45:26.950023 [00f529b2-58a0-4f6d-87dc-abd1e27ac97c] - Bot 032e93c7-6059-4df4-a846-3ed340f212f9 added to hub.\n-----------------------------------------------------\n\n--- Controller (d79a3633-eb26-46c6-aae9-88e1ea9ba989) Memory (bot_memory/d79a3633-eb26-46c6-aae9-88e1ea9ba989/memory): ---\n- 20250329_204526_947676.md\n  # Action Log - Bot d79a3633-eb26-46c6-aae9-88e1ea9ba989\n  \n  **Timestamp:** 2025-03-29T20:45:26.947676\n  \n  **Action:**\n  Controller &amp;#x27;Demo Controller&amp;#x27; (d79a3633-eb26-46c6-aae9-88e1ea9ba989) initialized.\n  \n- 20250329_204526_948287.md\n  # Action Log - Bot d79a3633-eb26-46c6-aae9-88e1ea9ba989\n  \n  **Timestamp:** 2025-03-29T20:45:26.948287\n  \n  **Action:**\n  Successfully assigned to manage Hub &amp;#x27;Demo Hub&amp;#x27; (00f529b2-58a0-4f6d-87dc-abd1e27ac97c).\n  \n- 20250329_204526_949301.md\n  # Action Log - Bot d79a3633-eb26-46c6-aae9-88e1ea9ba989\n  \n  **Timestamp:** 2025-03-29T20:45:26.949301\n  \n  **Action:**\n  Created new Bot with ID d2cb5663-4de6-4faa-af3a-3e1af0a53191 in Hub &amp;#x27;Demo Hub&amp;#x27; (00f529b2-58a0-4f6d-87dc-abd1e27ac97c). Bot memory at: demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/bots/d2cb5663-4de6-4faa-af3a-3e1af0a53191/memory\n  \n- 20250329_204526_950239.md\n  # Action Log - Bot d79a3633-eb26-46c6-aae9-88e1ea9ba989\n  \n  **Timestamp:** 2025-03-29T20:45:26.950239\n  \n  **Action:**\n  Created new Bot with ID 032e93c7-6059-4df4-a846-3ed340f212f9 in Hub &amp;#x27;Demo Hub&amp;#x27; (00f529b2-58a0-4f6d-87dc-abd1e27ac97c). Bot memory at: demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/bots/032e93c7-6059-4df4-a846-3ed340f212f9/memory\n  \n-----------------------------------------------------\n\n--- Bot A (d2cb5663-4de6-4faa-af3a-3e1af0a53191) Memory (demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/bots/d2cb5663-4de6-4faa-af3a-3e1af0a53191/memory): ---\n- secret_data_exchange.md\n  # Action Log - Bot d2cb5663-4de6-4faa-af3a-3e1af0a53191\n  \n  **Timestamp:** 2025-03-29T20:45:26.950596\n  \n  **Action:**\n  Generated data: &amp;#x27;This is a secret message from Bot A.&amp;#x27;\n  \n-----------------------------------------------------\n\n--- Bot B (032e93c7-6059-4df4-a846-3ed340f212f9) Memory (demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c/bots/032e93c7-6059-4df4-a846-3ed340f212f9/memory): ---\n- 20250329_204526_950996.md\n  # Action Log - Bot 032e93c7-6059-4df4-a846-3ed340f212f9\n  \n  **Timestamp:** 2025-03-29T20:45:26.950996\n  \n  **Action:**\n  Successfully read data from Bot d2cb5663-4de6-4faa-af3a-3e1af0a53191. Content: &amp;#x27;Generated data: &amp;#x27;This is a secret message from Bot A.&amp;#x27;&amp;#x27;\n  \n-----------------------------------------------------\n\n--- Demo Complete ---\n\n--- Demo Script STDERR ---\n2025-03-29 20:45:26,946 - core_components.hub - INFO - Initialized Hub &amp;#x27;Demo Hub&amp;#x27; ID: 00f529b2-58a0-4f6d-87dc-abd1e27ac97c at demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,947 - core_components.base_bot - INFO - Initialized Bot ID: d79a3633-eb26-46c6-aae9-88e1ea9ba989 with root memory path.\n2025-03-29 20:45:26,947 - core_components.base_bot - DEBUG - Logged action for bot d79a3633-eb26-46c6-aae9-88e1ea9ba989 to 20250329_204526_947676.md\n2025-03-29 20:45:26,948 - core_components.controller - INFO - Initialized Controller &amp;#x27;Demo Controller&amp;#x27; ID: d79a3633-eb26-46c6-aae9-88e1ea9ba989\n2025-03-29 20:45:26,948 - core_components.hub - INFO - Controller d79a3633-eb26-46c6-aae9-88e1ea9ba989 assigned to manage Hub 00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,948 - core_components.base_bot - DEBUG - Logged action for bot d79a3633-eb26-46c6-aae9-88e1ea9ba989 to 20250329_204526_948287.md\n2025-03-29 20:45:26,948 - core_components.controller - INFO - Controller d79a3633-eb26-46c6-aae9-88e1ea9ba989 successfully assigned to Hub 00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,948 - core_components.base_bot - INFO - Initialized Bot ID: d2cb5663-4de6-4faa-af3a-3e1af0a53191 associated with Hub path: demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,949 - core_components.hub - INFO - Added Bot d2cb5663-4de6-4faa-af3a-3e1af0a53191 to Hub 00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,949 - core_components.base_bot - DEBUG - Logged action for bot d79a3633-eb26-46c6-aae9-88e1ea9ba989 to 20250329_204526_949301.md\n2025-03-29 20:45:26,949 - core_components.controller - INFO - Controller d79a3633-eb26-46c6-aae9-88e1ea9ba989 created Bot d2cb5663-4de6-4faa-af3a-3e1af0a53191 in Hub 00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,949 - core_components.base_bot - INFO - Initialized Bot ID: 032e93c7-6059-4df4-a846-3ed340f212f9 associated with Hub path: demo_run_output/hubs/00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,950 - core_components.hub - INFO - Added Bot 032e93c7-6059-4df4-a846-3ed340f212f9 to Hub 00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,950 - core_components.base_bot - DEBUG - Logged action for bot d79a3633-eb26-46c6-aae9-88e1ea9ba989 to 20250329_204526_950239.md\n2025-03-29 20:45:26,950 - core_components.controller - INFO - Controller d79a3633-eb26-46c6-aae9-88e1ea9ba989 created Bot 032e93c7-6059-4df4-a846-3ed340f212f9 in Hub 00f529b2-58a0-4f6d-87dc-abd1e27ac97c\n2025-03-29 20:45:26,950 - core_components.base_bot - DEBUG - Logged action for bot d2cb5663-4de6-4faa-af3a-3e1af0a53191 to secret_data_exchange.md\n2025-03-29 20:45:26,951 - core_components.base_bot - DEBUG - Logged action for bot 032e93c7-6059-4df4-a846-3ed340f212f9 to 20250329_204526_950996.md\n\n--- Demo Script Exit Code: 0 ---\n--------------------------- Captured stdout teardown ---------------------------\n\nCleaning demo output dirs after test...\n&#34;}]}, &#34;renderCollapsed&#34;: [&#34;passed&#34;], &#34;initialSort&#34;: &#34;result&#34;, &#34;title&#34;: &#34;test_report.html&#34;}"></div>
+    <script>
+      (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+const { getCollapsedCategory, setCollapsedIds } = require('./storage.js')
+
+class DataManager {
+    setManager(data) {
+        const collapsedCategories = [...getCollapsedCategory(data.renderCollapsed)]
+        const collapsedIds = []
+        const tests = Object.values(data.tests).flat().map((test, index) => {
+            const collapsed = collapsedCategories.includes(test.result.toLowerCase())
+            const id = `test_${index}`
+            if (collapsed) {
+                collapsedIds.push(id)
+            }
+            return {
+                ...test,
+                id,
+                collapsed,
+            }
+        })
+        const dataBlob = { ...data, tests }
+        this.data = { ...dataBlob }
+        this.renderData = { ...dataBlob }
+        setCollapsedIds(collapsedIds)
+    }
+
+    get allData() {
+        return { ...this.data }
+    }
+
+    resetRender() {
+        this.renderData = { ...this.data }
+    }
+
+    setRender(data) {
+        this.renderData.tests = [...data]
+    }
+
+    toggleCollapsedItem(id) {
+        this.renderData.tests = this.renderData.tests.map((test) =>
+            test.id === id ? { ...test, collapsed: !test.collapsed } : test,
+        )
+    }
+
+    set allCollapsed(collapsed) {
+        this.renderData = { ...this.renderData, tests: [...this.renderData.tests.map((test) => (
+            { ...test, collapsed }
+        ))] }
+    }
+
+    get testSubset() {
+        return [...this.renderData.tests]
+    }
+
+    get environment() {
+        return this.renderData.environment
+    }
+
+    get initialSort() {
+        return this.data.initialSort
+    }
+}
+
+module.exports = {
+    manager: new DataManager(),
+}
+
+},{"./storage.js":8}],2:[function(require,module,exports){
+const mediaViewer = require('./mediaviewer.js')
+const templateEnvRow = document.getElementById('template_environment_row')
+const templateResult = document.getElementById('template_results-table__tbody')
+
+function htmlToElements(html) {
+    const temp = document.createElement('template')
+    temp.innerHTML = html
+    return temp.content.childNodes
+}
+
+const find = (selector, elem) => {
+    if (!elem) {
+        elem = document
+    }
+    return elem.querySelector(selector)
+}
+
+const findAll = (selector, elem) => {
+    if (!elem) {
+        elem = document
+    }
+    return [...elem.querySelectorAll(selector)]
+}
+
+const dom = {
+    getStaticRow: (key, value) => {
+        const envRow = templateEnvRow.content.cloneNode(true)
+        const isObj = typeof value === 'object' && value !== null
+        const values = isObj ? Object.keys(value).map((k) => `${k}: ${value[k]}`) : null
+
+        const valuesElement = htmlToElements(
+            values ? `<ul>${values.map((val) => `<li>${val}</li>`).join('')}<ul>` : `<div>${value}</div>`)[0]
+        const td = findAll('td', envRow)
+        td[0].textContent = key
+        td[1].appendChild(valuesElement)
+
+        return envRow
+    },
+    getResultTBody: ({ testId, id, log, extras, resultsTableRow, tableHtml, result, collapsed }) => {
+        const resultBody = templateResult.content.cloneNode(true)
+        resultBody.querySelector('tbody').classList.add(result.toLowerCase())
+        resultBody.querySelector('tbody').id = testId
+        resultBody.querySelector('.collapsible').dataset.id = id
+
+        resultsTableRow.forEach((html) => {
+            const t = document.createElement('template')
+            t.innerHTML = html
+            resultBody.querySelector('.collapsible').appendChild(t.content)
+        })
+
+        if (log) {
+            // Wrap lines starting with "E" with span.error to color those lines red
+            const wrappedLog = log.replace(/^E.*$/gm, (match) => `<span class="error">${match}</span>`)
+            resultBody.querySelector('.log').innerHTML = wrappedLog
+        } else {
+            resultBody.querySelector('.log').remove()
+        }
+
+        if (collapsed) {
+            resultBody.querySelector('.collapsible > td')?.classList.add('collapsed')
+            resultBody.querySelector('.extras-row').classList.add('hidden')
+        } else {
+            resultBody.querySelector('.collapsible > td')?.classList.remove('collapsed')
+        }
+
+        const media = []
+        extras?.forEach(({ name, format_type, content }) => {
+            if (['image', 'video'].includes(format_type)) {
+                media.push({ path: content, name, format_type })
+            }
+
+            if (format_type === 'html') {
+                resultBody.querySelector('.extraHTML').insertAdjacentHTML('beforeend', `<div>${content}</div>`)
+            }
+        })
+        mediaViewer.setup(resultBody, media)
+
+        // Add custom html from the pytest_html_results_table_html hook
+        tableHtml?.forEach((item) => {
+            resultBody.querySelector('td[class="extra"]').insertAdjacentHTML('beforeend', item)
+        })
+
+        return resultBody
+    },
+}
+
+module.exports = {
+    dom,
+    htmlToElements,
+    find,
+    findAll,
+}
+
+},{"./mediaviewer.js":6}],3:[function(require,module,exports){
+const { manager } = require('./datamanager.js')
+const { doSort } = require('./sort.js')
+const storageModule = require('./storage.js')
+
+const getFilteredSubSet = (filter) =>
+    manager.allData.tests.filter(({ result }) => filter.includes(result.toLowerCase()))
+
+const doInitFilter = () => {
+    const currentFilter = storageModule.getVisible()
+    const filteredSubset = getFilteredSubSet(currentFilter)
+    manager.setRender(filteredSubset)
+}
+
+const doFilter = (type, show) => {
+    if (show) {
+        storageModule.showCategory(type)
+    } else {
+        storageModule.hideCategory(type)
+    }
+
+    const currentFilter = storageModule.getVisible()
+    const filteredSubset = getFilteredSubSet(currentFilter)
+    manager.setRender(filteredSubset)
+
+    const sortColumn = storageModule.getSort()
+    doSort(sortColumn, true)
+}
+
+module.exports = {
+    doFilter,
+    doInitFilter,
+}
+
+},{"./datamanager.js":1,"./sort.js":7,"./storage.js":8}],4:[function(require,module,exports){
+const { redraw, bindEvents, renderStatic } = require('./main.js')
+const { doInitFilter } = require('./filter.js')
+const { doInitSort } = require('./sort.js')
+const { manager } = require('./datamanager.js')
+const data = JSON.parse(document.getElementById('data-container').dataset.jsonblob)
+
+function init() {
+    manager.setManager(data)
+    doInitFilter()
+    doInitSort()
+    renderStatic()
+    redraw()
+    bindEvents()
+}
+
+init()
+
+},{"./datamanager.js":1,"./filter.js":3,"./main.js":5,"./sort.js":7}],5:[function(require,module,exports){
+const { dom, find, findAll } = require('./dom.js')
+const { manager } = require('./datamanager.js')
+const { doSort } = require('./sort.js')
+const { doFilter } = require('./filter.js')
+const {
+    getVisible,
+    getCollapsedIds,
+    setCollapsedIds,
+    getSort,
+    getSortDirection,
+    possibleFilters,
+} = require('./storage.js')
+
+const removeChildren = (node) => {
+    while (node.firstChild) {
+        node.removeChild(node.firstChild)
+    }
+}
+
+const renderStatic = () => {
+    const renderEnvironmentTable = () => {
+        const environment = manager.environment
+        const rows = Object.keys(environment).map((key) => dom.getStaticRow(key, environment[key]))
+        const table = document.getElementById('environment')
+        removeChildren(table)
+        rows.forEach((row) => table.appendChild(row))
+    }
+    renderEnvironmentTable()
+}
+
+const addItemToggleListener = (elem) => {
+    elem.addEventListener('click', ({ target }) => {
+        const id = target.parentElement.dataset.id
+        manager.toggleCollapsedItem(id)
+
+        const collapsedIds = getCollapsedIds()
+        if (collapsedIds.includes(id)) {
+            const updated = collapsedIds.filter((item) => item !== id)
+            setCollapsedIds(updated)
+        } else {
+            collapsedIds.push(id)
+            setCollapsedIds(collapsedIds)
+        }
+        redraw()
+    })
+}
+
+const renderContent = (tests) => {
+    const sortAttr = getSort(manager.initialSort)
+    const sortAsc = JSON.parse(getSortDirection())
+    const rows = tests.map(dom.getResultTBody)
+    const table = document.getElementById('results-table')
+    const tableHeader = document.getElementById('results-table-head')
+
+    const newTable = document.createElement('table')
+    newTable.id = 'results-table'
+
+    // remove all sorting classes and set the relevant
+    findAll('.sortable', tableHeader).forEach((elem) => elem.classList.remove('asc', 'desc'))
+    tableHeader.querySelector(`.sortable[data-column-type="${sortAttr}"]`)?.classList.add(sortAsc ? 'desc' : 'asc')
+    newTable.appendChild(tableHeader)
+
+    if (!rows.length) {
+        const emptyTable = document.getElementById('template_results-table__body--empty').content.cloneNode(true)
+        newTable.appendChild(emptyTable)
+    } else {
+        rows.forEach((row) => {
+            if (!!row) {
+                findAll('.collapsible td:not(.col-links', row).forEach(addItemToggleListener)
+                find('.logexpander', row).addEventListener('click',
+                    (evt) => evt.target.parentNode.classList.toggle('expanded'),
+                )
+                newTable.appendChild(row)
+            }
+        })
+    }
+
+    table.replaceWith(newTable)
+}
+
+const renderDerived = () => {
+    const currentFilter = getVisible()
+    possibleFilters.forEach((result) => {
+        const input = document.querySelector(`input[data-test-result="${result}"]`)
+        input.checked = currentFilter.includes(result)
+    })
+}
+
+const bindEvents = () => {
+    const filterColumn = (evt) => {
+        const { target: element } = evt
+        const { testResult } = element.dataset
+
+        doFilter(testResult, element.checked)
+        const collapsedIds = getCollapsedIds()
+        const updated = manager.renderData.tests.map((test) => {
+            return {
+                ...test,
+                collapsed: collapsedIds.includes(test.id),
+            }
+        })
+        manager.setRender(updated)
+        redraw()
+    }
+
+    const header = document.getElementById('environment-header')
+    header.addEventListener('click', () => {
+        const table = document.getElementById('environment')
+        table.classList.toggle('hidden')
+        header.classList.toggle('collapsed')
+    })
+
+    findAll('input[name="filter_checkbox"]').forEach((elem) => {
+        elem.addEventListener('click', filterColumn)
+    })
+
+    findAll('.sortable').forEach((elem) => {
+        elem.addEventListener('click', (evt) => {
+            const { target: element } = evt
+            const { columnType } = element.dataset
+            doSort(columnType)
+            redraw()
+        })
+    })
+
+    document.getElementById('show_all_details').addEventListener('click', () => {
+        manager.allCollapsed = false
+        setCollapsedIds([])
+        redraw()
+    })
+    document.getElementById('hide_all_details').addEventListener('click', () => {
+        manager.allCollapsed = true
+        const allIds = manager.renderData.tests.map((test) => test.id)
+        setCollapsedIds(allIds)
+        redraw()
+    })
+}
+
+const redraw = () => {
+    const { testSubset } = manager
+
+    renderContent(testSubset)
+    renderDerived()
+}
+
+module.exports = {
+    redraw,
+    bindEvents,
+    renderStatic,
+}
+
+},{"./datamanager.js":1,"./dom.js":2,"./filter.js":3,"./sort.js":7,"./storage.js":8}],6:[function(require,module,exports){
+class MediaViewer {
+    constructor(assets) {
+        this.assets = assets
+        this.index = 0
+    }
+
+    nextActive() {
+        this.index = this.index === this.assets.length - 1 ? 0 : this.index + 1
+        return [this.activeFile, this.index]
+    }
+
+    prevActive() {
+        this.index = this.index === 0 ? this.assets.length - 1 : this.index -1
+        return [this.activeFile, this.index]
+    }
+
+    get currentIndex() {
+        return this.index
+    }
+
+    get activeFile() {
+        return this.assets[this.index]
+    }
+}
+
+
+const setup = (resultBody, assets) => {
+    if (!assets.length) {
+        resultBody.querySelector('.media').classList.add('hidden')
+        return
+    }
+
+    const mediaViewer = new MediaViewer(assets)
+    const container = resultBody.querySelector('.media-container')
+    const leftArrow = resultBody.querySelector('.media-container__nav--left')
+    const rightArrow = resultBody.querySelector('.media-container__nav--right')
+    const mediaName = resultBody.querySelector('.media__name')
+    const counter = resultBody.querySelector('.media__counter')
+    const imageEl = resultBody.querySelector('img')
+    const sourceEl = resultBody.querySelector('source')
+    const videoEl = resultBody.querySelector('video')
+
+    const setImg = (media, index) => {
+        if (media?.format_type === 'image') {
+            imageEl.src = media.path
+
+            imageEl.classList.remove('hidden')
+            videoEl.classList.add('hidden')
+        } else if (media?.format_type === 'video') {
+            sourceEl.src = media.path
+
+            videoEl.classList.remove('hidden')
+            imageEl.classList.add('hidden')
+        }
+
+        mediaName.innerText = media?.name
+        counter.innerText = `${index + 1} / ${assets.length}`
+    }
+    setImg(mediaViewer.activeFile, mediaViewer.currentIndex)
+
+    const moveLeft = () => {
+        const [media, index] = mediaViewer.prevActive()
+        setImg(media, index)
+    }
+    const doRight = () => {
+        const [media, index] = mediaViewer.nextActive()
+        setImg(media, index)
+    }
+    const openImg = () => {
+        window.open(mediaViewer.activeFile.path, '_blank')
+    }
+    if (assets.length === 1) {
+        container.classList.add('media-container--fullscreen')
+    } else {
+        leftArrow.addEventListener('click', moveLeft)
+        rightArrow.addEventListener('click', doRight)
+    }
+    imageEl.addEventListener('click', openImg)
+}
+
+module.exports = {
+    setup,
+}
+
+},{}],7:[function(require,module,exports){
+const { manager } = require('./datamanager.js')
+const storageModule = require('./storage.js')
+
+const genericSort = (list, key, ascending, customOrder) => {
+    let sorted
+    if (customOrder) {
+        sorted = list.sort((a, b) => {
+            const aValue = a.result.toLowerCase()
+            const bValue = b.result.toLowerCase()
+
+            const aIndex = customOrder.findIndex((item) => item.toLowerCase() === aValue)
+            const bIndex = customOrder.findIndex((item) => item.toLowerCase() === bValue)
+
+            // Compare the indices to determine the sort order
+            return aIndex - bIndex
+        })
+    } else {
+        sorted = list.sort((a, b) => a[key] === b[key] ? 0 : a[key] > b[key] ? 1 : -1)
+    }
+
+    if (ascending) {
+        sorted.reverse()
+    }
+    return sorted
+}
+
+const durationSort = (list, ascending) => {
+    const parseDuration = (duration) => {
+        if (duration.includes(':')) {
+            // If it's in the format "HH:mm:ss"
+            const [hours, minutes, seconds] = duration.split(':').map(Number)
+            return (hours * 3600 + minutes * 60 + seconds) * 1000
+        } else {
+            // If it's in the format "nnn ms"
+            return parseInt(duration)
+        }
+    }
+    const sorted = list.sort((a, b) => parseDuration(a['duration']) - parseDuration(b['duration']))
+    if (ascending) {
+        sorted.reverse()
+    }
+    return sorted
+}
+
+const doInitSort = () => {
+    const type = storageModule.getSort(manager.initialSort)
+    const ascending = storageModule.getSortDirection()
+    const list = manager.testSubset
+    const initialOrder = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed', 'Skipped', 'Passed']
+
+    storageModule.setSort(type)
+    storageModule.setSortDirection(ascending)
+
+    if (type?.toLowerCase() === 'original') {
+        manager.setRender(list)
+    } else {
+        let sortedList
+        switch (type) {
+        case 'duration':
+            sortedList = durationSort(list, ascending)
+            break
+        case 'result':
+            sortedList = genericSort(list, type, ascending, initialOrder)
+            break
+        default:
+            sortedList = genericSort(list, type, ascending)
+            break
+        }
+        manager.setRender(sortedList)
+    }
+}
+
+const doSort = (type, skipDirection) => {
+    const newSortType = storageModule.getSort(manager.initialSort) !== type
+    const currentAsc = storageModule.getSortDirection()
+    let ascending
+    if (skipDirection) {
+        ascending = currentAsc
+    } else {
+        ascending = newSortType ? false : !currentAsc
+    }
+    storageModule.setSort(type)
+    storageModule.setSortDirection(ascending)
+
+    const list = manager.testSubset
+    const sortedList = type === 'duration' ? durationSort(list, ascending) : genericSort(list, type, ascending)
+    manager.setRender(sortedList)
+}
+
+module.exports = {
+    doInitSort,
+    doSort,
+}
+
+},{"./datamanager.js":1,"./storage.js":8}],8:[function(require,module,exports){
+const possibleFilters = [
+    'passed',
+    'skipped',
+    'failed',
+    'error',
+    'xfailed',
+    'xpassed',
+    'rerun',
+]
+
+const getVisible = () => {
+    const url = new URL(window.location.href)
+    const settings = new URLSearchParams(url.search).get('visible')
+    const lower = (item) => {
+        const lowerItem = item.toLowerCase()
+        if (possibleFilters.includes(lowerItem)) {
+            return lowerItem
+        }
+        return null
+    }
+    return settings === null ?
+        possibleFilters :
+        [...new Set(settings?.split(',').map(lower).filter((item) => item))]
+}
+
+const hideCategory = (categoryToHide) => {
+    const url = new URL(window.location.href)
+    const visibleParams = new URLSearchParams(url.search).get('visible')
+    const currentVisible = visibleParams ? visibleParams.split(',') : [...possibleFilters]
+    const settings = [...new Set(currentVisible)].filter((f) => f !== categoryToHide).join(',')
+
+    url.searchParams.set('visible', settings)
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const showCategory = (categoryToShow) => {
+    if (typeof window === 'undefined') {
+        return
+    }
+    const url = new URL(window.location.href)
+    const currentVisible = new URLSearchParams(url.search).get('visible')?.split(',').filter(Boolean) ||
+        [...possibleFilters]
+    const settings = [...new Set([categoryToShow, ...currentVisible])]
+    const noFilter = possibleFilters.length === settings.length || !settings.length
+
+    noFilter ? url.searchParams.delete('visible') : url.searchParams.set('visible', settings.join(','))
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const getSort = (initialSort) => {
+    const url = new URL(window.location.href)
+    let sort = new URLSearchParams(url.search).get('sort')
+    if (!sort) {
+        sort = initialSort || 'result'
+    }
+    return sort
+}
+
+const setSort = (type) => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('sort', type)
+    window.history.pushState({}, null, unescape(url.href))
+}
+
+const getCollapsedCategory = (renderCollapsed) => {
+    let categories
+    if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href)
+        const collapsedItems = new URLSearchParams(url.search).get('collapsed')
+        switch (true) {
+        case !renderCollapsed && collapsedItems === null:
+            categories = ['passed']
+            break
+        case collapsedItems?.length === 0 || /^["']{2}$/.test(collapsedItems):
+            categories = []
+            break
+        case /^all$/.test(collapsedItems) || collapsedItems === null && /^all$/.test(renderCollapsed):
+            categories = [...possibleFilters]
+            break
+        default:
+            categories = collapsedItems?.split(',').map((item) => item.toLowerCase()) || renderCollapsed
+            break
+        }
+    } else {
+        categories = []
+    }
+    return categories
+}
+
+const getSortDirection = () => JSON.parse(sessionStorage.getItem('sortAsc')) || false
+const setSortDirection = (ascending) => sessionStorage.setItem('sortAsc', ascending)
+
+const getCollapsedIds = () => JSON.parse(sessionStorage.getItem('collapsedIds')) || []
+const setCollapsedIds = (list) => sessionStorage.setItem('collapsedIds', JSON.stringify(list))
+
+module.exports = {
+    getVisible,
+    hideCategory,
+    showCategory,
+    getCollapsedIds,
+    setCollapsedIds,
+    getSort,
+    setSort,
+    getSortDirection,
+    setSortDirection,
+    getCollapsedCategory,
+    possibleFilters,
+}
+
+},{}]},{},[4]);
+    </script>
+  </footer>
+</html>

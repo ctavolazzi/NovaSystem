@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Explore Run {{ run_id }} - {{ current_path }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { margin-top: 2rem; }
+        .breadcrumb-item+.breadcrumb-item::before { content: ">"; }
+        .list-group-item i { width: 1.2em; }
+        pre { background-color: #e9ecef; padding: 1rem; border-radius: 0.3rem; max-height: 60vh; overflow: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Runs List</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Explore Run: {{ run_id }}</li>
+            </ol>
+        </nav>
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        {% for url, name in breadcrumbs %}
+                            {% if loop.last %}
+                                <li class="breadcrumb-item active" aria-current="page">{{ name }}</li>
+                            {% else %}
+                                <li class="breadcrumb-item"><a href="{{ url }}">{{ name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                </nav>
+            </div>
+            <div class="card-body">
+                {% if is_directory %}
+                    <h2 class="h5">Contents:</h2>
+                    {% if items %}
+                        <div class="list-group">
+                            {% for item in items %}
+                                <a href="{{ item.url }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                                    <i class="bi {% if item.is_dir %}bi-folder-fill text-warning{% else %}bi-file-earmark-text text-secondary{% endif %} me-2"></i>
+                                    {{ item.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">This directory is empty.</p>
+                    {% endif %}
+                {% else %}
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h2 class="h5 mb-0">File Content:</h2>
+                        {% if file_download_url %}
+                            <a href="{{ file_download_url }}" class="btn btn-sm btn-outline-success" download>
+                                <i class="bi bi-download"></i> Download File
+                            </a>
+                        {% endif %}
+                    </div>
+                    <pre class="border bg-light p-3 rounded"><code>{{ file_content }}</code></pre>
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                 <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-secondary">&larr; Back to Runs List</a>
+             </div>
+        </div>
+    </div>
+
+    <!-- Optional: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
