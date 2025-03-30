@@ -1,0 +1,682 @@
+/* Global styles & Dark Theme Variables */
+:root {
+  --bg-color-dark: #1a202c; /* Dark background */
+  --bg-color-medium: #2d3748; /* Medium dark background (cards, nav) */
+  --bg-color-light: #4a5568; /* Lighter dark (hover, borders) */
+  --text-color-primary: #e2e8f0; /* Light text */
+  --text-color-secondary: #a0aec0; /* Greyer text */
+  --border-color: #4a5568;
+  --primary-color: #4299e1; /* Blue */
+  --primary-color-hover: #2b6cb0;
+  --secondary-color: #4a5568;
+  --secondary-color-hover: #2d3748;
+  --connected-color: #48bb78; /* Green */
+  --disconnected-color: #f56565; /* Red */
+  --idle-color: var(--connected-color);
+  --running-color: #ecc94b; /* Yellow */
+  --error-color: var(--disconnected-color);
+  --info-color: var(--primary-color);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-primary);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Layout Containers */
+.app-container {
+  min-height: 100vh;
+}
+
+.page-content {
+  padding: 1.5rem;
+}
+
+/* Page Header (used in HubsPage etc.) */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Make page title margin consistent */
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0; /* Remove default/previous margin */
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--bg-color-medium);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand span {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* Style for the brand link */
+.navbar-brand-link {
+    color: inherit; /* Inherit color from parent */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar-brand-link:hover {
+    color: inherit; /* Prevent color change on hover */
+}
+
+.navbar-links {
+  margin-left: 2rem;
+}
+
+.navbar-links a {
+  color: var(--text-color-secondary);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin: 0 0.25rem;
+  font-size: 0.875rem;
+}
+
+.navbar-links a:hover {
+  color: var(--text-color-primary);
+  background-color: var(--bg-color-light);
+}
+
+.navbar-links a.active {
+  color: var(--text-color-primary);
+  background-color: var(--secondary-color-hover);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--text-color-secondary);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-indicator.connected {
+  background-color: var(--connected-color);
+}
+
+.status-indicator.disconnected {
+  background-color: var(--disconnected-color);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--bg-color-medium);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.stat-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary-color);
+}
+
+.stat-icon.error {
+    color: var(--error-color);
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Main Content Layout */
+.main-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+  .main-content-grid {
+    grid-template-columns: 2fr 1fr; /* Two columns on larger screens */
+  }
+}
+
+.main-column, .side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Content Box */
+.content-box {
+  background-color: var(--bg-color-medium);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid var(--primary-color); /* Added top border */
+}
+
+.content-box-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-box-header h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.content-box-body {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.content-box-body.no-padding {
+  padding: 0;
+  overflow-x: auto; /* Allow table scrolling */
+}
+
+/* Hubs Grid */
+.hubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* Hub Card */
+.hub-card {
+  background-color: var(--bg-color-light); /* Slightly lighter than content-box */
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Ensure child borders don't overflow radius */
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: rgba(0,0,0,0.1); /* Subtle header background */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.card-header-text {
+  flex-grow: 1;
+  min-width: 0; /* Allow text truncation */
+}
+
+.card-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-header p {
+  font-size: 0.75rem;
+  color: var(--text-color-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-body {
+  padding: 0.75rem;
+  padding-top: 0.5rem;
+  flex-grow: 1;
+  overflow-y: auto; /* Already had style for max-height */
+}
+
+.card-footer {
+  padding: 0.5rem;
+  background-color: rgba(0,0,0,0.1);
+  border-top: 1px solid var(--border-color);
+  margin-top: auto; /* Push footer to bottom */
+}
+
+/* Bot Card Link Wrapper */
+.bot-card-link {
+    display: block; /* Make link take up block space */
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+    border-radius: 4px; /* Match bot-card radius */
+    transition: background-color 0.15s ease-in-out; /* Add transition */
+}
+
+.bot-card-link:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle hover effect */
+}
+
+/* Bot Card */
+.bot-card {
+  background-color: var(--bg-color-medium);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer; /* Add pointer cursor */
+}
+
+.bot-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+}
+
+.bot-card-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.bot-card-info h4 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bot-id {
+  font-size: 0.75rem;
+  color: var(--text-color-secondary);
+  margin: 0;
+  padding-left: calc(1.25rem + 0.4rem); /* Align with Bot name */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status Dot (for BotCard) */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+.status-dot.status-idle { background-color: var(--idle-color); }
+.status-dot.status-running { background-color: var(--running-color); }
+.status-dot.status-error { background-color: var(--error-color); }
+
+/* Data Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th, .data-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table thead th {
+  background-color: rgba(0,0,0,0.15);
+  font-weight: 600;
+  color: var(--text-color-secondary);
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(255,255,255,0.05);
+}
+
+.data-table td button + button {
+  margin-left: 0.5rem;
+}
+
+/* Pills (for status, counts) */
+.pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px; /* Fully rounded */
+  background-color: var(--bg-color-light);
+  color: var(--text-color-secondary);
+  white-space: nowrap;
+}
+.pill.status-idle { background-color: var(--idle-color); color: var(--bg-color-dark);}
+.pill.status-running { background-color: var(--running-color); color: var(--bg-color-dark);}
+.pill.status-error { background-color: var(--error-color); color: var(--text-color-primary);}
+/* Added task status pills */
+.pill.status-pending { background-color: var(--secondary-color); color: var(--text-color-primary);}
+.pill.status-completed { background-color: var(--primary-color); color: white;}
+.pill.status-failed { background-color: var(--error-color); color: var(--text-color-primary);}
+/* Added work effort status pills */
+.pill.status-active { background-color: var(--running-color); color: var(--bg-color-dark);}
+.pill.status-planned { background-color: var(--bg-color-light); color: var(--text-color-secondary); }
+/* completed uses same style as task */
+
+/* Style for inline links (e.g., Task IDs) */
+.inline-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.inline-link:hover {
+    color: var(--primary-color-hover);
+}
+
+/* Recent Events */
+.event-item {
+  padding: 0.3rem 0;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.event-indicator {
+  font-size: 0.8rem;
+}
+.event-indicator.connected { color: var(--connected-color); }
+.event-indicator.idle { color: var(--idle-color); }
+.event-indicator.info { color: var(--info-color); }
+
+/* Quick Actions */
+.quick-actions .content-box-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Buttons */
+.button {
+  display: inline-flex; /* Allow icons inside */
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.button-secondary {
+  background-color: var(--secondary-color);
+  color: var(--text-color-primary);
+  border: 1px solid var(--border-color);
+}
+
+.button-secondary:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+.button-small {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+}
+
+.button-full {
+  width: 100%;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Empty State */
+.empty-state {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color-secondary);
+    font-style: italic;
+}
+
+/* Table Row Expansion */
+.data-table tbody tr.expanded-row-trigger {
+   background-color: rgba(255, 255, 255, 0.08); /* Highlight expanded trigger row */
+}
+
+.data-table tbody tr.expanded-row-content > td {
+  /* Style the cell containing the expanded details */
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Style details within expanded row */
+.expanded-row-content .details-content {
+    padding: 1rem;
+}
+
+.expanded-row-content .details-content h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-color-primary);
+}
+
+.expanded-row-content .details-content p {
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    color: var(--text-color-secondary);
+}
+
+.expanded-row-content .details-content pre {
+    background: #1e2430;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    color: var(--text-color-secondary);
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+/* Click Feedback Tooltip */
+.click-tooltip {
+  position: absolute; /* Crucial for positioning */
+  background-color: #333; /* Dark background */
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 1000; /* Ensure it's on top */
+  white-space: nowrap;
+  pointer-events: none; /* Prevent tooltip from interfering with clicks */
+  /* Basic fade-in/out could be added with opacity transitions if desired */
+}
+
+/* Hide scrollbar but allow scrolling */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* WebKit browsers (Chrome, Safari) */
+}
+
+/* Loading/Empty States */
+.loading-state,
+.empty-state,
+.error-state { /* Added error state */
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color-secondary);
+    font-style: italic;
+}
+
+.error-state {
+    color: var(--error-color); /* Use red color */
+    font-style: normal; /* Errors usually aren't italic */
+}
+
+.loading-state {
+    /* Add specific loading styles later if needed (spinner, etc) */
+}
+
+.full-grid-span {
+   grid-column: 1 / -1; /* Make empty state span full grid width */
+}
+
+/* CSS for detail pages */
+.detail-pre {
+    background: #1e2430;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    max-height: 400px; /* Allow more height for details */
+    overflow-y: auto;
+    color: var(--text-color-secondary);
+    font-size: 0.85rem; /* Slightly larger for readability */
+    margin-top: 0.25rem;
+    white-space: pre-wrap; /* Ensure long lines wrap */
+    word-break: break-all; /* Break long words/IDs */
+}
+
+/* Styles for structured Journal Entries */
+.journal-entries {
+    /* Optional: Add overall container styles */
+}
+
+.journal-entry {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+.journal-entry:last-child {
+    border-bottom: none;
+}
+
+.journal-timestamp {
+    color: var(--text-color-secondary);
+    margin-right: 0.75rem;
+    display: inline-block; /* Ensure spacing */
+}
+
+.journal-type {
+    display: inline-block;
+    font-weight: 500;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    margin-right: 0.75rem;
+    background-color: var(--bg-color-light); /* Default background */
+    color: var(--text-color-secondary);
+}
+
+/* Color coding for types */
+.journal-type.type-action { background-color: var(--primary-color); color: white; }
+.journal-type.type-decision { background-color: var(--idle-color); color: var(--bg-color-dark); }
+.journal-type.type-observation { background-color: var(--running-color); color: var(--bg-color-dark); }
+.journal-type.type-error { background-color: var(--error-color); color: white; }
+.journal-type.type-info { background-color: var(--bg-color-light); color: var(--text-color-secondary); }
+
+.journal-summary {
+    /* Main text color */
+}
+
+.journal-details {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--text-color-secondary);
+    white-space: pre-wrap; /* Wrap text */
+    word-break: break-all;
+}
+
+/* Utility classes */
+.mb-4 {
+    margin-bottom: 1rem; /* Match default spacing */
+}
+.block {
+    display: block;
+}
+.inline {
+    display: inline-block; /* For icons within links/text */
+}
+.mr-1 {
+    margin-right: 0.25rem;
+}
