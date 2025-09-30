@@ -1,0 +1,11 @@
+# Backend Dependencies
+fastapi
+uvicorn[standard] # Includes websockets and performance extras
+python-dotenv # For loading .env configuration
+python-socketio # WebSocket library compatible with FastAPI
+Flask-Cors # Using Flask-Cors works fine with FastAPI for simple setup
+ollama # For AI interaction
+
+# Optional but recommended
+# pydantic # FastAPI uses it extensively
+# watchfiles # For uvicorn auto-reload during development
