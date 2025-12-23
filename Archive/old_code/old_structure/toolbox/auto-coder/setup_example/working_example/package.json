@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@langchain/community": "^0.0.1"
+    "@langchain/community": "^1.1.1"
   }
 }
