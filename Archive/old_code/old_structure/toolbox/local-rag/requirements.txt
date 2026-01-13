@@ -1,5 +1,5 @@
 langchain==0.0.351
-langchain-community==0.0.13
+langchain-community==0.3.27
 chromadb==0.4.22
 pdfplumber==0.10.3
 gradio==4.14.0
