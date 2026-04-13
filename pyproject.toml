@@ -12,7 +12,7 @@ authors = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "pytest>=7.0.0",
+    "pytest>=8.4.2",
     "gitpython",
     "docker",
     "tqdm",
