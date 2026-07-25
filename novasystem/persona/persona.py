@@ -216,10 +216,13 @@ class PersonaStore:
     """Versioned, append-only persona storage, sharing the ledger database."""
 
     def __init__(self, path: Path | str,
-                 busy_timeout: float = DEFAULT_BUSY_TIMEOUT_S) -> None:
+                 busy_timeout: float = DEFAULT_BUSY_TIMEOUT_S,
+                 cross_thread: bool = False) -> None:
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self._con = open_connection(self.path, busy_timeout)
+        self._con = open_connection(
+            self.path, busy_timeout, cross_thread=cross_thread
+        )
         self._con.executescript(SCHEMA)
         self._con.commit()
 

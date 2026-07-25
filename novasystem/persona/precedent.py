@@ -229,14 +229,19 @@ class PrecedentCheck:
         for commitment in persona.commitments:
             low = commitment.lower()
 
-            if "precedent" in low and (prior or related):
-                available = {r["id"] for r in prior} | {r["id"] for r in related}
+            if "precedent" in low and prior:
+                # Only an exact-subject prior decision is strong enough to be a
+                # violation. Merely related subjects are surfaced as context by
+                # Assessment.related; treating them as binding would block every
+                # novel decision that happens to share vocabulary with an old
+                # one, which makes the check noise and gets it switched off.
+                available = {r["id"] for r in prior}
                 if not (cited & available):
                     violations.append(
                         Violation(
                             commitment,
-                            f"{len(available)} prior decision(s) exist on this or a "
-                            f"related subject and none is cited in evidence_refs. "
+                            f"{len(available)} prior decision(s) exist on this exact "
+                            f"subject and none is cited in evidence_refs. "
                             f"Available: {', '.join(sorted(available))[:120]}",
                         )
                     )

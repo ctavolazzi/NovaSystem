@@ -95,7 +95,10 @@ END;
 
 
 def open_connection(
-    path: Path | str, busy_timeout: float = DEFAULT_BUSY_TIMEOUT_S, wal: bool = True
+    path: Path | str,
+    busy_timeout: float = DEFAULT_BUSY_TIMEOUT_S,
+    wal: bool = True,
+    cross_thread: bool = False,
 ) -> sqlite3.Connection:
     """Open a SQLite connection with the settings that survive concurrency.
 
@@ -103,13 +106,30 @@ def open_connection(
     applied in one place rather than remembered in several. A non-positive
     ``busy_timeout`` is refused outright; see the module docstring for the
     measurement showing why it silently loses writes.
+
+    ``cross_thread`` passes ``check_same_thread=False`` and must only be set when
+    the caller can guarantee the connection is used **sequentially**, never
+    concurrently. There is exactly one such case in this package: a web request
+    that owns its own connection. FastAPI creates a dependency in one threadpool
+    thread and may run its teardown in another, so the connection legitimately
+    crosses threads without ever being shared:
+
+        ProgrammingError: SQLite objects created in a thread can only be used in
+        that same thread.
+
+    sqlite3's check is conservative. It forbids all cross-thread use, while the
+    property actually required is the absence of *concurrent* use. Setting this
+    on a connection that two requests can reach at once trades a loud error for
+    silent corruption, so it is opt-in and documented rather than defaulted.
     """
     if busy_timeout <= 0:
         raise ValueError(
             "busy_timeout must be > 0; a zero timeout drops concurrent writes "
             "(measured: 297 of 320 lost under WAL)"
         )
-    con = sqlite3.connect(str(path), timeout=busy_timeout)
+    con = sqlite3.connect(
+        str(path), timeout=busy_timeout, check_same_thread=not cross_thread
+    )
     con.row_factory = sqlite3.Row
     # timeout= covers the Python driver; busy_timeout covers the engine.
     con.execute(f"PRAGMA busy_timeout = {int(busy_timeout * 1000)}")
@@ -202,6 +222,7 @@ class Ledger:
         path: Path | str,
         busy_timeout: float = DEFAULT_BUSY_TIMEOUT_S,
         wal: bool = True,
+        cross_thread: bool = False,
     ) -> None:
         if busy_timeout <= 0:
             # Guard the exact misconfiguration that loses writes silently.
@@ -212,13 +233,16 @@ class Ledger:
         self.path = Path(path)
         self.busy_timeout = busy_timeout
         self._wal = wal
+        self._cross_thread = cross_thread
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self._con = self._connect()
         self._con.executescript(SCHEMA)
         self._con.commit()
 
     def _connect(self) -> sqlite3.Connection:
-        return open_connection(self.path, self.busy_timeout, self._wal)
+        return open_connection(
+            self.path, self.busy_timeout, self._wal, self._cross_thread
+        )
 
     def __enter__(self) -> "Ledger":
         return self
