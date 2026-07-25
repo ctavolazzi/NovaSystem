@@ -13,8 +13,18 @@ import textwrap
 import json
 from datetime import datetime
 
-from .nova import Nova
 from .version import __version__
+
+# `Nova` is NOT imported here. It pulls in docker and git at import time, and
+# the coworking commands need neither. Importing eagerly would make
+# `novasystem coworking` fail on a machine without Docker installed, which is
+# most machines this gets demoed on. Resolved lazily by _nova() instead.
+
+
+def _nova():
+    """Import and construct Nova on demand."""
+    from .nova import Nova
+    return Nova()
 
 # Configure logging
 logging.basicConfig(
@@ -87,6 +97,11 @@ def configure_parser() -> argparse.ArgumentParser:
     delete_parser.add_argument('run_id', type=int, help='ID of the run to delete')
 
     # Cleanup old runs command
+    # Coworking layer. Its parser lives in the coworking package so the whole
+    # feature stays self-contained and importable without Docker.
+    from .coworking.cli import add_parser as add_coworking_parser
+    add_coworking_parser(subparsers)
+
     cleanup_parser = subparsers.add_parser('cleanup', help='Delete old runs')
     cleanup_parser.add_argument('--days', '-d', type=int, default=30,
                              help='Delete runs older than this many days (default: 30)')
@@ -111,7 +126,7 @@ def install_repository(args: argparse.Namespace) -> int:
         logger.info(f"Installing repository: {args.repository}")
 
         # Initialize Nova
-        nova = Nova()
+        nova = _nova()
 
         # Process repository
         result = nova.process_repository(
@@ -181,7 +196,7 @@ def list_runs(args: argparse.Namespace) -> int:
         logger.info("Listing runs")
 
         # Initialize Nova
-        nova = Nova()
+        nova = _nova()
 
         # Get runs
         runs = nova.list_runs(
@@ -240,7 +255,7 @@ def show_run(args: argparse.Namespace) -> int:
         logger.info(f"Showing run: {args.run_id}")
 
         # Initialize Nova
-        nova = Nova()
+        nova = _nova()
 
         # Get run details
         result = nova.get_run_details(args.run_id)
@@ -343,7 +358,7 @@ def delete_run(args: argparse.Namespace) -> int:
         logger.info(f"Deleting run: {args.run_id}")
 
         # Initialize Nova
-        nova = Nova()
+        nova = _nova()
 
         # Delete run
         result = nova.delete_run(args.run_id)
@@ -378,7 +393,7 @@ def cleanup_runs(args: argparse.Namespace) -> int:
         logger.info(f"Cleaning up runs older than {args.days} days")
 
         # Initialize Nova
-        nova = Nova()
+        nova = _nova()
 
         # Cleanup runs
         count = nova.cleanup_old_runs(args.days)
@@ -419,6 +434,9 @@ def main(args: Optional[List[str]] = None) -> int:
         return delete_run(parsed_args)
     elif parsed_args.command == 'cleanup':
         return cleanup_runs(parsed_args)
+    elif parsed_args.command == 'coworking':
+        from .coworking.cli import handle as handle_coworking
+        return handle_coworking(parsed_args)
     else:
         parser.print_help()
         return 0

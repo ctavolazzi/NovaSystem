@@ -14,7 +14,7 @@ Nova`` still works, it just no longer costs a Docker dependency to reach it.
 from typing import TYPE_CHECKING
 
 # Version number should match the one in pyproject.toml
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 # Public name -> submodule that defines it.
 _EXPORTS = {

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "novasystem"
-version = "0.1.1"
-description = "NovaSystem - A system for managing GitHub repositories, Docker, and documentation"
+version = "0.2.0"
+description = "NovaSystem - AI coworking, agent personas, and automated repository installation"
 readme = "README.md"
 authors = [
     {name = "NovaSystem Team"}
@@ -19,11 +19,43 @@ dependencies = [
     "requests",
 ]
 
+[project.optional-dependencies]
+# The coworking layer. Split out so `pip install novasystem` stays lean and so
+# the layer's dependencies are visible rather than buried in the base install.
+#   ruamel.yaml  round-trip frontmatter that survives repeated agent edits
+#   portalocker  cross-platform advisory locking for concurrent writers
+coworking = [
+    "ruamel.yaml>=0.17",
+    "portalocker>=2.0",
+]
+# The persona API layer. FastAPI is optional for the same reason: the ledger,
+# guardrail, and precedent modules are useful without a web server.
+persona-api = [
+    "fastapi>=0.100",
+    "uvicorn>=0.23",
+]
+all = [
+    "novasystem[coworking]",
+    "novasystem[persona-api]",
+]
+
 [project.scripts]
 novasystem = "novasystem.cli:main"
 
 [tool.setuptools]
-packages = ["novasystem"]
+packages = [
+    "novasystem",
+    "novasystem.coworking",
+    "novasystem.persona",
+    "novasystem.utils",
+    "novasystem.core_utils",
+]
+
+[tool.setuptools.package-data]
+# The work log template and the agent hook are runtime assets, not examples.
+# Without this they are missing from a wheel and `coworking init` fails on any
+# install that is not an editable checkout.
+"novasystem.coworking" = ["templates/*.md", "hooks/*.sh"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
