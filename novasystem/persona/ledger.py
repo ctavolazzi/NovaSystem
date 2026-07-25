@@ -94,6 +94,32 @@ END;
 """
 
 
+def open_connection(
+    path: Path | str, busy_timeout: float = DEFAULT_BUSY_TIMEOUT_S, wal: bool = True
+) -> sqlite3.Connection:
+    """Open a SQLite connection with the settings that survive concurrency.
+
+    Shared by every store in this package so the measured configuration is
+    applied in one place rather than remembered in several. A non-positive
+    ``busy_timeout`` is refused outright; see the module docstring for the
+    measurement showing why it silently loses writes.
+    """
+    if busy_timeout <= 0:
+        raise ValueError(
+            "busy_timeout must be > 0; a zero timeout drops concurrent writes "
+            "(measured: 297 of 320 lost under WAL)"
+        )
+    con = sqlite3.connect(str(path), timeout=busy_timeout)
+    con.row_factory = sqlite3.Row
+    # timeout= covers the Python driver; busy_timeout covers the engine.
+    con.execute(f"PRAGMA busy_timeout = {int(busy_timeout * 1000)}")
+    if wal:
+        con.execute("PRAGMA journal_mode = WAL")
+    con.execute("PRAGMA foreign_keys = ON")
+    con.execute("PRAGMA synchronous = FULL")
+    return con
+
+
 class LedgerError(RuntimeError):
     """Base class for ledger failures."""
 
@@ -192,15 +218,7 @@ class Ledger:
         self._con.commit()
 
     def _connect(self) -> sqlite3.Connection:
-        con = sqlite3.connect(str(self.path), timeout=self.busy_timeout)
-        con.row_factory = sqlite3.Row
-        # timeout= covers the Python driver; busy_timeout covers the engine.
-        con.execute(f"PRAGMA busy_timeout = {int(self.busy_timeout * 1000)}")
-        if self._wal:
-            con.execute("PRAGMA journal_mode = WAL")
-        con.execute("PRAGMA foreign_keys = ON")
-        con.execute("PRAGMA synchronous = FULL")
-        return con
+        return open_connection(self.path, self.busy_timeout, self._wal)
 
     def __enter__(self) -> "Ledger":
         return self
