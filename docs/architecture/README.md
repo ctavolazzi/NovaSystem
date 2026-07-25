@@ -11,6 +11,12 @@ This directory contains documentation that describes the architecture of the Nov
 5. [Security Architecture](05-security-architecture.md) - Security design and considerations
 6. [Deployment Architecture](06-deployment-architecture.md) - Deployment models and infrastructure
 
+## Subsystem Architecture
+
+- [Coworking Layer](coworking-layer.md) - Shared human-readable work log, the
+  real-time activity feed, layout migration, and the markdown failure modes
+  that shaped the design
+
 ## Architectural Diagrams
 
 - [Architecture Diagrams](diagrams/README.md) - Visual representations of the system architecture

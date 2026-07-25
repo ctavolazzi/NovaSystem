@@ -20,7 +20,95 @@ This software is provided strictly as an **experimental research tool**, offered
 
 By using NovaSystem, you acknowledge these limitations and agree to exercise appropriate caution.
 
-# 🚀 NEW: NovaSystem v0.1.1 - Automated Repository Installation Tool
+# 🚀 NEW in v0.2.0: The Coworking Layer
+
+**Watch your AI work, in a document you can read.**
+
+When an agent works for twenty minutes, you get two things: a wall of tool
+calls nobody reads, and a summary you have to take on faith. Neither tells you
+what is happening *while* it happens.
+
+The coworking layer replaces both with one plain markdown file. The agent
+writes into it as it works. You read it, scroll it, screen-record it. It looks
+like this, and it updates while you watch:
+
+```markdown
+> [!abstract]+ Live Feed · 63 actions · 2 sessions · updated 10:07
+> **Now:** porting the coworking layer into NovaSystem *(since 09:52)*
+>
+> `10:06:52` ✎ **Edit** `coworking/live_feed.py`
+> `10:06:41` ▶ **Bash** `python -m pytest tests/coworking -q`
+> `10:05:12` · **Read ×7** `coworking/document.py`
+> `10:04:58` ✚ **Write** `coworking/migrate.py`
+```
+
+## The one design decision everything follows from
+
+The agent's work goes at the **top** of the document, above the context, the
+notes, and yesterday's carryover.
+
+That sounds cosmetic. It is the whole feature. A log that opens with context
+and buries current activity 300 lines down is a log nobody watches. Put the
+work where the eye already is, and the document stops being an archive and
+starts being a window.
+
+## Quickstart
+
+```bash
+pip install "novasystem[coworking]"
+
+novasystem coworking init            # today's log, from the template
+novasystem coworking install-hook    # stream agent activity into it
+novasystem coworking doctor          # confirm the wiring
+```
+
+Point it at notes you already read:
+
+```bash
+export NOVA_COWORKING_DIR=~/Vault/Daily
+```
+
+Then work. The Live Feed fills in on its own. When you want to say what you are
+doing rather than what you are touching:
+
+```bash
+novasystem coworking focus "wiring the Stripe webhook"
+novasystem coworking note "webhook secret was never set in prod"
+```
+
+At the end of a session, find out what you left behind:
+
+```bash
+novasystem coworking audit --since 09:45
+```
+
+```
+[  ok  ] Today's log matches the section schema
+[  ok  ] Live Feed is current and error-free
+[ WARN ] Session log reflects the work done
+           last entry is 10:20 but activity continued to 10:52 (32 min)
+[ WARN ] Session work is committed
+           novasystem: 8 uncommitted change(s)
+```
+
+`--since` matters more than it looks: several agents commonly share one repo,
+and another session's dirty tree is not your loose end.
+
+## What is in the box
+
+| Module | What it does |
+|---|---|
+| `config` | Every path and the section schema. Nothing else hardcodes a location. Sections are data, so you can define your own. |
+| `document` | Markdown with addressable sections. Atomic, lock-guarded, permissioned writes that refuse to silently no-op. |
+| `live_feed` | The watchable section. Shell hook records, Python renders, full rebuild every time. |
+| `migrate` | Moves sections when the schema changes. Content preserving, idempotent, dry run by default. |
+| `audit` | Finds what a session left undone. |
+| `install` | Wires the hook into your agent harness without clobbering your settings. |
+
+Full guide: **[docs/guides/ai-coworking.md](docs/guides/ai-coworking.md)**
+Design notes: **[docs/architecture/coworking-layer.md](docs/architecture/coworking-layer.md)**
+
+# 🚀 NovaSystem v0.1.1 - Automated Repository Installation Tool
 
 **NovaSystem v0.1.1** introduces an entirely new functionality: an automated repository installation tool that extracts installation commands from repository documentation and executes them in an isolated Docker environment.
 
