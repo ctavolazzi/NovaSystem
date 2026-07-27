@@ -46,6 +46,7 @@ novasystem = "novasystem.cli:main"
 packages = [
     "novasystem",
     "novasystem.coworking",
+    "novasystem.memory",
     "novasystem.persona",
     "novasystem.utils",
     "novasystem.core_utils",

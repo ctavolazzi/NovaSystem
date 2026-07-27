@@ -108,6 +108,49 @@ and another session's dirty tree is not your loose end.
 Full guide: **[docs/guides/ai-coworking.md](docs/guides/ai-coworking.md)**
 Design notes: **[docs/architecture/coworking-layer.md](docs/architecture/coworking-layer.md)**
 
+# 🧠 Queryable memory
+
+The Live Feed keeps events. The Ledger keeps decisions. Neither answers
+questions. `novasystem.memory` mirrors both into a PocketBase collection you
+can search.
+
+```bash
+export NOVA_JOURNAL=1                       # off unless you opt in
+
+novasystem journal status
+novasystem journal log "picked SQLite over Postgres for the ledger" \
+    --kind decision --tags ledger,storage
+novasystem journal query "ledger" --since 7d
+novasystem journal query --kind decision --all-projects
+```
+
+```python
+from novasystem.memory import journal
+
+journal.remember("shipped the coworking layer", kind="event")
+for row in journal.recall("ledger", kind="decision"):
+    print(row["occurred_at"], row["title"])
+```
+
+**Where the data lives.** The PocketBase instance and the `agent_journal`
+schema belong to [SimpleAgentOS](https://github.com/ctavolazzi/SimpleAgentOS)
+(`python3 pb_journal.py serve`). NovaSystem speaks plain HTTP to the same
+collection and never imports it, so either project runs without the other —
+and `--all-projects` lets each one read what the other learned.
+
+Three things worth knowing:
+
+| Property | What it means |
+|---|---|
+| **Off by default** | Nothing mirrors unless `NOVA_JOURNAL=1`. |
+| **Never fatal** | Every mirror is wrapped. A journal failure cannot fail a ledger `record()` or drop a feed row. The tests verify the hash chain stays intact under a deliberately exploding journal. |
+| **Never lost** | If PocketBase is down, entries spool to `~/.novasystem/journal_spool.jsonl` and `novasystem journal sync` drains them later. |
+
+Feed mirroring is filtered to `Write`, `Edit`, `NotebookEdit`, `note`, `focus`
+— mirroring every `Read` into a memory you later search buries what's worth
+recalling. `NOVA_JOURNAL_FEED_KINDS=*` overrides. Point at a different server
+with `NOVA_JOURNAL_BASE`.
+
 # 🚀 NovaSystem v0.1.1 - Automated Repository Installation Tool
 
 **NovaSystem v0.1.1** introduces an entirely new functionality: an automated repository installation tool that extracts installation commands from repository documentation and executes them in an isolated Docker environment.

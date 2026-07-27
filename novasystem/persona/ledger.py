@@ -308,6 +308,17 @@ class Ledger:
                     digest,
                 ),
             )
+
+        # Mirror into queryable memory (NOVA_JOURNAL=1). Deliberately outside
+        # the transaction and after the commit: the chain is the source of
+        # truth, and nothing about an optional index gets to fail a record().
+        try:
+            from ..memory import journal
+
+            journal.mirror_decision(decision, digest)
+        except Exception:
+            pass
+
         return digest
 
     def supersede(

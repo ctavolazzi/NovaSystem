@@ -102,6 +102,10 @@ def configure_parser() -> argparse.ArgumentParser:
     from .coworking.cli import add_parser as add_coworking_parser
     add_coworking_parser(subparsers)
 
+    # Queryable memory. Same pattern: parser lives with the feature.
+    from .memory.cli import add_parser as add_journal_parser
+    add_journal_parser(subparsers)
+
     cleanup_parser = subparsers.add_parser('cleanup', help='Delete old runs')
     cleanup_parser.add_argument('--days', '-d', type=int, default=30,
                              help='Delete runs older than this many days (default: 30)')
@@ -437,6 +441,9 @@ def main(args: Optional[List[str]] = None) -> int:
     elif parsed_args.command == 'coworking':
         from .coworking.cli import handle as handle_coworking
         return handle_coworking(parsed_args)
+    elif parsed_args.command == 'journal':
+        from .memory.cli import handle as handle_journal
+        return handle_journal(parsed_args)
     else:
         parser.print_help()
         return 0

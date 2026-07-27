@@ -7,6 +7,51 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 with the caveat that NovaSystem is ALPHA software: minor versions may change
 interfaces until 1.0.0.
 
+## [Unreleased]
+
+### Added
+
+- **`novasystem.memory`**: queryable memory. The coworking Live Feed keeps
+  events and the persona Ledger keeps decisions; both are good at recording and
+  bad at being asked. This subpackage mirrors them into a PocketBase collection
+  (`agent_journal`) you can search.
+  - `novasystem journal status | log | query | recent | sync`
+  - `journal.remember(...)` / `journal.recall(...)` from Python
+  - `--all-projects` reads across every project sharing the collection, so
+    NovaSystem can see what SimpleAgentOS learned and vice versa.
+- Mirrors from `coworking.live_feed.LiveFeed.append` and
+  `persona.ledger.Ledger.record`, both after their own write has committed.
+
+Three properties this was built around:
+
+- **Off by default.** Nothing mirrors unless `NOVA_JOURNAL=1`. Existing
+  behavior is unchanged for anyone who doesn't opt in.
+- **No import coupling.** SimpleAgentOS owns the PocketBase instance and the
+  schema; NovaSystem speaks plain HTTP to the same collection and never imports
+  it. Either project runs fine without the other.
+- **Never fatal.** Every mirror is wrapped. A journal failure cannot fail a
+  ledger `record()` or drop a feed row, and the ledger's hash chain is
+  verified intact under a deliberately exploding journal in the tests.
+
+Feed mirroring is filtered (`Write`, `Edit`, `NotebookEdit`, `note`, `focus`)
+because mirroring every `Read` into a memory you later search buries the things
+worth recalling. `NOVA_JOURNAL_FEED_KINDS=*` overrides.
+
+### Fixed
+
+- **The live tests were writing into the real journal.** `tests/memory/` pointed
+  at the production `agent_journal` collection shared with SimpleAgentOS, so
+  every run left `novatest-...` rows in a memory both projects read from. The
+  `live` fixture now redirects `COLLECTION` to the scratch twin
+  (`agent_journal_test`, owned by SimpleAgentOS's migrations) and deletes its
+  rows on teardown. It skips with a clear message if that collection is absent.
+
+- **The spool could grow without limit.** Capped at 8 MiB / 5000 entries /
+  30 days via `NOVA_JOURNAL_SPOOL_MAX_*`, oldest dropped first, enforced on
+  append behind a cheap `stat()`. The number of dropped entries is kept in a
+  `.dropped` sidecar and reported by `novasystem journal status`, so memory lost
+  to a long outage shows up as a known gap instead of a silent one.
+
 ## [0.2.0] - 2026-07-25
 
 Two new subsystems. Both answer the same question from different directions:

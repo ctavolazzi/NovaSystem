@@ -108,6 +108,16 @@ class LiveFeed:
         except OSError:
             pass
 
+        # Optional mirror into queryable memory (NOVA_JOURNAL=1). Same contract
+        # as the feed write above: never raises, and the JSONL row is already
+        # safe on disk by the time we get here.
+        try:
+            from ..memory import journal
+
+            journal.mirror_feed_event(kind, detail, sid)
+        except Exception:
+            pass
+
     def record_payload(self, payload: Dict) -> Optional[Dict]:
         """Extract and append one event from an agent hook payload.
 
