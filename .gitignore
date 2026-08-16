@@ -213,5 +213,9 @@ OAI_CONFIG_LIST
 
 # Standardization related
 /backups/
-/NovaSystem/
+# NOTE: do not re-add "/NovaSystem/" here. It was meant to ignore the deprecated
+# nested directory removed in e1a776a (2025-02-27), but git honors core.ignorecase
+# (default true on macOS), so the pattern also matches the real `novasystem/`
+# package. Existing tracked files stayed tracked, which hid it, while every NEW
+# module added to the package was silently unaddable and invisible to git status.
 /test_repo/

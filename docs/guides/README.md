@@ -9,6 +9,12 @@ This directory contains practical guides and best practices for working with the
 - [Running NovaSystem Locally](getting-started/local-setup.md) - How to run the system on your machine
 - [Making Your First Contribution](getting-started/first-contribution.md) - Guide for new contributors
 
+## Working With Agents
+
+- [AI Coworking](ai-coworking.md) - Set up a shared work log you can watch an
+  agent fill in, stream its activity in real time, and audit what a session
+  left behind
+
 ## Development Workflows
 
 - [Development Workflow](workflows/development-workflow.md) - Standard development process
