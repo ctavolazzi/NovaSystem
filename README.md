@@ -2,6 +2,13 @@
 
 # NovaSystem: A Next-Generation Problem-Solving Framework for GPT-4 or Comparable LLM
 
+> **Where development happens now.** Active NovaSystem work moved to
+> [ctavolazzi/NovaSystem-Codex](https://github.com/ctavolazzi/NovaSystem-Codex).
+> That repo holds the consolidated v0.3.4 framework (at its `v0.3.4` tag) and
+> the current v0.4.0a1 rewrite. This repository (package version 0.1.1) is the
+> original implementation, kept for history and for the archived experiments
+> in `Archive/`.
+
 Welcome to the NovaSystem, a pioneering problem-solving method that harnesses the power of a team of virtual experts to tackle complex problems. This open-source project provides an implementation of the Nova Process utilizing multiple AI models working together locally and in the cloud.
 
 # ⚠️ Development Status - Please Read
