@@ -1,0 +1,11 @@
+# This repo no longer contains a website. The SvelteKit site that the
+# Netlify project "novasystem-dev" was built for (novasystem-io/) was
+# removed in d1ff679 (2024-08-15), and every deploy preview since has
+# failed. Active work lives in ctavolazzi/NovaSystem-Codex.
+#
+# An ignore command that exits 0 tells Netlify to skip the build, so
+# pull requests stop reporting a failed deploy. To serve a site from
+# this repo again, delete this line and set a build command and
+# publish directory here.
+[build]
+  ignore = "exit 0"
